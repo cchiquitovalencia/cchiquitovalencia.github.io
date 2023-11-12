@@ -15,7 +15,7 @@ $body-color: $gris-oscuro; // page text
 
 // Inline code
 $code-bg: $gris-claro;
-$code-color: $gris-oscuro;
+$code-color: $naranja-claro;
 
 // Code blocks
 $code-block-bg: $naranja-claro;
@@ -32,10 +32,10 @@ $link-hover-color: $naranja-oscuro;
 }
 
 a:hover {
-  background-color: $naranja-oscuro;
+  background-color: $naranja-claro;
   border-color: $naranja-oscuro;
   border-bottom: 2px solid $naranja-oscuro;
-  color: $azul-oscuro;
+  color: $naranja-oscuro;
 }
 
 div.quarto-about-trestles .about-entity .about-link:hover {
