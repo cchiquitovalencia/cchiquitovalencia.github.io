@@ -11,6 +11,7 @@ website:
         text: Home
       - about.qmd
       - resources.qmd
+      - posts.qmd
   page-footer:
     background: light
     left: 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cristian Chiquito Valencia</title>
+<title>Cristian Chiquito Valencia - Mi Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,9 +31,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -59,7 +62,38 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -94,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html" rel="" target="">
+    <a class="nav-link active" href="./posts.html" rel="" target="" aria-current="page">
  <span class="menu-text">Mi Blog</span></a>
   </li>  
 </ul>
@@ -108,67 +142,73 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<div class="quarto-about-trestles column-page">
-  <div class="about-entity">
-    <img src="image.jpg" class="about-image
-  round " style="height: 20em; width: 20em;">
+<main class="content column-page-left" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Cristian Chiquito Valencia</h1>
+<h1 class="title">Mi Blog</h1>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
+  
+
 </header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/cchiquitovalencia/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com/cchiquitovalencia/" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="mailto:cchiquito.valencia@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope-at-fill"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content column-page" id="quarto-document-content">
-<section id="data-analyst" class="level1">
-<h1>Data Analyst</h1>
-<section id="technical-skills-excel-power-bi-r." class="level4">
-<h4 data-anchor-id="technical-skills-excel-power-bi-r.">Technical Skills: Excel, Power BI, R.</h4>
-</section>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<ul>
-<li>Logistics, Specialist | Universidad del Valle (September 2019)</li>
-<li>Industrial Engineer, B.S. | Universidad Icesi (February 2015)</li>
-</ul>
-<section id="work-experience" class="level3">
-<h3 data-anchor-id="work-experience">Work Experience</h3>
-<p><strong>Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A. (_August 2022 - Present)</strong></p>
-<p>- Ensure compliance with the clauses of the current concession contract and its respective others that correspond to the Maintenance area for the provision of the public mass passenger transportation service within the integrated mass transportation system of Santiago de Cali of the Managing Entity. - Implement, standardize and improve the management of your process in order to guarantee compliance with the company’s objectives and the Integrated Management System. - Guarantee compliance with contractual commitments with the Managing Entity, guaranteeing the availability and reliability of the fleet as well as its preventive maintenance. - Develop strategies to increase the productivity levels of the process taking into account the associated resources available by the organization. - Coordinate and provide the necessary resources for the management carried out by the maintenance area collaborators. - Guarantee compliance with commitments with the integrated management system defined by the organization and establish improvement plans when necessary. - Develop knowledge management projects within the maintenance area through process automation and productivity improvement, as well as identify training and qualification needs of the collaborators in charge. - Synergistically ensure with the Operations Department the availability and reliability of the fleet. - Establish and supervise the execution of service agreements agreed upon with suppliers associated with the maintenance area, evaluating and reevaluating the management developed by them. - Plan the implementation, creation and development of projects, plans, activities and/or acquisition of new suppliers that aim to improve the Maintenance process.</p>
-<p><strong>Leader of operational services plan and data analysis @ Grupo Integrado de Transporte Masivo S.A. (_February 2019 - July 2022)</strong></p>
-<p>- Plan, propose and implement process improvement projects through the use of descriptive and inferential statistics. - Apply engineering techniques to achieve cost reduction in production management through resource optimization. - Analyze and evaluate the profitability of resources dedicated to production for decision making. - Presentation of reports, analysis and statistics on a regular basis. - Actively participate in the planning and programming of the distribution of kilometers. - Pose and establish process optimization models through the statistical analysis of distribution and programming data. - Schedule route trips in accordance with the designed offer defined in the Operation Services Plan. - Adjust opening and closing trips that guarantee service coverage to the user up to the times defined in the designed offer. - Determine necessary fleet by type of vehicle according to the designed service offer. - Prepare information to export data to the control center, vehicles and dispatches with part of the fleet operation support system. - Generate preliminary reports, input for optimizing operator shifts.</p>
-<p><strong>Production Engineer @ Grupo Integrado de Transporte Masivo S.A. (_March 2015 - February 2019)</strong></p>
-<p>- Planning, control and administration of the vehicle fleet. - Programming of yard operators for different activities related to the production area. - Responsible for supervising and controlling operators and technicians, track inspectors and operation controllers. - Coordinate and evaluate operation processes in other yards. Analyze causes of non-compliance with company objectives. - Monitoring and control of corrective and preventive maintenance times.</p>
-</section>
-<section id="projects" class="level3">
-<h3 data-anchor-id="projects">Projects</h3>
-<p><strong>Development and implementation of a methodology for detecting atypical trips through the use of control charts for transportation times in the city of Cali.</strong></p>
-<p><strong>Creation and administration of a linear programming model in R language to optimize the distribution of kilometers in service, guaranteeing the expected income and minimizing the cost per empty kilometers and the number of operator-hours.</strong></p>
 
 
-</section>
-</section>
-</section>
-</main></div>
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Quarto,R" data-listing-date-sort="1699765200000" data-listing-file-modified-sort="1699825633251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./posts/2023-11-12-crear_un_post/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-11-12-crear_un_post/crea_blog.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+¿Cómo crear un post?
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Quarto'); return false;">
+Quarto
 </div>
- <!-- /main -->
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+</div>
+<div class="card-text listing-description">
+Parece ser una buena manera de conservar un buen flujo de trabajo
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cristian Chiquito Valencia
+</div>
+<div class="listing-date">
+Nov 12, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -189,6 +229,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

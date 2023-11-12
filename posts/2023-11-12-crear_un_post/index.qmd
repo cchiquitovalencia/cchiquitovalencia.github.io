@@ -1,0 +1,20 @@
+---
+title: "¿Cómo crear un post?"
+description: "Parece ser una buena manera de conservar un buen flujo de trabajo"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A.
+date: 11-12-2023
+categories: [Quarto, R] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2023-11-12-crear_un_post/ 
+image: crea_blog.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Ahora que ya tienes tu página configurada, puedes empezar a llenarla con entradas de blog. Repite los siguientes pasos cada vez que desees añadir un nuevo post.
+
+Crea un subdirectorio dentro de tu directorio `posts/:` Para mantenerme organizado, suelo nombrar el mío `YYYY-MM-DD-describe_post`. Este nombre de carpeta también se convertirá en la parte identificativa única de una dirección web (normalmente al final de la URL) de tu post publicado.
+
+Dentro de tu nuevo subdirectorio, crea un archivo index.qmd. El nombre es importante. Debe llamarse index.qmd. La ruta del archivo debe ser similar a la siguiente: `…/posts/2023-11-12-crear_un_post/index.qmd.` Este archivo es la entrada de tu blog. Escribe todo el contenido aquí. Configure su entrada de blog: Puedes añadir diferentes opciones a la sección YAML de `index.qmd`.
