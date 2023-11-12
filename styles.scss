@@ -14,14 +14,14 @@ $gris-oscuro: #4d6080;
 $body-color: $gris-oscuro; // page text
 
 // Inline code
-$code-bg: $gris-claro;
+$code-bg: $naranja-claro;
 $code-color: $naranja-claro;
 
 // Code blocks
 $code-block-bg: $naranja-claro;
 
 // Aditional
-$link-color: $azul-oscuro;
+$link-color: $naranja-oscuro;
 $link-hover-color: $naranja-oscuro;
 
 // Cambiar el color de los botones al hacer hover
@@ -52,7 +52,12 @@ a.nav-link:hover {
   color: $azul-oscuro;
 }
 
-.quarto-grid-item:hover{
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
+}
+
+.quarto-grid-link:hover{
   transform: scale(1.05);
   box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
 }
