@@ -14,6 +14,7 @@ about:
           icon: github
           href: https://github.com/cchiquitovalencia/
         - text: Email
+          icon: envelope-at-fill
           href: mailto:cchiquito.valencia@gmail.com
 ---
 
