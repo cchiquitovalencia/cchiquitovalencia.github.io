@@ -51,3 +51,8 @@ a.nav-link:hover {
   border-bottom: 2px solid $azul-oscuro;
   color: $azul-oscuro;
 }
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
+}
