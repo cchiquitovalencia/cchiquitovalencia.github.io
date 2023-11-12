@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 website:
+  favicon: logo.png
   title: "Cristian Chiquito Valencia"
   navbar:
     left:
@@ -10,6 +11,17 @@ website:
         text: Home
       - about.qmd
       - resources.qmd
+  page-footer:
+    background: light
+    left: 
+      - "Copyright 2023, Cristian Chiquito Valencia"
+    right: 
+      - icon: linkedin
+        href: https://www.linkedin.com/in/cchiquitovalencia/
+      - icon: github
+        href: https://github.com/cchiquitovalencia/
+      - icon: envelope-at-fill
+        href: mailto:cchiquito.valencia@gmail.com
 
 format:
   html:
