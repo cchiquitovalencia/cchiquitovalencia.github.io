@@ -19,3 +19,35 @@ $code-color: $gris-oscuro;
 
 // Code blocks
 $code-block-bg: $naranja-claro;
+
+// Aditional
+$link-color: $azul-oscuro;
+$link-hover-color: $naranja-oscuro;
+
+// Cambiar el color de los botones al hacer hover
+.btn:hover {
+  background-color: $naranja-claro;
+  border-color: $naranja-oscuro;
+  color: $azul-oscuro;
+}
+
+a:hover {
+  background-color: $naranja-oscuro;
+  border-color: $naranja-oscuro;
+  border-bottom: 2px solid $naranja-oscuro;
+  color: $azul-oscuro;
+}
+
+div.quarto-about-trestles .about-entity .about-link:hover {
+  background-color: $naranja-oscuro;
+  border-color: $naranja-claro;
+  border-bottom: 2px solid $azul-oscuro;
+  color: $azul-oscuro;
+}
+
+a.nav-link:hover {
+  background-color: $naranja-oscuro;
+  border-color: $naranja-claro;
+  border-bottom: 2px solid $azul-oscuro;
+  color: $azul-oscuro;
+}
