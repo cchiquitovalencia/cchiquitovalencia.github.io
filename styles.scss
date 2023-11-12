@@ -1,8 +1,12 @@
 /*-- scss:defaults --*/
 
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@400;800&display=swap');
+
 // Colors
 $azul-oscuro: #1e2c46;
 $naranja-oscuro: #de6f41;
+$naranja-claro: #FFE0B2;
 $gris-claro: #889fbf;
 $gris-oscuro: #4d6080;
 
@@ -11,5 +15,7 @@ $body-color: $gris-oscuro; // page text
 
 // Inline code
 $code-bg: $gris-claro;
+$code-color: $gris-oscuro;
 
 // Code blocks
+$code-block-bg: $naranja-claro;
