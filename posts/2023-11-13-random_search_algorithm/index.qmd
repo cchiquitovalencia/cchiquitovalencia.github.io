@@ -1,0 +1,86 @@
+---
+title: "Random Search"
+description: "Búsqueda aleatoria"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A.
+date: 11-13-2023
+categories: [R, optimización] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2023-11-13-random_search_algorithm/ 
+image: random_search_image_5.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Taxonomía
+
+`Random Search` pertenece a los campos de la `Optimización Estocástica` y la `Optimización Global`. Es un método de búsqueda directa, no requiere derivadas para buscar en un dominio continuo. Esta enfoque está relacionado con técnicas que proporcionan pequeñas mejoras, como la `Directed Random Search` y la `Adaptative Random Search`.
+
+## Estrategia
+
+La estrategia de `Random Search` consiste en muestrear soluciones de todo el espacio de búsqueda utilizando una distribución de probabilidad uniforme. Cada muestra futura es independiente de las anteriores.
+
+## Procedimiento
+
+![Pseudocódigo Random Search](psd_random_search.png){alt="Pseudocódigo Random Search"}
+
+## Heurística
+
+`Random Search` es minimalista en el sentido de que sólo requiere una rutina de construcción de soluciones candidatas y una rutina de evaluación de soluciones candidatas, ambas pueden calibrarse con el enfoque.
+
+En el peor de los casos, el rendimiento de `Random Search` para localizar el óptimo es peor que una `Enumeración` del dominio de búsqueda, dado que `Random Search` no tiene memoria y puede remuestrear a ciegas.
+
+`Random Search` puede devolver una aproximación razonable de la solución óptima en un tiempo razonable con problemas de baja dimensionalidad, aunque el enfoque no se escala bien con tamaño del problema (como el número de dimensiones).
+
+Hay que tener cuidado con algunos dominios de problemas para garantizar que la construcción aleatoria de soluciones candidatas no esté sesgada.
+
+Los resultados de una `Random Search` pueden utilizarse para sembrar otra técnica de búsqueda, como una técnica de búsqueda local (como el algoritmo `Hill Climbing`) que se puede utilizar para localizar la mejor solución en la vecindad de la "buena" solución candidata.
+
+## Código
+
+El problema de ejemplo es un caso de optimización continua que busca:
+
+$min f(x)$ donde $f = ∑_{i=1}^n X_i^2$, $-5.0<=x_i<=5.0$ y $n=2$.
+
+La solución óptima para esta función es $(v_0,…,v_{n-1})=0.0$
+
+```{r random_search}
+# Definir la función objetivo
+objective_function <- function(vector) {
+    return(sum(vector^2))
+}
+
+# Generar un vector aleatorio
+random_vector <- function(minmax) {
+    return(runif(length(minmax), min = minmax[,1], max = minmax[,2]))
+}
+
+# Realizar la búsqueda aleatoria
+search <- function(search_space, max_iter) {
+    best <- NULL
+    for (iter in 1:max_iter) {
+        candidate <- list()
+        candidate$vector <- random_vector(search_space)
+        candidate$cost <- objective_function(candidate$vector)
+        if (is.null(best) || candidate$cost < best$cost) {
+            best <- candidate
+        }
+       # cat(paste(" > iteration=", iter, ", best=", best$cost, "\n", sep = ""))
+    }
+    return(best)
+}
+
+# Configuración del problema
+problem_size <- 2
+search_space <- matrix(c(-5, 5), nrow = problem_size, ncol = 2, byrow = TRUE)
+
+# Configuración del algoritmo
+max_iter <- 1000
+
+# Ejecutar el algoritmo
+best <- search(search_space, max_iter)
+
+# Imprimir la mejor solución encontrada
+cat(paste("Hecho, Mejor solución: c=", best$cost,", v=", best$vector, "\n", sep = ""))
+```
