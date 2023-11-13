@@ -15,7 +15,7 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 ## Taxonomía
 
-`Random Search` pertenece a los campos de la `Optimización Estocástica` y la `Optimización Global`. Es un método de búsqueda directa, no requiere derivadas para buscar en un dominio continuo. Esta enfoque está relacionado con técnicas que proporcionan pequeñas mejoras, como la `Directed Random Search` y la `Adaptative Random Search`.
+`Random Search` pertenece a los campos de la `Optimización Estocástica` y la `Optimización Global`. Es un método de búsqueda directa, no requiere derivadas para buscar en un dominio continuo. Este enfoque está relacionado con técnicas que proporcionan pequeñas mejoras, como la `Directed Random Search` y la `Adaptative Random Search`.
 
 ## Estrategia
 
@@ -23,7 +23,7 @@ La estrategia de `Random Search` consiste en muestrear soluciones de todo el esp
 
 ## Procedimiento
 
-![Pseudocódigo Random Search](psd_random_search.png){alt="Pseudocódigo Random Search"}
+![Pseudocódigo Random Search](psd_random_search.png)
 
 ## Heurística
 
@@ -56,19 +56,20 @@ random_vector <- function(minmax) {
     return(runif(length(minmax), min = minmax[,1], max = minmax[,2]))
 }
 
-# Realizar la búsqueda aleatoria
+# Realizar la bósqueda aleatoria
 search <- function(search_space, max_iter) {
     best <- NULL
+    costs <- c()  # Vector para almacenar los costos
     for (iter in 1:max_iter) {
         candidate <- list()
         candidate$vector <- random_vector(search_space)
         candidate$cost <- objective_function(candidate$vector)
+        costs <- c(costs, candidate$cost)  # Almacenar el costo de la iteraciÃ³n actual
         if (is.null(best) || candidate$cost < best$cost) {
             best <- candidate
         }
-       # cat(paste(" > iteration=", iter, ", best=", best$cost, "\n", sep = ""))
     }
-    return(best)
+    return(list(best = best, costs = costs))  # Devolver el mejor resultado y los costos
 }
 
 # Configuración del problema
@@ -79,8 +80,53 @@ search_space <- matrix(c(-5, 5), nrow = problem_size, ncol = 2, byrow = TRUE)
 max_iter <- 1000
 
 # Ejecutar el algoritmo
-best <- search(search_space, max_iter)
+result <- search(search_space, max_iter)
+best <- result$best
+costs <- result$costs
+```
 
-# Imprimir la mejor solución encontrada
-cat(paste("Hecho, Mejor solución: c=", best$cost,", v=", best$vector, "\n", sep = ""))
+Revisamemos el comportamiento del algoritmo para encontrar la solución óptima:
+
+```{r graficar, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+# Crear un dataframe con los costos
+df <- data.frame(
+    Iteration = 1:length(costs),
+    Cost = costs
+)
+
+# Crear modificaciones al plot
+crear_tema <- function() {
+    theme_minimal() +
+        theme(
+            plot.background = element_rect(fill = "white", color = NA), 
+            panel.grid.major = element_line(color = "white", size = 0.2), 
+            panel.grid.minor = element_line(color = "white", size = 0.2), 
+            panel.background = element_rect(fill = "white", color = NA), 
+            plot.title = element_text(face = "bold", size = 14, color = "#4d6080"),
+            axis.title = element_text(face = "bold", size = 12, color = "#4d6080"),
+            axis.text = element_text(size = 10, color = "#4d6080"),
+            axis.line = element_line(size = 1.5, colour = "#de6f41"), 
+            legend.background = element_rect(fill = "#4d6080", color = NA), 
+            legend.key = element_rect(fill = "grey90", color = NA),
+            axis.ticks.x = element_line(color = "#de6f41", size = 1),
+            axis.ticks.y = element_line(color = "#de6f41", size = 1)
+        )
+}
+
+ggplot(df, aes(x = Iteration, y = Cost)) +
+    geom_line(colour = "#4d6080", size = 1) +
+    labs(
+        title = "Progreso de la función objetivo",
+        x = "Iteración",
+        y = "Costo"
+    ) +
+    crear_tema()
+```
+
+La solución óptima es entonces:
+
+```{r solucionar, warning=FALSE, message=FALSE}
+result$best$vector
 ```
