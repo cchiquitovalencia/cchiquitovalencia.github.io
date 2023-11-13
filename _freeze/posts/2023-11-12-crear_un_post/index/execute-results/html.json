@@ -1,0 +1,14 @@
+{
+  "hash": "6f5d788889f12bd8861341fdb7d32b56",
+  "result": {
+    "markdown": "---\ntitle: \"¿Cómo crear un post?\"\ndescription: \"Parece ser una buena manera de conservar un buen flujo de trabajo\"\nauthor:\n  - name: Cristian Chiquito Valencia\n    url: https://cchiquitovalencia.github.io/\n    affiliation: Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A.\ndate: 11-12-2023\ncategories: [Quarto, R] # self-defined categories\ncitation: \n  url: https://cchiquitovalencia.github.io/posts/2023-11-12-crear_un_post/ \nimage: crea_blog.jpg\ndraft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!\n---\n\n\nAhora que ya tienes tu página configurada, puedes empezar a llenarla con entradas de blog. Repite los siguientes pasos cada vez que desees añadir un nuevo post.\n\nCrea un subdirectorio dentro de tu directorio `posts/:` Para mantenerme organizado, suelo nombrar el mío `YYYY-MM-DD-describe_post`. Este nombre de carpeta también se convertirá en la parte identificativa única de una dirección web (normalmente al final de la URL) de tu post publicado.\n\nDentro de tu nuevo subdirectorio, crea un archivo index.qmd. El nombre es importante. Debe llamarse index.qmd. La ruta del archivo debe ser similar a la siguiente: `…/posts/2023-11-12-crear_un_post/index.qmd.` Este archivo es la entrada de tu blog. Escribe todo el contenido aquí. Configure su entrada de blog: Puedes añadir diferentes opciones a la sección YAML de `index.qmd`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nrunif(1,0,100)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 28.83341\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

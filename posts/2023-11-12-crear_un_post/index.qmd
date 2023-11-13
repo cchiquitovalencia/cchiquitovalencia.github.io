@@ -18,3 +18,7 @@ Ahora que ya tienes tu página configurada, puedes empezar a llenarla con entrad
 Crea un subdirectorio dentro de tu directorio `posts/:` Para mantenerme organizado, suelo nombrar el mío `YYYY-MM-DD-describe_post`. Este nombre de carpeta también se convertirá en la parte identificativa única de una dirección web (normalmente al final de la URL) de tu post publicado.
 
 Dentro de tu nuevo subdirectorio, crea un archivo index.qmd. El nombre es importante. Debe llamarse index.qmd. La ruta del archivo debe ser similar a la siguiente: `…/posts/2023-11-12-crear_un_post/index.qmd.` Este archivo es la entrada de tu blog. Escribe todo el contenido aquí. Configure su entrada de blog: Puedes añadir diferentes opciones a la sección YAML de `index.qmd`.
+
+```{r}
+runif(1,0,100)
+```

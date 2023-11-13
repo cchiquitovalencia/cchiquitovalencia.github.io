@@ -9,33 +9,42 @@ $naranja-oscuro: #de6f41;
 $naranja-claro: #FFE0B2;
 $gris-claro: #889fbf;
 $gris-oscuro: #4d6080;
+$gris-base: #9db4d3;
+$blanco-codigo: #eff6fe;
 
 // Base document color
 $body-color: $gris-oscuro; // page text
 
 // Inline code
-$code-bg: $naranja-claro;
-$code-color: $naranja-claro;
+$code-bg: $blanco-codigo; // The background color of inline code. Defaults to a mix between the body-bg and body-color.
+$code-color: $azul-oscuro; // The text color of inline code. Defaults to a generated contrasting color against the code-bg.
 
 // Code blocks
-$code-block-bg: $naranja-claro;
+$code-block-bg: $blanco-codigo;
 
 // Aditional
-$link-color: $naranja-oscuro;
+$link-color: $azul-oscuro;
 $link-hover-color: $naranja-oscuro;
+
+// The color used for the copy button at the top right of code blocks
+$btn-code-copy-color: $azul-oscuro;
+// The hover color used for the copy button at the top right of code blocks.
+$btn-code-copy-color-active: $naranja-oscuro;
+// By default, Quarto does not display a left border on code blocks. Set this variable to a truthy value or a CSS color to enable the left border.
+$code-block-border-left: $naranja-oscuro;
 
 // Cambiar el color de los botones al hacer hover
 .btn:hover {
-  background-color: $naranja-claro;
+  background-color: $naranja-oscuro;
   border-color: $naranja-oscuro;
   color: $azul-oscuro;
 }
 
 a:hover {
-  background-color: $naranja-claro;
+  background-color: $naranja-oscuro;
   border-color: $naranja-oscuro;
   border-bottom: 2px solid $naranja-oscuro;
-  color: $naranja-oscuro;
+  color: $azul-oscuro;
 }
 
 div.quarto-about-trestles .about-entity .about-link:hover {
