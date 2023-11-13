@@ -15,7 +15,7 @@ about:
           href: https://github.com/cchiquitovalencia/
         - text: Email
           icon: envelope-at-fill
-          href: mailto:cchiquito.valencia@gmail.com
+          href: mailto::cchiquito.valencia@gmail.com
 ---
 
 # Data Analyst
@@ -26,6 +26,8 @@ about:
 
 -   Logistics, Specialist \| Universidad del Valle (September 2019)
 -   Industrial Engineer, B.S. \| Universidad Icesi (February 2015)
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
 ### Work Experience
 

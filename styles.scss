@@ -52,16 +52,14 @@ a.nav-link:hover {
   color: $azul-oscuro;
 }
 
-.card:hover{
+a.quarto-grid-link:hover{
   transform: scale(1.05);
   box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
 }
 
-.quarto-grid-link:hover{
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
-}
-
-code {
-    background-color: $naranja-claro !important;
+.navbar-toogler:hover{
+  background-color: $naranja-oscuro;
+  border-color: $naranja-claro;
+  border-bottom: 2px solid $azul-oscuro;
+  color: $azul-oscuro;
 }
