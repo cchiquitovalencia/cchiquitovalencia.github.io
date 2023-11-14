@@ -1,0 +1,150 @@
+---
+title: "Stochastic Hill Climbing"
+description: "Escalada estocástica"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A.
+date: 11-13-2023
+categories: [R, optimización] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/ 
+image: stochastic_hill_climbing_1.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Taxonomía
+
+El algoritmo `Stochastic Hill Climbing` es un algoritmo de `Optimización Estocástica` y es un algoritmo de `Optimización Local` (a diferencia de la `Optimización Global`). Es una técnica de búsqueda directa, ya que no requiere derivadas del espacio de búsqueda. `Stochastic Hill Climbing` es una extensión de los algoritmos deterministas como el `Simple Hill Climbing` (primer mejor vecino), `Steepest-Ascent Hill Climbing` (mejor vecino), y un padre de enfoques como `Parallel Hill Climbing` y `Random-Restart Hill Climbing`.
+
+## Estrategia
+
+La estrategia del `Stochastic Hill Climbing` consiste en iterar el proceso de selección aleatoria de un vecino para una solución candidata y aceptarla sólo si da lugar a una mejora. La estrategia se propuso para hacer frente a las limitaciones de las técnicas de ascenso determinista que se atascaban en óptimos locales debido a su avariciosa aceptación de movimientos vecinos.
+
+## Procedimiento
+
+![Pseudocódigo Stochastic Hill Climbing](psd_stochastic_hill_climbing.png)
+
+## Heurística
+
+`Stochastic Hill Climbing` fue diseñado para ser utilizado en dominios discretos con vecinos explícitos, como la optimización combinatoria (en comparación con la optimización de funciones continuas).
+
+La estrategia del algoritmo puede aplicarse a dominios continuos haciendo uso de un tamaño de paso para definir los vecinos de la solución candidata (como la `Localized Random Search` y la `Fixed Step-Size Random Search`).
+
+`Stochastic Hill Climbing` es una técnica de búsqueda local (en comparación a la búsqueda global) y puede utilizarse para refinar un resultado tras la ejecución de un algoritmo de búsqueda global.
+
+Aunque la técnica utiliza un proceso estocástico, aún puede atascarse en óptimos locales.
+
+Los vecinos con mejor o igual costo deben ser aceptados, lo que permite a la técnica navegar a través de mesetas en la superficie de respuesta.
+
+El algoritmo puede reiniciarse y repetirse una serie de veces veces después de que converja para obtener un resultado mejorado (lo que se denomina `Multiple Restart Hill Climbing`).
+
+El procedimiento puede aplicarse a varias soluciones candidatas simultáneamente, lo que permite ejecutar varios algoritmos al mismo tiempo (llamado `Parallel Hill Climbing`).
+
+## Código
+
+El algoritmo se ejecuta durante un número fijo de iteraciones y se aplica a un problema de optimización de cadena binaria denominado 'One Max'. El objetivo de este problema de maximización es preparar una cadena con todos los bits '1', donde la función de costo sólo informa del número de bits en una cadena dada.
+
+```{r stochastic_hill_climbing}
+# Función para calcular la suma de los unos en un vector
+onemax <- function(vector) {
+    return(sum(vector == "1"))
+}
+
+# Función para generar una cadena de bits aleatorios
+random_bitstring <- function(num_bits) {
+    return(sample(c("0", "1"), num_bits, replace = TRUE))
+}
+
+# Función para generar un vecino aleatorio cambiando un bit
+random_neighbor <- function(bitstring) {
+    mutant <- bitstring
+    pos <- sample(seq_along(bitstring), 1)
+    mutant[pos] <- ifelse(mutant[pos] == "1", "0", "1")
+    return(mutant)
+}
+
+# Función de búsqueda principal
+search <- function(max_iterations, num_bits) {
+    # Inicializar el candidato con un vector aleatorio y calcular su costo
+    candidate <- list()
+    candidate$vector <- random_bitstring(num_bits)
+    candidate$cost <- onemax(candidate$vector)
+    costs <- c()  # Vector para almacenar los costos
+    # Iterar hasta el número máximo de iteraciones
+    for (iter in seq_len(max_iterations)) {
+        # Generar un vecino y calcular su costo
+        neighbor <- list()
+        neighbor$vector <- random_neighbor(candidate$vector)
+        neighbor$cost <- onemax(neighbor$vector)
+        costs <- c(costs, candidate$cost)  # Almacenar el costo de la iteración actual
+        # Si el vecino es mejor o igual, actualizar el candidato
+        if (neighbor$cost >= candidate$cost) {
+            candidate <- neighbor
+        }
+        # Si se encuentra la solución óptima, terminar
+        if (candidate$cost == num_bits) {
+            break
+        }
+    }
+    # Devolver el mejor candidato encontrado y los costos
+    return(list(best = candidate, costs = costs))
+}
+
+# Configuración del problema
+num_bits <- 64
+
+# Configuración del algoritmo
+max_iterations <- 1000
+
+# Ejecutar el algoritmo
+result <- search(max_iterations, num_bits)
+best <- result$best
+costs <- result$costs
+```
+
+Revisamemos el comportamiento del algoritmo para encontrar la solución óptima:
+
+```{r graficar, warning=FALSE, message=FALSE}
+library(ggplot2)
+# Crear un gráfico del progreso de la función objetivo
+df <- data.frame(
+  Iteration = 1:length(costs),
+  Cost = costs
+)
+
+# Crear modificaciones al plot
+crear_tema <- function() {
+    theme_minimal() +
+        theme(
+            plot.background = element_rect(fill = "white", color = NA), 
+            panel.grid.major = element_line(color = "white", size = 0.2), 
+            panel.grid.minor = element_line(color = "white", size = 0.2), 
+            panel.background = element_rect(fill = "white", color = NA), 
+            plot.title = element_text(face = "bold", size = 14, color = "#4d6080"),
+            axis.title = element_text(face = "bold", size = 12, color = "#4d6080"),
+            axis.text = element_text(size = 10, color = "#4d6080"),
+            axis.line = element_line(size = 1.5, colour = "#de6f41"), 
+            legend.background = element_rect(fill = "#4d6080", color = NA), 
+            legend.key = element_rect(fill = "grey90", color = NA),
+            axis.ticks.x = element_line(color = "#de6f41", size = 1),
+            axis.ticks.y = element_line(color = "#de6f41", size = 1)
+        )
+}
+
+ggplot(df, aes(x = Iteration, y = Cost)) +
+  geom_line(colour = "steelblue", size = 1) +
+  labs(
+    title = "Progreso de la función objetivo",
+    subtitle = "Visualización del costo a lo largo de las iteraciones",
+    x = "Iteración",
+    y = "Costo"
+  ) +
+  crear_tema()
+```
+
+La solución óptima es entonces:
+
+```{r solucionar, warning=FALSE, message=FALSE}
+result$best$vector
+```
