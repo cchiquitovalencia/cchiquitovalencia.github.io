@@ -23,7 +23,7 @@ El objetivo de `Iterated Local Search` es mejorar la `Multi-Restar Search` media
 
 ## Procedimiento
 
-![Pseudocódigo Iterated Local Search](psd_iterated_local_search.png){alt="Pseudocódigo Stochastic Hill Climbing"}
+![Pseudocódigo Iterated Local Search](psd_iterated_local_search.png)
 
 ## Heurística
 

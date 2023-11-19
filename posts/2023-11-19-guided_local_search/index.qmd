@@ -1,0 +1,232 @@
+---
+title: "Guided Local serach"
+description: "Búsqueda Local Guiada"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Maintenance Manager @ Grupo Integrado de Transporte Masivo S.A.
+date: 11-19-2023
+categories: [R, optimización] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2023-11-19-guided_local_search/ 
+image: guided_local_search_1.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Taxonomía
+
+El algoritmo de `Guided Local Search` es una `Metaheurística` y un algoritmo de `Optimización Global` que hace uso de un algoritmo de `Local Search` embebido. Se trata de una extensión de los algoritmos de búsqueda local como `Hill Climbing` y es similar en estrategia al algoritmo de `Tabu Search` y al algoritmo de `Iterated Local Search`.
+
+## Estrategia
+
+La estrategia del algoritmo `Guided Local Search` consiste en utilizar penalizaciones para animar a una técnica de `Local Search` a escapar de los óptimos locales y descubrir el óptimo global. Un algoritmo de `Local Search` se ejecuta hasta que se queda atascado en un óptimo local. Las características de los óptimos locales se evalúan y se penalizan, sus resultados se utilizan en una función de costo aumentada empleada por el procedimiento de `Local Search`, que se repite varias veces utilizando los últimos óptimos locales descubiertos y la función de costo aumentada que guía la exploración lejos de las soluciones con características presentes en los óptimos locales descubiertos.
+
+## Procedimiento
+
+El algoritmo de Local Search utilizado por el algoritmo de `Guided Local Search` utiliza una función de costo aumentada de la forma $h(s) = g(s)+ 𝞴*∑_{i=1}^Mf_i$, donde $h(s)$ es la función de costo aumentada, $g(s)$ es la función de costo del problema, es el \`parámetro de regularización' (un coeficiente para escalar las penalizaciones), $s$ es una solución localmente óptima de $M$ características, y $f_i$ es la $i$-ésima característica en la solución localmente óptima. La función de costos aumentada sólo la utiliza el procedimiento de `Local Search`, mientras que el algoritmo `Guided Local Search` utiliza la función de costos específica del problema sin aumento.
+
+Las penalizaciones sólo se actualizan para aquellas características en una solución localmente óptima que maximizan la utilidad, actualizadas añadiendo 1 a la penalización para el futuro (un contador). La utilidad de una característica se calcula como $U_{feature} = C_{feature} / (1+P_{feaure})$ , donde $U_{feaure}$ es la utilidad de penalizar una característica (maximizar), $C_{feaure}$ es el costo de la característica y $P_{feature}$ es la penalización actual para la característica.
+
+![Pseudocódigo Guided Local Search](psd_guided_local_search.png)
+
+## Heurística
+
+El procedimiento de `Guided Local Search` es independiente del procedimiento de `Local Search` integrado en él. Debe identificarse y emplearse un procedimiento de búsqueda específico del dominio.
+
+El procedimiento de `Guided Local Search` puede tener que ejecutarse durante miles a cientos de miles de iteraciones, cada iteración supone una ejecución de un algoritmo de `Local Search` hasta la convergencia.
+
+El algoritmo se diseñó para problemas de optimización discretos en los que una solución se compone de "características" evaluables independientemente como la `Optimización Combinatoria`, aunque se ha aplicado a la optimización de funciones continuas modeladas como cadenas binarias.
+
+El parámetro $𝞴$ es un factor de escala para la penalización de características que debe estar en la misma proporción que los costos de la solución candidata del problema específico al que se aplica el algoritmo. Como tal, el valor para $𝞴$ debe ser significativo cuando se utiliza dentro de la función de costo aumentada (como cuando se añade a un costo de una solución candidata en la minimización y se resta de un en el caso de un problema de maximización).
+
+## Código
+
+El algoritmo se aplica a la instancia `Berlin52` de `Travling Salesman Problem` (TSP), tomada de la `TSPLIB`. El problema busca una permutación del orden de visita de las ciudades (llamada tour o recorrido) que minimice la distancia total recorrida. La distancia óptima del recorrido para el caso Berlín52 es de 7.542 unidades. Se utiliza un algoritmo de `Local Search` 2-opt que selecciona dos puntos en una permutación y reconecta el tour, potencialmente desenrollando el tour en los puntos seleccionados. La condición de parada para 2-opt es un número fijo de movimientos no mejorables.
+
+La ecuación para ajustar $𝞴$ para instancias de TSP es $𝞴 = ⍺ * costo(optima)/N$ , donde $N$ es el número de ciudades, $costo(optima)$ es el costo de un óptimo local encontrado mediante una búsqueda local, y $⍺ ∈ (0,1]$ (alrededor de 0,3 para TSP y 2-opt). El costo de un óptimo local se fijó en el valor aproximado de 15.000 para el TSP de Berlín52. La función de utilidad para las características (aristas) en el TSP es $U_{edge} = D_{edge}/(1+P_{edge})$ donde $U_{edge}$ es la utilidad de penalizar una arista (maximizar), $D_{edge}$ es el coste de la arista (distancia entre ciudades) y $P_{edge}$ es la penalización actual de la arista.
+
+```{r guided_local_search}
+# Función para calcular la distancia euclidiana entre dos puntos
+euc_2d <- function(c1, c2) {
+    return(round(sqrt((c1[1] - c2[1])^2 + (c1[2] - c2[2])^2)))
+}
+
+# Función para generar una permutación aleatoria de las ciudades
+random_permutation <- function(cities) {
+    return(sample(nrow(cities)))
+}
+
+# Función para realizar una operación de dos-opt estocástica en una permutación
+stochastic_two_opt <- function(permutation) {
+    perm <- permutation
+    c1 <- sample(length(perm), 1)
+    exclude <- c(c1, if (c1 == 1) length(perm) else c1 - 1, if (c1 == length(perm)) 1 else c1 + 1)
+    c2 <- sample(length(perm), 1)
+    while (c2 %in% exclude) {
+        c2 <- sample(length(perm), 1)
+    }
+    if (c2 < c1) {
+        temp <- c1
+        c1 <- c2
+        c2 <- temp
+    }
+    perm[c1:c2] <- rev(perm[c1:c2])
+    return(perm)
+}
+
+# Función para calcular el costo y el costo aumentado de una permutación
+augmented_cost <- function(permutation, penalties, cities, lambda) {
+    distance <- 0
+    augmented <- 0
+    for (i in seq_along(permutation)) {
+        c1 <- permutation[i]
+        c2 <- if (i == length(permutation)) permutation[1] else permutation[i + 1]
+        if (c2 < c1) {
+            temp <- c1
+            c1 <- c2
+            c2 <- temp
+        }
+        d <- euc_2d(cities[c1, ], cities[c2, ])
+        distance <- distance + d
+        augmented <- augmented + d + (lambda * penalties[c1, c2])
+    }
+    return(c(distance, augmented))
+}
+
+# Función para calcular el costo de un candidato
+cost <- function(cand, penalties, cities, lambda) {
+    costs <- augmented_cost(cand$vector, penalties, cities, lambda)
+    cand$cost <- costs[1]
+    cand$aug_cost <- costs[2]
+    return(cand)
+}
+
+# Función para realizar una búsqueda local en el espacio de las permutaciones
+local_search <- function(current, cities, penalties, max_no_improv, lambda) {
+    current <- cost(current, penalties, cities, lambda)
+    count <- 0
+    repeat {
+        candidate <- list()
+        candidate$vector <- stochastic_two_opt(current$vector)
+        candidate <- cost(candidate, penalties, cities, lambda)
+        if (candidate$aug_cost < current$aug_cost) {
+            count <- 0
+            current <- candidate
+        } else {
+            count <- count + 1
+        }
+        if (count >= max_no_improv) break
+    }
+    return(current)
+}
+
+# Función para calcular las utilidades de las características
+calculate_feature_utilities <- function(penal, cities, permutation) {
+    utilities <- numeric(length(permutation))
+    for (i in seq_along(permutation)) {
+        c1 <- permutation[i]
+        c2 <- if (i == length(permutation)) permutation[1] else permutation[i + 1]
+        if (c2 < c1) {
+            temp <- c1
+            c1 <- c2
+            c2 <- temp
+        }
+        utilities[i] <- euc_2d(cities[c1, ], cities[c2, ]) / (1.0 + penal[c1, c2])
+    }
+    return(utilities)
+}
+
+# Función para actualizar las penalizaciones
+update_penalties <- function(penalties, cities, permutation, utilities) {
+    max_utility <- max(utilities)
+    for (i in seq_along(permutation)) {
+        c1 <- permutation[i]
+        c2 <- ifelse(i == length(permutation), permutation[1], permutation[i + 1])
+        if (c2 < c1) {
+            temp <- c1
+            c1 <- c2
+            c2 <- temp
+        }
+        penalties[c1, c2] <- ifelse(utilities[i] == max_utility, penalties[c1, c2] + 1, penalties[c1, c2])
+    }
+    return(penalties)
+}
+
+# Función de búsqueda principal
+search <- function(max_iterations, cities, max_no_improv, lambda) {
+    current <- list()
+    current$vector <- random_permutation(cities)
+    best <- NULL
+    penalties <- matrix(0, nrow = nrow(cities), ncol = nrow(cities))
+    cost_progress <- data.frame(iteration=integer(), cost=numeric()) # Para llevar el seguimiento del progreso del costo
+    for (iter in seq_len(max_iterations)) {
+        current <- local_search(current, cities, penalties, max_no_improv, lambda)
+        utilities <- calculate_feature_utilities(penalties, cities, current$vector)
+        penalties <- update_penalties(penalties, cities, current$vector, utilities)
+        if (is.null(best) || current$cost < best$cost) {
+            best <- current
+        }
+        cost_progress <- rbind(cost_progress, data.frame(iteration=iter, cost=best$cost)) # Registrar el costo en cada iteración
+        #print(paste(" > iter =", iter + 1, ", best =", best$cost, ", aug =", best$aug_cost))
+    }
+    return(list(best=best, cost_progress=cost_progress)) # Devolver tanto la mejor solución como el progreso del costo
+}
+
+
+# Configuración del problema
+berlin52 <- matrix(c(565,575,25,185,345,750,945,685,845,655,
+                     880,660,25,230,525,1000,580,1175,650,1130,
+                     1605,620,1220,580,1465,200,1530,5,845,680,
+                     725,370,145,665,415,635,510,875,560,365,
+                     300,465,520,585,480,415,835,625,975,580,
+                     1215,245,1320,315,1250,400,660,180,410,250,
+                     420,555,575,665,1150,1160,700,580,685,595,
+                     685,610,770,610,795,645,720,635,760,650,
+                     475,960,95,260,875,920,700,500,555,815,
+                     830,485,1170,65,830,610,605,625,595,360,1340,725,1740,245), ncol = 2, byrow = TRUE)
+
+# Configuración del algoritmo
+max_iterations <- 150
+max_no_improv <- 20
+alpha <- 0.3
+local_search_optima <- 12000.0
+lambda <- alpha * (local_search_optima / nrow(berlin52))
+
+# Ejecutar el algoritmo
+result <- search(max_iterations, berlin52, max_no_improv, lambda)
+```
+
+Revisamemos el comportamiento del algoritmo para encontrar la solución óptima:
+
+```{r graficar, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+crear_tema <- function() {
+    theme_minimal() +
+        theme(
+            plot.background = element_rect(fill = "white", color = NA), 
+            panel.grid.major = element_line(color = "white", size = 0.2), 
+            panel.grid.minor = element_line(color = "white", size = 0.2), 
+            panel.background = element_rect(fill = "white", color = NA), 
+            plot.title = element_text(face = "bold", size = 14, color = "#4d6080"),
+            axis.title = element_text(face = "bold", size = 12, color = "#4d6080"),
+            axis.text = element_text(size = 10, color = "#4d6080"),
+            axis.line = element_line(size = 1.5, colour = "#de6f41"), 
+            legend.background = element_rect(fill = "#4d6080", color = NA), 
+            legend.key = element_rect(fill = "grey90", color = NA),
+            axis.ticks.x = element_line(color = "#de6f41", size = 1),
+            axis.ticks.y = element_line(color = "#de6f41", size = 1)
+        )
+}
+
+ggplot(result$cost_progress, aes(x=iteration, y=cost)) +
+    geom_line() +
+    labs(title="Progreso del costo a lo largo de las iteraciones", x="Iteración", y="Costo")+
+    crear_tema()
+```
+
+La solución óptima (con las iteraciones establecidas) es entonces:
+
+```{r solucionar, warning=FALSE, message=FALSE}
+result$best$vector
+```
