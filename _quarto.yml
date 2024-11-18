@@ -4,7 +4,7 @@ project:
 
 website:
   favicon: logo_2.png
-  title: "Cristian Chiquito Valencia"
+  title: "CHV"
   navbar:
     left:
       - href: index.qmd
@@ -23,6 +23,8 @@ website:
         href: https://github.com/cchiquitovalencia/
       - icon: envelope-at-fill
         href: mailto:cchiquito.valencia@gmail.com
+      - icon: twitter
+        href: https://x.com/cchiquitov
 
 format:
   html:
