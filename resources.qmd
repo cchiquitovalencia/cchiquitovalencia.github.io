@@ -1,5 +1,5 @@
 ---
-title: "Recursos"
+title: "Resources"
 ---
 
-Aquí se encuentran las ramas de creaciones.
+Here are the branches of creations.
