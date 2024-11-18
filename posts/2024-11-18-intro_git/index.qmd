@@ -1,11 +1,11 @@
 ---
 title: "Introducción a Git"
-description: "Algo fundamental para Data Science"
+description: "Fundamental para Data Science"
 author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
-date: 18-11-2024
+date: 11-18-2024
 categories: [Git] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2028-11-18-intro_git/ 
