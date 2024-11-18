@@ -6,7 +6,7 @@ author:
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
 date: 18-11-2024
-categories: [Git, Quarto, R] # self-defined categories
+categories: [Git] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2028-11-18-intro_git/ 
 image: logo_gitscm.png
