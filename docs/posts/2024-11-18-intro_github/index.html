@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2024-11-18">
+<meta name="description" content="Colaboración para Data Science">
+
+<title>Introducción a Github – Cristian Chiquito Valencia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">¿Qué puedes encontrar?</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Mi Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Introducción a Github</h1>
+                  <div>
+        <div class="description">
+          Colaboración para Data Science
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Github</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 18, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduccion" id="toc-introduccion" class="nav-link active" data-scroll-target="#introduccion">Introduccion</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-aprendizaje" id="toc-objetivos-de-aprendizaje" class="nav-link" data-scroll-target="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
+  </ul></li>
+  <li><a href="#qué-es-github" id="toc-qué-es-github" class="nav-link" data-scroll-target="#qué-es-github">¿Qué es GitHub?</a>
+  <ul class="collapse">
+  <li><a href="#introducción-a-los-repositorios" id="toc-introducción-a-los-repositorios" class="nav-link" data-scroll-target="#introducción-a-los-repositorios">Introducción a los repositorios</a></li>
+  </ul></li>
+  <li><a href="#componentes-del-flujo-de-github" id="toc-componentes-del-flujo-de-github" class="nav-link" data-scroll-target="#componentes-del-flujo-de-github">Componentes del flujo de GitHub</a>
+  <ul class="collapse">
+  <li><a href="#el-flujo-de-github" id="toc-el-flujo-de-github" class="nav-link" data-scroll-target="#el-flujo-de-github">El flujo de GitHub</a></li>
+  </ul></li>
+  <li><a href="#github-es-una-plataforma-colaborativa" id="toc-github-es-una-plataforma-colaborativa" class="nav-link" data-scroll-target="#github-es-una-plataforma-colaborativa">GitHub es una plataforma colaborativa</a></li>
+  <li><a href="#gestión-de-la-plataforma-de-github" id="toc-gestión-de-la-plataforma-de-github" class="nav-link" data-scroll-target="#gestión-de-la-plataforma-de-github">Gestión de la plataforma de GitHub</a>
+  <ul class="collapse">
+  <li><a href="#gestión-de-notificaciones-y-suscripciones" id="toc-gestión-de-notificaciones-y-suscripciones" class="nav-link" data-scroll-target="#gestión-de-notificaciones-y-suscripciones">Gestión de notificaciones y suscripciones</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="introduccion" class="level2">
+<h2 class="anchored" data-anchor-id="introduccion">Introduccion</h2>
+<p>GitHub proporciona una plataforma para desarrolladores impulsada por IA para crear, escalar y entregar software seguro. Ya sea para planificar nuevas características, corregir errores o colaborar en los cambios, GitHub es el lugar donde más de 100 millones de desarrolladores de todo el mundo se reúnen para crear cosas y hacerlas aún mejor.</p>
+<p>En este módulo, aprenderás los conceptos básicos de GitHub y obtendrás una mejor comprensión de sus características fundamentales con un ejercicio práctico, todo dentro de un repositorio de GitHub.</p>
+<section id="objetivos-de-aprendizaje" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h3>
+<p>En este módulo:</p>
+<ul>
+<li><p>Identificar las características fundamentales de GitHub.</p></li>
+<li><p>Aprenderás sobre la gestión de repositorios.</p></li>
+<li><p>Comprender el flujo de GitHub, incluyendo ramas, commits y pull requests.</p></li>
+<li><p>Explorar las características de colaboración de GitHub mediante la revisión de problemas y discusiones.</p></li>
+<li><p>Reconocer cómo gestionar tus notificaciones y suscripciones de GitHub.</p></li>
+</ul>
+</section>
+</section>
+<section id="qué-es-github" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-github">¿Qué es GitHub?</h2>
+<p>En esta unidad, revisamos los siguientes objetivos de aprendizaje:</p>
+<ul>
+<li><p>Breve descripción de la plataforma empresarial GitHub.</p></li>
+<li><p>Cómo crear un repositorio.</p></li>
+<li><p>Cómo añadir archivos a un repositorio.</p></li>
+<li><p>Cómo buscar repositorios.</p></li>
+<li><p>Introducción a gists y wikis.</p></li>
+</ul>
+<section id="github" class="level4">
+<h4 class="anchored" data-anchor-id="github"><strong>GitHub</strong></h4>
+<p>Es una plataforma basada en la nube que utiliza Git, un sistema de control de versiones distribuido, en su núcleo. La plataforma GitHub simplifica el proceso de colaboración en proyectos y proporciona un sitio web, herramientas de línea de comandos y un flujo general que permite a los desarrolladores y usuarios trabajar juntos.</p>
+<p>Como hemos aprendido antes, GitHub proporciona una plataforma para desarrolladores impulsada por IA para construir, escalar y entregar software seguro. Vamos a desglosar cada uno de los pilares fundamentales de la plataforma GitHub Enterprise, IA, Colaboración, Productividad, Seguridad y Escala.</p>
+</section>
+<section id="ia" class="level4">
+<h4 class="anchored" data-anchor-id="ia">IA</h4>
+<p>La IA generativa está transformando drásticamente el desarrollo de software en estos momentos. La plataforma GitHub Enterprise está mejorando la colaboración a través de pull requests y issues impulsados por IA, la productividad a través de Copilot, y la seguridad automatizando las comprobaciones de seguridad con mayor rapidez.</p>
+</section>
+<section id="colaboración" class="level4">
+<h4 class="anchored" data-anchor-id="colaboración">Colaboración</h4>
+<p>La colaboración es el núcleo de todo lo que hace GitHub. Sabemos que una colaboración ineficiente supone una pérdida de tiempo y dinero. Contrarrestamos esto con un conjunto de herramientas que permiten la colaboración sin esfuerzo.</p>
+<p>Repositorios, Issues, Pull Requests y otras herramientas ayudan a que desarrolladores, jefes de proyecto, líderes de operaciones y otras personas de la misma empresa puedan colaborar. Esto les permite trabajar juntos más rápido, reducir los tiempos de aprobación y realizar los envíos con mayor celeridad.</p>
+</section>
+<section id="productividad" class="level4">
+<h4 class="anchored" data-anchor-id="productividad">Productividad</h4>
+<p>La productividad se acelera con la automatización que proporciona la Plataforma Empresarial GitHub. Con herramientas CI/CD (Integración Continua y Entrega Continua) integradas directamente en el flujo de trabajo, la plataforma ofrece a los usuarios la posibilidad de establecer tareas y olvidarse de ellas, ocupándose de la administración rutinaria y acelerando el trabajo diario. De este modo, los desarrolladores disponen de más tiempo para centrarse en lo más importante: crear soluciones innovadoras.</p>
+</section>
+<section id="seguridad" class="level4">
+<h4 class="anchored" data-anchor-id="seguridad">Seguridad</h4>
+<p>GitHub se centra en integrar la seguridad directamente en el proceso de desarrollo desde el principio. La plataforma GitHub Enterprise incluye funciones de seguridad nativas y propias que minimizan el riesgo de seguridad con una solución de seguridad integrada. Además, tu código permanece privado dentro de tu organización. Al mismo tiempo, puedes aprovechar la visión general de la seguridad y Dependabot.</p>
+<p>GitHub ha seguido invirtiendo para garantizar que nuestras funciones estén preparadas para la empresa. Microsoft y las industrias altamente reguladas confían en GitHub, y cumplimos con los requisitos de cumplimiento global.</p>
+</section>
+<section id="escala" class="level4">
+<h4 class="anchored" data-anchor-id="escala">Escala</h4>
+<p>GitHub es la mayor comunidad de desarrolladores de su clase, con datos en tiempo real sobre más de 100 millones de desarrolladores, más de 330 millones de repositorios e innumerables despliegues. Hemos sido capaces de entender las necesidades cambiantes de los desarrolladores y hacer cambios en nuestro producto para que coincida.</p>
+<p>Esto se ha traducido en una escala increíble que no tiene parangón ni comparación con ninguna otra empresa del planeta. Cada día obtenemos más información de esta impresionante comunidad y hacemos evolucionar la plataforma para satisfacer sus necesidades.</p>
+<p>En esencia, la Plataforma Empresarial GitHub se centra en la experiencia del desarrollador. Tiene la escala para proporcionar conocimientos que cambian la industria, capacidades de colaboración para la eficiencia transformadora, las herramientas para aumentar la productividad, la seguridad en cada paso, y AI para impulsar todo a nuevas alturas en una sola plataforma integrada.</p>
+<p>Ahora vamos a entrar en la columna vertebral de GitHub, los repositorios.</p>
+</section>
+<section id="introducción-a-los-repositorios" class="level3">
+<h3 class="anchored" data-anchor-id="introducción-a-los-repositorios">Introducción a los repositorios</h3>
+<p>Hagamos primero un repaso:</p>
+<ul>
+<li><p>¿Qué es un repositorio?</p></li>
+<li><p>Cómo crear un repositorio</p></li>
+<li><p>Añadir ficheros a un repositorio</p></li>
+<li><p>Cómo buscar repositorios</p></li>
+<li><p>Introducción a gists, wikis y páginas de GitHub</p></li>
+</ul>
+<section id="qué-es-un-repositorio" class="level4">
+<h4 class="anchored" data-anchor-id="qué-es-un-repositorio">¿Qué es un repositorio?</h4>
+<p>Un repositorio contiene todos los archivos de tu proyecto y el historial de revisiones de cada archivo. Es una de las partes esenciales que te ayuda a colaborar con la gente. Puedes utilizar repositorios para gestionar tu trabajo, realizar un seguimiento de los cambios, almacenar el historial de revisiones y trabajar con otras personas. Antes de profundizar demasiado, empecemos por cómo crear un repositorio.</p>
+</section>
+<section id="cómo-crear-un-repositorio" class="level4">
+<h4 class="anchored" data-anchor-id="cómo-crear-un-repositorio">¿Cómo crear un repositorio?</h4>
+<p>Puedes crear un nuevo repositorio en tu cuenta personal o en cualquier organización donde tengas permisos suficientes.</p>
+<p>Vamos a abordar la creación de un repositorio desde github.com.</p>
+<ol type="1">
+<li><p>En la esquina superior derecha de cualquier página, utilice el menú desplegable y seleccione <strong>New repository.</strong></p>
+<p><img src="images/clipboard-3301040000.png" class="img-fluid"></p></li>
+</ol>
+<!-- -->
+<ol start="2" type="1">
+<li><p>Utilice el menú desplegable <strong>Owner</strong> para seleccionar la cuenta que desea que sea la propietaria del repositorio.</p>
+<p><img src="images/clipboard-1564134672.png" class="img-fluid"></p></li>
+</ol>
+<!-- -->
+<ol start="3" type="1">
+<li><p>Escriba un nombre para su repositorio y una descripción opcional.Escriba un nombre para su repositorio y una descripción opcional.</p>
+<p><img src="images/clipboard-3397607558.png" class="img-fluid"></p></li>
+</ol>
+<!-- -->
+<ol start="4" type="1">
+<li><p>Elija una visibilidad de repositorio.</p>
+<ul>
+<li><p>Los repositorios <strong>públicos</strong> son accesibles a todo el mundo en Internet.</p></li>
+<li><p>Los repositorios <strong>privados</strong> sólo son accesibles para ti, para las personas con las que compartes explícitamente el acceso y, para los repositorios de organizaciones, para ciertos miembros de la organización.</p></li>
+</ul></li>
+<li><p>Seleccione <strong>Crear repositorio</strong> y ¡enhorabuena! ¡Acaba de crear un repositorio!</p>
+<p><img src="images/clipboard-825568760.png" class="img-fluid"></p></li>
+</ol>
+<p>A continuación, vamos a ver cómo añadir ficheros a tu repositorio.</p>
+</section>
+<section id="cómo-añadir-un-archivo-a-tu-repositorio" class="level4">
+<h4 class="anchored" data-anchor-id="cómo-añadir-un-archivo-a-tu-repositorio">¿Cómo añadir un archivo a tu repositorio?</h4>
+<p>Los archivos en GitHub pueden hacer un puñado de cosas, pero el propósito principal de los archivos es almacenar datos e información sobre tu proyecto. Vale la pena saber que para añadir un archivo a un repositorio primero debes tener un acceso mínimo de <strong>Escritura</strong> dentro del repositorio al que quieres añadir un archivo.</p>
+<p>Repasemos cómo añadir un archivo a tu repositorio.</p>
+<ol type="1">
+<li><p>En GitHub.com, navega a la página principal del repositorio.</p></li>
+<li><p>En tu repositorio, navega hasta la carpeta donde quieres crear un archivo seleccionando el enlace <strong>crear un nuevo archivo</strong> o <strong>subiendo un archivo existente</strong>.</p>
+<p><img src="images/clipboard-2122682388.png" class="img-fluid"></p></li>
+<li><p>En el campo de nombre de archivo, escriba el nombre y la extensión del archivo. Para crear subdirectorios, escriba el separador de directorios /.</p>
+<p><img src="images/clipboard-2380956400.png" class="img-fluid"></p></li>
+<li><p>En el cuadro de texto Contenido del archivo, escriba el contenido del archivo.</p>
+<p><img src="images/clipboard-2870066500.png" class="img-fluid"></p></li>
+<li><p>Para revisar el nuevo contenido, encima del contenido del archivo, seleccione Vista previa.</p></li>
+<li><p>Seleccione <strong>Confirmar cambios</strong>.</p>
+<p><img src="images/clipboard-2448496333.png" class="img-fluid"></p></li>
+<li><p>En el campo <strong>Mensaje de confirmación</strong>, escriba un mensaje de confirmación breve y significativo que describa el cambio realizado en el archivo. Puedes atribuir la confirmación a más de un autor en el mensaje de confirmación.</p>
+<p><img src="images/clipboard-363297538.png" class="img-fluid"></p>
+<p>Asi se puede ver luego de realizar <em>commit</em>:</p>
+<p><img src="images/clipboard-776023736.png" class="img-fluid"></p></li>
+<li><p>Vamos a crear otro archivo.</p>
+<p><img src="images/clipboard-3116063229.png" class="img-fluid"></p></li>
+<li><p>Debajo de los campos de <strong>mensaje de confirmación</strong>, decida si desea añadir su confirmación a la rama actual o a una nueva rama. Si su rama actual es la rama por defecto, debe elegir crear una nueva rama para su confirmación y, a continuación, crear una solicitud de extracción.</p>
+<p><img src="images/clipboard-591871222.png" class="img-fluid"></p></li>
+</ol>
+<!-- -->
+<ol start="10" type="1">
+<li><p>Seleccione <strong>Confirmar cambios</strong> o <strong>Proponer cambios</strong>.</p>
+<p><img src="images/clipboard-57701014.png" class="img-fluid"></p></li>
+</ol>
+<p>Enhorabuena, ¡acaba de crear un nuevo fichero en su repositorio! También has creado una nueva rama y hecho un commit.</p>
+<p>Antes de revisar ramas y commits en la siguiente unidad, vamos a revisar rápidamente gists, wikis y páginas de GitHub porque son similares a los repositorios.</p>
+</section>
+<section id="qué-son-las-gists" class="level4">
+<h4 class="anchored" data-anchor-id="qué-son-las-gists">¿Qué son las gists?</h4>
+<p>Ahora que ya conocemos bien los repositorios, podemos revisar las gists. Al igual que los repositorios, las gists son una forma simplificada de compartir fragmentos de código con los demás.</p>
+<p>Cada gist es un repositorio Git, que puedes bifurcar y clonar y que puede ser público o privado. Las gists públicas se muestran públicamente y la gente puede consultar las nuevas a medida que se crean. En las gists públicas también se pueden realizar búsquedas. Por el contrario, las gists privadas no permiten búsquedas, pero no son totalmente privadas. Si envías la URL de una lista secreta a un amigo, éste podrá verla.</p>
+<p>Para obtener más información sobre gists, consulte el artículo vinculado en nuestra sección de Recursos al final de este módulo titulado <em>Creación de Gists</em>.</p>
+</section>
+<section id="qué-son-las-wikis" class="level4">
+<h4 class="anchored" data-anchor-id="qué-son-las-wikis">¿Qué son las wikis?</h4>
+<p>Cada repositorio en GitHub.com viene equipado con una sección para alojar documentación, llamada wiki. Puedes utilizar el wiki de tu repositorio para compartir contenido extenso sobre tu proyecto, como por ejemplo ¿cómo utilizarlo?, ¿cómo lo diseñaste?, o sus principios básicos. Mientras que un archivo README dice rápidamente lo que su proyecto puede hacer, puede utilizar un wiki para proporcionar documentación adicional.</p>
+<p>Vale la pena recordar que si su repositorio es privado, sólo las personas que tienen al menos acceso de lectura a su repositorio tendrán acceso a su wiki.</p>
+</section>
+</section>
+</section>
+<section id="componentes-del-flujo-de-github" class="level2">
+<h2 class="anchored" data-anchor-id="componentes-del-flujo-de-github">Componentes del flujo de GitHub</h2>
+<p>En esta unidad, revisaremos los siguientes componentes del flujo de GitHub:</p>
+<ul>
+<li><p>Ramas</p></li>
+<li><p>Commits</p></li>
+<li><p>Solicitudes de Pull</p></li>
+<li><p>El flujo de GitHub</p></li>
+</ul>
+<section id="qué-son-las-ramas" class="level4">
+<h4 class="anchored" data-anchor-id="qué-son-las-ramas">¿Qué son las ramas?</h4>
+<p>En la última sección, hemos creado un nuevo archivo y una nueva rama en tus repositorios.</p>
+<p>Las ramas son una parte esencial de la experiencia GitHub, ya que son donde podemos hacer cambios sin afectar a todo el proyecto en el que estamos trabajando.</p>
+<p>Tu rama es un lugar seguro para experimentar con nuevas características o correcciones. Si cometes un error, puedes revertir tus cambios o empujar más cambios para corregir el error. Tus cambios no se actualizarán en la rama por defecto hasta que fusiones tu rama.</p>
+<section id="nota" class="level6">
+<h6 class="anchored" data-anchor-id="nota">Nota</h6>
+<p>Alternativamente, puedes crear una nueva rama y comprobarla usando git en un terminal. El comando sería <code>git checkout -b nombreNuevaRama</code></p>
+</section>
+</section>
+<section id="qué-son-los-commits" class="level4">
+<h4 class="anchored" data-anchor-id="qué-son-los-commits">¿Qué son los commits?</h4>
+<p>En la unidad anterior, añadiste un nuevo archivo al repositorio enviando una confirmación. Repasemos brevemente qué son las confirmaciones.</p>
+<p>Una <strong>confirmación</strong> es un cambio en uno o más ficheros de una rama. Cada vez que se crea una confirmación, se le asigna un ID único y se realiza un seguimiento junto con la hora y el contribuidor. Los commits proporcionan una pista de auditoría clara para cualquiera que revise el historial de un archivo o elemento vinculado, como una incidencia (issue) o pull request.</p>
+<p><img src="images/clipboard-2021178767.png" class="img-fluid"></p>
+<p>Dentro de un repositorio de Git, un archivo puede existir en varios estados válidos a medida que pasa por el proceso de control de versiones. Los estados primarios de un archivo en un repositorio de Git son No rastreado y Rastreado.</p>
+<p><strong>No rastreado</strong>: El estado inicial de un archivo cuando no forma parte aún del repositorio de Git. Git no está al tanto de su existencia.</p>
+<p><strong>Rastreado</strong>: Un archivo rastreado es uno que Git está monitoreando activamente. Puede estar en uno de los siguientes subestados:</p>
+<ul>
+<li><p><strong>No modificado</strong>: El archivo es rastreado, pero no ha sido modificado desde el último commit.</p></li>
+<li><p><strong>Modificado</strong>: El archivo ha sido cambiado desde el último commit, pero estos cambios no están aún en la área de staging para el próximo commit.</p></li>
+<li><p><strong>Staged</strong>: El archivo ha sido modificado y los cambios han sido agregados al área de staging (también conocida como el índice). Estos cambios están listos para ser comprometidos.</p></li>
+<li><p><strong>Commited</strong>: El archivo se encuentra en la base de datos del repositorio. Representa la versión más reciente comprometida del archivo.</p></li>
+</ul>
+<p>Estos estados y subestados son importantes para colaborar con tu equipo y saber dónde se encuentra cada y cada commit en el proceso de tu proyecto. Ahora, pasemos a las solicitudes de extracción.</p>
+</section>
+<section id="qué-son-las-solicitudes-de-extracción" class="level4">
+<h4 class="anchored" data-anchor-id="qué-son-las-solicitudes-de-extracción">¿Qué son las solicitudes de extracción?</h4>
+<p>La solicitud de extracción es el mecanismo utilizado para indicar que los commits de una rama están listos para ser fusionados en otra rama.</p>
+<p>El miembro del equipo que envía la solicitud de extracción pide a uno o más revisores que verifiquen el código y aprueben la fusión. Estos revisores tienen la oportunidad de comentar sobre los cambios, agregar sus propios o utilizar la solicitud de extracción misma para discusiones adicionales.</p>
+<p>Una vez aprobados los cambios (si es necesario), la rama de origen (rama de comparación) se fusiona en la rama base.</p>
+<p><img src="images/clipboard-3701608133.png" class="img-fluid"></p>
+<p>Luego de oprimir Crear pull request nos queda la siguiente pantalla:</p>
+<p><img src="images/clipboard-1313359336.png" class="img-fluid"></p>
+<p>Quiere decir que alguien (para este caso nosotros mismos) quiere fusionar a la rama principal (main) un commit que proviene de la rama cchiquitovalencia-patch-1.</p>
+<p><img src="images/clipboard-2208426498.png" class="img-fluid"></p>
+<p>Nos solicita confirmacion de la siguiente forma:</p>
+<p><img src="images/clipboard-937721495.png" class="img-fluid"></p>
+<p>Finalmente llegamos a:</p>
+<p><img src="images/clipboard-1300561516.png" class="img-fluid"></p>
+<p>En este punto, luego de haber realizado los cambios en la rama que creamos (no la principal “main”) y confirmado que queremos actualizarlos dentro de la rama original, Github nos dice que es seguro eliminar esa rama, ya cumplio con su cometido.</p>
+<p>Antes de hacerlo vamos a nuestro repositorio para ver el estado:</p>
+<p><img src="images/clipboard-3301443192.png" class="img-fluid"></p>
+<p>Aqui esta la historia de lo que hemos realizado en cuanto a los commits:</p>
+<p><img src="images/clipboard-1756074459.png" class="img-fluid"></p>
+<p>Ahora que conocemos todos los ingredientes, revisemos el flujo de GitHub.</p>
+</section>
+<section id="el-flujo-de-github" class="level3">
+<h3 class="anchored" data-anchor-id="el-flujo-de-github">El flujo de GitHub</h3>
+<p><img src="images/clipboard-3864320330.png" class="img-fluid"></p>
+<p>El flujo de GitHub se puede definir como un flujo de trabajo ligero que permite experimentar de manera segura. Puedes probar nuevas ideas y colaborar con tu equipo utilizando ramas, solicitudes de extracción y fusión.</p>
+<p>Ahora que conocemos los fundamentos de GitHub, podemos recorrer el flujo de GitHub y sus componentes.</p>
+<p>Comienza creando una rama para que los cambios, características y correcciones que creas no afecten la rama principal. A continuación, haz tus cambios. Recomendamos desplegar cambios en tu rama de características antes de fusionar en la rama principal. Al hacerlo, aseguras que los cambios sean válidos en un entorno de producción. Ahora, crea una solicitud de extracción para pedir retroalimentación a tus colaboradores. La revisión de solicitudes de extracción es tan valiosa que algunos repositorios requieren una revisión aprobatoria antes de que las solicitudes de extracción puedan ser fusionadas. Luego, revisa y aplica la retroalimentación de tus colaboradores. Una vez que te sientas satisfecho con tus cambios, es hora de obtener aprobación para tu solicitud de extracción y fusionarla en la rama principal. Finalmente, puedes eliminar tu rama. Eliminar tu rama indica que tu trabajo en la rama está completo y previene que tú o otros utilicen ramas antiguas por error.</p>
+<p>¡Eso es todo! Has completado un ciclo de flujo de GitHub.</p>
+<p>Vamos a pasar al siguiente apartado, donde cubriremos las diferencias entre problemas (issues) y discusiones (discussions).</p>
+</section>
+</section>
+<section id="github-es-una-plataforma-colaborativa" class="level2">
+<h2 class="anchored" data-anchor-id="github-es-una-plataforma-colaborativa">GitHub es una plataforma colaborativa</h2>
+<p>La colaboración está en el núcleo de todo lo que hace GitHub. En el primer unidad del módulo, aprendimos que los repositorios ayudan a organizar tu proyecto y sus archivos. En la última unidad, aprendimos sobre solicitudes de extracción, que es una forma de seguir el progreso de los cambios realizados en tu proyecto.</p>
+<p>En este unidad, estamos aprendiendo sobre problemas y discusiones. Estos son dos piezas más que contribuyen a la naturaleza colaborativa de la plataforma de GitHub Enterprise.</p>
+<section id="problemas-issues" class="level4">
+<h4 class="anchored" data-anchor-id="problemas-issues">Problemas (issues)</h4>
+<p>Los problemas de GitHub se crearon para rastrear ideas, retroalimentación, tareas o bugs para el trabajo en GitHub. Los problemas pueden crearse de varias maneras, por lo que puedes elegir el método más conveniente para tu flujo de trabajo.</p>
+<p>Para este recorrido, vamos a cubrir cómo crear un problema desde un repositorio. Pero los problemas también pueden crearse desde:</p>
+<ul>
+<li><p>Un elemento en una lista de tareas.</p></li>
+<li><p>Una nota en un proyecto.</p></li>
+<li><p>Un comentario en un problema o solicitud de extracción.</p></li>
+<li><p>Una línea específica de código.</p></li>
+<li><p>Una consulta URL.</p></li>
+</ul>
+</section>
+<section id="crear-un-problema-desde-un-repositorio" class="level4">
+<h4 class="anchored" data-anchor-id="crear-un-problema-desde-un-repositorio">Crear un problema desde un repositorio</h4>
+<ol type="1">
+<li><p>En GitHub.com, navega hasta la página principal del repositorio.</p></li>
+<li><p>Debajo de tu nombre de repositorio, selecciona Problemas.</p>
+<div>
+<p><img src="images/clipboard-1394757684.png" class="img-fluid"></p>
+</div></li>
+<li><p>Selecciona Nuevo problema.</p></li>
+<li><p>Si tu repositorio utiliza plantillas de problemas, a continuación de la tipo de problema que deseas abrir, selecciona Iniciar. Si el tipo de problema que deseas abrir no se incluye en las opciones disponibles, selecciona Abrir un problema en blanco. Si no se utiliza plantillas, omita este paso.</p></li>
+<li><p>En el campo Agregar un título, ingresa un título para tu problema.</p></li>
+<li><p>En el campo Agregar una descripción, escribe una descripción de tu problema.</p>
+<p><img src="images/clipboard-1153953450.png" class="img-fluid"></p></li>
+<li><p>Si eres un mantenedor del proyecto, puedes asignar el problema a alguien, agregarlo a una pizarra de proyecto, asociarlo con un hito o aplicar una etiqueta.</p></li>
+<li><p>Cuando estés listo, selecciona Enviar nuevo problema.</p>
+<p><img src="images/clipboard-2732140775.png" class="img-fluid"></p></li>
+</ol>
+<p>Algunas conversaciones son más adecuadas para GitHub Discusiones. Puedes utilizar GitHub Discusiones para preguntar y responder preguntas, compartir información, hacer anuncios y conducir o participar en conversaciones sobre un proyecto.</p>
+<p>En la próxima sección, revisaremos Discusiones y cómo utilizar mejor el recurso.</p>
+</section>
+<section id="discusiones" class="level4">
+<h4 class="anchored" data-anchor-id="discusiones">Discusiones</h4>
+<p>Las discusiones son para conversaciones que necesitan ser accesibles para todos y no están relacionadas con el código. Las discusiones permiten conversaciones fluidas y abiertas en un foro público.</p>
+<p>En esta sección, vamos a cubrir:</p>
+<ul>
+<li><p>Habilitar una discusión en tu repositorio.</p></li>
+<li><p>Crear una nueva discusión y categorías de discusión.</p></li>
+</ul>
+<p>Vamos a profundizar en habilitar una discusión en tu repositorio.</p>
+</section>
+<section id="habilitar-una-discusión-en-tu-repositorio" class="level4">
+<h4 class="anchored" data-anchor-id="habilitar-una-discusión-en-tu-repositorio">Habilitar una discusión en tu repositorio</h4>
+<p>Los propietarios de repositorios y las personas con acceso de escritura pueden habilitar GitHub Discusiones para una comunidad en sus repositorios públicos y privados. La visibilidad de una discusión se hereda del repositorio en el que se crea la discusión.</p>
+<p>Cuando habilitas GitHub Discusiones por primera vez, te invitan a configurar un post de bienvenida.</p>
+<ol type="1">
+<li><p>En GitHub.com, navega hasta la página principal del repositorio.</p></li>
+<li><p>Debajo de tu nombre de repositorio, selecciona Configuración.</p>
+<p><img src="images/clipboard-2012055342.png" class="img-fluid"></p></li>
+<li><p>Desplaza el cursor hacia abajo hasta la sección Características y selecciona Configurar discusiones.</p>
+<p><img src="images/clipboard-1873642382.png" class="img-fluid"></p></li>
+<li><p>En Iniciar una nueva discusión, edita el plantilla para alinear con los recursos y el tono que deseas establecer para tu comunidad.</p>
+<p><img src="images/clipboard-2595792124.png" class="img-fluid"></p></li>
+<li><p>Selecciona Iniciar discusión.</p></li>
+</ol>
+<p>Ahora estás listo para crear una nueva discusión.</p>
+</section>
+<section id="section" class="level4">
+<h4 class="anchored" data-anchor-id="section"><img src="images/clipboard-1706569518.png" class="img-fluid"></h4>
+</section>
+<section id="crear-una-nueva-discusión" class="level4">
+<h4 class="anchored" data-anchor-id="crear-una-nueva-discusión">Crear una nueva discusión</h4>
+<p>Cualquier usuario autenticado que pueda ver el repositorio puede crear una discusión en ese repositorio. De manera similar, ya que las discusiones de organización se basan en un repositorio fuente, cualquier usuario autenticado que pueda ver el repositorio fuente puede crear una discusión en esa organización.</p>
+<ol type="1">
+<li><p>En GitHub.com, navega hasta la página principal del repositorio o rganización donde deseas iniciar una discusión.</p></li>
+<li><p>Debajo de tu nombre de repositorio o organización, selecciona Discusiones.</p></li>
+<li><p>En el lado derecho de la página, selecciona Nueva discusión.</p></li>
+<li><p>Selecciona una categoría de discusión al seleccionar Get started. Todos los problemas deben crearse en una categoría. Para las discusiones de repositorios, los mantenidos o administradores del repositorio definen las categorías de discusiones en ese repositorio.</p>
+<p><img src="images/clipboard-1281211685.png" class="img-fluid"></p></li>
+</ol>
+<p>Cada categoría debe tener un nombre único, emparejamiento de emojis y una descripción detallada que explique su propósito. Las categorías ayudan a los mantenidos a organizar cómo se archivan las conversaciones. Están personalizables para ayudar a distinguir categorías que son Q&amp;A o conversaciones más abiertas.</p>
+<p><img src="images/clipboard-1611929017.png" class="img-fluid"></p>
+<p>La siguiente tabla muestra las categorías predeterminadas para discusiones y su propósito.</p>
+<p><img src="images/clipboard-3878295438.png" class="img-fluid"></p>
+<p>Eso cubre un poco sobre cómo GitHub inspira la colaboración. Ahora, vamos a movernos a cómo puedes administrar notificaciones, suscribirte a hilo y empezar con GitHub Pages.</p>
+</section>
+</section>
+<section id="gestión-de-la-plataforma-de-github" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-la-plataforma-de-github">Gestión de la plataforma de GitHub</h2>
+<p>Ahora que conoces los fundamentos de la plataforma de GitHub, vamos a explorar algunas estrategias de gestión de la plataforma.</p>
+<p>En esta unidad, cubriremos:</p>
+<ul>
+<li><p>Administrar notificaciones y suscripciones.</p></li>
+<li><p>Suscribirte a hilos y encontrar hilos donde te mencionan.</p></li>
+<li><p>Publicar tu proyecto o organización en GitHub Pages.</p></li>
+</ul>
+<section id="gestión-de-notificaciones-y-suscripciones" class="level3">
+<h3 class="anchored" data-anchor-id="gestión-de-notificaciones-y-suscripciones">Gestión de notificaciones y suscripciones</h3>
+<p>Puedes elegir recibir actualizaciones continuas sobre actividad específica en GitHub.com a través de una suscripción. Las notificaciones son las actualizaciones que recibes sobre actividad específica a la que te has suscrito.</p>
+<section id="opciones-de-suscripción" class="level4">
+<h4 class="anchored" data-anchor-id="opciones-de-suscripción">Opciones de suscripción</h4>
+<p>Puedes elegir suscribirte a notificaciones para:</p>
+<ul>
+<li><p>Una conversación en un problema específico, solicitud de extracción o gist.</p></li>
+<li><p>Actividad de CI, como el estado de flujos de trabajo en repositorios configurados con GitHub Actions.</p></li>
+<li><p>Problemas, solicitudes de extracción, lanzamientos, alertas de seguridad o discusiones (si se habilitan) en un repositorio.</p></li>
+<li><p>Todas las actividades en un repositorio.</p></li>
+</ul>
+<p>En algunos casos, te suscribirás automáticamente a conversaciones en GitHub. Ejemplos incluyen abrir una solicitud de extracción o problema, comentar en un hilo o ser asignado a un problema o solicitud de extracción.</p>
+<p>Si ya no estás interesado en una conversación, puedes desuscribirte, desatender o personalizar los tipos de notificaciones que recibirás en el futuro.</p>
+<p>Si alguna vez estás interesado en problemas que mencionan a un usuario específico, puedes utilizar menciones: como el cuadro para encontrar esos problemas específicos.</p>
+</section>
+<section id="section-1" class="level4">
+<h4 class="anchored" data-anchor-id="section-1"></h4>
+<p>¿Qué son GitHub Pages?</p>
+<p>Para completar nuestro viaje por GitHub, vamos a abordar GitHub Pages. Puedes utilizar GitHub Pages para publicar y alojar un sitio web sobre ti mismo, tu organización o tu proyecto directamente desde un repositorio en GitHub.com.</p>
+<p>GitHub Pages es un servicio de alojamiento de sitios web estáticos que toma archivos HTML, CSS y JavaScript directamente desde un repositorio en GitHub. Opcionalmente, puedes ejecutar los archivos a través de un proceso de compilación y publicar un sitio web. Edita y envía tus cambios, y tu proyecto estará disponible para el público de manera organizada visualmente.</p>
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2024,
+  author = {Chiquito Valencia, Cristian},
+  title = {Introducción a {Github}},
+  date = {2024-11-18},
+  url = {https://cchiquitovalencia.github.io/posts/2028-11-18-intro_github/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2024. <span>“Introducción a Github.”</span>
+November 18, 2024. <a href="https://cchiquitovalencia.github.io/posts/2028-11-18-intro_github/">https://cchiquitovalencia.github.io/posts/2028-11-18-intro_github/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2024, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
