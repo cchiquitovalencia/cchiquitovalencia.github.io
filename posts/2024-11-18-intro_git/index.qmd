@@ -1,0 +1,341 @@
+---
+title: "Introducción a Git"
+description: "Algo fundamental para Data Science"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 18-11-2024
+categories: [Git, Quarto, R] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2028-11-18-intro_git/ 
+image: logo_gitscm.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Introducción
+
+En este módulo, obtendrás una introducción al control de versiones, y a Git. Git puede parecer un poco críptico al principio, e incluso puede ser frustrante a veces. Pero si lo aprendes paso a paso, descubrirás que hay una razón por la que Git se está convirtiendo rápidamente en el sistema de control de versiones más popular del mundo, no sólo para desarrolladores de software, sino también para equipos que escriben documentación y colaboran en otros trabajos.
+
+## Objetivos de aprendizaje
+
+En este módulo:
+
+-   Aprenderás qué es el control de versiones.
+
+-   Entender los sistemas de control de versiones distribuidos, como Git.
+
+-   Reconocer las diferencias entre Git y GitHub y las funciones que desempeñan en el ciclo de vida de desarrollo de software.
+
+## ¿Qué es el control de versiones?
+
+Un sistema de control de versiones (VCS) es un programa o conjunto de programas que rastrea los cambios realizados en una colección de archivos. Uno de los objetivos de un VCS es recuperar fácilmente versiones anteriores de archivos individuales o de todo el proyecto. Otro objetivo es permitir que varios miembros de un equipo trabajen en un proyecto, incluso en los mismos archivos, al mismo tiempo sin afectar al trabajo de los demás.
+
+Otro nombre para un VCS es sistema de gestión de configuración de software (SCM). De hecho, la documentación oficial de Git se encuentra en [git-scm.com](https://git-scm.com/). Técnicamente, el control de versiones es sólo una de las prácticas implicadas en la SCM. Un VCS puede utilizarse para proyectos distintos del software, incluidos libros y tutoriales en línea.
+
+Con un VCS, puedes:
+
+-   Ver todos los cambios realizados en tu proyecto, cuándo se hicieron y quién los hizo.
+
+-   Incluir un mensaje con cada cambio para explicar los motivos del mismo.
+
+-   Recuperar versiones anteriores de todo el proyecto o de archivos individuales.
+
+-   Crear *ramas*, donde se pueden realizar cambios de forma experimental. Esta función permite trabajar en varios conjuntos diferentes de cambios (por ejemplo, características o correcciones de errores) al mismo tiempo, posiblemente por diferentes personas, sin afectar a la rama principal. Más tarde, puedes fusionar los cambios que quieras conservar en la rama principal.
+
+-   Adjunta una etiqueta a una versión, por ejemplo, para marcar una nueva versión.
+
+Git es un VCS rápido, versátil, altamente escalable, gratuito y de código abierto. Su principal autor es Linus Torvalds, el creador de Linux.
+
+## Control de versiones distribuido
+
+Los primeros VCS, como CVS, Subversion (SVN) y Perforce, utilizaban un servidor centralizado para almacenar el historial de un proyecto. Esta centralización significaba que el único servidor era también potencialmente un único punto de fallo.
+
+Git es *distribuido*, lo que significa que el historial completo de un proyecto se almacena *tanto* en el cliente *como en* el servidor. Puedes editar archivos sin conexión a la red, comprobarlos localmente y sincronizarlos con el servidor cuando haya una conexión disponible. Si un servidor se cae, sigues teniendo una copia local del proyecto. Técnicamente, ni siquiera hace falta tener un servidor. Los cambios pueden ser enviados por correo electrónico o compartidos mediante el uso de medios extraíbles, pero nadie utiliza Git de esta manera en la práctica.
+
+## Terminología de Git
+
+Para entender Git, tienes que entender su terminología. Aquí tienes una pequeña lista de términos que los usuarios de Git utilizan con frecuencia. No te preocupes por los detalles por ahora; todos estos términos te resultarán familiares a medida que vayas avanzando en los ejercicios de este módulo.
+
+-   **Árbol de trabajo**: El conjunto de directorios y archivos anidados que contienen el proyecto en el que se está trabajando.
+
+-   **Repositorio (repo)**: El directorio, situado en el nivel superior de un árbol de trabajo, donde Git guarda toda la historia y metadatos de un proyecto. Los repositorios casi siempre se denominan *repos*. Un repositorio *vacío* es aquel que no forma parte de un árbol de trabajo; se utiliza para compartir o hacer copias de seguridad. Un repositorio vacío es normalmente un directorio con un nombre que termina en *.git*-por ejemplo, *proyecto.git*.
+
+-   **Hash**: Un número producido por una función hash que representa el contenido de un archivo u otro objeto como un número fijo de dígitos. Git utiliza hashes de 160 bits de longitud. Una ventaja de usar hashes es que Git puede saber si un archivo ha cambiado haciendo un hash de su contenido y comparando el resultado con el hash anterior. Si la fecha y hora del archivo cambia, pero el hash del archivo no, Git sabe que el contenido del archivo no ha cambiado.
+
+-   **Objetos**: Un repositorio Git contiene cuatro tipos de *objetos,* cada uno identificado de forma única por un hash SHA-1. Un objeto *blob* contiene un archivo ordinario. Un objeto *tree* representa un directorio; contiene nombres, hashes y permisos. Un objeto *commit* representa una versión específica del árbol de trabajo. Una *etiqueta* es un nombre asociado a una confirmación.
+
+-   **Commit**: Cuando se utiliza como verbo, *commit* significa crear un objeto commit. Esta acción toma su nombre de las confirmaciones a una base de datos. Significa que estás confirmando los cambios que has hecho para que otros también puedan verlos.
+
+-   **Rama**: Una rama es una serie de confirmaciones enlazadas. El commit más reciente de una rama se denomina *head*. La rama por defecto, que se crea cuando inicializas un repositorio, se llama `main`, a menudo llamada `master` en Git. La cabecera de la rama actual se llama `HEAD`. Las ramas son una característica increíblemente útil de Git porque permiten a los desarrolladores trabajar independientemente (o juntos) en ramas y más tarde fusionar sus cambios en la rama por defecto.
+
+-   **Remoto**: Un remoto es una referencia con nombre a otro repositorio Git. Cuando creas un repositorio, Git crea un remoto llamado `origen`, que es el remoto por defecto para las operaciones push y pull.
+
+-   **Comandos**, **subcomandos** y **opciones**: Las operaciones de Git se realizan usando comandos como `git push` y `git pull`. `git` es el comando, y `push` o `pull` es el subcomando. El subcomando especifica la operación que quieres que Git realice. Los comandos suelen ir acompañados de opciones, que utilizan guiones (-) o guiones dobles (--). Por ejemplo, `git reset --hard`.
+
+Estos términos y otros, como `«empujar»` y « `tirar»`, tendrán más sentido en breve. Pero tienes que empezar por algún sitio, y puede que te resulte útil volver y revisar este glosario de términos cuando termines el módulo.
+
+## La línea de comandos de Git
+
+Existen diferentes interfaces gráficas para Git, incluyendo GitHub Desktop. Muchos editores de programación, como Microsoft [Visual Studio Code](https://code.visualstudio.com/), también tienen una interfaz para Git. Todos funcionan de forma diferente y tienen distintas limitaciones. Ninguno de ellos implementa *todas las* funcionalidades de Git.
+
+Los ejercicios de este módulo utilizan la línea de comandos de Git, en concreto, comandos de Git ejecutados en Azure Cloud Shell. Sin embargo, la interfaz de línea de comandos de Git funciona igual, independientemente del sistema operativo que estés utilizando. Además, la línea de comandos te permite aprovechar *toda la* funcionalidad de Git. Los desarrolladores que sólo ven Git a través de una interfaz gráfica de usuario a veces se encuentran con mensajes de error que no pueden resolver, y tienen que recurrir a la línea de comandos para ponerse en marcha de nuevo.
+
+## Git y GitHub
+
+A medida que trabajas con Git, puede que te preguntes sobre las diferencias entre las funciones que ofrece y las que ofrece [GitHub](https://github.com/).
+
+Como se mencionó anteriormente, Git es un sistema de control de versiones distribuido (DVCS) que múltiples desarrolladores y otros colaboradores pueden utilizar para trabajar en un proyecto. Proporciona una manera de trabajar con una o más ramas locales y luego enviarlas a un repositorio remoto.
+
+GitHub es una plataforma en la nube que utiliza Git como tecnología central. GitHub simplifica el proceso de colaboración en proyectos y proporciona un sitio web, más herramientas de línea de comandos y un flujo general que los desarrolladores y usuarios pueden utilizar para trabajar juntos. GitHub actúa como el repositorio remoto mencionado anteriormente.
+
+Entre las principales características que ofrece GitHub se incluyen:
+
+-   Temas
+
+-   Debates
+
+-   Pull requests
+
+-   Notificaciones
+
+-   Etiquetas
+
+-   Acciones
+
+-   Forks
+
+-   Proyectos
+
+Para obtener más información sobre GitHub, consulta el módulo [Introducción a GitHub](https://learn.microsoft.com/en-us/training/modules/introduction-to-github) de Microsoft Learn o la documentación de ayuda [Introducción a GitHub](https://docs.github.com/free-pro-team@latest/github/getting-started-with-github).
+
+El siguiente paso es probar Git por ti mismo.
+
+## Ejercicio - Prueba Git
+
+Antes de que puedas crear tu primer repositorio, debes asegurarte de que Git está instalado y configurado. Git viene preinstalado con Azure Cloud Shell, por lo que podemos utilizar Git en Cloud Shell a la derecha.
+
+### Configurar Git
+
+1.  En Cloud Shell, para comprobar que Git está instalado, escribe `git --version`:
+
+``` {.bash filename="Bash"}
+git --version
+```
+
+::: callout-tip
+#### Tip
+
+Puede utilizar el botón Copiar para copiar comandos en el portapapeles. Para pegar, haga clic con el botón derecho en una nueva línea del terminal de Cloud Shell y seleccione Pegar, o utilice el atajo de teclado Mayús+Insertar (⌘+V en macOS).
+:::
+
+2.  Debería ver una salida parecida a la de este ejemplo:
+
+``` {.bash filename="Output"}
+git version 2.22.0
+```
+
+3.  Para configurar Git, debes definir algunas variables globales: `user.name` y `user.email`. Ambas son necesarias para que puedas hacer commits.
+
+4.  Establezca su nombre en Cloud Shell con el siguiente comando. Sustituya `<NOMBRE_USUARIO>` por el nombre de usuario que desee utilizar.
+
+``` {.bash filename="Bash"}
+git config --global user.name "<NOMBRE_USUARIO>"
+```
+
+5.  Ahora, utilice este comando para crear una variable de configuración `user.email`, sustituyendo `<USER_EMAIL>` por su dirección de correo electrónico:
+
+``` {.bash filename="Bash"}
+git config --global user.email "<USER_EMAIL>"
+```
+
+6.  Ejecute el siguiente comando para comprobar que sus cambios han funcionado:
+
+``` {.bash filename="Bash"}
+git config --list
+```
+
+7.  Compruebe que la salida incluye dos líneas similares a las del ejemplo siguiente. Su nombre y dirección de correo electrónico serán diferentes de los que se muestran en el ejemplo.
+
+``` {.bash filename="Output"}
+user.name=MIUSUARIO
+user.email=miusuario@protonmail.com
+```
+
+## Configura tu repositorio Git
+
+Git funciona comprobando los cambios en los archivos dentro de una carpeta determinada. Crearemos una carpeta para que sirva como nuestro *árbol de trabajo* (directorio del proyecto) y dejaremos que Git lo sepa, para que pueda empezar a seguir los cambios. Le diremos a Git que empiece a seguir los cambios inicializando un repositorio Git en esa carpeta.
+
+Empieza creando una carpeta vacía para tu proyecto, y luego inicializa un repositorio Git dentro de ella.
+
+1.  Crea una carpeta llamada *Gatos*. Esta carpeta será el directorio del proyecto, también llamado árbol de trabajo. El directorio del proyecto es donde se almacenan todos los archivos relacionados con tu proyecto. En este ejercicio, es donde se almacenan tu sitio web y los archivos que crean el sitio web y su contenido.
+
+``` {.bash filename="Bash"}
+mkdir Cats
+```
+
+2.  Cambie al directorio del proyecto utilizando el comando cd:
+
+``` {.bash filename="Bash"}
+cd Cats
+```
+
+3.  Ahora, inicialice su nuevo repositorio y establezca el nombre de la rama por defecto a main:
+
+``` {.bash filename="Bash"}
+git init --initial-branch=main
+```
+
+O utilice el siguiente comando:
+
+``` {.bash filename="Bash"}
+git init -b main
+```
+
+Para versiones anteriores de Git, utiliza estos comandos:
+
+``` {.bash filename="Bash"}
+git init
+git checkout -b main
+```
+
+Después de ejecutar el comando initialize, deberías ver una salida similar a la de este ejemplo:
+
+``` {.bash filename="Bash"}
+Initialized empty Git repository in /home/<user>/Cats/.git/
+
+Switched to a new branch 'main'
+```
+
+4.  Ahora, usa el comando git status para mostrar el estado del árbol de trabajo:
+
+``` {.bash filename="Bash"}
+git status
+```
+
+Git responde con esta salida, que indica que main es la rama actual. (También es la única rama.) Hasta aquí, todo bien.
+
+``` {.bash filename="Bash"}
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)        
+```
+
+5.  Utilice un comando ls para mostrar el contenido del árbol de trabajo:
+
+``` {.bash filename="Bash"}
+ls -a
+```
+
+Confirme que el directorio contiene un subdirectorio llamado .git. (Usar la opción -a con ls es importante porque Linux normalmente oculta los nombres de archivos y directorios que empiezan con un punto). Esta carpeta es el repositorio deGit -el directorio en el que Git almacena los metadatos y el historial del árbol de trabajo. Normalmente no haces nada con el directorio .git directamente. Git actualiza los metadatos allí a medida que cambia el estado del árbol de trabajo para mantener un registro de lo que ha cambiado en tus archivos. Este directorio no tiene nada que ver contigo, pero es increíblemente importante para Git.
+
+## Obtén ayuda de Git
+
+Git, como la mayoría de las herramientas de línea de comandos, tiene una función de ayuda integrada que puedes utilizar para buscar comandos y palabras clave.
+
+1.  Escribe el siguiente comando para obtener ayuda sobre lo que puedes hacer con Git:
+
+    ``` {.bash filename="Bash"}
+    git -help
+    ```
+
+2.  El comando muestra la siguiente salida:
+
+    ``` {.bash filename="Output"}
+    usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+    These are common Git commands used in various situations:
+
+    start a working area (see also: git help tutorial)
+       clone      Clone a repository into a new directory
+       init       Create an empty Git repository or reinitialize an existing one
+
+    work on the current change (see also: git help everyday)
+       add        Add file contents to the index
+       mv         Move or rename a file, a directory, or a symlink
+       reset      Reset current HEAD to the specified state
+       rm         Remove files from the working tree and from the index
+
+    examine the history and state (see also: git help revisions)
+       bisect     Use binary search to find the commit that introduced a bug
+       grep       Print lines matching a pattern
+       log        Show commit logs
+       show       Show various types of objects
+       status     Show the working tree status
+
+    grow, mark and tweak your common history
+       branch     List, create, or delete branches
+       checkout   Switch branches or restore working tree files
+       commit     Record changes to the repository
+       diff       Show changes between commits, commit and working tree, etc
+       merge      Join two or more development histories together
+       rebase     Forward-port local commits to the updated upstream head
+       tag        Create, list, delete or verify a tag object signed with GPG
+
+    collaborate (see also: git help workflows)
+       fetch      Download objects and refs from another repository
+       pull       Fetch from and integrate with another repository or a local branch
+       push       Update remote refs along with associated objects
+
+    'git help -a' and 'git help -g' list available subcommands and some
+    concept guides. See 'git help <command>' or 'git help <concept>'
+    to read about a specific subcommand or concept.
+    ```
+
+## Comandos básicos de Git
+
+Git funciona recordando los cambios en tus archivos como si estuviera tomando instantáneas de tu sistema de archivos.
+
+Cubriremos algunos comandos básicos para comenzar a rastrear archivos en su repositorio. Luego, guardaremos nuestra primera «instantánea» para que Git la compare.
+
+### git status
+
+El primer comando de Git, y el más utilizado, es `git` status . Ya lo usaste una vez, en el ejercicio anterior, para comprobar que habías inicializado tu repositorio de Git correctamente.
+
+`git status` muestra el estado del árbol de trabajo (y del área de preparación-pronto hablaremos más sobre el área de preparación). Te permite ver qué cambios están siendo seguidos actualmente por Git, para que puedas decidir si quieres pedir a Git que tome otra instantánea.
+
+### git add
+
+`git add` es el comando que usas para decirle a Git que empiece a registrar los cambios en ciertos archivos.
+
+El término técnico es *preparar* estos cambios. Usarás `git add` para preparar los cambios para una confirmación. Todos los cambios en los archivos que han sido añadidos pero aún no confirmados se almacenan en el *área de preparación*.
+
+### git commit
+
+Después de haber preparado algunos cambios para su confirmación, puedes guardar tu trabajo en una instantánea invocando el comando `git commit`.
+
+*Commit* es tanto un verbo como un sustantivo. Tiene esencialmente el mismo significado que cuando confirmas un plan o un cambio en una base de datos. Como verbo, confirmar cambios significa que pones una copia (del archivo, directorio u otra «cosa») en el repositorio como una nueva versión. Como sustantivo, una confirmación es el pequeño fragmento de datos que da una identidad única a los cambios que has confirmado. Los datos que se guardan en una confirmación incluyen el nombre y la dirección de correo electrónico del autor, la fecha, comentarios sobre lo que has hecho (y por qué), una firma digital opcional y el identificador único de la confirmación anterior.
+
+### git log
+
+El comando `git` log te permite ver información sobre confirmaciones anteriores. Cada confirmación tiene un mensaje adjunto (un mensaje de confirmación), y el comando `git` log imprime información sobre las confirmaciones más recientes, como su marca de tiempo, el autor y un mensaje de confirmación. Este comando te ayuda a hacer un seguimiento de lo que has estado haciendo y de los cambios que se han guardado.
+
+### git help
+
+Ya has probado el comando `git` help, pero merece la pena recordártelo. Usa este comando para obtener fácilmente información sobre todos los comandos que has aprendido hasta ahora, y más.
+
+Recuerda que cada comando tiene su *propia* página de ayuda. Puedes encontrar estas páginas de ayuda escribiendo `git <comando> --help`. Por ejemplo, `git commit --help` muestra una página que te informa sobre el comando `git commit` y cómo usarlo.
+
+## Resumen
+
+¡Enhorabuena! En este módulo, aprendiste los conceptos básicos del uso de Git.
+
+Aprendiste:
+
+-   Una visión general de los Sistemas de Control de Versiones (VCS).
+
+-   Terminología importante de Git.
+
+-   Las diferencias entre Git y GitHub.
+
+-   Cómo configurar Git.
+
+-   Algunos comandos básicos de Git.
+
+Llegados a este punto, ya sabes lo suficiente sobre Git como para utilizar el control de versiones por ti mismo en un proyecto básico. La colaboración con otros desarrolladores es donde brilla el control de versiones. Echa un vistazo a los otros módulos de esta ruta de aprendizaje para obtener más información sobre el uso de Git con otros.
