@@ -5,21 +5,21 @@ author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
-date: 11-18-2024
+date: 11-20-2024
 categories: [Git] # self-defined categories
 citation: 
-  url: https://cchiquitovalencia.github.io/posts/2028-11-18-ejemplo_usarGithub/ 
+  url: https://cchiquitovalencia.github.io/posts/2028-11-20-ejemplo_usarGithub/ 
 image: clone.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 Tengo una [página en Github](https://github.com/cchiquitovalencia/ "cchiquitovalencia"), la había creado en el 2023 en un equipo diferente al que ahora estoy usando, la última vez que actualicé la página fue en octubre 2024:
 
-![](images/clipboard-4106319223.png)
+![](images/clipboard-517215772.png)
 
-Estaba entusiasmado por retomar con las publicaciones de lo que puedo compartir de mis experiencias en programación (claramente no soy un experto) para optimizar los procesos. Pero todo lo había creado en un computador que ahora no es mio.
+Estaba entusiasmado por retomar las publicaciones de lo que puedo compartir de mis experiencias en programación (claramente no soy un experto) para optimizar los procesos. Pero todo lo había creado en un computador que ahora no es mio.
 
-Por cosas de la vida ahora estoy usando un computador muy antiguo, ni siquiera soportaba Windows 7, asi que, leyendo un poco, ahora esta corriendo Linux Mint. Aquí las especificaciones:
+Por cosas de la vida ahora estoy usando un computador muy antiguo, ni siquiera soportaba Windows 7, asi que, leyendo un poco, ahora esta corriendo Linux Mint. AquÍ las especificaciones:
 
 ``` {.bash filename="Bash"}
 Architecture:                       x86_64
@@ -50,17 +50,17 @@ NUMA node0 CPU(s):                  0,1
 
 Como ven, antiguo. Pero funciona!
 
-Mi tarea ahora es lograr configurar el flujo de trabajo que tenía en ese entonces en mi "nuevo" equipo.
+Mi tarea ahora es lograr configurar el flujo de trabajo que tenia en ese entonces en mi "nuevo" equipo.
 
-Voy a la carpeta `Documents`, creo una nueva llamada `repo_cchiquitovalencia`.
+Voy a la carpeta `Documentos`, creo una nueva llamada `repo_cchiquitovalencia` donde alojaré lo que ya había subido a Github.
 
-**Pasos**:
+Lo que hice:
 
 1.  En GitHub, navegué hasta la página principal del repositorio.
 
 2.  Encima de la lista de archivos, hice clic en **Código**.
 
-    ![](images/clipboard-3348501362.png)
+    ![](images/clipboard-1267116206.png)
 
 3.  Copié la dirección URL del repositorio. Para clonar el repositorio con HTTPS, en "HTTPS", hice clic en el ícono.
 
@@ -78,7 +78,7 @@ Voy a la carpeta `Documents`, creo una nueva llamada `repo_cchiquitovalencia`.
     git clone https://github.com/cchiquitovalencia/cchiquitovalencia.github.io.git
     ```
 
-7.  Presioné **Entrar** para crear el clon local.
+7.  Presioné **Enter** para crear el clon local.
 
     ``` {.bash filename="Bash"}
     Clonando en 'cchiquitovalencia.github.io'...
@@ -90,7 +90,7 @@ Voy a la carpeta `Documents`, creo una nueva llamada `repo_cchiquitovalencia`.
     Resolviendo deltas: 100% (210/210), listo.
     ```
 
-Listo! En este momento los archivos estan en mi equipo local. Pero eso es todo, no estan en seguimiento. Entonces:
+Listo! En este momento los archivos están en mi equipo local. Pero eso es todo, no están en seguimiento. Entonces:
 
 ``` {.bash filename="Bash"}
 ~/Documents/repo_cchiquitovalencia$ git init
@@ -119,7 +119,7 @@ Archivos sin seguimiento:
 no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
 ```
 
-Hago lo que me dice:
+Hago lo que me dice, agrego:
 
 ``` {.bash filename="Bash"}
 ~/Documents/repo_cchiquitovalencia$ git add cchiquitovalencia.github.io/
@@ -135,28 +135,28 @@ Cambios a ser confirmados:
 
     nuevo archivo:  cchiquitovalencia.github.io/.gitignore
     nuevo archivo:  cchiquitovalencia.github.io/.nojekyll
-...
+... # varias líneas de código después
     nuevo archivo:  cchiquitovalencia.github.io/posts/_metadata.yml
     nuevo archivo:  cchiquitovalencia.github.io/resources.qmd
     nuevo archivo:  cchiquitovalencia.github.io/styles.css
     nuevo archivo:  cchiquitovalencia.github.io/styles.scss
 ```
 
-Ahora, mientras escribo este post en un documento de Quarto dentro de una sesion de Rstudio, puedo abrir otra para revisar que todo este en orden: poder hacer commits y push desde local a Github.
+Ahora, mientras escribo este post en un documento de Quarto dentro de una sesion de Rstudio, puedo abrir otra para revisar que todo esté en orden: poder hacer `commits` y `push` desde local a Github. Con el comando `htop` puedo ver la carga de mis dos súper procesadores:
 
-![](images/clipboard-2235450060.png)
+![](images/clipboard-1743882111.png)
 
 Bueno, aquí mi primer problema:
 
-![](images/clipboard-1294111167.png)
+![](images/clipboard-2400752945.png)
 
-El formato ssh no tiene soporte? Como siempre, cuando hay problemas, vamos a stack overflow: "push git unsupported gpg.format ssh", unos blogs más tarde, la respuesta fue:
+El formato ssh no tiene soporte? Como siempre, cuando hay problemas, vamos a [stackoverflow](https://stackoverflow.com/): "*push git unsupported gpg.format ssh*", unos blogs más tarde, la respuesta fue:
 
-[![](images/clipboard-87354188.png)](https://stackoverflow.com/questions/74722894/error-unsupported-value-for-gpg-format-ssh)
+![](images/clipboard-2214406612.png)
 
-En este momento, me acordé que en la manana estaba trabajando en otro post sobre Git, y revise la version:
+En este momento, me acordé que hace poco estaba trabajando en [otro post sobre Git](https://cchiquitovalencia.github.io/posts/2024-11-18-intro_git/), y revisé la versión:
 
-![](images/clipboard-4048740282.png)
+![](images/clipboard-2938406641.png)
 
 Entonces le hice caso a Martin Thoma. Miremos lo que tengo:
 
@@ -177,23 +177,23 @@ commit.gpgsign=false
 gpg.format=ssh
 ```
 
-Luego de modificar el .gitconfig
+Luego de modificar el .gitconfig (`gpgsign = true`)
 
-![](images/clipboard-2390472077.png)
+![](images/clipboard-1573369827.png)
 
-Ahora, PUSH!: y me solicita un PASSPHRASE.
+Ahora, `PUSH`!: y me solicita un `PASSPHRASE`.
 
-![](images/clipboard-3820047039.png)
+![](images/clipboard-248908278.png)
 
 Claro que algo falló, no me acuerdo del passphrase! Luego de investigar un poco sobre como recuperar mi passphrase: [puedes revisar en donde esta disponible tu llave y puedes crear el certificado de revocacion de tu llave publica](https://medium.com/@fro_g/oh-no-i-forgot-my-pgp-private-keys-passphrase-6ec1d0228b48), pero necesitas acordarte del passphrase!
 
-Y luego segui revisando otro poco mas, y como no entendi nada [aqui](https://gpgtools.tenderapp.com/kb/gpg-keychain-faq/how-to-revoke-a-key-or-user-id), pues me asegure de no olvidar nunca mas el passphrase.
+Y luego seguí revisando otro poco más, y como no entendí nada [aquí](https://gpgtools.tenderapp.com/kb/gpg-keychain-faq/how-to-revoke-a-key-or-user-id), pues me aseguré de no olvidar nunca más el passphrase.
 
-Al final lo unico que entendi fue que debia generar otra llave:
+Al final lo único que entendí fue que debía generar otra llave:
 
 1.  Descargué e instalé las [herramientas de línea de comandos GPG](https://www.gnupg.org/download/) para mi sistema operativo.
 
-    Puedes confirmar si tienes una version instalada:
+    Puedes confirmar si tienes una versión instalada:
 
     ``` {.bash filename="Bash"}
     gpg --version
@@ -266,19 +266,19 @@ ssb   rsa4096/F4AE44B3682F30AE 2024-11-15 [E]
 
 Es necesario registrar la llave en Github, vamos a Configuración:
 
-![](images/clipboard-3319408428.png)
+![](images/clipboard-1466937778.png)
 
 La zona de acceso
 
-![](images/clipboard-255541710.png)
+![](images/clipboard-3850028516.png)
 
 y nueva llave:
 
-![](images/clipboard-3232801401.png)
+![](images/clipboard-3590516325.png)
 
 Y digitamos título y PUBLIC KEY BLOCK:
 
-![](images/clipboard-3652928532.png)
+![](images/clipboard-3789823564.png)
 
 Para obtener la llave completa que debemos registrar, ejecutar en la Terminal:
 
@@ -288,27 +288,27 @@ gpg --armor --export D0A5DB1B2962C681
 
 Cambiando el `Key ID` para cada llave generada. Ahora tengo esto:
 
-![](images/clipboard-3684134879.png)
+![](images/clipboard-1028422708.png)
 
 Ahora si, ya:
 
--   Cloné el repositorio que se encuentra alojado en Github a mi equipo local.
+-   Cloné el repositorio que se encuentra alojado en `Github` a mi equipo local.
 
--   Inicié el seguimiento con Git en mi control de versiones al proyecto local.
+-   Inicié el seguimiento con `Git` en mi control de versiones al proyecto local.
 
--   Actualicé mi version de Git para tener acceso son SSH.
+-   Actualicé mi version de Git para tener acceso son `SSH`.
 
--   Creé una llave pública nueva, porque no recordaba que la anterior expiró.
+-   Creé una `llave pública` nueva, porque no recordaba que la anterior expiró.
 
--   Registré la llave nueva a Github para realizar PUSH desde lo local.
+-   Registré la llave nueva a Github para realizar `PUSH` desde lo local.
 
 Entonces creo un archivo para realizar la prueba, se llama "actualizado.qmd" y contiene lo siguiente.
 
-![](images/clipboard-3687499933.png)
+![](images/clipboard-1306708621.png)
 
 Finalmente guardo el archivo y le doy `commit`:
 
-![](images/clipboard-3434492420.png)
+![](images/clipboard-3530903950.png)
 
 Ahora, la hora de la verdad: **`PUSH`**! No sin antes decirle a Git que cambie la llave porque al principio teniamos: `user.signingkey=/home/cchvcpcj/.ssh/id_ed25519.pub`
 
@@ -332,7 +332,7 @@ bash: git-credential-manager: command not found
 
 Pues a instalarlo se dijo:
 
-[![](images/clipboard-1607302200.png)](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md)
+![](images/clipboard-2509223845.png)
 
 Y así:
 
@@ -382,10 +382,10 @@ commit.gpgsign=true
 
 Algunas verificaciones mas tarde, un passphrase muy bien recordado (no lo olvidaré, y me aseguré muy bien de no volver a hacerlo) y finalmente:
 
-![](images/clipboard-1428800273.png){width="390"}
+![](images/clipboard-3549676888.png)
 
 y **`PUSH`**!!!!!!!!!!
 
-![](images/clipboard-1205024375.png)
+![](images/clipboard-3318090508.png)
 
 "De nuevo en el negocio."
