@@ -2,10 +2,9 @@
   {
     "listing": "/posts.html",
     "items": [
-      "/posts/2024-11-18-ejemplo_usarGithub/ejemplo_usarGithub.html",
+      "/posts/2024-11-20-ejemplo_usarGithub/index.html",
       "/posts/2024-11-18-intro_git/index.html",
       "/posts/2024-11-18-intro_github/index.html",
-      "/posts/2024-11-18-ejemplo_usarGithub/index.html",
       "/posts/2023-12-08-greedy_randomized_adaptative_search/index.html",
       "/posts/2023-12-03-variable_neighborhood_search/index.html",
       "/posts/2023-11-19-guided_local_search/index.html",
