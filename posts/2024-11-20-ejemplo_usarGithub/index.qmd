@@ -8,7 +8,7 @@ author:
 date: 11-20-2024
 categories: [Git] # self-defined categories
 citation: 
-  url: https://cchiquitovalencia.github.io/posts/2028-11-20-ejemplo_usarGithub/ 
+  url: https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/ 
 image: clone.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
