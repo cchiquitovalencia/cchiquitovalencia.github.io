@@ -9,7 +9,7 @@ date: 11-26-2024
 categories: [R, Web Scraping, selenider] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2024-11-26-web_scraping_with_R/ 
-image: asignar.jpeg
+image: webscrap.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
