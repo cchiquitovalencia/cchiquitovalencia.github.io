@@ -1,0 +1,219 @@
+---
+title: "Web scraping con R"
+description: "Usando selenider"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 11-26-2024
+categories: [R, Web Scraping, selenider] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2024-11-26-web_scraping_with_R/ 
+image: asignar.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Hace poco revisé una de las muchas opciones de trabajo remoto que existen para obtener ingresos en plataformas. Apareció una que me llamó mucho la atención en [Upwork](https://www.upwork.com/):
+
+## La descripción del trabajo: Web Scraping expert - in R
+
+> ^*I am looking for someone to help me scrape data from a website using R.*^
+>
+> ^*I am trying to scrape information from lawsuits on the website of the Superior Court of São Paulo (<https://esaj.tjsp.jus.br/cjpg/).> I wrote the attached R code using Rvest and it works partially. I have successfully extracted some of the data I need (see the attached output). However:*^
+>
+> 1)  ^*My code only extracts the information for one keyword. When I add more search terms, I get an error. I've tried using a for loop to generate different URLs, but I keep getting an error. I would like to change the code so that I can extract data for different keywords.*^
+>
+> 2)  ^*The second problem is that my sample code only extracts information from the results that are on the first page, but not for the next pages. This happens because I am using Rvest which does not work on javascript, in this sense I would like to have this code adapted to R selenium or other R package so that I can extract the data for all page results.*^
+>
+> ^*I would like to have as outputs the R script and the final dataset*^
+
+Decidí intentarlo con [`selenider`](https://ashbythorpe.github.io/selenider/) porque: la persona lo sugierió, y permite hacer clic en un elemento HTML, ya sea simulando un clic del mouse o activando el evento "clic" del elemento.
+
+Este es un pantallazo de la estructura de la página que queremos, donde estoy buscando la palabra clave "**Teruel**":
+
+![](images/clipboard-2081943008.png)
+
+Observen que tenemos 21 resultados (es posible que para la fecha en que tú consultes la página cambie el dato, depende si eliminan o agregan entradas):
+
+![](images/clipboard-3458747175.png)
+
+El **primer problema** que enfrenta la persona es la búsqueda de varios términos o palabras, así que vamos a intentarlo manualmente. Usamos el botón dispuesto "**OU**" y clic en **Consultar:**
+
+![](images/clipboard-1913940939.png)
+
+Reviso el cambio en la URL, comparo el resultado de la búsqueda de "Teruel" versus el resultado de la búsqueda de "Teruel OU abr". Para efectos de lectura fácil, omitiré cierto trozo del string:
+
+### Primera búsqueda
+
+``` html
+https://esaj.tjsp.jus.br/cjpg/pesquisar.do?conversationId=&dadosConsulta.pesquisaLivre=Teruel&tipoNumero=UNIFICADO&numeroDigitoAnoUnificado=&foroNumeroUnificado=&dadosConsulta.nuProcesso=&dadosConsulta.nuProcessoAntigo=&classeTreeSelection.values=&classeTreeSelection.text=&assuntoTreeSelection.values=10467&assuntoTreeSelection.text=Despesas+Condominiais&agenteSelectedEntitiesList=&contadoragente=0&contadorMaioragente=0&cdAgente=&nmAgente=&dadosConsulta.dtInicio=&dadosConsulta.dtFim=14%2F11%2F2024&&varasTreeSelection.text=122+Registros+selecionados&dadosConsulta.ordenacao=DESC
+```
+
+### Segunda búsqueda
+
+``` html
+https://esaj.tjsp.jus.br/cjpg/pesquisar.do?conversationId=&dadosConsulta.pesquisaLivre=Teruel+OU+abr&tipoNumero=UNIFICADO&numeroDigitoAnoUnificado=&foroNumeroUnificado=&dadosConsulta.nuProcesso=&dadosConsulta.nuProcessoAntigo=&classeTreeSelection.values=&classeTreeSelection.text=&assuntoTreeSelection.values=10467&assuntoTreeSelection.text=Despesas+Condominiais&agenteSelectedEntitiesList=&contadoragente=0&contadorMaioragente=0&cdAgente=&nmAgente=&dadosConsulta.dtInicio=&dadosConsulta.dtFim=14%2F11%2F2024&&varasTreeSelection.text=122+Registros+selecionados&dadosConsulta.ordenacao=DESC
+```
+
+El cambio radica en: `dadosConsulta.pesquisaLivre`.
+
+```{r info_basic}
+
+# Cargar librerías
+library(selenider)
+
+# Términos a buscar
+words <- c("Teruel", "abr")
+
+# string completo de los términos de interés
+search_term <- paste0(words, collapse = "+OU+")
+
+# Defining the url
+url <- paste0(
+  "http://esaj.tjsp.jus.br/cjpg/pesquisar.do?",
+  "dadosConsulta.pesquisaLivre=", URLencode(search_term),
+  "&tipoNumero=UNIFICADO&numeroDigitoAnoUnificado=&foroNumeroUnificado=&dadosConsulta.nuProcesso=&dadosConsulta.nuProcessoAntigo=&classeTreeSelection.values=&classeTreeSelection.text=&assuntoTreeSelection.values=10467&assuntoTreeSelection.text=Despesas+Condominiais&agenteSelectedEntitiesList=&contadoragente=0&contadorMaioragente=0&cdAgente=&nmAgente=&dadosConsulta.dtInicio=&dadosConsulta.dtFim=14%2F11%2F2024&varasTreeSelection.values=2-2723%2C2-6843%2C2-997%2C2-203%2C2-6874%2C2-7386%2C2-3772%2C2-9%2C2-2894%2C2-501%2C2-2%2C2-5221%2C2-3820%2C2-6873%2C2-998%2C2-3127%2C2-6844%2C2-3710%2C2-1001%2C2-103%2C2-6875%2C2-7385%2C2-3534%2C2-204%2C2-2602%2C2-6865%2C2-502%2C2-5490%2C2-3979%2C2-8%2C2-5689%2C2-6350%2C2-7387%2C2-7388%2C2-102%2C2-5610%2C2-5717%2C2-6845%2C2-999%2C2-13%2C2-6872%2C2-6841%2C2-321%2C2-4%2C2-5442%2C2-6883%2C2-3868%2C2-202%2C2-5757%2C2-2005%2C2-4864%2C2-2003%2C2-5569%2C2-3026%2C2-601%2C2-6881%2C2-6890%2C2-3469%2C2-5323%2C2-15%2C2-6870%2C2-11%2C2-6888%2C2-1848%2C2-2004%2C2-6878%2C2-5742%2C2-604%2C2-603%2C2-3389%2C2-4367%2C2-5099%2C2-1673%2C2-901%2C2-5633%2C2-101%2C2-6312%2C2-7221%2C2-505%2C2-4684%2C2-6889%2C2-6879%2C2-10%2C2-3589%2C2-6867%2C2-6866%2C2-5%2C2-5649%2C2-6%2C2-7%2C2-6868%2C2-504%2C2-6876%2C2-503%2C2-6887%2C2-4499%2C2-201%2C2-3634%2C2-205%2C2-3853%2C2-6886%2C2-602%2C2-3952%2C2-3199%2C2-3%2C2-6869%2C2-506%2C2-6862%2C2-2109%2C2-900%2C2-12%2C2-5528%2C2-3676%2C2-14%2C2-1900%2C2-6840%2C2-6871%2C2-1%2C2-3280%2C2-703%2C2-3910%2C2-1697&varasTreeSelection.text=122+Registros+selecionados&dadosConsulta.ordenacao=DESC")
+
+# Vamos a permitir 15 segundos de espera
+session <- selenider_session(
+    "selenium",
+    #options = selenium_options(server_options = NULL),
+    "firefox",
+    timeout = 15
+)
+```
+
+Para el **segundo problema** debemos revisar con F12 la estructura de la página, buscamos la flecha que gestiona el cambio entre páginas de los resultados. Queremos hacer clic en esa flecha:
+
+![](images/clipboard-925760594.png)
+
+Cuando ya lo tenemos identificado, nuestra labor se centrará en "raspar" los datos:
+
+![](images/clipboard-3933369357.png)
+
+Con esto en mente iniciamos nuestro código:
+
+1.  Abrimos la página.
+
+2.  Creamos una función para extraer los datos.
+
+3.  Determinamos el número de páginas que tiene nuestra consulta. Esto para sabe cuántas veces debemos "dar clic" a las flechas.
+
+4.  Generamos un `for loop` para leer toda la información y guardarla en un `data.frame`.
+
+```{r open_create_forloop}
+
+# Abrir página web
+open_url(url)
+
+
+# Función para extraer datos de una página
+consolidar_resultados <- function(pagina) {
+  cat("INICIO DE LECTURA DE PÁGINA", "\n")
+  
+  obtener_texto <- function(elemento, idx, replace_pattern = NULL) {
+    texto <- elemento[[idx]] |> 
+      find_element("td") |> 
+      elem_text() |> 
+      stringr::str_squish()
+    if (!is.null(replace_pattern)) {
+      texto <- gsub(pattern = replace_pattern[1], replacement = replace_pattern[2], texto)
+    }
+    return(texto)
+  }
+  
+  articulos <- pagina |> 
+    lapply(\(x) x |> find_elements(xpath = "./td/table/tbody/tr"))
+  
+  cat("Leyendo título", "\n")
+  columna_1 <- articulos |> lapply(\(x) x[[1]] |> find_element("span") |> elem_text())
+  cat("Leyendo Classe", "\n")
+  columna_2 <- articulos |> lapply(\(x) obtener_texto(x, 2, c("Classe: ", "")))
+  cat("Leyendo Assunto", "\n")
+  columna_3 <- articulos |> lapply(\(x) obtener_texto(x, 3, c("Assunto: ", "")))
+  cat("Leyendo Magistrado", "\n")
+  columna_4 <- articulos |> lapply(\(x) obtener_texto(x, 4, c("Magistrado: ", "")))
+  cat("Leyendo Comarca", "\n")
+  columna_5 <- articulos |> lapply(\(x) obtener_texto(x, 5, c("Comarca: ", "")))
+  cat("Leyendo Foro", "\n")
+  columna_6 <- articulos |> lapply(\(x) obtener_texto(x, 6, c("Foro: ", "")))
+  cat("Leyendo Vara", "\n")
+  columna_7 <- articulos |> lapply(\(x) obtener_texto(x, 7, c("Vara: ", "")))
+  cat("Leyendo Data_de_Disponibilização", "\n")
+  columna_8 <- articulos |> lapply(\(x) obtener_texto(x, 8, c("Data de Disponibilização: ", "")))
+  cat("Leyendo Decision", "\n")
+  columna_9 <- articulos |> lapply(\(x) x[[9]] |> find_element("span") |> elem_text() |> stringr::str_squish())
+  
+  cat("FIN DE LECTURA DE PÁGINA", "\n")
+  
+  return(list(
+    titulo = columna_1,
+    Classe = columna_2,
+    Assunto = columna_3,
+    Magistrado = columna_4,
+    Comarca = columna_5,
+    Foro = columna_6,
+    Vara = columna_7,
+    Data_de_Disponibilização = columna_8,
+    Decision = columna_9
+  ))
+}
+
+
+# Contar cantidad de páginas por resultado
+pags <- s(".trocaDePagina") |> 
+  find_elements("a") |> 
+  as.list() |> 
+  length() # la última es la flecha (la usaremos más adelante)
+
+ifelse(pags[1] == -1, pags[1] <- 1, pags[1] <- pags[1])
+
+
+data_completo <- unname(data.frame())
+
+for (pagina in 1:pags) {
+  
+  cat(paste0("Estamos en la página: ", pagina, "\n"))
+  
+  recolectar <- s("#divDadosResultado") |> 
+    find_elements(xpath = "./table/tbody/tr") |> 
+    as.list() 
+  
+  resultados <- consolidar_resultados(recolectar)
+  
+  temporal <- resultados |> 
+    purrr::map(~ do.call(rbind, .x) |> 
+                 unlist()) |> 
+    data.frame()
+  
+  data_completo <- rbind(data_completo, temporal)
+  
+  temporal <- unname(data.frame())
+  
+  if (pagina == pags) {
+    
+    break()
+    
+  } else {
+    
+    ir_a <- as.numeric(pagina) + 1
+    
+    cat("\n","\n","____PASANDO PÁGINA____", "\n","\n")
+    
+    s(".trocaDePagina") |> 
+      find_element(name = as.character(ir_a)) |> 
+      elem_click()
+    
+    Sys.sleep(10)
+  }
+}
+```
+
+### Extracción final
+
+Ahora nuestra información organizada:
+
+```{r deliver_info}
+
+data_completo
+```

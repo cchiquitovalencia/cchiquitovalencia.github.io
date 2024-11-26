@@ -6,7 +6,7 @@ author:
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
 date: 11-26-2024
-categories: [Git] # self-defined categories
+categories: [R, programació lineal, ompr, optimización] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2024-11-26-organizar_a_tu_familia/ 
 image: asignar.jpeg

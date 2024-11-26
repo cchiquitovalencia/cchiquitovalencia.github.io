@@ -6,7 +6,7 @@ author:
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
 date: 11-20-2024
-categories: [Git] # self-defined categories
+categories: [Git, Github] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/ 
 image: clone.jpeg

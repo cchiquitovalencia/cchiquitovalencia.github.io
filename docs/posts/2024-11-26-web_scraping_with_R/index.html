@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2024-11-26">
+<meta name="description" content="Usando selenider">
+
+<title>Web scraping con R – CHV</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CHV</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">What’s inside?</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Web scraping con R</h1>
+                  <div>
+        <div class="description">
+          Usando selenider
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Web Scraping</div>
+                <div class="quarto-category">selenider</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 26, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#la-descripción-del-trabajo-web-scraping-expert---in-r" id="toc-la-descripción-del-trabajo-web-scraping-expert---in-r" class="nav-link active" data-scroll-target="#la-descripción-del-trabajo-web-scraping-expert---in-r">La descripción del trabajo: Web Scraping expert - in R</a>
+  <ul class="collapse">
+  <li><a href="#primera-búsqueda" id="toc-primera-búsqueda" class="nav-link" data-scroll-target="#primera-búsqueda">Primera búsqueda</a></li>
+  <li><a href="#segunda-búsqueda" id="toc-segunda-búsqueda" class="nav-link" data-scroll-target="#segunda-búsqueda">Segunda búsqueda</a></li>
+  <li><a href="#extracción-final" id="toc-extracción-final" class="nav-link" data-scroll-target="#extracción-final">Extracción final</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<p>Hace poco revisé una de las muchas opciones de trabajo remoto que existen para obtener ingresos en plataformas. Apareció una que me llamó mucho la atención en <a href="https://www.upwork.com/">Upwork</a>:</p>
+<section id="la-descripción-del-trabajo-web-scraping-expert---in-r" class="level2">
+<h2 class="anchored" data-anchor-id="la-descripción-del-trabajo-web-scraping-expert---in-r">La descripción del trabajo: Web Scraping expert - in R</h2>
+<blockquote class="blockquote">
+<p><sup><em>I&nbsp;am&nbsp;looking&nbsp;for&nbsp;someone&nbsp;to&nbsp;help&nbsp;me&nbsp;scrape&nbsp;data&nbsp;from&nbsp;a&nbsp;website&nbsp;using&nbsp;R.</em></sup></p>
+<p><sup><em>I&nbsp;am&nbsp;trying&nbsp;to&nbsp;scrape&nbsp;information&nbsp;from&nbsp;lawsuits&nbsp;on&nbsp;the&nbsp;website&nbsp;of&nbsp;the&nbsp;Superior&nbsp;Court&nbsp;of&nbsp;São&nbsp;Paulo&nbsp;(<a href="https://esaj.tjsp.jus.br/cjpg/)." class="uri">https://esaj.tjsp.jus.br/cjpg/).</a>&nbsp;I&nbsp;wrote&nbsp;the&nbsp;attached&nbsp;R&nbsp;code&nbsp;using&nbsp;Rvest&nbsp;and&nbsp;it&nbsp;works&nbsp;partially.&nbsp;I&nbsp;have&nbsp;successfully&nbsp;extracted&nbsp;some&nbsp;of&nbsp;the&nbsp;data&nbsp;I&nbsp;need&nbsp;(see&nbsp;the&nbsp;attached&nbsp;output).&nbsp;However:</em></sup></p>
+<ol type="1">
+<li><p><sup><em>My&nbsp;code&nbsp;only&nbsp;extracts&nbsp;the&nbsp;information&nbsp;for&nbsp;one&nbsp;keyword.&nbsp;When&nbsp;I&nbsp;add&nbsp;more&nbsp;search&nbsp;terms,&nbsp;I&nbsp;get&nbsp;an&nbsp;error.&nbsp;I’ve&nbsp;tried&nbsp;using&nbsp;a&nbsp;for&nbsp;loop&nbsp;to&nbsp;generate&nbsp;different&nbsp;URLs,&nbsp;but&nbsp;I&nbsp;keep&nbsp;getting&nbsp;an&nbsp;error.&nbsp;I&nbsp;would&nbsp;like&nbsp;to&nbsp;change&nbsp;the&nbsp;code&nbsp;so&nbsp;that&nbsp;I&nbsp;can&nbsp;extract&nbsp;data&nbsp;for&nbsp;different&nbsp;keywords.</em></sup></p></li>
+<li><p><sup><em>The&nbsp;second&nbsp;problem&nbsp;is&nbsp;that&nbsp;my&nbsp;sample&nbsp;code&nbsp;only&nbsp;extracts&nbsp;information&nbsp;from&nbsp;the&nbsp;results&nbsp;that&nbsp;are&nbsp;on&nbsp;the&nbsp;first&nbsp;page,&nbsp;but&nbsp;not&nbsp;for&nbsp;the&nbsp;next&nbsp;pages.&nbsp;This&nbsp;happens&nbsp;because&nbsp;I&nbsp;am&nbsp;using&nbsp;Rvest&nbsp;which&nbsp;does&nbsp;not&nbsp;work&nbsp;on&nbsp;javascript,&nbsp;in&nbsp;this&nbsp;sense&nbsp;I&nbsp;would&nbsp;like&nbsp;to&nbsp;have&nbsp;this&nbsp;code&nbsp;adapted&nbsp;to&nbsp;R&nbsp;selenium&nbsp;or&nbsp;other&nbsp;R&nbsp;package&nbsp;so&nbsp;that&nbsp;I&nbsp;can&nbsp;extract&nbsp;the&nbsp;data&nbsp;for&nbsp;all&nbsp;page&nbsp;results.</em></sup></p></li>
+</ol>
+<p><sup><em>I&nbsp;would&nbsp;like&nbsp;to&nbsp;have&nbsp;as&nbsp;outputs&nbsp;the&nbsp;R&nbsp;script&nbsp;and&nbsp;the&nbsp;final&nbsp;dataset</em></sup></p>
+</blockquote>
+<p>Decidí intentarlo con <a href="https://ashbythorpe.github.io/selenider/"><code>selenider</code></a> porque: la persona lo sugierió, y permite hacer clic en un elemento HTML, ya sea simulando un clic del mouse o activando el evento “clic” del elemento.</p>
+<p>Este es un pantallazo de la estructura de la página que queremos, donde estoy buscando la palabra clave “<strong>Teruel</strong>”:</p>
+<p><img src="images/clipboard-2081943008.png" class="img-fluid"></p>
+<p>Observen que tenemos 21 resultados (es posible que para la fecha en que tú consultes la página cambie el dato, depende si eliminan o agregan entradas):</p>
+<p><img src="images/clipboard-3458747175.png" class="img-fluid"></p>
+<p>El <strong>primer problema</strong> que enfrenta la persona es la búsqueda de varios términos o palabras, así que vamos a intentarlo manualmente. Usamos el botón dispuesto “<strong>OU</strong>” y clic en <strong>Consultar:</strong></p>
+<p><img src="images/clipboard-1913940939.png" class="img-fluid"></p>
+<p>Reviso el cambio en la URL, comparo el resultado de la búsqueda de “Teruel” versus el resultado de la búsqueda de “Teruel OU abr”. Para efectos de lectura fácil, omitiré cierto trozo del string:</p>
+<section id="primera-búsqueda" class="level3">
+<h3 class="anchored" data-anchor-id="primera-búsqueda">Primera búsqueda</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>https://esaj.tjsp.jus.br/cjpg/pesquisar.do?conversationId=<span class="er">&amp;</span>dadosConsulta.pesquisaLivre=Teruel<span class="er">&amp;</span>tipoNumero=UNIFICADO<span class="er">&amp;</span>numeroDigitoAnoUnificado=<span class="er">&amp;</span>foroNumeroUnificado=<span class="er">&amp;</span>dadosConsulta.nuProcesso=<span class="er">&amp;</span>dadosConsulta.nuProcessoAntigo=<span class="er">&amp;</span>classeTreeSelection.values=<span class="er">&amp;</span>classeTreeSelection.text=<span class="er">&amp;</span>assuntoTreeSelection.values=10467<span class="er">&amp;</span>assuntoTreeSelection.text=Despesas+Condominiais<span class="er">&amp;</span>agenteSelectedEntitiesList=<span class="er">&amp;</span>contadoragente=0<span class="er">&amp;</span>contadorMaioragente=0<span class="er">&amp;</span>cdAgente=<span class="er">&amp;</span>nmAgente=<span class="er">&amp;</span>dadosConsulta.dtInicio=<span class="er">&amp;</span>dadosConsulta.dtFim=14%2F11%2F2024<span class="er">&amp;&amp;</span>varasTreeSelection.text=122+Registros+selecionados<span class="er">&amp;</span>dadosConsulta.ordenacao=DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="segunda-búsqueda" class="level3">
+<h3 class="anchored" data-anchor-id="segunda-búsqueda">Segunda búsqueda</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>https://esaj.tjsp.jus.br/cjpg/pesquisar.do?conversationId=<span class="er">&amp;</span>dadosConsulta.pesquisaLivre=Teruel+OU+abr<span class="er">&amp;</span>tipoNumero=UNIFICADO<span class="er">&amp;</span>numeroDigitoAnoUnificado=<span class="er">&amp;</span>foroNumeroUnificado=<span class="er">&amp;</span>dadosConsulta.nuProcesso=<span class="er">&amp;</span>dadosConsulta.nuProcessoAntigo=<span class="er">&amp;</span>classeTreeSelection.values=<span class="er">&amp;</span>classeTreeSelection.text=<span class="er">&amp;</span>assuntoTreeSelection.values=10467<span class="er">&amp;</span>assuntoTreeSelection.text=Despesas+Condominiais<span class="er">&amp;</span>agenteSelectedEntitiesList=<span class="er">&amp;</span>contadoragente=0<span class="er">&amp;</span>contadorMaioragente=0<span class="er">&amp;</span>cdAgente=<span class="er">&amp;</span>nmAgente=<span class="er">&amp;</span>dadosConsulta.dtInicio=<span class="er">&amp;</span>dadosConsulta.dtFim=14%2F11%2F2024<span class="er">&amp;&amp;</span>varasTreeSelection.text=122+Registros+selecionados<span class="er">&amp;</span>dadosConsulta.ordenacao=DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El cambio radica en: <code>dadosConsulta.pesquisaLivre</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerías</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(selenider)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Términos a buscar</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Teruel"</span>, <span class="st">"abr"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># string completo de los términos de interés</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>search_term <span class="ot">&lt;-</span> <span class="fu">paste0</span>(words, <span class="at">collapse =</span> <span class="st">"+OU+"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the url</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"http://esaj.tjsp.jus.br/cjpg/pesquisar.do?"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dadosConsulta.pesquisaLivre="</span>, <span class="fu">URLencode</span>(search_term),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"&amp;tipoNumero=UNIFICADO&amp;numeroDigitoAnoUnificado=&amp;foroNumeroUnificado=&amp;dadosConsulta.nuProcesso=&amp;dadosConsulta.nuProcessoAntigo=&amp;classeTreeSelection.values=&amp;classeTreeSelection.text=&amp;assuntoTreeSelection.values=10467&amp;assuntoTreeSelection.text=Despesas+Condominiais&amp;agenteSelectedEntitiesList=&amp;contadoragente=0&amp;contadorMaioragente=0&amp;cdAgente=&amp;nmAgente=&amp;dadosConsulta.dtInicio=&amp;dadosConsulta.dtFim=14%2F11%2F2024&amp;varasTreeSelection.values=2-2723%2C2-6843%2C2-997%2C2-203%2C2-6874%2C2-7386%2C2-3772%2C2-9%2C2-2894%2C2-501%2C2-2%2C2-5221%2C2-3820%2C2-6873%2C2-998%2C2-3127%2C2-6844%2C2-3710%2C2-1001%2C2-103%2C2-6875%2C2-7385%2C2-3534%2C2-204%2C2-2602%2C2-6865%2C2-502%2C2-5490%2C2-3979%2C2-8%2C2-5689%2C2-6350%2C2-7387%2C2-7388%2C2-102%2C2-5610%2C2-5717%2C2-6845%2C2-999%2C2-13%2C2-6872%2C2-6841%2C2-321%2C2-4%2C2-5442%2C2-6883%2C2-3868%2C2-202%2C2-5757%2C2-2005%2C2-4864%2C2-2003%2C2-5569%2C2-3026%2C2-601%2C2-6881%2C2-6890%2C2-3469%2C2-5323%2C2-15%2C2-6870%2C2-11%2C2-6888%2C2-1848%2C2-2004%2C2-6878%2C2-5742%2C2-604%2C2-603%2C2-3389%2C2-4367%2C2-5099%2C2-1673%2C2-901%2C2-5633%2C2-101%2C2-6312%2C2-7221%2C2-505%2C2-4684%2C2-6889%2C2-6879%2C2-10%2C2-3589%2C2-6867%2C2-6866%2C2-5%2C2-5649%2C2-6%2C2-7%2C2-6868%2C2-504%2C2-6876%2C2-503%2C2-6887%2C2-4499%2C2-201%2C2-3634%2C2-205%2C2-3853%2C2-6886%2C2-602%2C2-3952%2C2-3199%2C2-3%2C2-6869%2C2-506%2C2-6862%2C2-2109%2C2-900%2C2-12%2C2-5528%2C2-3676%2C2-14%2C2-1900%2C2-6840%2C2-6871%2C2-1%2C2-3280%2C2-703%2C2-3910%2C2-1697&amp;varasTreeSelection.text=122+Registros+selecionados&amp;dadosConsulta.ordenacao=DESC"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos a permitir 15 segundos de espera</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>session <span class="ot">&lt;-</span> <span class="fu">selenider_session</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"selenium"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#options = selenium_options(server_options = NULL),</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"firefox"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">timeout =</span> <span class="dv">15</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para el <strong>segundo problema</strong> debemos revisar con F12 la estructura de la página, buscamos la flecha que gestiona el cambio entre páginas de los resultados. Queremos hacer clic en esa flecha:</p>
+<p><img src="images/clipboard-925760594.png" class="img-fluid"></p>
+<p>Cuando ya lo tenemos identificado, nuestra labor se centrará en “raspar” los datos:</p>
+<p><img src="images/clipboard-3933369357.png" class="img-fluid"></p>
+<p>Con esto en mente iniciamos nuestro código:</p>
+<ol type="1">
+<li><p>Abrimos la página.</p></li>
+<li><p>Creamos una función para extraer los datos.</p></li>
+<li><p>Determinamos el número de páginas que tiene nuestra consulta. Esto para sabe cuántas veces debemos “dar clic” a las flechas.</p></li>
+<li><p>Generamos un <code>for loop</code> para leer toda la información y guardarla en un <code>data.frame</code>.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Abrir página web</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">open_url</span>(url)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para extraer datos de una página</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>consolidar_resultados <span class="ot">&lt;-</span> <span class="cf">function</span>(pagina) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"INICIO DE LECTURA DE PÁGINA"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  obtener_texto <span class="ot">&lt;-</span> <span class="cf">function</span>(elemento, idx, <span class="at">replace_pattern =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    texto <span class="ot">&lt;-</span> elemento[[idx]] <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">find_element</span>(<span class="st">"td"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">elem_text</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_squish</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(replace_pattern)) {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      texto <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="at">pattern =</span> replace_pattern[<span class="dv">1</span>], <span class="at">replacement =</span> replace_pattern[<span class="dv">2</span>], texto)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(texto)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  articulos <span class="ot">&lt;-</span> pagina <span class="sc">|&gt;</span> </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(\(x) x <span class="sc">|&gt;</span> <span class="fu">find_elements</span>(<span class="at">xpath =</span> <span class="st">"./td/table/tbody/tr"</span>))</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo título"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  columna_1 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) x[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">find_element</span>(<span class="st">"span"</span>) <span class="sc">|&gt;</span> <span class="fu">elem_text</span>())</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Classe"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  columna_2 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"Classe: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Assunto"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  columna_3 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"Assunto: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Magistrado"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  columna_4 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">4</span>, <span class="fu">c</span>(<span class="st">"Magistrado: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Comarca"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  columna_5 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">5</span>, <span class="fu">c</span>(<span class="st">"Comarca: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Foro"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  columna_6 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">6</span>, <span class="fu">c</span>(<span class="st">"Foro: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Vara"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  columna_7 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">7</span>, <span class="fu">c</span>(<span class="st">"Vara: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Data_de_Disponibilização"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  columna_8 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) <span class="fu">obtener_texto</span>(x, <span class="dv">8</span>, <span class="fu">c</span>(<span class="st">"Data de Disponibilização: "</span>, <span class="st">""</span>)))</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Leyendo Decision"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  columna_9 <span class="ot">&lt;-</span> articulos <span class="sc">|&gt;</span> <span class="fu">lapply</span>(\(x) x[[<span class="dv">9</span>]] <span class="sc">|&gt;</span> <span class="fu">find_element</span>(<span class="st">"span"</span>) <span class="sc">|&gt;</span> <span class="fu">elem_text</span>() <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_squish</span>())</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"FIN DE LECTURA DE PÁGINA"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">titulo =</span> columna_1,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Classe =</span> columna_2,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Assunto =</span> columna_3,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Magistrado =</span> columna_4,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Comarca =</span> columna_5,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Foro =</span> columna_6,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">Vara =</span> columna_7,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    Data_de_Disponibilização <span class="ot">=</span> columna_8,</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">Decision =</span> columna_9</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Contar cantidad de páginas por resultado</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>pags <span class="ot">&lt;-</span> <span class="fu">s</span>(<span class="st">".trocaDePagina"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">find_elements</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.list</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>() <span class="co"># la última es la flecha (la usaremos más adelante)</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(pags[<span class="dv">1</span>] <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>, pags[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>, pags[<span class="dv">1</span>] <span class="ot">&lt;-</span> pags[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_completo <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">data.frame</span>())</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pagina <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>pags) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"Estamos en la página: "</span>, pagina, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  recolectar <span class="ot">&lt;-</span> <span class="fu">s</span>(<span class="st">"#divDadosResultado"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">find_elements</span>(<span class="at">xpath =</span> <span class="st">"./table/tbody/tr"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.list</span>() </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  resultados <span class="ot">&lt;-</span> <span class="fu">consolidar_resultados</span>(recolectar)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  temporal <span class="ot">&lt;-</span> resultados <span class="sc">|&gt;</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(<span class="sc">~</span> <span class="fu">do.call</span>(rbind, .x) <span class="sc">|&gt;</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">unlist</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  data_completo <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data_completo, temporal)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  temporal <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">data.frame</span>())</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (pagina <span class="sc">==</span> pags) {</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span>()</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    ir_a <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pagina) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,<span class="st">"____PASANDO PÁGINA____"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">s</span>(<span class="st">".trocaDePagina"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">find_element</span>(<span class="at">name =</span> <span class="fu">as.character</span>(ir_a)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">elem_click</span>()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="dv">10</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Estamos en la página: 1
+INICIO DE LECTURA DE PÁGINA 
+Leyendo título 
+Leyendo Classe 
+Leyendo Assunto 
+Leyendo Magistrado 
+Leyendo Comarca 
+Leyendo Foro 
+Leyendo Vara 
+Leyendo Data_de_Disponibilização 
+Leyendo Decision 
+FIN DE LECTURA DE PÁGINA 
+
+ 
+ ____PASANDO PÁGINA____ 
+ 
+Estamos en la página: 2
+INICIO DE LECTURA DE PÁGINA 
+Leyendo título 
+Leyendo Classe 
+Leyendo Assunto 
+Leyendo Magistrado 
+Leyendo Comarca 
+Leyendo Foro 
+Leyendo Vara 
+Leyendo Data_de_Disponibilização 
+Leyendo Decision 
+FIN DE LECTURA DE PÁGINA 
+
+ 
+ ____PASANDO PÁGINA____ 
+ 
+Estamos en la página: 3
+INICIO DE LECTURA DE PÁGINA 
+Leyendo título 
+Leyendo Classe 
+Leyendo Assunto 
+Leyendo Magistrado 
+Leyendo Comarca 
+Leyendo Foro 
+Leyendo Vara 
+Leyendo Data_de_Disponibilização 
+Leyendo Decision 
+FIN DE LECTURA DE PÁGINA </code></pre>
+</div>
+</div>
+</section>
+<section id="extracción-final" class="level3">
+<h3 class="anchored" data-anchor-id="extracción-final">Extracción final</h3>
+<p>Ahora nuestra información organizada:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_completo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      titulo                           Classe
+1  1051229-39.2024.8.26.0002 Execução de Título Extrajudicial
+2  1005876-78.2021.8.26.0002 Execução de Título Extrajudicial
+3  1005870-71.2021.8.26.0002 Execução de Título Extrajudicial
+4  1005878-48.2021.8.26.0002 Execução de Título Extrajudicial
+5  1017042-05.2024.8.26.0002 Execução de Título Extrajudicial
+6  1051406-03.2024.8.26.0002 Execução de Título Extrajudicial
+7  1005664-57.2021.8.26.0002 Execução de Título Extrajudicial
+8  1005872-41.2021.8.26.0002 Execução de Título Extrajudicial
+9  1005872-41.2021.8.26.0002 Execução de Título Extrajudicial
+10 1005656-80.2021.8.26.0002 Execução de Título Extrajudicial
+11 1005653-28.2021.8.26.0002 Execução de Título Extrajudicial
+12 1005656-80.2021.8.26.0002 Execução de Título Extrajudicial
+13 1005879-33.2021.8.26.0002 Execução de Título Extrajudicial
+14 1014990-41.2021.8.26.0002 Execução de Título Extrajudicial
+15 1014990-41.2021.8.26.0002 Execução de Título Extrajudicial
+16 1014990-41.2021.8.26.0002 Execução de Título Extrajudicial
+17 1005653-28.2021.8.26.0002 Execução de Título Extrajudicial
+18 1005656-80.2021.8.26.0002 Execução de Título Extrajudicial
+19 1005680-11.2021.8.26.0002 Execução de Título Extrajudicial
+20 1005675-86.2021.8.26.0002 Execução de Título Extrajudicial
+21 1005877-63.2021.8.26.0002 Execução de Título Extrajudicial
+22 0083447-94.2011.8.26.0002         Procedimento Comum Cível
+23 1019510-54.2015.8.26.0002         Procedimento Comum Cível
+24 0011321-80.2010.8.26.0002         Procedimento Comum Cível
+                 Assunto                                   Magistrado   Comarca
+1  Despesas Condominiais                         Théo Assuar Gragnano SÃO PAULO
+2  Despesas Condominiais               Marina Balester Mello de Godoy SÃO PAULO
+3  Despesas Condominiais                        Emanuel Brandão Filho SÃO PAULO
+4  Despesas Condominiais                  Eurico Leonel Peixoto Filho SÃO PAULO
+5  Despesas Condominiais                         Théo Assuar Gragnano SÃO PAULO
+6  Despesas Condominiais           LUIZ RAPHAEL NARDY LENCIONI VALDEZ SÃO PAULO
+7  Despesas Condominiais                       ANDERSON CORTEZ MENDES SÃO PAULO
+8  Despesas Condominiais                               ROGE NAIM TENN SÃO PAULO
+9  Despesas Condominiais                                VANESSA SFEIR SÃO PAULO
+10 Despesas Condominiais                                VANESSA SFEIR SÃO PAULO
+11 Despesas Condominiais                      ALEXANDRE BATISTA ALVES SÃO PAULO
+12 Despesas Condominiais                     Fernanda Soares Fialdini SÃO PAULO
+13 Despesas Condominiais                      Guilherme Silva e Souza SÃO PAULO
+14 Despesas Condominiais                             Ricardo Hoffmann SÃO PAULO
+15 Despesas Condominiais                             Ricardo Hoffmann SÃO PAULO
+16 Despesas Condominiais                             Ricardo Hoffmann SÃO PAULO
+17 Despesas Condominiais                      ALEXANDRE BATISTA ALVES SÃO PAULO
+18 Despesas Condominiais                     Fernanda Soares Fialdini SÃO PAULO
+19 Despesas Condominiais                       FABIANA FEHER RECASENS SÃO PAULO
+20 Despesas Condominiais                      Guilherme Duran Depieri SÃO PAULO
+21 Despesas Condominiais                         Théo Assuar Gragnano SÃO PAULO
+22 Despesas Condominiais              Vanessa Miranda Tavares de Lima SÃO PAULO
+23 Despesas Condominiais                Carolina Nabarro Munhoz Rossi SÃO PAULO
+24 Despesas Condominiais Hertha Helena Rollemberg Padilha de Oliveira SÃO PAULO
+                             Foro           Vara Data_de_Disponibilização
+1  Foro Regional II - Santo Amaro 12ª Vara Cível               31/10/2024
+2  Foro Regional II - Santo Amaro 14ª Vara Cível               01/10/2024
+3  Foro Regional II - Santo Amaro  6ª Vara Cível               26/09/2024
+4  Foro Regional II - Santo Amaro  5ª Vara Cível               16/09/2024
+5  Foro Regional II - Santo Amaro 12ª Vara Cível               13/09/2024
+6  Foro Regional II - Santo Amaro  7ª Vara Cível               23/08/2024
+7  Foro Regional II - Santo Amaro  9ª Vara Cível               15/03/2024
+8  Foro Regional II - Santo Amaro 13ª Vara Cível               19/01/2024
+9  Foro Regional II - Santo Amaro 13ª Vara Cível               08/08/2023
+10 Foro Regional II - Santo Amaro 13ª Vara Cível               07/07/2023
+11 Foro Regional II - Santo Amaro 14ª Vara Cível               24/05/2023
+12 Foro Regional II - Santo Amaro 13ª Vara Cível               19/04/2023
+13 Foro Regional II - Santo Amaro  1ª Vara Cível               23/02/2023
+14 Foro Regional II - Santo Amaro 11ª Vara Cível               19/01/2023
+15 Foro Regional II - Santo Amaro 11ª Vara Cível               11/01/2023
+16 Foro Regional II - Santo Amaro 11ª Vara Cível               01/09/2022
+17 Foro Regional II - Santo Amaro 14ª Vara Cível               26/04/2022
+18 Foro Regional II - Santo Amaro 13ª Vara Cível               08/02/2022
+19 Foro Regional II - Santo Amaro  1ª Vara Cível               17/12/2021
+20 Foro Regional II - Santo Amaro 10ª Vara Cível               25/10/2021
+21 Foro Regional II - Santo Amaro 12ª Vara Cível               30/07/2021
+22 Foro Regional II - Santo Amaro  4ª Vara Cível               31/10/2016
+23 Foro Regional II - Santo Amaro  1ª Vara Cível               28/06/2016
+24 Foro Regional II - Santo Amaro  2ª Vara Cível               09/10/2015
+                                                                                                                                                                                                                                                                                                                                                                                          Decision
+1            ... Residencial Teruel Executado: Ramiles Santana Cruz Justiça Gratuita Juiz(a) de Direito: Dr(a). Théo Assuar Gragnano Vistos. Satisfeito o crédito, promovo a extinção da execução, com fundamento no art. 924, II, do Código de Processo Civil. Oportunamente, certifique-se o trânsito em julgado e arquivem-se os autos, observando a Secretaria, previamente, o disposto no ...
+2              ... Residencial Teruel Executado: Maria Damiana de Souza Justiça Gratuita Juiz(a) de Direito: Dr(a). Marina Balester Mello de Godoy Vistos. HOMOLOGO o acordo de fls. 179/181 e SUSPENDO a execução, para que a parte executada cumpra voluntariamente as obrigações assumidas, nos termos do artigo 922, caput, do Código de Processo Civil. Cabe à parte credora comunicar os ...
+3         ... Residencial Teruel Executado: Kelly Carolina Pereira Mota C O N C L U S Ã O Em 26 de setembro de 2024, faço estes autos conclusos ao(à) MM(a). Juiz(Juíza) de Direito da 6ª Vara Cível Foro Regional de Santo Amaro, Dr(a). Emanuel Brandão Filho. Eu, (DYK), escr., digitei. Vistos. Fls. 240/253 e 254: 1- Regularizada a representação processual do exequente, expeça-se MLE ...
+4                 ... Residencial Teruel Executado: Nathália Rodrigues Bazolli CONCLUSÃO Aos 13 de setembro de 2024, faço estes autos conclusos ao(à) MM(a). Juiz(a) de Direito: Dr(a). Eurico Leonel Peixoto Filho. Letícia Minari Biaggioni, Escrevente Técnico Judiciário, M378130. Vistos. Conjunto Residencial Teruel propôs ação de Execução de Título Extrajudicial em face de Nathália ...
+5                                ... Residencial Teruel Executado: Tatiane Silva de Oliveira Justiça Gratuita Juiz(a) de Direito: Dr(a). Théo Assuar Gragnano Vistos. Ante o acordo firmado entre as partes, suspenda-se o feito, nos termos do art. 922 do Código de Processo Civil. Aguarde-se no arquivo. Intime-se. São Paulo, 13 de setembro de 2024. DOCUMENTO ASSINADO DIGITALMENTE NOS ...
+6                         ... Residencial Teruel Executado: Cacilda Andre da Silva e outro Vistos HOMOLOGO os termos do acordo entabulado pelas partes, com suspensão da execução nos termos do art. 922 do CPC. Aguarde-se, em arquivo provisório, o cumprimento do acordo. Eventual descumprimento, incumbirá à parte exequente provocar o prosseguimento da execução. Int. São Paulo, 11 de ...
+7       ... Residencial Teruel Executado: Dercílio Edimar Rodrigues Vistos, Diante da satisfação da parte exequente, JULGO EXTINTO O PROCESSO, com fundamento no artigo 924, inciso II, do Código de Processo Civil. Inexistindo interesse recursal, certifique a Serventia, desde logo, o trânsito em julgado. LIBERE-SE o montante bloqueado em favor da parte executada. Assim, expeça-se o ...
+8            ... Residencial Teruel Executado: Vera Lúcia de Oliveira Em 12 de janeiro de 2024 faço estes autos conclusos ao MM. Juiz de Direito da 1ª Vara Cível de São Roque/SP, Dr. ROGE NAIM TENN. Eu____, Escr. Subscrevi. Vistos. Considerando que houve a quitação da dívida, JULGO EXTINTO o processo, nos termos do artigo 924, inciso II, do Código de Processo Civil. Transitada em ...
+9                 ... Residencial Teruel Executado: Vera Lúcia de Oliveira Juiz(a) de Direito: Dr(a). VANESSA SFEIR Vistos. 1. Dou por regularizada a representação processual do exequente. 2. Homologo o acordo celebrado pelas partes às fls. 148/149, para que produza seus jurídicos e legais efeitos. 3. Declaro suspenso o processo, com fulcro no artigo 922 do CPC. 4. Arquivem-se os ...
+10                         ... Residencial Teruel Executado: Cintia Sousa Nascimento Justiça Gratuita Juiz(a) de Direito: Dr(a). VANESSA SFEIR Vistos. Regularizada a representação processual da exequente (fls. 184 e 189/194). HOMOLOGO o acordo celebrado entre as partes (fls. 166/169) e SUSPENDO a execução até seu integral cumprimento, nos moldes do art. 922, do Código de Processo ...
+11                       ... Residencial Teruel Executado: Aurizene Santos Bonfim Justiça Gratuita Juiz(a) de Direito: Dr(a). ALEXANDRE BATISTA ALVES Vistos. Conjunto Residencial Teruel propôs esta ação de Execução de Título Extrajudicial em face de Aurizene Santos Bonfim. A parte exequente informa a quitação integral do acordo pela executada. Em razão do exposto, JULGO EXTINTO o ...
+12            ... Residencial Teruel Executado: Cintia Sousa Nascimento Justiça Gratuita Juiz(a) de Direito: Dr(a). Fernanda Soares Fialdini Vistos. 1. Ante a concordância do exequente (fl. ), proceda a serventia ao desbloqueio dos valores encontrados em contas da executada (fls. 160/161), via Sisbajud. 2. Homologo o acordo celebrado pelas partes às fls. 153/156, para que produza ...
+13                       ... Residencial Teruel Executado: Paula de Oliveira Costa Justiça Gratuita CONCLUSÃO Em 23 de fevereiro de 2023, faço estes autos conclusos a MM Juiz de Direito, Dra. Guilherme Silva e Souza. Eu, _______(Vithoria Hilinsky, E52052932), Estagiário Nível Superior, subscrevi. Vistos. À vista da petição de fls. 132, considero adimplida a obrigação por parte da ...
+14      ... Residencial Teruel Executado: Manelito Fonseca dos Santos- Espólio Justiça Gratuita CONCLUSÃO Em 19 de janeiro, faço estes autos conclusos ao Exmo. Sr. Dr., MM Juiz de Direito abaixo designado na 11º Vara Cível do Foro Regional II - Santo Amaro. Eu ________________, (escr.) subscr. Juiz(a) de Direito: Dr(a). Ricardo Hoffmann Vistos. Com fundamento no artigo 924, II do ...
+15                 ... Residencial Teruel Executado: Manelito Fonseca dos Santos- Espólio Justiça Gratuita Em 10 de janeiro de 2023�, faço estes autos conclusos ao Exmo. Sr. Dr., MM. Juiz de Direito abaixo designado da 11ª Vara Cível do Foro Regional II - Santo Amaro. Eu, Érica Regina Kunigami, assistente judiciário, subscr. Juiz de Direito: Dr. Ricardo Hoffmann Vistos. As partes ...
+16           ... Residencial Teruel Executado: Manelito Fonseca dos Santos Justiça Gratuita CONCLUSÃO Em 01 de setembro, faço estes autos conclusos ao Exmo. Sr. Dr., MM Juiz de Direito abaixo designado na 11º Vara Cível do Foro Regional II - Santo Amaro. Eu ________________, (escr.) subscr. Juiz de Direito: Dr. Ricardo Hoffmann Vistos. Homologo o acordo firmado entre as partes em ...
+17                 ... Residencial Teruel Executado: Aurizene Santos Bonfim Justiça Gratuita Juiz(a) de Direito: Dr(a). ALEXANDRE BATISTA ALVES Vistos. Homologo o acordo e suspendo, nos termos do CPC, art. 922, o curso da execução para seu cumprimento. Cabe ao credor comunicar os órgãos de proteção ao crédito ou fornecer documento para providências do devedor. Ao término do prazo ...
+18                ... Residencial Teruel Executado: Cintia Sousa Nascimento Justiça Gratuita Juiz(a) de Direito: Dr(a). Fernanda Soares Fialdini Vistos. 1. Autos desarquivados, independentemente do recolhimento de custas, em vista da gratuidade concedida ao exequente. 2. Homologo o acordo celebrado pelas partes às fls. 142/144, para que produza seus jurídicos e legais efeitos. 3. ...
+19         ... Santos BonfimConjunto Residencial Teruel Executado(s): Izabete Santos Bonfim Juíza de Direito: Drª FABIANA FEHER RECASENS Vistos, Tendo em vista a notícia do bloqueio integral do débito, bem com a inércia da executada e a concordância, implícita, do exequente , JULGO EXTINTA a presente ação de EXECUÇÃO, com fundamento no artigo 924, inciso II, do Código de Processo ...
+20            ... Residencial Teruel Executado: Iranildes Elias Teixeira Justiça Gratuita Juiz(a) de Direito: Dr(a). Guilherme Duran Depieri Vistos. Homologo a transação de fls. 134/137, para que surtam os devidos efeitos de direito, nos termos do art. 922 do CPC. Aguarde-se integral cumprimento do acordo, no arquivo, o qual deverá ser informado pela parte exequente para extinção ...
+21            ... Residencial Teruel Executado: Maria de Lourdes Ferreira de Oliveira Justiça Gratuita Juiz(a) de Direito: Théo Assuar Gragnano Vistos. 1. Fls 81/84: Satisfeito o crédito, promovo a extinção da execução, com fundamento no art. 924, II, do Código de Processo Civil. 2. Tendo o pagamento sido ultimado extrajudicialmente e antes mesmo da citação, não incidem as custas ...
+22 ... 453) até o limite de R$ 372.089,46 (abr/2015). O exequente apresentou cálculo do valor de R$ 7.837,62 como valor devido pelas taxas condominiais até a imissão a posse pelo arrematante. DECIDO. Este processo alcançou sua finalidade. Julgo EXTINTA a presente execução, nos termos do art. 924, II, do CPC. Esta decisão servirá como mandado para fins de cancelamento de eventuais ...
+23    ... cobrado sob a rubrica "investimentos abr/2015", no total de R$500,18 e "compl condomínio" set/2014 e abr/2015, impugnados pelos réus, sem que o autor tenha trazido qualquer documento que comprovasse a legitimidade destas cobranças, não juntando aos autos convenção condominial ou assembleia que as tenha aprovado, não tendo o relatório juntado a força probante pretendida, ...
+24         ... referentes aos meses de Jul/08, set/08, abr/09 e mai/09, já estariam pagas, e portanto, além de serem excluídas da cobrança, faria jus ao recebimento do dobro do valor cobrado indevidamente. A ré apresenta comprovante de pagamento das despesas condominiais relativas aos meses de Jul/08, set/08, abr/09 e mai/09. Apresenta os recibos da administradora do condomínio e ...</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2024,
+  author = {Chiquito Valencia, Cristian},
+  title = {Web Scraping Con {R}},
+  date = {2024-11-26},
+  url = {https://cchiquitovalencia.github.io/posts/2024-11-26-web_scraping_with_R/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2024. <span>“Web Scraping Con R.”</span>
+November 26, 2024. <a href="https://cchiquitovalencia.github.io/posts/2024-11-26-web_scraping_with_R/">https://cchiquitovalencia.github.io/posts/2024-11-26-web_scraping_with_R/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2024, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
