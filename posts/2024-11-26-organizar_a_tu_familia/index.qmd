@@ -1,0 +1,292 @@
+---
+title: "El secreto para organizar a tu familia"
+description: "Asignar dormitorios"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 11-26-2024
+categories: [Git] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2024-11-26-organizar_a_tu_familia/ 
+image: asignar.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Introducción
+
+Desde hace varios años mi esposa y yo habíamos querido organizar unas vacaciones familiares. Estoy hablando de vacaciones familiares en grande! Logramos reservar un espacio con la capacidad suficiente y una ubicación central para los diferentes planes en la region. Ahora el lío era cuadrar dónde iba a dormir cada uno.
+
+Las personas confirmadas fueron:
+
+```{r listado}
+
+listado <- read.csv("./listado.csv")
+
+listado
+```
+
+En el lugar habían 3 tipos de cama: sencilla, doble y camarote. Las camas estaban distribuidas en 8 dormitorios. Solo 3 dormitorios contaban con baño privado.
+
+```{r espacio}
+
+dormitorios <- read.csv("./dormitorios.csv")
+
+dormitorios
+```
+
+Aquí realmente en la sala habia un sofa cama, pero sirve como un espacio para dormir una persona. Los camarotes, cada uno cuenta con 2 espacios para dormir.
+
+## Nuestro reto: acomodar
+
+Como reglas básicas pensamos:
+
+1.  Los grupos familiares no se deben mezclar entre sí.
+
+2.  Los matrimonios necesitan dormir en el mismo dormitorio.
+
+3.  Los niños menores, en caso de ser necesario, pueden mezclarse.
+
+4.  Por condiciones de salud, Ofelia y John Jairo deben dormir en un dormitorio con baño.
+
+## Modelo de asignación
+
+La idea es introducir una variable binaria $x_{i,j}$ que sea $1$ si una persona $i$ es asignada al dormitorio $j$. Como un objetivo (y puede ser el caso ajustarse a cualquier otro) podemos tratar de garantizar las reglas otorgando un peso. Aqui claramente la capacidad del lugar es suficiente para la cantidad de personas en la familia.
+
+```{r cargar_librerias}
+
+library(tidyverse)
+library(ompr)
+library(ompr.roi)
+```
+
+```{r capacidad}
+
+dormitorios <- dormitorios %>% 
+        mutate(capacidad = sencilla * 1 + doble * 2 + camarote * 2)
+
+dormitorios
+```
+
+Vamos a establecer, como administradores, las reglas basicas en cuanto a preferencias. A cada uno de los integrantes vamos a definirle 3 dormitorios que cumplan con nuestras reglas.
+
+```{r preferencias}
+
+# Definir el orden de las preferencias por persona
+datos_preferencias <- setNames(
+list(c(2,3,4), # Nelsy no tiene problema
+     c(2,3,4), # Hernando no tiene problema
+     c(4,6,8), # Ofelia requiere un baño
+     c(4,8,6), # Liliana va con su esposo en dormitorio con baño
+     c(4,6,8), # John requiere un baño
+     c(3,7,8), # Jimmy quiere dormir con toda su familia
+     c(2,3,7), # Luis quiere dormir con su padre e hijo también
+     c(2,3,7), # Linda quiere dormir con su esposo
+     c(3,7,8), # Mercedes quiere dormir con toda su familia
+     c(4,6,8), # Sandra quiere dormir con la madre
+     c(3,7,8), # Estefania quiere dormir con toda su familia
+     c(3,7,8), # Juan quiere dormir con toda su familia
+     c(2,4,6), # Cristian quiere dormir con su esposa
+     c(2,4,6), # Claudia quiere dormir con su esposo
+     c(4,8,5), # Daniela quiere dormir sola o con sus padres
+     c(4,8,5), # Felipe quiere dormir solo o con sus padres
+     c(5,7,8), # Nicolas no quiere dormir solo o con sus padres
+     c(5,7,8), # Emiliano no quiere dormir solo o con sus padres
+     c(3,7,8), # Gabriel quiere dormir con sus padres
+     c(3,7,8) # Emma quiere dormir con sus padres
+     )
+,
+listado$personas
+)
+
+# Definir funcion para extraer vector de preferencia por persona
+buscar_preferencia <- function(persona) datos_preferencias[[persona]]
+
+# Entregar prefencia con el par persona-dormitorio(hab)
+preferencias <- function(persona, hab) {
+        p <- which(as.numeric(hab) == buscar_preferencia(as.numeric(persona)))
+        as.integer(if (length(p) == 0) {
+                -100000
+        } else {
+                p
+        })
+}
+```
+
+Podríamos haber definido 4 o 5 opciones, pero el punto es entender que, para éste ejemplo, lo que hemos hecho es establecer nosotros, administradores, las prioridades. Podríamos haber hecho una encuesta, enviarle un link a cada participante, para recolectar los datos y de esa forma obtener otros valores. Seguramente la solución del modelo no apuntaría a las reglas básicas que establecimos con mi esposa, y eso esta bien, es una solución mas, otra forma de resolver el problema de asignación.
+
+$$
+maximixar ∑_{i=1}^{n}∑_{j=1}^{m}preferencias_{i,j} · x_{i,j}
+$$
+
+$$
+sujeto ∑_{i=1}^{n}x_{i,j}≤capacidad_{j}, j=1,...,m
+$$
+
+$$
+∑_{j=1}^{m}x_{i,j}=1, i=1,...,n
+$$
+
+$$
+x_{i,j}∈❴0,1❵,i=1,...,nj=1,...,m
+$$
+
+En R seria:
+
+```{r modelo_r}
+
+personas <- length(listado$persona)
+hab <- length(dormitorios$dormitorio)
+
+modelo <- MIPModel() %>% 
+        
+        # 1 si la persona i se asigna al dormitorio j
+        add_variable(x[i,j], i = 1:personas, j = 1:hab, type = "binary") %>% 
+        
+        # maximixar las preferencias
+        set_objective(sum_over(preferencias(i,j) * x[i,j], i = 1:personas, j = 1:hab), sense = c("max")) %>% 
+        
+        # no podemos exceder la capacidad de algun dormitorio
+        add_constraint(sum_over(x[i,j], i = 1:personas) <= dormitorios$capacidad[j], j = 1:hab) %>% 
+        
+        # cada persona debe asignarse a un dormitorio
+        add_constraint(sum_over(x[i,j], j = 1:hab) == 1, i = 1:personas) %>% 
+        
+        # los matrimonios no pueden dormir separados
+        add_constraint(x[4,j] == x[5,j], j = 1:hab) %>% 
+        add_constraint(x[6,j] == x[9,j], j = 1:hab) %>% 
+        add_constraint(x[7,j] == x[8,j], j = 1:hab) %>% 
+        add_constraint(x[11,j] == x[12,j], j = 1:hab) %>% 
+        add_constraint(x[13,j] == x[14,j], j = 1:hab) 
+
+modelo
+
+```
+
+### Solución
+
+Usamos GLPK y Symphony para resolver el modelo:
+
+::: panel-tabset
+#### Solver GLPK
+
+```{r solucion_glpk}
+
+library(ROI.plugin.glpk)
+
+resultado_glpk <- solve_model(modelo, with_ROI(solver = "glpk", verbose = TRUE))
+```
+
+#### Solver Symphony
+
+```{r solucion_symphony}
+#| output: true
+#| results: asis
+
+library(ROI.plugin.symphony)
+
+resultado_symphony <- solve_model(modelo, with_ROI(solver = "symphony", verbosity = 1))
+```
+:::
+
+```{r}
+
+# Define funcion para extraer datos de solucion
+entrega_hab <- function(solucion){
+        solucion %>% 
+                get_solution(x[i,j]) %>%
+                filter(value > .9) %>%  
+                select(i, j) %>% 
+                rowwise() %>% 
+                mutate(ranking_preferencia = preferencias(as.numeric(i), as.numeric(j)), 
+                       eleccion_administrador = paste0(buscar_preferencia(as.numeric(i)), collapse = ",")) %>% 
+                ungroup %>% 
+                rename(persona = i,
+                       dormitorio = j)
+}
+
+# Guardamos la informacion por modelo
+opcion_glpk <- entrega_hab(resultado_glpk) 
+opcion_symphony <- entrega_hab(resultado_symphony) 
+
+
+```
+
+::: panel-tabset
+#### Resultados con solver GLPK
+
+```{r resultados_glpk}
+
+opcion_glpk
+```
+
+#### Resultados con solver Symphony
+
+```{r resultados_symphony}
+
+opcion_symphony
+```
+:::
+
+```{r}
+
+# Define funcion para crear graficas
+graficar_solucion <- function(opcion){
+        merge(listado %>% rowid_to_column(),
+              opcion,
+              by.x = "rowid",
+              by.y = "persona")  %>% 
+                ggplot(aes(rowid, dormitorio, label = persona))+
+                geom_point(size = 3, aes(colour = factor(grupo)))+
+                facet_wrap(~ ranking_preferencia)+
+                ggrepel::geom_text_repel()+
+                theme(legend.position = "top")+
+                labs(x = "ID de persona")+
+                guides(col = guide_legend(title = "grupo"))+
+                scale_color_brewer(palette = "Accent")
+}
+
+
+```
+
+::: panel-tabset
+#### Observa GLPK
+
+```{r graf_glpk}
+
+graficar_solucion(opcion_glpk)
+```
+
+#### Observa Symphony
+
+```{r graf_symphony}
+
+graficar_solucion(opcion_symphony)
+```
+:::
+
+Las asignaciones de dormitorios para las personas son diferentes para cada modelo, aún cuando ambos arrojaron la solución óptima.
+
+```{r}
+
+resultado_glpk
+```
+
+```{r}
+
+resultado_symphony
+```
+
+Como esas dos soluciones óptimas, podrian existir muchas mas, después de todo éste es un problema de optimización combinatorio.
+
+## Conclusiones
+
+Voy a ir con las dos soluciones a planteárselas a mi familia para nuestras vacaciones. Seguramente el plan no va a ejecutarse al pie de la letra, siguiendo los resultados de la solución obtenida, pero será un punto de partida interesante para organizar la solución definitiva, pues tenemos un problema con 180 variables binarias para jugar.
+
+Además, tenemos en ambas soluciones, tenemos dos dormitorios sin usar. esto sucede porque:
+
+-   Dentro de las preferencias establecidas no se eligen todos los dormitorios, dejamos de listar el dormitorio \# 1.
+
+-   Las restricciones declaradas en el código son suficientes para resolver la maximización de esas preferencias, entonces pueden quedar dormitorios libres.
+
+Podría ser que la función objetivo establecida no se realmente útil para nuestro problema. Sin embargo, existen formas de equilibrar y contrastar problemas de optimización lineal con varios objetivos al tiempo.
