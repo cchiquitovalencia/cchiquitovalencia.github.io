@@ -23,11 +23,16 @@ about:
 
 # Crossing the path to Data Science
 
-#### Technical Skills: R, Quarto, Power BI, Excel.
+#### Technical Skills: R, Quarto, Amazon Web Services, Power BI, Excel.
 
 ## Education
 
+-   [AWS Cloud Solutions Architect](https://coursera.org/share/c957552fd68212ed4462e8a7f9faf96c) (December 2024)
+
+-   [Data Science: Foundations using R Specialization](https://www.coursera.org/account/accomplishments/specialization/Z25X8FDPEMY3?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=s12n) (April 2022)
+
 -   Logistics, Specialist \| Universidad del Valle (September 2019)
+
 -   Industrial Engineer, B.S. \| Universidad Icesi (February 2015)
 
 ### Work Experience
