@@ -34,6 +34,7 @@ format:
     mainfont: Sono
     css: styles.css
     toc: true
+    toc-depth: 4
     page-layout: full
 
 editor: visual
