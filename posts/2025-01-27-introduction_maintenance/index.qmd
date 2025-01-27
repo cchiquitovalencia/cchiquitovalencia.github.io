@@ -1,0 +1,96 @@
+---
+title: "Introducción a los sistemas de mantenimiento"
+description: "Background"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 01-27-2024
+categories: [Mantenimiento, Preventivo, Fallas] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/ 
+image: gear_vehicle.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+## Introducción
+
+El mantenimiento se define como la combinación de actividades mediante las cuales un equipo o un sistema se *mantiene en*, o se *restablece a*, un estado en el que puede realizar las funciones designadas. Es un factor importante en la calidad de los productos y puede utilizarse como una estrategia para una competencia exitosa. Las inconsistencias en la operación del equipo de producción dan por resultado una variabilidad excesiva en el producto y, en consecuencia, ocasionan una producción defectuosa. Para producir con un alto nivel de calidad, el equipo de producción debe operar dentro de las especificaciones, las cuales pueden alcanzarse mediante acciones oportunas de mantenimiento.
+
+Un sistema es un conjunto de componentes que trabajan de manera combinada hacia un objetivo común. El mantenimiento puede ser considerado como un sistema en un conjunto de actividades que se realizan en paralelo con los sistemas de producción.
+
+Los sistemas de producción generalmente se ocupan de convertir entradas o insumos, como materias primas, mano de obra y procesos, en productos que satisfacen las necesidades de los clientes. La principal salida de un sistema de producción son los productos terminados; una salida secundaria es la falla de un equipo. Esta salida secundaria genera una demanda de mantenimiento. El sistema de mantenimiento toma esto como una entrada y le agrega conocimiento experto, mano de obra y repuestos, y produce un equipo en buenas condiciones que ofrece una capacidad de producción.
+
+La principal meta general de un sistema de producción es elevar al máximo las utilidades a partir de las oportunidades disponibles en el mercado, y la meta secundaria tiene que ver con los aspectos económicos y técnicos del proceso de conversión. Los sistemas de mantenienmiento también contribuyen al logro de estas metas al incrementar las utilidades y la satisfacción del cliente. Éstas se logran reduciendo al mínimo el tiempo muerto de la planta, mejorando la calidad, incrementando la productividad y entregando oportunamente los pedidos, o servicios, a los clientes. Los sistemas de producción han sido optimizados como un sistema integral y son estudiados de manera extensa en comparación con los sistemas de mantenimiento. Es claro que resulta necesario adoptar esta tendencia en el mantenimiento.
+
+Desde hace mucho tiempo se ha tomado en cuenta el papel de los sistemas de mantenimiento en las empresas manufactureras; sin embargo, es claro que las funciones del mantenimiento también son esenciales en las empresas de servicios como hospitales, bancos, instituciones educativas y tiendas.
+
+Un sistema de mantenimiento puede verse como un modelo sencillo de *entrada-salida*. Las entradas de dicho modelo son mano de obra, administración, herramientas, repuestos, equipo, etc., y la salida es equipo funcionando, confiable y bien configurado para lograr la operación planeada de la planta. Esto nos permite optimizar los recursos para aumentar al máximo las salidas de un sistema de mantenimiento.
+
+## Actividades de planeación del mantenimiento
+
+Generalmente se incluyen las siguientes:
+
+### Filosofía del mantenimiento
+
+La filosofía del mantenimiento de una planta es básicamente la de tener un nivel mínimo de personal de mantenimiento que sea consistente con la *optimización de la producción* y la *disponibilidad de la planta* sin que se comprometa la *seguridad*. Para lograr esta filosofía, las siguientes estrategias pueden desempeñar un papel eficaz si se aplican en la combinación y forma correctas:
+
+![Estrategias de mantenimiento.](images/clipboard-2962206774.png){#fig-1}
+
+#### Mantenimiento correctivo o por fallas
+
+Este tipo de mantenimiento sólo se realiza cuando el equipo es incapaz de seguir operando. No hay elemento de planeación para este tipo de mantenimiento. Éste es el caso que se presenta cuando el costo adicional de otros tipos de mantenimiento no puede justificarse. Este tipo de estrategia a veces se conoce como estrategia de *operación-hasta-que-falle*. Se aplica principalmente en los componentes electrónicos.
+
+#### Mantenimiento preventivo con base en el tiempo o en el uso
+
+El mantenimiento preventivo es cualquier mantenimiento planeado que se lleva a cabo para hacer frente a *fallas potenciales*. Puede realizarse con base en el uso o las condiciones del equipo. El mantenimiento preventivo con base en el uso o en el tiempo se lleva a cabo de acuerdo con las **horas de funcionamiento** o un **calendario establecido**. Requiere un alto nivel de planeación. Las rutinas específicas que se realizan son conocidas, así como sus frecuencias. En la determinación de la frecuencia generalmente se necesitan conocimientos acerca de la distribución de las fallas o la confiabilidad del equipo. [Aquí](#fig-1) lo resalto porque habrá un post sobre cómo optimizar el plan de mantenimiento teniendo en cuenta estas variables.
+
+#### Mantenimiento preventivo con base en las condiciones
+
+Este mantenimiento preventivo se lleva a cabo con base en las condiciones conocidas del equipo. La condición del equipo se determina *vigilando* los parámetros clave del equipo cuyos valores se ven afectados por la condición de éste. A esta estrategia también se le conoce como mantenimiento predictivo.
+
+#### Mantenimiento de oportunidad
+
+Este tipo de mantenimiento se lleva a cabo cuando surge la oportunidad. Tales oporturnidades pueden presentarse durante los periodos de paros generales programados de un sistema en particular, y pueden utilizarse para efectuar tareas conocidas de mantenimiento.
+
+#### Detección de fallas
+
+La detección de fallas es un acto o inspección que se lleva a cabo para evaluar el nivel de presencia inicial de fallas. Un ejemplo de detección de fallas es el de la verificación de la llanta de repuesto de un automóvil antes de emprender un viaje largo.
+
+#### Modificación del diseño
+
+La modificación del diseño se lleva a cabo para hacer que un equipo alcance una condición que sea aceptable en ese momento. Esta estrategia implica mejoras y, ocasionalmente, expansión de fabricación y capacidad. La modificación del diseño por lo general requiere una coordinación con la función de ingeniería y otros departamentos dentro de la organización.
+
+#### Reparación general
+
+La reparación general es un examen completo y el restablecimiento de un equipo o sus componentes principales a una condición aceptable. Ésta es generalmente una tarea de gran envergadura.
+
+#### Reemplazo
+
+Esta estrategia implica reemplazar el equipo en lugar de darle mantenimiento. Puede ser un reemplazo planeado o un reemplazo ante una falla.
+
+Cada una de estas estrategias de mantenimiento tiene una función en la operación de la planta. Es la *mezcla óptima* de estas estrategias la que da por resultado la filosofía de mantenimiento más eficaz. El tamaño de la planta y su nivel de operación planeado, junto con la estrategia de mantenimiento aplicable, pueden ayudar a estimar la carga de mantenimiento o las salidas deseadas de mantenimiento. La [Figura 1](#fig-1) resume las estrategias.
+
+### Pronóstico de la carga de mantenimiento
+
+Este pronóstico es el proceso mediante el cual se predice la carga de mantenimiento. La carga de mantenimiento en una platnta dada varía aleatoriamente y, entre otros factores, puede ser una función de la edad del equipo, el nivel de su uso, la calidad del mantenimiento, factores climáticos y las destrezas de los trabajadores de mantenimiento. El pronóstico de la carga de mantenimiento es esencial para alcanzar un nivel deseado de eficacia y uso de los recursos, y sin éste, muchas de las funciones de mantenimiento no pueden realizarse bien.
+
+### Planeación de la capacidad de mantenimiento
+
+La planeación de la capacidad de mantenimiento determina los recursos necesarios para satisfacer la demanda de trabajos de mantenimiento. Estos recursos incluyen: la mano de obra, materiales, repuestos, equipo y herramientas. Entre los aspectos fundamentales de la capacidad de mantenimiento se incluyen la cantidad de trabajadores de mantenimiento y sus habilidades, las herramientas requeridas para el mantenimiento, etc.
+
+Debido a que la carga de mantenimiento es una variable aleatoria, no se puede determinar el número exacto de los diversos tipos de técnicos. Por lo tanto, sin *pronósticos razonablemente exactos* de demanda futura de trabajos de mantenimiento, no sería posible realizar una planeación adecuada de la capacidad a largo plazo.
+
+Para utilizar mejor sus recursos de mano de obra, las organizaciones tienden a emplear una menor cantidad de técnicos de la que han anticipado, lo cual probablemente dará por resultado una acumulación de trabajos de mantenimiento pendientes. Éstos pueden completarse haciendo que los trabajadores existentes laboren tiempo extra o buscando ayuda exterior de contratistas. Los trabajos pendientes también pueden desahogarse cuando la carga de mantenimiento es menor que la capacidad. Ésta es realmente la principal razón de **mantener una reserva de trabajos pendientes**. La estimación a largo plazo es una de las áreas críticas de la planeación de la capacidad de mantenimiento, pero que aún no ha sido bien desarrollada.
+
+### Organización del mantenimiento
+
+Dependiendo de la carga de mantenimiento, el tamaño de la planta, las destrezas de los trabajadores, etc., el mantenimiento se puede organizar por departamentos, por área o en forma centralizada. Cada tipo de organización tiene sus ventajas y desventajas. En las organizaciones grandes, la descentralización de la función de mantenimiento puede producir un timpo de respuesta más rápido y lograr que los trabajadores se familiaricen más con los problemas de una sección particular de la planta. Sin embargo, la creación de un número de pequeñas unidades tiende a reducir la flexibilidad del sistema de mantenimiento como un todo.
+
+La gama de habilidades disponibles se reduce y el uso de la mano de obra es generalmente menor que en una unidad de mantenimiento centralizada. En algunos casos, puede implantarse una solución de compromiso, denominada sistema de cascada. Este sistema permite que las unidades de mantenimiento del área de producción se enlacen con la unidad de mantenimiento central.
+
+### Programación del mantenimiento
+
+La programación del mantenimiento es el proceso de asignación de recursos y personal para los trabajos que tienen que realizarse en ciertos momentos. Es necesario asegurar que los trabajadores, las piezas y los materiales requeridos estén disponibles antes de poder programar una tarea de mantenimiento. El equipo crítico de una planta se refiere al equipo cuya falla detendrá el proceso de producción o pondrá en riesgo vidas humanas y la seguridad. El trabajo de mantenimiento para estos equipos se maneja bajo prioridades y es atendido antes de emprender cualquier otro trabajo. La ocurrencia de tales trabajos no puede predecirse con certeza, de modo que los programas para el mantenimiento planeado en estos casos tienen que ser revisados.
+
+En la eficacia de un sistema de mantenimiento influye mucho el programa de mantenimiento que se haya desarrollado y su capacidad de adaptarse a los cambios. Un alto nivel de eficacia en el programa de mantenimiento es señal de un alto nivel de eficacia en el propio mantenimiento.
