@@ -5,7 +5,7 @@ author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
-date: 01-27-2024
+date: 01-27-2025
 categories: [Mantenimiento, Software, Programación Lineal Entera Mixta, MILP, Optimización] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/
