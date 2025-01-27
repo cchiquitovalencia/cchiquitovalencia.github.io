@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2025-01-27">
+<meta name="description" content="Parte 3">
+
+<title>Crear Shiny Server en AWS – CHV</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CHV</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">What’s inside?</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Crear Shiny Server en AWS</h1>
+                  <div>
+        <div class="description">
+          Parte 3
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Cloud</div>
+                <div class="quarto-category">AWS</div>
+                <div class="quarto-category">EC2</div>
+                <div class="quarto-category">Shiny Server</div>
+                <div class="quarto-category">Shiny App</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 27, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#acceder-a-la-consola" id="toc-acceder-a-la-consola" class="nav-link active" data-scroll-target="#acceder-a-la-consola">Acceder a la consola</a></li>
+  <li><a href="#crear-servidor-en-ec2-elastic-compute-cloud" id="toc-crear-servidor-en-ec2-elastic-compute-cloud" class="nav-link" data-scroll-target="#crear-servidor-en-ec2-elastic-compute-cloud">Crear servidor en EC2 (Elastic Compute Cloud)</a></li>
+  <li><a href="#acceder-al-servidor" id="toc-acceder-al-servidor" class="nav-link" data-scroll-target="#acceder-al-servidor">Acceder al servidor</a></li>
+  <li><a href="#instalar-r" id="toc-instalar-r" class="nav-link" data-scroll-target="#instalar-r">Instalar R</a></li>
+  <li><a href="#instalar-shiny-server" id="toc-instalar-shiny-server" class="nav-link" data-scroll-target="#instalar-shiny-server">Instalar Shiny Server</a></li>
+  <li><a href="#acceder-a-la-shiny-app-por-defecto" id="toc-acceder-a-la-shiny-app-por-defecto" class="nav-link" data-scroll-target="#acceder-a-la-shiny-app-por-defecto">Acceder a la Shiny app por defecto</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<p>En este post veremos cómo instalar y poner en funcionamiento un <a href="https://posit.co/products/open-source/shiny-server/">Shiny Server</a> en una <a href="https://aws.amazon.com/es/ec2/">instancia EC2 de AWS</a>. Este es un primer paso para lograr subir a producción una <a href="https://shiny.posit.co/">Shiny app</a>.</p>
+<section id="acceder-a-la-consola" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-la-consola">Acceder a la consola</h2>
+<p>Lo primero que tienes que hacer es <strong>crear una cuenta en AWS</strong>. Los pasos no son difícles, te lo puedo asegurar. Así que iniciamos en la pantalla principal que nos muestra <em>inmediatamente luego de creada</em>.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1445765871.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Pantalla inicial consola AWS
+</figcaption>
+</figure>
+</div>
+<p>Posiblemente las únicas diferencias que podrían tener con esta imágen son: el nombre de usuario <code>cchiquitov</code> y la <em>Availability Zone</em> (<strong>AZ</strong>) que automáticamente se creó en Ohio, <code>useast-2</code>.</p>
+</section>
+<section id="crear-servidor-en-ec2-elastic-compute-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="crear-servidor-en-ec2-elastic-compute-cloud">Crear servidor en EC2 (Elastic Compute Cloud)</h2>
+<p>En el campo <strong>Search</strong> podemos buscar <strong>EC2</strong>, o aprovechamos que nos aparece la opción en “<em>Recently visited</em>”</p>
+<p>Es claro que acabo de crear la cuenta porque en los <em>Recursos</em> solamente tenemos un <strong>Security group</strong>.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-709308694.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Dashboard de recursos
+</figcaption>
+</figure>
+</div>
+<p>Ingresamos a <strong>Instances</strong>:</p>
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2969538307.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="170">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Menú desplegable instancias
+</figcaption>
+</figure>
+</div>
+<p>y <strong>Launch Instances</strong></p>
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1850881502.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Lanzar instancia.
+</figcaption>
+</figure>
+</div>
+<p>Te encontrarás en la siguiente pantalla, a ti te aparecerán las opciones expandidas:</p>
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2169563867.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Configuración de instancia
+</figcaption>
+</figure>
+</div>
+<p>Aquí ya nombré a mi instancia “<code>My first Web Server</code>”, muy astuto.</p>
+<p>Para la <strong>AMI</strong> (Amazon Machine Image) elijo Ubuntu:</p>
+<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1456359353.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)
+</figcaption>
+</figure>
+</div>
+<p>Para el tipo de instancia voy con la que me da el <em>Free Tier</em>:</p>
+<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2328512798.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Tipo de instancia
+</figcaption>
+</figure>
+</div>
+<p>Contiene una CPU con sólo 1 núcleo, sólo 1 GB de RAM y una conexión a Internet aceptable.</p>
+<p>Ahora para lograr una conexión segura debemos crear un <code>key pair</code>.</p>
+<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-88852163.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Elección de key pair.
+</figcaption>
+</figure>
+</div>
+<p>Un <code>key pair</code>, formado por una <strong>llave pública</strong> y una <strong>llave privada</strong>, es un conjunto de credenciales de seguridad que utiliza para demostrar tu identidad al conectarse a una instancia de Amazon EC2. En el caso de las instancias de Linux, la llave privada te permite conectarse a tu instancia mediante SSH de forma segura. En el caso de las instancias de Windows, la llave privada se requiere para descifrar la contraseña de administrador, que luego se utiliza para conectarse a la instancia. Amazon EC2 almacena la llave pública en tu instancia, y tu almacenas la llave privada.</p>
+<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-4153240866.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Esquema funcionamiento key pair.
+</figcaption>
+</figure>
+</div>
+<p><strong>Es muy importante que guardes tu llave privada en un lugar seguro, ya que cualquiera que posea tu llave privada puede conectarse a tus instancias que utilizan el <code>key pair</code></strong>.</p>
+<p>Entonces, creo mi key pair, para poder seleccionarlo dentro de la lista desplegable, le llamaré “<code>mi-key-pair-useast2</code>”</p>
+<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-624860931.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="485">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Crear un Key Pair
+</figcaption>
+</figure>
+</div>
+<p>Cuando lo creas, inmediatamente descargas un archivo, <strong>la llave privada</strong>, que para mi caso es:</p>
+<div id="fig-11" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2099239300.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Archivo con llave privada
+</figcaption>
+</figure>
+</div>
+<p>Continuamos con la configuración de las redes, donde realmente dejamos lo que viene por defecto.</p>
+<div id="fig-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-3498927731.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Redes de la instancia.
+</figcaption>
+</figure>
+</div>
+<p>Para el almacenamiento podríamos cambiar <strong>hasta 30Gb</strong> sin que debamos pagar (en el primer año) pero lo dejaré por defecto.</p>
+<div id="fig-13" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-804051784.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Configura almacenamiento de instancia.
+</figcaption>
+</figure>
+</div>
+<p>Finalmente tenemos una instancia así:</p>
+<div id="fig-14" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1948489044.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Parámetros de instancia.
+</figcaption>
+</figure>
+</div>
+<p>y le damos en “<em>Launch instance</em>”.</p>
+<p>Esperamos pocos minutos mientras surte el proceso:</p>
+<div id="fig-15" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1590700222.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Mensaje de espera por lanzamiento.
+</figcaption>
+</figure>
+</div>
+<p>Aparecerá:</p>
+<div id="fig-16" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1246047716.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Creación exitosa de instancia.
+</figcaption>
+</figure>
+</div>
+<p>Nos devolvemos a Instances para ver qué tenemos ahora:</p>
+<div id="fig-17" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2163327434.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Dashboard instancias desactualizado.
+</figcaption>
+</figure>
+</div>
+<p>Parece que no tuvieramos instancia alguna creada, pero en realidad debemos dar click en</p>
+<div id="fig-18" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-79624457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Actualizar.
+</figcaption>
+</figure>
+</div>
+<p>para actualizar el dashboard.</p>
+<p>Ahora sí tenemos nuestra instancia llamada “<code>My first Web Server</code>” creada y corriendo.</p>
+<div id="fig-19" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-912805618.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Dashboard instancias actualizado.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="acceder-al-servidor" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-al-servidor">Acceder al servidor</h2>
+<p>Debemos cambiar nuestro directorio de trabajo (working directory) hacia donde tenemos el archivo <code>.pem</code>, yo lo he dejado en <code>Downloads</code>. Así que en la Terminal:</p>
+<div class="sourceCode" id="code-1" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><a href="#code-1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Downloads/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-2" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-2-1"><a href="#code-2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y vamos a cambiar los permisos de este archivo, siendo una llave privada pues debería ser privada realmente:</p>
+<div class="sourceCode" id="code-3" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-3-1"><a href="#code-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 400 mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-4" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-4-1"><a href="#code-4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-r--------</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora debes ir a la consola de EC2 para revisar la <strong>IPv4</strong> de tu instancia, con esto completaremos el siguiente comando para acceder al servidor.</p>
+<div id="fig-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1208286890.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: IPv4 pública de la instancia.
+</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="code-5" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-5-1"><a href="#code-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> <span class="st">"mi-key-pair-useast2.pem"</span> ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-6" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-6-1"><a href="#code-6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com (18.117.232.180)'</span> can<span class="st">'t be established.</span></span>
+<span id="code-6-2"><a href="#code-6-2" aria-hidden="true" tabindex="-1"></a><span class="st">ECDSA key fingerprint is SHA256:N55CqCIT1Yyi5tpAY2UDj2Q/1r4aOS4+aTUgXTWfDK8.</span></span>
+<span id="code-6-3"><a href="#code-6-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Di “<code>yes</code>” y lo lograste. Estas dentro de tu instancia.</p>
+<div class="sourceCode" id="code-7" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-7-1"><a href="#code-7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Warning:</span> Permanently added <span class="st">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com,18.117.232.180'</span> <span class="er">(</span><span class="ex">ECDSA</span><span class="kw">)</span> <span class="ex">to</span> the list of known hosts.</span>
+<span id="code-7-2"><a href="#code-7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Welcome</span> to Ubuntu 24.04.1 LTS <span class="er">(</span><span class="ex">GNU/Linux</span> 6.8.0-1021-aws x86_64<span class="kw">)</span></span>
+<span id="code-7-3"><a href="#code-7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-4"><a href="#code-7-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span> Documentation:  https://help.ubuntu.com</span>
+<span id="code-7-5"><a href="#code-7-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span> Management:     https://landscape.canonical.com</span>
+<span id="code-7-6"><a href="#code-7-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span> Support:        https://ubuntu.com/pro</span>
+<span id="code-7-7"><a href="#code-7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-8"><a href="#code-7-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">System</span> information as of Wed Jan 22 19:38:46 UTC 2025</span>
+<span id="code-7-9"><a href="#code-7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-10"><a href="#code-7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">System</span> load:  0.0               Processes:             106</span>
+<span id="code-7-11"><a href="#code-7-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Usage</span> of /:   24.9% of 6.71GB   Users logged in:       0</span>
+<span id="code-7-12"><a href="#code-7-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Memory</span> usage: 20%               IPv4 address for enX0: 172.31.5.157</span>
+<span id="code-7-13"><a href="#code-7-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Swap</span> usage:   0%</span>
+<span id="code-7-14"><a href="#code-7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-15"><a href="#code-7-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span> Ubuntu Pro delivers the most comprehensive open source security and</span>
+<span id="code-7-16"><a href="#code-7-16" aria-hidden="true" tabindex="-1"></a>   <span class="ex">compliance</span> features.</span>
+<span id="code-7-17"><a href="#code-7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-18"><a href="#code-7-18" aria-hidden="true" tabindex="-1"></a>   <span class="ex">https://ubuntu.com/aws/pro</span></span>
+<span id="code-7-19"><a href="#code-7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-20"><a href="#code-7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">Expanded</span> Security Maintenance for Applications is not enabled.</span>
+<span id="code-7-21"><a href="#code-7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-22"><a href="#code-7-22" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> updates can be applied immediately.</span>
+<span id="code-7-23"><a href="#code-7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-24"><a href="#code-7-24" aria-hidden="true" tabindex="-1"></a><span class="ex">Enable</span> ESM Apps to receive additional future security updates.</span>
+<span id="code-7-25"><a href="#code-7-25" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> https://ubuntu.com/esm or run: sudo pro status</span>
+<span id="code-7-26"><a href="#code-7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-27"><a href="#code-7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-28"><a href="#code-7-28" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> list of available updates is more than a week old.</span>
+<span id="code-7-29"><a href="#code-7-29" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> check for new updates run: sudo apt update</span>
+<span id="code-7-30"><a href="#code-7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-31"><a href="#code-7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-32"><a href="#code-7-32" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> programs included with the Ubuntu system are free software<span class="kw">;</span></span>
+<span id="code-7-33"><a href="#code-7-33" aria-hidden="true" tabindex="-1"></a><span class="ex">the</span> exact distribution terms for each program are described in the</span>
+<span id="code-7-34"><a href="#code-7-34" aria-hidden="true" tabindex="-1"></a><span class="ex">individual</span> files in /usr/share/doc/<span class="pp">*</span>/copyright.</span>
+<span id="code-7-35"><a href="#code-7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-36"><a href="#code-7-36" aria-hidden="true" tabindex="-1"></a><span class="ex">Ubuntu</span> comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span>
+<span id="code-7-37"><a href="#code-7-37" aria-hidden="true" tabindex="-1"></a><span class="ex">applicable</span> law.</span>
+<span id="code-7-38"><a href="#code-7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-7-39"><a href="#code-7-39" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> run a command as administrator <span class="er">(</span><span class="ex">user</span> <span class="st">"root"</span><span class="kw">)</span><span class="ex">,</span> use <span class="st">"sudo &lt;command&gt;"</span>.</span>
+<span id="code-7-40"><a href="#code-7-40" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> <span class="st">"man sudo_root"</span> for details.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para desconectar puedes usar “<code>exit</code>”.</p>
+</section>
+<section id="instalar-r" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-r">Instalar R</h2>
+<p>Recuerda que aquí hemos creado la instancia de Ubuntu, por lo que de ahora en adelante aplican comandos para este sistema operativo.</p>
+<p>Ahora, antes de R debemos instalar algunas dependencias:</p>
+<div class="sourceCode" id="code-8" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-8-1"><a href="#code-8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update commands</span></span>
+<span id="code-8-2"><a href="#code-8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="code-8-3"><a href="#code-8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="at">-y</span></span>
+<span id="code-8-4"><a href="#code-8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get dist-upgrade <span class="at">-y</span></span>
+<span id="code-8-5"><a href="#code-8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Install some system libraries</span></span>
+<span id="code-8-6"><a href="#code-8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt-get <span class="at">-y</span> install <span class="dt">\</span></span>
+<span id="code-8-7"><a href="#code-8-7" aria-hidden="true" tabindex="-1"></a>nginx <span class="dt">\</span></span>
+<span id="code-8-8"><a href="#code-8-8" aria-hidden="true" tabindex="-1"></a>    gdebi-core <span class="dt">\</span></span>
+<span id="code-8-9"><a href="#code-8-9" aria-hidden="true" tabindex="-1"></a>    apache2-utils <span class="dt">\</span></span>
+<span id="code-8-10"><a href="#code-8-10" aria-hidden="true" tabindex="-1"></a>    pandoc <span class="dt">\</span></span>
+<span id="code-8-11"><a href="#code-8-11" aria-hidden="true" tabindex="-1"></a>    libssl-dev <span class="dt">\</span></span>
+<span id="code-8-12"><a href="#code-8-12" aria-hidden="true" tabindex="-1"></a>    libcurl4-gnutls-dev <span class="dt">\</span></span>
+<span id="code-8-13"><a href="#code-8-13" aria-hidden="true" tabindex="-1"></a>    libcairo2-dev <span class="dt">\</span></span>
+<span id="code-8-14"><a href="#code-8-14" aria-hidden="true" tabindex="-1"></a>    libgsl0-dev <span class="dt">\</span></span>
+<span id="code-8-15"><a href="#code-8-15" aria-hidden="true" tabindex="-1"></a>    libgdal-dev <span class="dt">\</span></span>
+<span id="code-8-16"><a href="#code-8-16" aria-hidden="true" tabindex="-1"></a>    libgeos-dev <span class="dt">\</span></span>
+<span id="code-8-17"><a href="#code-8-17" aria-hidden="true" tabindex="-1"></a>    libproj-dev <span class="dt">\</span></span>
+<span id="code-8-18"><a href="#code-8-18" aria-hidden="true" tabindex="-1"></a>    libxml2-dev <span class="dt">\</span></span>
+<span id="code-8-19"><a href="#code-8-19" aria-hidden="true" tabindex="-1"></a>    libxt-dev <span class="dt">\</span></span>
+<span id="code-8-20"><a href="#code-8-20" aria-hidden="true" tabindex="-1"></a>    libv8-dev <span class="dt">\</span></span>
+<span id="code-8-21"><a href="#code-8-21" aria-hidden="true" tabindex="-1"></a>    libhdf5-dev <span class="dt">\</span></span>
+<span id="code-8-22"><a href="#code-8-22" aria-hidden="true" tabindex="-1"></a>    git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puedes obtener una explicación de qué hace cada expresión:</p>
+<div id="fig-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://explainshell.com/"><img src="images/clipboard-3390664839.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: Detalle de expresión.
+</figcaption>
+</figure>
+</div>
+<p>Ahora sí vamos con los comandos para R:</p>
+<div class="sourceCode" id="code-9" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-9-1"><a href="#code-9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update indices</span></span>
+<span id="code-9-2"><a href="#code-9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-qq</span></span>
+<span id="code-9-3"><a href="#code-9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Install two helper packages </span></span>
+<span id="code-9-4"><a href="#code-9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> software-properties-common dirmngr</span>
+<span id="code-9-5"><a href="#code-9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the signing key (by Michael Rutter) for these repositories</span></span>
+<span id="code-9-6"><a href="#code-9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc </span></span>
+<span id="code-9-7"><a href="#code-9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fingerprint: 298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
+<span id="code-9-8"><a href="#code-9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
+<span id="code-9-9"><a href="#code-9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
+<span id="code-9-10"><a href="#code-9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span>
+<span id="code-9-11"><a href="#code-9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Install recommended packages</span></span>
+<span id="code-9-12"><a href="#code-9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install r-base r-base-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Revisamos la versión instalada con:</p>
+<div class="sourceCode" id="code-10" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-10-1"><a href="#code-10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y deberías obtener algo parecido a esto (es muy probable que exista una versión superior para cuando leas esto).</p>
+<div class="sourceCode" id="code-11" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-11-1"><a href="#code-11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> version 4.4.2 <span class="er">(</span><span class="ex">2024-10-31</span><span class="kw">)</span> <span class="ex">--</span> <span class="st">"Pile of Leaves"</span></span>
+<span id="code-11-2"><a href="#code-11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2024</span> The R Foundation for Statistical Computing</span>
+<span id="code-11-3"><a href="#code-11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Platform:</span> x86_64-pc-linux-gnu</span>
+<span id="code-11-4"><a href="#code-11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="code-11-5"><a href="#code-11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</span>
+<span id="code-11-6"><a href="#code-11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are welcome to redistribute it under the terms of the</span>
+<span id="code-11-7"><a href="#code-11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">GNU</span> General Public License versions 2 or 3.</span>
+<span id="code-11-8"><a href="#code-11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">For</span> more information about these matters see</span>
+<span id="code-11-9"><a href="#code-11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">https://www.gnu.org/licenses/.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="instalar-shiny-server" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-shiny-server">Instalar Shiny Server</h2>
+<p>Después de instalar <strong>R</strong>, pero antes de instalar <strong>Shiny Server</strong>, debes instalar <strong>Shiny</strong>. Puedes hacerlo de dos formas:</p>
+<p>La primera es ejecutando R para abrirlo directamente en la terminal.</p>
+<div class="sourceCode" id="code-12" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-12-1"><a href="#code-12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> R</span>
+<span id="code-12-2"><a href="#code-12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> install.packages<span class="kw">(</span><span class="st">"shiny"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La otra es “por debajo”:</p>
+<div class="sourceCode" id="code-13" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-13-1"><a href="#code-13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su <span class="at">-</span> <span class="at">-c</span> <span class="st">"R -e </span><span class="dt">\"</span><span class="st">install.packages('shiny', repos='https://cran.rstudio.com/')</span><span class="dt">\"</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La instalación de Shiny puede tomar un poco de tiempo en la instancia t2.micro por la cantidad de recursos que establecimos.</p>
+<p>Ya podemos instalar Shiny Server:</p>
+<div class="sourceCode" id="code-14" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-14-1"><a href="#code-14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Shiny Server</span></span>
+<span id="code-14-2"><a href="#code-14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="code-14-3"><a href="#code-14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.22.1017-amd64.deb</span>
+<span id="code-14-4"><a href="#code-14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi shiny-server-1.5.22.1017-amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Verificamos la instalación:</p>
+<div class="sourceCode" id="code-15" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-15-1"><a href="#code-15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status shiny-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-22" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-514002333.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: Shiny Server ejecutando.
+</figcaption>
+</figure>
+</div>
+<p>Por defecto Shiny Server viene con una Shiny app ejecutandose en tu servidor.</p>
+</section>
+<section id="acceder-a-la-shiny-app-por-defecto" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-la-shiny-app-por-defecto">Acceder a la Shiny app por defecto</h2>
+<p>Cada vez que reinicias la instancia, a no ser que hayas pasado por una <strong>Elastic IP</strong>, tu IPv4 va a cambiar. Por ahora realizamos de nuevo el ejercicio de <a href="#fig-20">arriba</a> para obtener la IP actual.</p>
+<p>Para este momento es:</p>
+<div id="fig-23" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-724427698.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;23: IP actual.
+</figcaption>
+</figure>
+</div>
+<p>y para acceder a la app debemos ingresar <code>&lt;IP:3838&gt;</code>. Este puerto <code>3838</code> corresponde al servicio de Shiny Server. Para mi caso es “<code>3.145.162.7:3838</code>”.</p>
+<p>Ojo, si ingresas “<code>https://3.145.162.7:3838</code>” no te va a funcionar. Aquí hay dos problemas por resolver. Uno de ellos es el <code>https</code>, no hemos hecho nada aún. El otro es que debemos habilitar la conexión con un <strong>security group</strong>:</p>
+<p>Seleccionamos nuestra instancia, vamos a la pestaña <strong>Security</strong>, y finalmente al link de <strong>Security groups</strong>:</p>
+<div id="fig-24" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-3414933636.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24: Entrar a editar Security group.
+</figcaption>
+</figure>
+</div>
+<p>Y editamos (<strong>Edit inbound rules</strong>):</p>
+<div id="fig-25" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2239456429.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25: Editar inbound.
+</figcaption>
+</figure>
+</div>
+<p>Añadimos regla:</p>
+<div id="fig-26" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1972583042.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;26: Añade regla.
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Type</strong> = Custom TCP</p></li>
+<li><p><strong>Port range</strong> = 3838</p></li>
+<li><p><strong>Source</strong> = Custom 0.0.0.0/0</p></li>
+</ul>
+<div id="fig-27" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-524523470.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;27: Revisión reglas.
+</figcaption>
+</figure>
+</div>
+<p>Guardamos regla:</p>
+<div id="fig-28" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2109939771.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;28: Guardar regla.
+</figcaption>
+</figure>
+</div>
+<p>Si ves un mensaje emergente como el siguiente, estas listo para ingresar de nuevo <code>&lt;IP:3838&gt;</code></p>
+<div id="fig-29" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-1010272928.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;29: Creación exitosa de regla.
+</figcaption>
+</figure>
+</div>
+<p>Lo que estábamos esperando:</p>
+<div id="fig-30" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-2343593722.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;30: Shiny app por defecto accesible desde IPv4.
+</figcaption>
+</figure>
+</div>
+<p>Hasta aquí hemos hecho lo básico para acceder a una Shiny app desde cualquier dispositivo.</p>
+<p>Puedes intentarlo desde tu celular, pues acabamos de dejar expuesto el puerto <code>3838</code> donde se encuentra nuestro servicio de <strong>Shiny Server</strong> en una instancia de <strong>AWS</strong> que hemos decidido dejar con acceso abierto.</p>
+<p>No olvides detener tu instancia. Los recursos que te da AWS son gratuitos, pero tienen un límite de uso. Revisa las condiciones del <strong>Free Tier</strong>.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Crear {Shiny} {Server} En {AWS}},
+  date = {2025-01-27},
+  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2025. <span>“Crear Shiny Server En
+AWS.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/">https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2024, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

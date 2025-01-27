@@ -1,0 +1,353 @@
+---
+title: "Crear Shiny Server en AWS"
+description: "Parte 3"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 01-27-2025
+categories: [Cloud, AWS, EC2, Shiny Server, Shiny App] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/
+image: EC2_instance.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+En este post veremos cómo instalar y poner en funcionamiento un [Shiny Server](https://posit.co/products/open-source/shiny-server/) en una [instancia EC2 de AWS](https://aws.amazon.com/es/ec2/). Este es un primer paso para lograr subir a producción una [Shiny app](https://shiny.posit.co/).
+
+## Acceder a la consola
+
+Lo primero que tienes que hacer es **crear una cuenta en AWS**. Los pasos no son difícles, te lo puedo asegurar. Así que iniciamos en la pantalla principal que nos muestra *inmediatamente luego de creada*.
+
+![Pantalla inicial consola AWS](images/clipboard-1445765871.png){#fig-1 fig-align="center"}
+
+Posiblemente las únicas diferencias que podrían tener con esta imágen son: el nombre de usuario `cchiquitov` y la *Availability Zone* (**AZ**) que automáticamente se creó en Ohio, `useast-2`.
+
+## Crear servidor en EC2 (Elastic Compute Cloud)
+
+En el campo **Search** podemos buscar **EC2**, o aprovechamos que nos aparece la opción en "*Recently visited*"
+
+Es claro que acabo de crear la cuenta porque en los *Recursos* solamente tenemos un **Security group**.
+
+![Dashboard de recursos](images/clipboard-709308694.png){#fig-2 fig-align="center"}
+
+Ingresamos a **Instances**:
+
+![Menú desplegable instancias](images/clipboard-2969538307.png){#fig-3 fig-align="center" width="170"}
+
+y **Launch Instances**
+
+![Lanzar instancia.](images/clipboard-1850881502.png){#fig-4 fig-align="center"}
+
+Te encontrarás en la siguiente pantalla, a ti te aparecerán las opciones expandidas:
+
+![Configuración de instancia](images/clipboard-2169563867.png){#fig-5 fig-align="center"}
+
+Aquí ya nombré a mi instancia "`My first Web Server`", muy astuto.
+
+Para la **AMI** (Amazon Machine Image) elijo Ubuntu:
+
+![Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)](images/clipboard-1456359353.png){#fig-6 fig-align="center"}
+
+Para el tipo de instancia voy con la que me da el *Free Tier*:
+
+![Tipo de instancia](images/clipboard-2328512798.png){#fig-7 fig-align="center"}
+
+Contiene una CPU con sólo 1 núcleo, sólo 1 GB de RAM y una conexión a Internet aceptable.
+
+Ahora para lograr una conexión segura debemos crear un `key pair`.
+
+![Elección de key pair.](images/clipboard-88852163.png){#fig-8 fig-align="center"}
+
+Un `key pair`, formado por una **llave pública** y una **llave privada**, es un conjunto de credenciales de seguridad que utiliza para demostrar tu identidad al conectarse a una instancia de Amazon EC2. En el caso de las instancias de Linux, la llave privada te permite conectarse a tu instancia mediante SSH de forma segura. En el caso de las instancias de Windows, la llave privada se requiere para descifrar la contraseña de administrador, que luego se utiliza para conectarse a la instancia. Amazon EC2 almacena la llave pública en tu instancia, y tu almacenas la llave privada.
+
+![Esquema funcionamiento key pair.](images/clipboard-4153240866.png){#fig-9 fig-align="center"}
+
+**Es muy importante que guardes tu llave privada en un lugar seguro, ya que cualquiera que posea tu llave privada puede conectarse a tus instancias que utilizan el `key pair`**.
+
+Entonces, creo mi key pair, para poder seleccionarlo dentro de la lista desplegable, le llamaré "`mi-key-pair-useast2`"
+
+![Crear un Key Pair](images/clipboard-624860931.png){#fig-10 fig-align="center" width="485"}
+
+Cuando lo creas, inmediatamente descargas un archivo, **la llave privada**, que para mi caso es:
+
+![Archivo con llave privada](images/clipboard-2099239300.png){#fig-11 fig-align="center"}
+
+Continuamos con la configuración de las redes, donde realmente dejamos lo que viene por defecto.
+
+![Redes de la instancia.](images/clipboard-3498927731.png){#fig-12 fig-align="center"}
+
+Para el almacenamiento podríamos cambiar **hasta 30Gb** sin que debamos pagar (en el primer año) pero lo dejaré por defecto.
+
+![Configura almacenamiento de instancia.](images/clipboard-804051784.png){#fig-13 fig-align="center"}
+
+Finalmente tenemos una instancia así:
+
+![Parámetros de instancia.](images/clipboard-1948489044.png){#fig-14 fig-align="center"}
+
+y le damos en "*Launch instance*".
+
+Esperamos pocos minutos mientras surte el proceso:
+
+![Mensaje de espera por lanzamiento.](images/clipboard-1590700222.png){#fig-15 fig-align="center"}
+
+Aparecerá:
+
+![Creación exitosa de instancia.](images/clipboard-1246047716.png){#fig-16 fig-align="center"}
+
+Nos devolvemos a Instances para ver qué tenemos ahora:
+
+![Dashboard instancias desactualizado.](images/clipboard-2163327434.png){#fig-17 fig-align="center"}
+
+Parece que no tuvieramos instancia alguna creada, pero en realidad debemos dar click en
+
+![Actualizar.](images/clipboard-79624457.png){#fig-18 fig-align="center"}
+
+para actualizar el dashboard.
+
+Ahora sí tenemos nuestra instancia llamada "`My first Web Server`" creada y corriendo.
+
+![Dashboard instancias actualizado.](images/clipboard-912805618.png){#fig-19 fig-align="center"}
+
+## Acceder al servidor
+
+Debemos cambiar nuestro directorio de trabajo (working directory) hacia donde tenemos el archivo `.pem`, yo lo he dejado en `Downloads`. Así que en la Terminal:
+
+``` {#code-1 .bash key="bash"}
+cd Downloads/
+```
+
+``` {#code-2 .bash key="Output"}
+-rw-rw-r--  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem
+```
+
+Y vamos a cambiar los permisos de este archivo, siendo una llave privada pues debería ser privada realmente:
+
+``` {#code-3 .bash key="bash"}
+chmod 400 mi-key-pair-useast2.pem
+```
+
+``` {#code-4 .bash key="Output"}
+-r--------  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem
+```
+
+Ahora debes ir a la consola de EC2 para revisar la **IPv4** de tu instancia, con esto completaremos el siguiente comando para acceder al servidor.
+
+![IPv4 pública de la instancia.](images/clipboard-1208286890.png){#fig-20 fig-align="center"}
+
+``` {#code-5 .bash key="bash"}
+ssh -i "mi-key-pair-useast2.pem" ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com
+```
+
+``` {#code-6 .bash key="Output"}
+The authenticity of host 'ec2-18-117-232-180.us-east-2.compute.amazonaws.com (18.117.232.180)' can't be established.
+ECDSA key fingerprint is SHA256:N55CqCIT1Yyi5tpAY2UDj2Q/1r4aOS4+aTUgXTWfDK8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Di "`yes`" y lo lograste. Estas dentro de tu instancia.
+
+``` {#code-7 .bash key="Output"}
+Warning: Permanently added 'ec2-18-117-232-180.us-east-2.compute.amazonaws.com,18.117.232.180' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-1021-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Jan 22 19:38:46 UTC 2025
+
+  System load:  0.0               Processes:             106
+  Usage of /:   24.9% of 6.71GB   Users logged in:       0
+  Memory usage: 20%               IPv4 address for enX0: 172.31.5.157
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+```
+
+Para desconectar puedes usar "`exit`".
+
+## Instalar R
+
+Recuerda que aquí hemos creado la instancia de Ubuntu, por lo que de ahora en adelante aplican comandos para este sistema operativo.
+
+Ahora, antes de R debemos instalar algunas dependencias:
+
+``` {#code-8 .bash key="bash"}
+# Update commands
+sudo apt update
+sudo apt-get update -y
+sudo apt-get dist-upgrade -y
+# Install some system libraries
+$ sudo apt-get -y install \
+nginx \
+    gdebi-core \
+    apache2-utils \
+    pandoc \
+    libssl-dev \
+    libcurl4-gnutls-dev \
+    libcairo2-dev \
+    libgsl0-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    libxml2-dev \
+    libxt-dev \
+    libv8-dev \
+    libhdf5-dev \
+    git
+```
+
+Puedes obtener una explicación de qué hace cada expresión:
+
+[![Detalle de expresión.](images/clipboard-3390664839.png){#fig-21 fig-align="center"}](https://explainshell.com/)
+
+Ahora sí vamos con los comandos para R:
+
+``` {#code-9 .bash key="bash"}
+# Update indices
+sudo apt update -qq
+# Install two helper packages 
+sudo apt install --no-install-recommends software-properties-common dirmngr
+# Add the signing key (by Michael Rutter) for these repositories
+# To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
+# Fingerprint: 298A3A825C0D65DFD57CBB651716619E084DAB9
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+# Add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+# Install recommended packages
+sudo apt install r-base r-base-dev
+```
+
+Revisamos la versión instalada con:
+
+``` {#code-10 .bash key="bash"}
+R --version
+```
+
+Y deberías obtener algo parecido a esto (es muy probable que exista una versión superior para cuando leas esto).
+
+``` {#code-11 .bash key="Output"}
+R version 4.4.2 (2024-10-31) -- "Pile of Leaves"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+```
+
+## Instalar Shiny Server
+
+Después de instalar **R**, pero antes de instalar **Shiny Server**, debes instalar **Shiny**. Puedes hacerlo de dos formas:
+
+La primera es ejecutando R para abrirlo directamente en la terminal.
+
+``` {#code-12 .bash key="bash"}
+sudo R
+> install.packages("shiny")
+```
+
+La otra es "por debajo":
+
+``` {#code-13 .bash key="bash"}
+sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+```
+
+La instalación de Shiny puede tomar un poco de tiempo en la instancia t2.micro por la cantidad de recursos que establecimos.
+
+Ya podemos instalar Shiny Server:
+
+``` {#code-14 .bash key="bash"}
+# Install Shiny Server
+sudo apt-get install gdebi-core
+wget https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.22.1017-amd64.deb
+sudo gdebi shiny-server-1.5.22.1017-amd64.deb
+```
+
+Verificamos la instalación:
+
+``` {#code-15 .bash key="bash"}
+sudo systemctl status shiny-server
+```
+
+![Shiny Server ejecutando.](images/clipboard-514002333.png){#fig-22 fig-align="center"}
+
+Por defecto Shiny Server viene con una Shiny app ejecutandose en tu servidor.
+
+## Acceder a la Shiny app por defecto
+
+Cada vez que reinicias la instancia, a no ser que hayas pasado por una **Elastic IP**, tu IPv4 va a cambiar. Por ahora realizamos de nuevo el ejercicio de [arriba](#fig-20) para obtener la IP actual.
+
+Para este momento es:
+
+![IP actual.](images/clipboard-724427698.png){#fig-23 fig-align="center"}
+
+y para acceder a la app debemos ingresar `<IP:3838>`. Este puerto `3838` corresponde al servicio de Shiny Server. Para mi caso es "`3.145.162.7:3838`".
+
+Ojo, si ingresas "`https://3.145.162.7:3838`" no te va a funcionar. Aquí hay dos problemas por resolver. Uno de ellos es el `https`, no hemos hecho nada aún. El otro es que debemos habilitar la conexión con un **security group**:
+
+Seleccionamos nuestra instancia, vamos a la pestaña **Security**, y finalmente al link de **Security groups**:
+
+![Entrar a editar Security group.](images/clipboard-3414933636.png){#fig-24 fig-align="center"}
+
+Y editamos (**Edit inbound rules**):
+
+![Editar inbound.](images/clipboard-2239456429.png){#fig-25 fig-align="center"}
+
+Añadimos regla:
+
+![Añade regla.](images/clipboard-1972583042.png){#fig-26 fig-align="center"}
+
+-   **Type** = Custom TCP
+
+-   **Port range** = 3838
+
+-   **Source** = Custom 0.0.0.0/0
+
+![Revisión reglas.](images/clipboard-524523470.png){#fig-27 fig-align="center"}
+
+Guardamos regla:
+
+![Guardar regla.](images/clipboard-2109939771.png){#fig-28 fig-align="center"}
+
+Si ves un mensaje emergente como el siguiente, estas listo para ingresar de nuevo `<IP:3838>`
+
+![Creación exitosa de regla.](images/clipboard-1010272928.png){#fig-29 fig-align="center"}
+
+Lo que estábamos esperando:
+
+![Shiny app por defecto accesible desde IPv4.](images/clipboard-2343593722.png){#fig-30 fig-align="center"}
+
+Hasta aquí hemos hecho lo básico para acceder a una Shiny app desde cualquier dispositivo.
+
+Puedes intentarlo desde tu celular, pues acabamos de dejar expuesto el puerto `3838` donde se encuentra nuestro servicio de **Shiny Server** en una instancia de **AWS** que hemos decidido dejar con acceso abierto.
+
+No olvides detener tu instancia. Los recursos que te da AWS son gratuitos, pero tienen un límite de uso. Revisa las condiciones del **Free Tier**.
