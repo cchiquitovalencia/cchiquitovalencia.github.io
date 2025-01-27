@@ -351,3 +351,5 @@ Hasta aquí hemos hecho lo básico para acceder a una Shiny app desde cualquier 
 Puedes intentarlo desde tu celular, pues acabamos de dejar expuesto el puerto `3838` donde se encuentra nuestro servicio de **Shiny Server** en una instancia de **AWS** que hemos decidido dejar con acceso abierto.
 
 No olvides detener tu instancia. Los recursos que te da AWS son gratuitos, pero tienen un límite de uso. Revisa las condiciones del **Free Tier**.
+
+En un próximo post te enseño cómo cambiar la app que viene por defecto en shiny Server.
