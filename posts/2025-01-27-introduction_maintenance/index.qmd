@@ -1,6 +1,6 @@
 ---
 title: "Introducción a los sistemas de mantenimiento"
-description: "Parte 1"
+description: "MTTO Serie - Parte 1"
 author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/

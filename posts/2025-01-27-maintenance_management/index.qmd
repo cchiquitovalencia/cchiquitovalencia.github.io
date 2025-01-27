@@ -1,6 +1,6 @@
 ---
 title: "Gestión de sistemas de mantenimiento"
-description: "Parte 2"
+description: "MTTO Serie - Parte 2"
 author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/
