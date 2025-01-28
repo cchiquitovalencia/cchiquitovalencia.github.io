@@ -128,6 +128,14 @@ Si en este punto has quedado perdido, puedes revisar este [post](https://cchiqui
 
 ## Desarrollo de Shiny app
 
+Con nuestro modelo de optimización de mantenimiento establecido, vamos a programarlo en una Shiny App en R para poder resolverlo y obtener una solución óptima.
+
+Recordemos que Shiny es un framework para crear aplicaciones web utilizando código R. Está diseñado principalmente con los científicos de datos en mente, y con ese fin, puede crear aplicaciones Shiny bastante complicadas sin conocimientos de HTML, CSS o JavaScript.
+
+Shiny está diseñado para parecer casi mágicamente fácil cuando se está empezando, y sin embargo, cuanto más se profundiza en su funcionamiento, más se da cuenta de que está construido a partir de principios generales. te das cuenta de que está construido a partir de bloques generales que tienen fuertes principios de ingeniería de software detrás de ellos.
+
+Una Shiny App se compone de un bloque `ui` (interfaz del usuario) que define el aspecto de la aplicación, y un bloque `server`, que define el funcionamiento de la aplicación. Shiny utiliza **programación reactiva** para actualizar automáticamente las salidas cuando cambian las entradas.
+
 Manos a la obra: reemplazamos todo lo que contiene nuestro archivo `app.R` con lo siguiente:
 
 ```{r app, eval=FALSE}
@@ -267,6 +275,10 @@ server <- function(input, output) {
 # Run the application 
 shinyApp(ui = ui, server = server)
 ```
+
+Hasta aquí, lo que hemos hecho es traducir a una app, que no es la más estilizada (espero no hayas pensado que soy experto en diseño gráfico o en experiencia de usuario) que habíamos modelado matemáticamente en un post anterior.
+
+Shiny es muy amplio en cuanto al desarrollo de aplicaciones se refiere. Si quieres un poco más de contexto puedes revisar el libro [Mastering Shiny](https://mastering-shiny.org/index.html), donde puedes encontrar la documentación para "*llevarte de no saber nada sobre Shiny a ser un desarrollador experto capaz de escribir aplicaciones complejas de gran tamaño que sean mantenibles y tengan un buen rendimiento. Adquirirás un conocimiento profundo del modelo de programación reactiva que subyace en Shiny, además de construir una caja de herramientas de técnicas útiles para resolver los desafíos comunes de las aplicaciones*".
 
 Básicamente establecemos en la `ui` los parámetros que podrían cambiar, con algunos rangos que puede modificar (no pueden ser muy amplios porque el problema de optimización es de tipo **NP-Hard**). Creamos un resumen del tamaño del problema, imprimimos el resultado de la optimización que mostramos cuando el usuario usa un botón, y graficamos la solución con otro botón.
 
