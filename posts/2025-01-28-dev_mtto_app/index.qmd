@@ -1,0 +1,275 @@
+---
+title: "Crear Shiny App"
+description: "MTTO Serie - Parte 4"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 01-28-2025
+categories: [Github, Shiny App] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/
+image: local_to_github.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Vamos a crear una app para nuestro modelo de optimización de mantenimiento que hemos definido [aquí](https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/).
+
+## Crear un proyecto local 
+
+Este repositorio va a contener los archivos necesarios para nuestra app.
+
+Entramos a nuestra sesión de RStudio:
+
+1.  **File** -\> **New Project**
+
+    Con la siguiente ventana emergente:
+
+    ![Opciones para iniciar nuevo proyecto.](images/clipboard-2089501707.png){#fig-1}
+
+    Realmente voy a *comenzar desde cero* la aplicación, por lo que
+
+2.  **New Directory** -\> **Shiny Application**
+
+    ![Configuración del proyecto.](images/clipboard-1800608861.png){#fig-2}
+
+3.  **Create Project**
+
+Mi sesión de RStudio queda así:
+
+![Vista inmediata de la creación del proyecto.](images/clipboard-610318707.png){#fig-3 fig-align="center"}
+
+-   `.Rproj`: es un archivo de configuración para RStudio que contiene información sobre el proyecto, como el directorio de trabajo, los paquetes instalados, las opciones de visualización y los scripts de ejecución.
+
+-   `app.R`: es el archivo principal de un proyecto Shiny que contiene la
+    configuración, la interfaz de usuario y la lógica de negocio de la
+    aplicación.
+
+-   `.gitignore`: es un archivo de configuración para Git que contiene una lista de patrones de archivos y directorios que se deben ignorar por Git.
+
+Ten presente que en la esquina superior derecha nos indica el proyecto en el que estamos trabajando `dev_shiny_mtto_app.Rproj`. En la parte inferior izquierda, en la pestaña de Git, tenemos los cambios que hemos hecho hasta que realicemos un `commit`.
+
+## Clonar el repositorio desde local a Github. 
+
+Por ahora no voy a modificar el `app.R`, solo quiero montar la infraestructura para ejecutar el workflow.
+
+Revisamos qué tenemos en la Terminal dentro de RStudio:
+
+``` {.bash filename="Bash"}
+~/Documents/shiny_mtto_app/dev_shiny_mtto_app$ git status
+```
+
+``` {.bash filename="Output"}
+En la rama master
+
+No hay commits todavía
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que se será confirmado)
+
+        .gitignore
+        app.R
+        dev_shiny_mtto_app.Rproj
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+```
+
+Como [aquí](#fig-2) seleccionamos "**Create a git repository**", ya hemos iniciado el proceso para subirlo a Github.
+
+En este [post](https://cchiquitovalencia.github.io/posts/2024-11-18-intro_github/) creamos un repositorio en Github y luego lo clonamos a un repositorio local. Ahora vamos a realizar el proceso al revés, ya creado local vamos a clonarlo a Github.
+
+Podemos incluir todos nuestros archivos con el comando:
+
+``` {.bash filename="Bash"}
+~/Documents/shiny_mtto_app/dev_shiny_mtto_app$ git add .
+```
+
+``` {.bash filename="Output"}
+En la rama master
+
+No hay commits todavía
+
+Cambios a ser confirmados:
+  (usa "git rm --cached <archivo>..." para sacar del área de stage)
+
+        nuevo archivo:  .gitignore
+        nuevo archivo:  app.R
+        nuevo archivo:  dev_shiny_mtto_app.Rproj
+```
+
+Ya están bajo seguimiento. Clic en **Commit**:
+
+![Clic en Commit.](images/clipboard-2407796287.png){#fig-4 fig-align="center"}
+
+Insertamos nuestro comentario "*first commit*" (buenas prácticas) y obtenemos:
+
+![Resultados commit.](images/clipboard-277284033.png){#fig-5 fig-align="center"}
+
+En la consola de RStudio ingresamos:
+
+``` {.r filename="Console"}
+usethis::use_github()
+```
+
+``` {.r filename="Output"}
+ℹ Defaulting to "https" Git protocol.
+✔ Setting active project to
+  "~/Documents/shiny_mtto_app/dev_shiny_mtto_app".
+✔ Creating GitHub repository "cchiquitovalencia/dev_shiny_mtto_app".
+✔ Setting remote "origin" to
+  "https://github.com/cchiquitovalencia/dev_shiny_mtto_app.git".
+✔ Pushing "master" branch to GitHub and setting "origin/master" as upstream branch.
+✔ Opening URL <https://github.com/cchiquitovalencia/dev_shiny_mtto_app>.
+```
+
+Si en este punto has quedado perdido, puedes revisar este [post](https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/) para guiarte un poco. Entonces ya tenemos establecido en Github nuestro repositorio creado de manera local:
+
+[![Repositorio creado local en Github.](images/clipboard-1618772576.png){#fig-6 fig-align="center"}](https://github.com/cchiquitovalencia/dev_shiny_mtto_app)
+
+## Desarrollo de Shiny app
+
+Manos a la obra: reemplazamos todo lo que contiene nuestro archivo `app.R` con lo siguiente:
+
+```{r app, eval=FALSE}
+
+library(shiny)
+library(ompr)
+library(ompr.roi)
+library(ROI.plugin.glpk)
+library(ggplot2)
+library(tidyverse)
+
+# Definir UI
+ui <- fluidPage(
+        
+        # Título de app
+        titlePanel("Planeación de Mantenimiento"),
+        
+        # Opciones para el modelo
+        fluidPage(
+                sidebarPanel(
+                        numericInput("m", "Flota", value = 2, min = 1, max = 5, step = 1),
+                        numericInput("H", "Periodos", value = 8, min = 4, max = 12, step = 1),
+                        numericInput("D", "Demanda", value = 480, min = 200, max = 1000, step = 20),
+                        numericInput("Ui", "Periodos entre MTTOs", value = 3, min = 1, max = 7, step = 1),
+                        numericInput("Ti", "Horas entre MTTOs", value = 90, min = 50, max = 200, step = 10),
+                        numericInput("xmax", "Máximo horas operación", value = 744, min = 500, max = 1000, step = 66),
+                        actionButton("solucionar", "Obtener solución!"),
+                        br(),
+                        actionButton("graficar", "Graficar solución!")
+                        , width = 3)
+                ,
+                
+                mainPanel(
+                        h4('Descripción del modelo'),
+                        #verbatimTextOutput("periodosMtto"),
+                        #verbatimTextOutput("horasMtto"),
+                        verbatimTextOutput("imprimeModelo"),
+                        verbatimTextOutput("imprimeResultado"),
+                        plotOutput("grafica")
+                )
+                
+        )
+        
+)
+
+# Definir lógica del servidor para resolver el modelo
+server <- function(input, output) {
+        
+        # Usado para mostrar variables internas
+        output$periodosMtto <- renderPrint({
+                rep(input$Ui, input$m)
+        })
+        
+        output$horasMtto <- renderPrint({
+                rep(input$Ti, input$m)
+        })
+        
+        # Función para crear modelo planeación
+        crearModelo <- reactive({
+                
+                # Repetir valores ingresados por usuario para Ui y Ti
+                realUi <- rep(input$Ui, input$m)
+                realTi <- rep(input$Ti, input$m)
+                
+                # Definir el modelo con ompr
+                model <- MIPModel() |>
+                        
+                        # Variables
+                        add_variable(y[i, t], i=1:input$m, t=1:input$H, type="binary") |>
+                        add_variable(x[i, t], i=1:input$m, t=1:input$H, type="continuous", lb=0) |>
+                        
+                        # Función objetivo
+                        set_objective(sum_expr(y[i, t], i=1:input$m, t=1:input$H), "min") |>
+                        
+                        # Restricciones
+                        add_constraint(sum_expr(x[i, t], i=1:input$m, t=1:input$H) >= input$D) |>
+                        add_constraint(sum_expr(y[i, j], j=tao:(tao+realUi[i])) >= 1, i=1:input$m, tao=1:(input$H-realUi[i])) |>
+                        add_constraint(sum_expr(x[i, j], j=t:(t+u)) <= realTi[i] + realTi[i]*sum_expr(y[i, j], j=t:(t+u)), i=1:input$m, t=1:input$H, u=0:(input$H-t)) |>
+                        add_constraint(x[i, t] + input$xmax*y[i, t] <= input$xmax, i=1:input$m, t=1:input$H)
+                
+                # Devolver el modelo         
+                model
+        })
+        
+        # Función para entregar características del modelo
+        output$imprimeModelo <- renderPrint(crearModelo())
+        
+        # Ejecutar solución del modelo
+        resultado <- eventReactive(
+                input$solucionar, {
+                        
+                        # Activar solver
+                        result <- solve_model(crearModelo(), with_ROI(solver = "glpk", verbose = TRUE))
+                        result
+                        
+                })
+        
+        # Función para entregar características de la solución
+        output$imprimeResultado <- renderPrint(resultado())
+        
+        # función para crear gráficas de la solución
+        plotear <- eventReactive(
+                input$graficar, {
+                        
+                        # Graficar solución
+                        gridExtra::grid.arrange(
+                                get_solution(resultado(), y[i,t]) |>
+                                        mutate(Mtto = "Mant") |>
+                                        rename(unidad = i, periodo = t) |>
+                                        ggplot()+
+                                        geom_point(aes(periodo, value, color = as.factor(value)), size = 5)+
+                                        facet_grid(unidad~.)+
+                                        hrbrthemes::theme_ipsum()+
+                                        labs(x = "PERIODO", y = "VALOR", col = "MTTO")+
+                                        theme(legend.position = "top"),
+
+
+                                get_solution(resultado(), x[i,t]) |>
+                                        mutate(Horas = "Opera") |>
+                                        rename(unidad = i, periodo = t) |>
+                                        ggplot()+
+                                        geom_point(aes(periodo, value, color = as.factor(value)), size = 5)+
+                                        facet_grid(unidad~.)+
+                                        hrbrthemes::theme_ipsum()+
+                                        labs(x = "PERIODO", y = "VALOR", col = "OPERA")+
+                                        theme(legend.position = "top"),
+
+                                ncol = 2
+                        )
+                        
+                })
+        
+        output$grafica <- renderPlot(plotear())
+        
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+Básicamente establecemos en la `ui` los parámetros que podrían cambiar, con algunos rangos que puede modificar (no pueden ser muy amplios porque el problema de optimización es de tipo **NP-Hard**). Creamos un resumen del tamaño del problema, imprimimos el resultado de la optimización que mostramos cuando el usuario usa un botón, y graficamos la solución con otro botón.
+
+Realmente nuestra app es muy sencilla (aunque el problema que resuelve no lo sea). Es tan sencilla que podría tener detractores de la cultura *DevOps* en cualquier punto. Que sea a prueba de balas no es el punto aquí, sino enviar a producción.
+
+Actualizamos nuestro repositorio en Github: `commit` y `push`. Tenemos nuestra app lista para clonar desde Github con [nuestra instancia en AWS](https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/).
