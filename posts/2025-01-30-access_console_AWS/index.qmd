@@ -1,0 +1,50 @@
+---
+title: "Acceder a AWS console"
+description: "Que no sea root"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 01-30-2025
+categories: [AWS, EC2] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/
+image: deploy_shiny.jpeg
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Ya tengo una cuenta de AWS en la que he creado una instancia para alojar una Shiny app, puedes revisar el proceso [aquí](https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/).
+
+Pero cada vez que quiero ingresar a la consola para activar o desactivar [*My first Web Server*](https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/#fig-5)me encuentro con este formulario:
+
+![](images/clipboard-2229801546.png)
+
+Y siempre inicio con el **root user email**, al fin y al cabo es mi cuenta, no?
+
+Lo cierto es que aún no he hecho nada con los usuarios. Seguramente llegará el momento en el que tenga más de una sola aplicación corriendo en un servidor, o en varios servidores, y las personas que usen esos servicios deberían tener ciertos permisos para algunas de las aplicaciones, no todas.
+
+![](images/clipboard-3340035025.png)
+
+Ingresas tus credenciales y, como no he asignado mayor seguridad a mi cuenta, llego a:
+
+![De ser efectivo el proceso verás la ventana con:](images/clipboard-3762852202.png)
+
+![](images/clipboard-2880649891.png)
+
+Ahora ingresas a **IAM** a través del campo *Search* en la parte superior izquierda de tu consola.
+
+![](images/clipboard-2307323600.png)
+
+En el panel del lado izquierdo: **Access management** -\> **Users** -\> **Create user**
+
+![](images/clipboard-2303694452.png)
+
+El usuario lo llamaré `cchv_aws`.
+
+![](images/clipboard-1652704289.png)
+
+![](images/clipboard-528353234.png)
+
+![](images/clipboard-413053338.png)
+
+![](images/clipboard-2424954106.png)

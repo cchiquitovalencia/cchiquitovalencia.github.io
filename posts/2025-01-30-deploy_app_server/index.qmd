@@ -1,0 +1,335 @@
+---
+title: "Desplegar Shiny App"
+description: "MTTO Serie - Parte 5"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 01-30-2025
+categories: [Github, Shiny App, Shiny Server, AWS, EC2] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/
+image: deploy_shiny.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Ya vimos que en nuestra instancia **EC2** tenemos instalado **Shiny Server** y ahí se encuentra una *app* que viene por defecto.
+
+Debemos encontrar dónde se encuentra alojada ese archivo `app.R` que se está ejecutando para poder modificarlo.
+
+## Iniciar instancia
+
+Ingresamos a la **consola de AWS** y seleccionamos la instancia:
+
+![Inicio de instancia.](images/clipboard-142781457.png){#fig-1 fig-align="center"}
+
+Esperamos unos segundos y:
+
+![Inicio exitoso.](images/clipboard-3378946257.png){#fig-2 fig-align="center"}
+
+Con nuestro servidor corriendo ahora podemos
+
+## Explorar el servidor
+
+Para encontrar el archivo app.R
+
+Abrimos una terminal y nos [conectamos por SSH](https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/#acceder-al-servidor):
+
+``` {.bash filename="Output"}
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-1021-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Jan 29 00:09:30 UTC 2025
+
+  System load:  0.06              Processes:             107
+  Usage of /:   69.9% of 6.71GB   Users logged in:       0
+  Memory usage: 24%               IPv4 address for enX0: 172.31.5.157
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+```
+
+Conectados, ejecutamos el siguiente comando para entrar a la carpeta que contiene los archivos de la app por defecto
+
+``` {.bash filename="Bash"}
+~$ cd /srv/shiny-server/
+/srv/shiny-server$ ls
+```
+
+Resulta: un archivo `.html` y una carpeta `sample-apps`:
+
+``` {.bash filename="Output"}
+index.html  sample-apps
+```
+
+Veamos qué contiene la carpeta:
+
+``` {.bash filename="Bash"}
+/srv/shiny-server$ ls sample-apps
+```
+
+``` {.bash filename="Output"}
+hello  rmd
+```
+
+Ingresemos a ver en `hello`:
+
+``` {.bash filename="Bash"}
+/srv/shiny-server$ cd sample-apps/hello
+/srv/shiny-server/sample-apps/hello$ ls
+```
+
+``` {.bash filename="Output"}
+server.R  ui.R
+```
+
+Entonces aquí es de donde Shiny Server toma los archivos. Aquí estan el `ui` y el `server`, las bases de cualquier app de Shiny.
+
+## Descargar la app desde Github
+
+### Nos devolvemos al home
+
+``` {.bash filename="Bash"}
+cd
+```
+
+Vamos a Github para copiar el link `https`:
+
+![Copiar HTTPS](images/clipboard-1586057462.png){#fig-3 fig-align="center"}
+
+### Clonamos el repositorio en nuestro servidor:
+
+``` {.bash filename="Bash"}
+git clone https://github.com/cchiquitovalencia/dev_shiny_mtto_app.git
+```
+
+``` {.bash filename="Output"}
+Cloning into 'dev_shiny_mtto_app'...
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (7/7), done.
+Receiving objects: 100% (8/8), 4.10 KiB | 840.00 KiB/s, done.
+remote: Total 8 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)
+```
+
+### Creamos un atajo en /srv/shiny-server/
+
+``` {#code-1 .bash filename="Bash"}
+cd /srv/shiny-server
+/srv/shiny-server$ sudo ln -s ~/dev_shiny_mtto_app
+```
+
+Recuerda que puedes ir a <https://explainshell.com/> para entender el código:
+
+![Explicación de código.](images/clipboard-3246803262.png){#fig-4 fig-align="center"}
+
+Confirmamos que nos queda:
+
+``` {.bash filename="Output"}
+dev_shiny_mtto_app  index.html  sample-apps
+```
+
+### Eliminamos el resto con:
+
+``` {.bash filename="Bash"}
+/srv/shiny-server$ sudo rm index.html
+/srv/shiny-server$ sudo rm -R sample-apps
+```
+
+### Podemos mover los archivos
+
+Si con las instrucciones del atajo anterior tienes problema, puedes ejecutar:
+
+``` {.bash filename="Bash"}
+cd /srv/shiny-server # para pararte en la carpeta destino
+sudo mv ~/dev_shiny_mtto_app . # mover todo
+```
+
+Ahora que tenemos nuestro archivo `app.R` en la carpeta donde debe estar podemos ir al explorador e ingresar `<IP:3838>` (recuerda que la IP de la instancia cambia cada que la reiniciamos en caso de no haber establecido una **Elastic IP**)
+
+Justo ahora la IP que AWS me asigna es: **3.141.200.204.**
+
+![Conexión a la app.](images/clipboard-3322795931.png){#fig-5 fig-align="center"}
+
+Esperaba ver nuestra app funcionando de inmediato, pero bueno. Si das clic:
+
+![Error ejecutar la app.](images/clipboard-2086920855.png){#fig-6 fig-align="center"}
+
+Parece que debemos
+
+## Configurar Shiny Server
+
+El archivo que debemos revisar se encuentra en `/etc/shiny-server/shiny-server.conf`. Lo abrimos con:
+
+``` {.bash filename="Bash"}
+sudo nano /etc/shiny-server/shiny-server.conf
+```
+
+``` {.bash filename="Output"}
+# Instruct Shiny Server to run applications as the user "shiny"
+run_as shiny;
+
+# Define a server that listens on port 3838
+server {
+  listen 3838;
+
+  # Define a location at the base URL
+  location / {
+
+    # Host the directory of Shiny Apps stored in this directory
+    site_dir /srv/shiny-server;
+
+    # Log all Shiny output to files in this directory
+    log_dir /var/log/shiny-server;
+
+    # When a user visits the base URL rather than a particular application,
+    # an index of the applications available in this directory will be shown.
+    directory_index on;
+  }
+```
+
+1.  `run_as shiny` indica el usuario detrás del Shiny Server. Cuando iniciaste sesión a través de `ssh`, actuaste como usuario `ubuntu`, el predeterminado. Pero cuando instalamos Shiny Server, creamos un nuevo usuario llamado `shiny`, y ese es el que ejecuta el Shiny Server.
+
+2.  `listen 3838`. Ese es el puerto. Por eso añadimos `:3838` al final de la URL.
+
+3.  `site_dir /srv/shiny-server` te dice dónde tienes que poner los archivos de la aplicación. Efectivamente, [ahí](#code-1) es donde hemos creado el acceso directo.
+
+4.  `log_dir /var/log/shiny-server` muestra dónde se almacenan los registros. Eso es súper útil en caso de que algo esté fallando.
+
+5.  `directory_index on`, permite al servidor mostrar los directorios cuando no hay `index.html`. Eso es lo que vimos cuando entramos directamente en `3.141.200.204:3838`. Para desactivarlo: `directory_index off`. La razón: no quiero que todo el mundo sepa todas las aplicaciones que tengo.
+
+Modificamos un poco para garantizar siempre los registros (**logs**). Agregamos al inicio `preserve_logs true;` y `sanitize_errors false;` y volvemos a cargar el servidor:
+
+``` {#reiniciar .bash filename="Bash"}
+sudo systemctl reload shiny-server
+```
+
+Preservar logs para obligar a guardar todo comportamiento del servidor (parece que no siempre ocurre), y "*estilizar*" (**on**) implica no mostrar al usuario el print de los logs cuando hay errores.
+
+## Depurar Shiny app con logs
+
+Para ver los logs:
+
+``` {.bash filename="Bash"}
+~$ cd /var/log/shiny-server
+/var/log/shiny-server$ ls
+```
+
+``` {.bash filename="Output"}
+dev_shiny_mtto_app-shiny-20250129-003756-35481.log
+dev_shiny_mtto_app-shiny-20250129-012205-43913.log
+```
+
+Miremos uno de ellos:
+
+``` {.bash filename="Bash"}
+sudo tail dev_shiny_mtto_app-shiny-20250129-012205-43913.log
+```
+
+``` {.bash filename="Output"}
+su: ignoring --preserve-environment, it's mutually exclusive with --login
+-bash: line 1: cd: /srv/shiny-server/dev_shiny_mtto_app: Permission denied
+```
+
+Con este mensaje pasé varias horas revisando internet para depurar cuál había sido el error. Ya ves que el mensaje no dice mucho, pero refiere a permisos.
+
+Vamos a repasar nuestro proceso para desplegar la app:
+
+-   Estamos accediendo al servidor a través de `ssh` con el archivo `.pem` que tengo alojado en mi computador. En este momento mi usuario es `ubuntu`.
+
+-   El archivo `.config` del Shiny Server me dice que el usuario es `shiny`.
+
+Podría modificar el `.config` para asignar `run_as ubuntu;`, pero cómo podría diferenciar cuando la app se ejecuta bajo mi nombre y que yo (usuario `ubuntu`) la ejecute?
+
+Voy a crear un usuario `cchv` para no ingresar como `root` y nos cambiamos al nuevo usuario:
+
+``` {.bash filename="Bash"}
+adduser cchv
+gpasswd -a cchv sudo
+su - cchv
+```
+
+Creo un grupo de usuarios llamado `shiny-apps` y añado los usuarios `cchv` y `shiny`. Vamos a hacer que toda la carpeta `/srv/shiny-server` tenga permisos de **lectura+escritura** para este grupo:
+
+``` {.bash filename="Bash"}
+sudo groupadd shiny-apps
+sudo usermod -aG shiny-apps cchv
+sudo usermod -aG shiny-apps shiny
+cd /srv/shiny-server
+sudo chown -R cchv:shiny-apps .
+sudo chmod g+w .
+sudo chmod g+s .
+```
+
+Los pasos que seguí los encontré [aquí](https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/#shiny-user-perms).
+
+Ingresamos a nuestra app con `<IP:3838>` y:
+
+![No se encuentran librerías.](images/clipboard-1874597480.png){#fig-7 fig-align="center"}
+
+Debemos instalar librerías, y debemos hacerlo con el usuario `shiny`, que es el que tiene configurado el Shiny Server en el `.config`.
+
+Nos cambiamos de usario, abrimos R e instalamos [lo que necesitamos](https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/#desarrollo-de-shiny-app):
+
+``` {.bash filename="Bash"}
+sudo su - shiny
+R
+
+install.packages("pak") # esta librería nos ayuda con dplyr
+install.packages("ompr")
+install.packages("ompr.roi")
+install.packages("ROI.plugin.glpk") 
+install.packages("ggplot2")
+pak::pkg_install("tidyverse/dplyr")
+```
+
+Ten presente que hay un paso adicional que debe ejecutarse antes de la instalacion de `ROI.plugin.glpk` para que la app funcione.
+
+[![Requerimiento adicional para solver.](images/clipboard-2784004687.png){#fig-8 fig-align="center"}](http://roi.r-forge.r-project.org/installation.html#ROIpluginglpk)
+
+Por otro lado, [aquí](https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/#desarrollo-de-shiny-app) estabamos usando la librería `tidyverse`, pero los recursos de nuestra instancia son los **mínimos** (free tier), y no son suficientes para instalarla. Afortunadamente, nuestro código solo requiere funciones de `dplyr`, y se se logra instalar con ayuda de `pak`.
+
+Ahora, con todas las librerías al día, ejecutamos [nuevamente](#reiniciar), y...:
+
+![Aplicación funcionando en la web.](images/clipboard-2656752860.png){#fig-9 fig-align="center"}
+
+Finalmente tenemos nuestra Shiny app en línea, accesible y funcionando. El resultado de nuestro modelo se puede ver en:
+
+![Resultado modelo.](images/clipboard-388471584.png){#fig-10 fig-align="center"}
+
+En el lado izquierdo tienes la planeación de la ejecución de mantenimiento. En el lado derecho tienes el tiempo de operación. En cada fila se registra el vehículo correspondiente.
+
+De esta forma tenemos que en el periodo #2, el vehículo #2 tiene mantenimiento (no opera en ese periodo). Además, el vehículo #1 opera 30 horas en el periodo #5 (no tiene mantenimiento).
+
+Podrías estar pensando que es muy básica la aplicación, y seguro te surgen algunas de las siguientes dudas:
+
+Qué se puede incluir en la aplicación?
+
+-   Se puede lograr una distribución "*uniforme*" del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con $90 + 90 = 180$ horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar.
+
+-   Se pueden inlcuir restricciones de recursos de mantenimiento, cuánta capacidad tengo para atender, en simultáneo, las rutinas de mantenimiento?
+
+-   Cada vehículo puede tener unas variables específicas? Por decir algo: el vehículo #1 podría no requerir mínimo 3 periodos entre mantenimiento sino 6 por ser nuevo.
+
+-   Cuánto es la duración de cada mantenimiento?
+
+-   Qué pasa si la demanda de tiempo de operación es diferente para cada uno de los periodos en el horizonte de tiempo planeado?
+
+-   Puedo determinar "manualmente" cuándo hacer el mantenimiento? Algunos compromisos se deben cumplir, puede ser con agentes externos o clientes internos, que exijan disponibilidad del vehículo en taller en un periodo en particular.
+
+-   Qué pasa si algunas piezas requieren mantenimiento más seguidas que otras? Consideraríamos "tipos de rutinas" diferentes en este caso.
+
+Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme al correo electrónico.
