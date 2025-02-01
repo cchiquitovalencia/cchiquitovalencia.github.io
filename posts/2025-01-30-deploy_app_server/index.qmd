@@ -322,21 +322,21 @@ Podrías estar pensando que es muy básica la aplicación, y seguro te surgen al
 
 Qué se puede incluir en la aplicación?
 
--   Se puede lograr una distribución "*uniforme*" del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con $90 + 90 = 180$ horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar. En algunos días se puede
+-   Se puede lograr una distribución "*uniforme*" del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con $90 + 90 = 180$ horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar.
 
 -   Se pueden inlcuir restricciones de recursos de mantenimiento, cuánta capacidad tengo para atender, en simultáneo, las rutinas de mantenimiento?
 
 -   Cada vehículo puede tener unas variables específicas? Por decir algo: el vehículo #1 podría no requerir mínimo 3 periodos entre mantenimiento sino 6 por ser nuevo.
 
--   Cuánto es la duración de cada mantenimiento?
+-   Cuánto es la duración de cada mantenimiento? Será necesario apartar más de un periodo para ejecutar las rutinas?
 
--   Qué pasa si la demanda de tiempo de operación es diferente para cada uno de los periodos en el horizonte de tiempo planeado?
+-   Qué pasa si la demanda de tiempo de operación es diferente para cada uno de los periodos en el horizonte de tiempo planeado? Tu operación puede ser diferente en fines de semana, o en cada mes del año.
 
--   Puedo determinar "manualmente" cuándo hacer el mantenimiento? Algunos compromisos se deben cumplir, puede ser con agentes externos o clientes internos, que exijan disponibilidad del vehículo en taller en un periodo en particular.
+-   Puedo determinar "*manualmente*" cuándo hacer el mantenimiento? Algunos compromisos se deben cumplir, puede ser con agentes externos o clientes internos, que exijan disponibilidad del vehículo en taller en un periodo en particular.
 
--   Qué pasa si algunas piezas requieren mantenimiento más seguidas que otras? Consideraríamos "tipos de rutinas" diferentes en este caso.
+-   Qué pasa si algunas piezas requieren mantenimiento más seguidas que otras? Consideraríamos "*tipos de rutinas*" diferentes en este caso.
 
-Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme al correo electrónico.
+Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme por correo electrónico, agendamos un espacio y hablamos del desarrollo de la solución.
 
 Tener solo un plan maestro y/o una programación maestra no garantiza el
 éxito. Al igual que con todos los procesos y herramientas, el plan maestro y/o la programación maestra **deben ser administrados**. El fracaso a la hora de gestionar el plan maestro y/o la programación maestra conduce a la mala asignación de los recursos de manufactura y abastecimiento de la empresa. Esto, a su vez, puede significar que la empresa no sea capaz de responder a las necesidades de los clientes o sea ineficiente en el uso de sus recursos. En última instancia, la empresa corre el riesgo de perder su posición competitiva.
