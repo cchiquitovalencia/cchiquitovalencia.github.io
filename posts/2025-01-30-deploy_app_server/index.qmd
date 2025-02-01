@@ -304,6 +304,8 @@ Por otro lado, [aquí](https://cchiquitovalencia.github.io/posts/2025-01-28-dev_
 
 Ahora, con todas las librerías al día, ejecutamos [nuevamente](#reiniciar), y...:
 
+## Ejecutar Shiny app
+
 ![Aplicación funcionando en la web.](images/clipboard-2656752860.png){#fig-9 fig-align="center"}
 
 Finalmente tenemos nuestra Shiny app en línea, accesible y funcionando. El resultado de nuestro modelo se puede ver en:
@@ -314,11 +316,13 @@ En el lado izquierdo tienes la planeación de la ejecución de mantenimiento. En
 
 De esta forma tenemos que en el periodo #2, el vehículo #2 tiene mantenimiento (no opera en ese periodo). Además, el vehículo #1 opera 30 horas en el periodo #5 (no tiene mantenimiento).
 
+## Consideraciones finales
+
 Podrías estar pensando que es muy básica la aplicación, y seguro te surgen algunas de las siguientes dudas:
 
 Qué se puede incluir en la aplicación?
 
--   Se puede lograr una distribución "*uniforme*" del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con $90 + 90 = 180$ horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar.
+-   Se puede lograr una distribución "*uniforme*" del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con $90 + 90 = 180$ horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar. En algunos días se puede
 
 -   Se pueden inlcuir restricciones de recursos de mantenimiento, cuánta capacidad tengo para atender, en simultáneo, las rutinas de mantenimiento?
 
@@ -333,3 +337,8 @@ Qué se puede incluir en la aplicación?
 -   Qué pasa si algunas piezas requieren mantenimiento más seguidas que otras? Consideraríamos "tipos de rutinas" diferentes en este caso.
 
 Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme al correo electrónico.
+
+Tener solo un plan maestro y/o una programación maestra no garantiza el
+éxito. Al igual que con todos los procesos y herramientas, el plan maestro y/o la programación maestra **deben ser administrados**. El fracaso a la hora de gestionar el plan maestro y/o la programación maestra conduce a la mala asignación de los recursos de manufactura y abastecimiento de la empresa. Esto, a su vez, puede significar que la empresa no sea capaz de responder a las necesidades de los clientes o sea ineficiente en el uso de sus recursos. En última instancia, la empresa corre el riesgo de perder su posición competitiva.
+
+Además, si el plan maestro y/o la programación maestra no se gestiona correctamente, muchos de los beneficios del proceso de planeación empresarial integrada o planeación de ventas y operaciones se perderán.

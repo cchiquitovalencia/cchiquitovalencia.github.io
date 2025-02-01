@@ -246,6 +246,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#configurar-shiny-server" id="toc-configurar-shiny-server" class="nav-link" data-scroll-target="#configurar-shiny-server">Configurar Shiny Server</a></li>
   <li><a href="#depurar-shiny-app-con-logs" id="toc-depurar-shiny-app-con-logs" class="nav-link" data-scroll-target="#depurar-shiny-app-con-logs">Depurar Shiny app con logs</a></li>
+  <li><a href="#ejecutar-shiny-app" id="toc-ejecutar-shiny-app" class="nav-link" data-scroll-target="#ejecutar-shiny-app">Ejecutar Shiny app</a></li>
+  <li><a href="#consideraciones-finales" id="toc-consideraciones-finales" class="nav-link" data-scroll-target="#consideraciones-finales">Consideraciones finales</a></li>
   </ul>
 </nav>
     </div>
@@ -628,6 +630,9 @@ Figure&nbsp;8: Requerimiento adicional para solver.
 </div>
 <p>Por otro lado, <a href="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/#desarrollo-de-shiny-app">aquí</a> estabamos usando la librería <code>tidyverse</code>, pero los recursos de nuestra instancia son los <strong>mínimos</strong> (free tier), y no son suficientes para instalarla. Afortunadamente, nuestro código solo requiere funciones de <code>dplyr</code>, y se se logra instalar con ayuda de <code>pak</code>.</p>
 <p>Ahora, con todas las librerías al día, ejecutamos <a href="#reiniciar">nuevamente</a>, y…:</p>
+</section>
+<section id="ejecutar-shiny-app" class="level2">
+<h2 class="anchored" data-anchor-id="ejecutar-shiny-app">Ejecutar Shiny app</h2>
 <div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -651,10 +656,13 @@ Figure&nbsp;10: Resultado modelo.
 </div>
 <p>En el lado izquierdo tienes la planeación de la ejecución de mantenimiento. En el lado derecho tienes el tiempo de operación. En cada fila se registra el vehículo correspondiente.</p>
 <p>De esta forma tenemos que en el periodo #2, el vehículo #2 tiene mantenimiento (no opera en ese periodo). Además, el vehículo #1 opera 30 horas en el periodo #5 (no tiene mantenimiento).</p>
+</section>
+<section id="consideraciones-finales" class="level2">
+<h2 class="anchored" data-anchor-id="consideraciones-finales">Consideraciones finales</h2>
 <p>Podrías estar pensando que es muy básica la aplicación, y seguro te surgen algunas de las siguientes dudas:</p>
 <p>Qué se puede incluir en la aplicación?</p>
 <ul>
-<li><p>Se puede lograr una distribución “<em>uniforme</em>” del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con <span class="math inline">\(90 + 90 = 180\)</span> horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar.</p></li>
+<li><p>Se puede lograr una distribución “<em>uniforme</em>” del tiempo de operación de cada vehiculo. Piensa en esto: el periodo #1 cuenta con <span class="math inline">\(90 + 90 = 180\)</span> horas de operación, pero en el siguiente periodo ninguno de los 2 vehículos se encuentra planeado para operar. En algunos días se puede</p></li>
 <li><p>Se pueden inlcuir restricciones de recursos de mantenimiento, cuánta capacidad tengo para atender, en simultáneo, las rutinas de mantenimiento?</p></li>
 <li><p>Cada vehículo puede tener unas variables específicas? Por decir algo: el vehículo #1 podría no requerir mínimo 3 periodos entre mantenimiento sino 6 por ser nuevo.</p></li>
 <li><p>Cuánto es la duración de cada mantenimiento?</p></li>
@@ -663,6 +671,8 @@ Figure&nbsp;10: Resultado modelo.
 <li><p>Qué pasa si algunas piezas requieren mantenimiento más seguidas que otras? Consideraríamos “tipos de rutinas” diferentes en este caso.</p></li>
 </ul>
 <p>Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme al correo electrónico.</p>
+<p>Tener solo un plan maestro y/o una programación maestra no garantiza el éxito. Al igual que con todos los procesos y herramientas, el plan maestro y/o la programación maestra <strong>deben ser administrados</strong>. El fracaso a la hora de gestionar el plan maestro y/o la programación maestra conduce a la mala asignación de los recursos de manufactura y abastecimiento de la empresa. Esto, a su vez, puede significar que la empresa no sea capaz de responder a las necesidades de los clientes o sea ineficiente en el uso de sus recursos. En última instancia, la empresa corre el riesgo de perder su posición competitiva.</p>
+<p>Además, si el plan maestro y/o la programación maestra no se gestiona correctamente, muchos de los beneficios del proceso de planeación empresarial integrada o planeación de ventas y operaciones se perderán.</p>
 
 
 </section>
