@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2025-02-05">
+<meta name="description" content="Principios en ingeniería">
+
+<title>Introducción al Machine Learning – CHV</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CHV</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">What’s inside?</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Introducción al Machine Learning</h1>
+                  <div>
+        <div class="description">
+          Principios en ingeniería
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Artificial Intelligence</div>
+                <div class="quarto-category">Data Science</div>
+                <div class="quarto-category">Deep Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 5, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#qué-es-machine-learning" id="toc-qué-es-machine-learning" class="nav-link" data-scroll-target="#qué-es-machine-learning">Qué es Machine Learning?</a>
+  <ul>
+  <li><a href="#flujo-de-trabajo-de-machine-learning" id="toc-flujo-de-trabajo-de-machine-learning" class="nav-link" data-scroll-target="#flujo-de-trabajo-de-machine-learning">Flujo de trabajo de Machine Learning</a></li>
+  <li><a href="#qué-no-es-machine-learning" id="toc-qué-no-es-machine-learning" class="nav-link" data-scroll-target="#qué-no-es-machine-learning">Qué no es Machine Learning?</a></li>
+  <li><a href="#jerga-de-machine-learning" id="toc-jerga-de-machine-learning" class="nav-link" data-scroll-target="#jerga-de-machine-learning">Jerga de Machine Learning</a>
+  <ul class="collapse">
+  <li><a href="#características" id="toc-características" class="nav-link" data-scroll-target="#características">Características</a></li>
+  <li><a href="#variable-objetivo" id="toc-variable-objetivo" class="nav-link" data-scroll-target="#variable-objetivo">Variable objetivo</a></li>
+  <li><a href="#problema-de-optimización" id="toc-problema-de-optimización" class="nav-link" data-scroll-target="#problema-de-optimización">Problema de optimización</a></li>
+  <li><a href="#función-objetivo" id="toc-función-objetivo" class="nav-link" data-scroll-target="#función-objetivo">Función objetivo</a></li>
+  <li><a href="#función-de-costo" id="toc-función-de-costo" class="nav-link" data-scroll-target="#función-de-costo">Función de costo</a></li>
+  <li><a href="#función-de-pérdida" id="toc-función-de-pérdida" class="nav-link" data-scroll-target="#función-de-pérdida">Función de pérdida</a></li>
+  <li><a href="#comparación-entre-la-función-de-pérdida-la-función-de-costo-y-la-función-objetivo" id="toc-comparación-entre-la-función-de-pérdida-la-función-de-costo-y-la-función-objetivo" class="nav-link" data-scroll-target="#comparación-entre-la-función-de-pérdida-la-función-de-costo-y-la-función-objetivo">Comparación entre la función de pérdida, la función de costo y la función objetivo</a></li>
+  <li><a href="#algoritmo-modelohipótesis-y-técnica" id="toc-algoritmo-modelohipótesis-y-técnica" class="nav-link" data-scroll-target="#algoritmo-modelohipótesis-y-técnica">Algoritmo, modelo/hipótesis y técnica</a></li>
+  </ul></li>
+  <li><a href="#diferencia-entre-la-ciencia-de-datos-el-aprendizaje-automático-la-inteligencia-artificial-y-el-aprendizaje-profundo" id="toc-diferencia-entre-la-ciencia-de-datos-el-aprendizaje-automático-la-inteligencia-artificial-y-el-aprendizaje-profundo" class="nav-link" data-scroll-target="#diferencia-entre-la-ciencia-de-datos-el-aprendizaje-automático-la-inteligencia-artificial-y-el-aprendizaje-profundo">Diferencia entre la ciencia de datos, el aprendizaje automático, la inteligencia artificial y el aprendizaje profundo</a></li>
+  </ul></li>
+  <li><a href="#desarrollo-histórico-de-machine-learning" id="toc-desarrollo-histórico-de-machine-learning" class="nav-link" data-scroll-target="#desarrollo-histórico-de-machine-learning">Desarrollo histórico de Machine Learning</a></li>
+  <li><a href="#por-qué-machine-learning" id="toc-por-qué-machine-learning" class="nav-link" data-scroll-target="#por-qué-machine-learning">Por qué Machine Learning?</a>
+  <ul>
+  <li><a href="#motivación" id="toc-motivación" class="nav-link" data-scroll-target="#motivación">Motivación</a></li>
+  <li><a href="#propósito" id="toc-propósito" class="nav-link" data-scroll-target="#propósito">Propósito</a></li>
+  <li><a href="#importancia" id="toc-importancia" class="nav-link" data-scroll-target="#importancia">Importancia</a></li>
+  </ul></li>
+  <li><a href="#conocimientos-previos-para-aprender-machine-learning" id="toc-conocimientos-previos-para-aprender-machine-learning" class="nav-link" data-scroll-target="#conocimientos-previos-para-aprender-machine-learning">Conocimientos previos para aprender Machine Learning</a>
+  <ul>
+  <li><a href="#álgebra-lineal" id="toc-álgebra-lineal" class="nav-link" data-scroll-target="#álgebra-lineal">Álgebra Lineal</a>
+  <ul class="collapse">
+  <li><a href="#ecuaciones-lineales" id="toc-ecuaciones-lineales" class="nav-link" data-scroll-target="#ecuaciones-lineales">Ecuaciones Lineales</a></li>
+  <li><a href="#tensor-y-rango-de-tensor" id="toc-tensor-y-rango-de-tensor" class="nav-link" data-scroll-target="#tensor-y-rango-de-tensor">Tensor y Rango de Tensor</a></li>
+  </ul></li>
+  <li><a href="#estadística" id="toc-estadística" class="nav-link" data-scroll-target="#estadística">Estadística</a>
+  <ul class="collapse">
+  <li><a href="#medidas-de-tendencia-central" id="toc-medidas-de-tendencia-central" class="nav-link" data-scroll-target="#medidas-de-tendencia-central">Medidas de Tendencia Central</a></li>
+  <li><a href="#desviación-estándar" id="toc-desviación-estándar" class="nav-link" data-scroll-target="#desviación-estándar">Desviación Estándar</a></li>
+  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación">Correlación</a></li>
+  <li><a href="#anomalías" id="toc-anomalías" class="nav-link" data-scroll-target="#anomalías">Anomalías</a></li>
+  <li><a href="#histograma" id="toc-histograma" class="nav-link" data-scroll-target="#histograma">Histograma</a></li>
+  <li><a href="#errores" id="toc-errores" class="nav-link" data-scroll-target="#errores">Errores</a></li>
+  </ul></li>
+  <li><a href="#teoría-de-la-probabilidad" id="toc-teoría-de-la-probabilidad" class="nav-link" data-scroll-target="#teoría-de-la-probabilidad">Teoría de la Probabilidad</a>
+  <ul class="collapse">
+  <li><a href="#distribución-de-probabilidad" id="toc-distribución-de-probabilidad" class="nav-link" data-scroll-target="#distribución-de-probabilidad">Distribución de Probabilidad</a></li>
+  <li><a href="#distribución-gaussiana-o-distribución-normal" id="toc-distribución-gaussiana-o-distribución-normal" class="nav-link" data-scroll-target="#distribución-gaussiana-o-distribución-normal">Distribución Gaussiana o Distribución Normal</a></li>
+  <li><a href="#distribución-de-bernoulli" id="toc-distribución-de-bernoulli" class="nav-link" data-scroll-target="#distribución-de-bernoulli">Distribución de Bernoulli</a></li>
+  <li><a href="#teorema-del-límite-central" id="toc-teorema-del-límite-central" class="nav-link" data-scroll-target="#teorema-del-límite-central">Teorema del Límite Central</a></li>
+  </ul></li>
+  <li><a href="#cálculo" id="toc-cálculo" class="nav-link" data-scroll-target="#cálculo">Cálculo</a>
+  <ul class="collapse">
+  <li><a href="#derivada-y-pendiente" id="toc-derivada-y-pendiente" class="nav-link" data-scroll-target="#derivada-y-pendiente">Derivada y Pendiente</a></li>
+  <li><a href="#derivadas-parciales" id="toc-derivadas-parciales" class="nav-link" data-scroll-target="#derivadas-parciales">Derivadas Parciales</a></li>
+  <li><a href="#máximos-y-mínimos" id="toc-máximos-y-mínimos" class="nav-link" data-scroll-target="#máximos-y-mínimos">Máximos y Mínimos</a></li>
+  <li><a href="#ecuación-diferencial" id="toc-ecuación-diferencial" class="nav-link" data-scroll-target="#ecuación-diferencial">Ecuación Diferencial</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El aprendizaje automático puede parecer intimidante para aquellos que son nuevos en este campo. Este post tiene como objetivo familiarizar a los lectores con los fundamentos del aprendizaje automático y hacer que se dé cuenta de lo maravilloso que es este tema. Ey, date cuenta! Vamos a explorar los conceptos preliminares del aprendizaje automático y establecer los fundamentos para aprender conceptos avanzados. Primero, los conceptos básicos del aprendizaje automático y algunas perspectivas sobre la inteligencia artificial y el aprendizaje profundo (deep learning). Luego, la evolución gradual del aprendizaje automático a lo largo de la historia, en orden cronológico desde 1940 hasta la actualidad. Después, veremos la motivación, el propósito y la importancia del aprendizaje automático en función de algunas aplicaciones prácticas en la vida real. A continuación, se introduce el conocimiento previo necesario para dominar el aprendizaje automático, para asegurarse de que los lectores sean conscientes qué necesitan saber antes de comenzar su curso sobre aprendizaje automático. Finalmente discutimos los lenguajes de programación y herramientas asociadas necesarias para utilizar el aprendizaje automático. Todo es lo hacemos utilizando <code>R</code> como lenguaje de programación, <code>RStudio</code> como editor de código o compilador, y esta escrito en documento de <code>Quarto</code> (.qmd). Antes de la conclusión, revisamos algunos ejemplos reales de aprendizaje automático que todos los lectores de ingeniería podrán relacionar, lo que despertará su curiosidad para entrar en el mundo del aprendizaje automático.</p>
+</section>
+<section id="qué-es-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-machine-learning">Qué es Machine Learning?</h2>
+<p>La tecnología moderna está mejorando y acelerándose gracias a la investigación, experimentación y desarrollo extensivos y continuos. Por ejemplo, las máquinas están volviéndose inteligentes y realizan tareas de manera mucho más eficiente. El aprendizaje automático ha estado evolucionando a un ritmo sin precedentes, y los resultados son evidentes en nuestros teléfonos y computadoras, que se están convirtiendo en más multifuncionales cada día, los sistemas de automatización están volviéndose omnipresentes, se están construyendo robots inteligentes y así sucesivamente.</p>
+<p>En 1959, el científico de la computadora y pionero del aprendizaje automático Arthur Samuel definió el aprendizaje automático como el “<em>campo de estudio que le da a los ordenadores la capacidad de aprender sin ser programados explícitamente</em>”. El libro de Tom Mitchell de 1997 sobre aprendizaje automático definió el aprendizaje automático como “<em>el estudio de los algoritmos de computadora que permiten a los programas de computadora mejorar automáticamente a través de la experiencia</em>”. Define el aprendizaje de la siguiente manera: “<em>Un programa de computadora se dice que aprende de la experiencia E con respecto a alguna clase de tareas T y medida de rendimiento P, si su rendimiento en tareas en T, medido por P, mejora con la experiencia E</em>”. El aprendizaje automático (<strong>ML</strong>) es una rama del aprendizaje artificial (<strong>AI</strong>) que permite a los ordenadores y máquinas aprender de la información existente y aplicar ese aprendizaje para realizar otras tareas similares. Sin <code>programación explícita</code>, la máquina aprende a partir de los datos que se le proporcionan. La máquina identifica o aprende patrones, tendencias o características esenciales a partir de datos previos y hace una predicción sobre nuevos datos. Un ejemplo de aplicación real del aprendizaje automático es los <strong>sistemas de recomendación</strong>. Por ejemplo, un sitio de streaming de películas recomendará películas al usuario basadas en su lista de películas vistas previamente.</p>
+<p>Los algoritmos de ML se clasifican ampliamente como <strong>aprendizaje supervisado</strong> y <strong>aprendizaje no supervisado</strong>, con otros tipos como el <strong>aprendizaje por refuerzo</strong> y <strong>aprendizaje semisupervisado</strong>. Lo más seguro es que tendrás otros posts sobre estos temas.</p>
+<section id="flujo-de-trabajo-de-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="flujo-de-trabajo-de-machine-learning">Flujo de trabajo de Machine Learning</h3>
+<p>Antes de profundizar en los detalles, un principiante debe tener una visión holística del flujo de trabajo completo del aprendizaje automático. La visión general del proceso revela que hay cuatro pasos principales en un flujo de trabajo típico de ML: <strong>recopilación de conjuntos de datos, preprocesamiento de datos, entrenamiento del modelo</strong> y, finalmente, <strong>evaluación del modelo</strong>. La <a href="#fig-diagram">figura 1</a> muestra el diagrama de bloques de los cuatro pasos del flujo de trabajo de ML. Estos pasos se siguen generalmente en todas las aplicaciones de ML:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-diagram">flowchart LR
+    A(Paso 1: Recopilación de conjunto de datos) --&gt; B(Paso 2: Preprocesamiento de conjunto de datos)
+    B(Paso 2: Preprocesamiento de conjunto de datos) --&gt; C(Paso 3: Entrenamiento del modelo)
+    C(Paso 3: Entrenamiento del modelo) --&gt; D(Paso 4: Evaluación del modelo)
+    D(Paso 4: Evaluación del modelo) --&gt; B(Paso 2: Preprocesamiento de conjunto de datos)
+    D(Paso 4: Evaluación del modelo) --&gt; C(Paso 3: Entrenamiento del modelo)
+    D(Paso 4: Evaluación del modelo) --&gt; A(Paso 1: Recopilación de conjunto de datos)
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: El diagrama de bloques del flujo de trabajo de aprendizaje automático
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><p>Recopilación de conjuntos de datos: El primer paso del ML es recopilar el conjunto de datos. Este paso depende del tipo de experimentos o proyectos que se desean realizar. Diferentes experimentos o proyectos requieren diferentes datos. También se debe decidir qué tipo de datos se requieren. ¿Serán datos numéricos o categóricos? Por ejemplo, si queremos realizar una predicción sobre los precios de las casas, necesitaríamos la siguiente información: el precio de las casas, la dirección de las casas, el número de habitaciones, el estado de la casa, el tamaño de la casa, etc. Luego surge la pregunta: ¿qué unidad de precio debería ser? ¿Dólares, libras o alguna otra moneda?</p></li>
+<li><p>Preprocesamiento de datos: Los datos que recopilamos a menudo están desorganizados y no pueden ser utilizados directamente para entrenar modelos. Antes de proceder al siguiente paso, los datos necesitan ser preprocesados. Primero, el conjunto de datos puede contener datos faltantes o ruidosos. Este problema necesita ser resuelto antes de pasar los datos al modelo. Diferentes datos pueden estar en diferentes rangos, lo que podría ser un problema para los modelos, por lo que los datos necesitan ser estandarizados para que todos los datos estén en el mismo rango. Además, no todos los datos serían igualmente importantes para predecir la variable objetivo. Necesitamos encontrar y seleccionar los datos que contribuyen más a encontrar las variables objetivo. Finalmente, el conjunto de datos debe ser dividido en dos conjuntos: el conjunto de entrenamiento y el conjunto de prueba. La división se hace generalmente en una relación de 80:20, donde el 80% del conjunto de datos es el conjunto de entrenamiento y el 20% es el conjunto de prueba. Esta relación puede variar según el tamaño del conjunto de datos y la naturaleza del problema. Aquí, el conjunto de entrenamiento se utilizará para entrenar los modelos, y el conjunto de prueba se utilizará para evaluar los modelos. A menudo, el conjunto de datos se divide en conjuntos de entrenamiento, validación y prueba. El conjunto de validación se utiliza para ajustar los hiperparámetros, lo que se discutirá en el Capítulo 2 de este libro. La <a href="#fig-diagram2">figura 2</a> muestra los diferentes pasos de preprocesamiento de datos. Estos pasos se explicarán en el Capítulo 3.</p></li>
+<li><p>Entrenamiento del modelo: Basado en el problema, se debe seleccionar el tipo de modelo requerido primero. Mientras se selecciona el modelo, se debe considerar la información disponible sobre el conjunto de datos. Por ejemplo, la clasificación supervisada se puede abordar si el conjunto de datos contiene información sobre ambos valores de entrada y salida. A veces, se necesitan utilizar más de un modelo para entrenar y hacer el trabajo. El modelo ajusta o aprende los datos. Este paso es muy importante porque el rendimiento del modelo depende mucho de cómo bien los datos han sido ajustados o aprendidos por el modelo. Mientras se entrena el modelo, se debe tener cuidado de no subajustar o sobreadjustar el modelo. Subajustar y sobreadjustar se han explicado en el Capítulo 2.</p></li>
+<li><p>Evaluación del modelo: Una vez que el modelo se ha construido y entrenado, es esencial entender cómo bien se ha entrenado el modelo, cómo bien funcionará y si el modelo será útil para el experimento. Sería inútil si el modelo no funciona bien o no cumple con su propósito. Por lo tanto, se utiliza el conjunto de prueba para probar el modelo, y se utilizan diferentes métricas de evaluación para evaluar y comprender el modelo. Las métricas de evaluación incluyen precisión, recall y algunas otras, que se utilizan para obtener una visión general de cómo bien funcionará el modelo. Las métricas de evaluación se han discutido en el Capítulo 2. Basado en la evaluación del modelo, puede ser necesario regresar a los pasos anteriores y realizarlos de nuevo según sea necesario.</p></li>
+</ol>
+<div class="cell" data-fig-height="18" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-diagram2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-diagram2">flowchart LR
+    A["`**Prepocesamiento de Datos**`"] --&gt; B("`**Integración de Datos**
+    - Integración de esquemas
+    - Problema de identificación de entidad
+    - Detección y resolución de conceptos de valores de datos`")
+    A["`**Prepocesamiento de Datos**`"] --&gt; C("`**Reducción de Datos o Dimensión**
+    - Agregación de cubo de Datos
+    - Selección de subconjunto de Atributos
+    - Reducción de numerosidad
+    - Reducción de dimensionalidad`")
+    A["`**Prepocesamiento de Datos**`"] --&gt; D("`**Transformación de Datos**
+    - Normalización
+    - Selección de Atributos
+    - Discretización
+    - Generación de Jerarquía de Conceptos`")
+    A["`**Prepocesamiento de Datos**`"] --&gt; E("`**Limpieza de Datos**
+    - Datos faltantes
+    - Datos ruidosos`")
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: El diagrama de bloques de preprocesamiento de datos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-no-es-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="qué-no-es-machine-learning">Qué no es Machine Learning?</h3>
+<p>El aprendizaje automático es un término en boga en el mundo actual. Casi todos los campos de la ciencia y la tecnología involucran uno o más aspectos del ML. Sin embargo, es necesario distinguir entre lo que es ML y lo que no lo es. Por ejemplo, el <code>programar en sentido general no es ML</code>, ya que un programa explícitamente indica o instruye a una máquina qué hacer y cuándo hacerlo sin permitir que la máquina aprenda por sí misma y aplique el aprendizaje en un entorno similar pero nuevo. Un sistema de recomendación que está diseñado explícitamente para dar recomendaciones no es una aplicación de ML. Si el sistema está diseñado de manera que se le dé un conjunto específico de películas como condiciones y se le sugiera una película explícitamente, como:</p>
+<blockquote class="blockquote">
+<p>Si la persona ha visto Harry Potter o Pirates of the Caribbean o El Señor de los Anillos, entonces recomiende Animales Fantásticos a la persona. También si la persona ha visto Divergente o Maze Runner, recomiende Juegos del Hambre.</p>
+</blockquote>
+<p>Este sistema de recomendación no es una aplicación de ML. Aquí, <em>la máquina no explora ni aprende tendencias</em>, características o características de películas previamente vistas. En su lugar, simplemente se basa en las condiciones dadas y sugiere la película dada. Para un sistema de recomendación basado en ML, el programa no indica explícitamente al sistema qué película recomendar basada en la lista de películas vistas previamente. En su lugar, se programa de manera que el sistema explore la lista de películas vistas previamente. Busca características significativas o características como géneros, actores, directores, productores, etc. También verifica qué películas han sido vistas por otros usuarios para que el sistema pueda formar un tipo de grupo. Basado en este aprendizaje y observación, el sistema concluye y da una recomendación. Por ejemplo, la lista de películas de una persona es como sigue: <a href="https://www.imdb.com/title/tt3263904/?ref_=nv_sr_srsg_0_tt_1_nm_7_in_0_q_sully">Sully</a>, <a href="https://www.imdb.com/title/tt0264464/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_catch%2520me%2520if%2520">Catch Me If You Can</a>, <a href="https://www.imdb.com/title/tt1535109/?ref_=nv_sr_srsg_0_tt_5_nm_3_in_0_q_captain%2520ph">Captain Philips</a>, <a href="https://www.imdb.com/title/tt1375666/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_inceptio">Inception</a> y <a href="https://www.imdb.com/title/tt0816692/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_inters">Interstellar</a>. Se pueden extraer las siguientes conclusiones de esta lista:</p>
+<p>• Tres de las películas son de género biográfico; las otras dos son de ciencia ficción.</p>
+<p>• Tres de las películas tienen a Tom Hanks en ellas.</p>
+<p>• Las películas de ciencia ficción en la lista están dirigidas por Christopher Nolan.</p>
+<p>Basado en este patrón, el sistema puede recomendar películas biográficas que no incluyan a Tom Hanks. El sistema también recomendará más películas de Tom Hanks que pueden ser biográficas o de otros géneros. También puede recomendar películas de ciencia ficción que hayan estrellado a Tom Hanks. El sistema también recomendará más películas dirigidas por Christopher Nolan. Como este sistema decide por aprender los patrones de la lista de películas vistas, se considerará una aplicación de ML.</p>
+</section>
+<section id="jerga-de-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="jerga-de-machine-learning">Jerga de Machine Learning</h3>
+<p>Mientras vamos a través estos posts, vamos a encontrar muchos términos relacionados con el aprendizaje automático. Por lo tanto, es esencial que entendamos este jargon. Los términos que necesitamos entender se discuten en esta sección.</p>
+<section id="características" class="level4">
+<h4 class="anchored" data-anchor-id="características">Características</h4>
+<p>Las características, también conocidas como <strong>atributos</strong>, <strong>variables predictivas</strong> o <strong>variables independientes</strong>, son simplemente las características o etiquetas del conjunto de datos. Supongamos que tenemos información sobre la altura y el peso de sesenta estudiantes en una clase. La altura y el peso son conocidos como características dentro del conjunto de datos. Estas características se extraen del conjunto de datos bruto y se alimentan a los modelos como entradas.</p>
+</section>
+<section id="variable-objetivo" class="level4">
+<h4 class="anchored" data-anchor-id="variable-objetivo">Variable objetivo</h4>
+<p>Simplemente, las variables objetivo son los <strong>outputs</strong> que los modelos deben dar. Por ejemplo, una reseña de película debe clasificarse como positiva o negativa. Aquí, la variable positiva/negativa es la variable objetivo en este caso. Primero, esta variable objetivo debe ser determinada por el usuario. Luego, después de que se determine la variable objetivo, se debe entender la relación entre las características y la variable objetivo para realizar operaciones adicionales.</p>
+</section>
+<section id="problema-de-optimización" class="level4">
+<h4 class="anchored" data-anchor-id="problema-de-optimización">Problema de optimización</h4>
+<p>Los problemas de optimización se definen como una clase de problemas que <strong>buscan la</strong> <strong>solución óptima</strong> bajo un conjunto de condiciones dadas. Estos problemas suelen involucrar un <em>trade-off</em> entre diferentes condiciones. Por ejemplo, un batería debe ser comprada para respaldo de energía en una residencia, pero estamos indecisos sobre el tamaño adecuado de la batería, que viene en <span class="math inline">\(6.4\)</span> y <span class="math inline">\(13.5\)</span> kWh. Si compramos el tamaño más grande, podemos almacenar más energía y disfrutar de una variedad de características adicionales de la batería, pero también debemos pagar más. Si compramos el tamaño más pequeño, podemos almacenar menos energía y obtener poco o nada de características adicionales, pero ahorraremos más dinero. Necesitamos optimizar nuestras necesidades en este escenario. Si solo requerimos respaldo de energía sin requisitos especiales para las características adicionales, el tamaño más pequeño será suficiente para satisfacer la necesidad. Esto sería la solución óptima para el dilema de la batería.</p>
+</section>
+<section id="función-objetivo" class="level4">
+<h4 class="anchored" data-anchor-id="función-objetivo">Función objetivo</h4>
+<p>Generalmente, más de una solución existe para un problema. Entre todas las soluciones, se requiere encontrar la solución óptima, lo que se hace usualmente midiendo una cantidad y requiriendo que se ajuste a un estándar. La función objetivo es el estándar que la solución óptima debe cumplir. La función objetivo se diseña para tomar parámetros y evaluar el rendimiento de la solución. El objetivo de la función objetivo puede variar según el problema en consideración. <strong>Maximizar</strong> o <strong>minimizar</strong> un parámetro particular puede ser necesario para calificar la solución como óptima. Por ejemplo, muchos algoritmos de aprendizaje automático utilizan una medida de distancia (<em>Euclideana</em>, <em>Manhattan</em> o <em>Minkowski</em>) como función objetivo.</p>
+</section>
+<section id="función-de-costo" class="level4">
+<h4 class="anchored" data-anchor-id="función-de-costo">Función de costo</h4>
+<p>La función de costo se utiliza para entender cómo bien se desempeña el modelo en un conjunto de datos dado. La función de costo también calcula la diferencia entre los valores de salida predichos y los valores de salida reales. Por lo tanto, la función de costo y la función de pérdida pueden parecer similares. Sin embargo, la función de pérdida se calcula para un solo punto de datos después de un solo entrenamiento, y la función de costo se calcula para un conjunto de datos dado después de que se complete el entrenamiento del modelo. Por lo tanto, se puede inferir que la función de costo es la <strong>función de pérdida promedio</strong> para el conjunto de datos completo <em>después</em> del entrenamiento del modelo. Los términos función de pérdida y función de costo se utilizan a menudo de manera intercambiable en el aprendizaje automático. Al igual que las funciones de pérdida, se utilizan diferentes tipos de funciones de costo en diferentes contextos y algoritmos de aprendizaje automático.</p>
+<p>Supongamos que <span class="math inline">\(J\)</span> es una función de costo utilizada para evaluar el rendimiento de un modelo. Generalmente se define con la función de pérdida <span class="math inline">\(L\)</span>. La forma generalizada de la función de costo <span class="math inline">\(J\)</span> se da a continuación:</p>
+<p><span id="eq-eq1"><span class="math display">\[
+J(𝛳)=∑^m_{i=1}L(h_{𝛳}(x^i),y^i)
+\tag{1}\]</span></span></p>
+<p>Donde <span class="math inline">\(θ\)</span> es un parámetro que se está optimizando, <span class="math inline">\(m\)</span> es el número de muestras de entrenamiento, <span class="math inline">\(i\)</span> es el número de ejemplos y salidas, <span class="math inline">\(h\)</span> es la función de hipótesis del modelo, <span class="math inline">\(x\)</span> es el valor predicho estimado, <span class="math inline">\(y\)</span> es el valor verdadero (ground truth value).</p>
+</section>
+<section id="función-de-pérdida" class="level4">
+<h4 class="anchored" data-anchor-id="función-de-pérdida">Función de pérdida</h4>
+<p>Supongamos que se da una función <span class="math inline">\(L : (z, y) ∈ ℝ × Y → L(z, y) ∈ ℝ\)</span>. La función <span class="math inline">\(L\)</span> toma <span class="math inline">\(z\)</span> como entradas, donde <span class="math inline">\(z\)</span> es el valor predicho proporcionado por un modelo de aprendizaje automático. La función luego compara <span class="math inline">\(z\)</span> con respecto a su valor real correspondiente <span class="math inline">\(y\)</span> y produce un valor que indica la diferencia entre el valor predicho y el valor real. Esta función se conoce como una función de pérdida.</p>
+<p>La función de pérdida es significativa porque explícitamente explica cómo los modelos se desempeñan al modelar los datos que se les están proporcionando. La función de pérdida <strong>calcula el error</strong>, que es la diferencia entre el valor de salida predicho y el valor de salida real. Por lo tanto, es intuitivo que un valor más bajo de la función de pérdida indica un valor de error más bajo, lo que implica que el modelo ha aprendido o ajustado los datos bien. Mientras se aprenden los datos, el objetivo del entrenamiento del modelo es siempre reducir el valor de la función de pérdida.</p>
+<p>Después de cada iteración de entrenamiento, el modelo sigue haciendo cambios necesarios basados en el valor de la función de pérdida actual para minimizarla. Se utilizan diferentes tipos de funciones de pérdida para diferentes algoritmos de aprendizaje automático.</p>
+</section>
+<section id="comparación-entre-la-función-de-pérdida-la-función-de-costo-y-la-función-objetivo" class="level4">
+<h4 class="anchored" data-anchor-id="comparación-entre-la-función-de-pérdida-la-función-de-costo-y-la-función-objetivo">Comparación entre la función de pérdida, la función de costo y la función objetivo</h4>
+<p>Ambas, la función de pérdida y la función de costo, representan el valor de error, es decir, la diferencia entre el valor de salida y el valor real, para determinar cómo de bien un modelo de aprendizaje automático se desempeña al ajustarse a los datos. Sin embargo, la diferencia entre las funciones de pérdida y costo es que <strong>la función de pérdida mide el error para un solo punto de datos solo, mientras que la función de costo mide el error para todo el conjunto de datos</strong>. La función de costo suele ser la suma de la función de pérdida y algún tipo de penalización.</p>
+<p>Por otro lado, la función objetivo es una función que necesita ser optimizada, es decir, maximizada o minimizada, para obtener el objetivo deseado. <strong>La función de pérdida es parte de la función de costo; al mismo tiempo, la función de costo se puede utilizar como parte de la función objetivo</strong>.</p>
+<p>En resumen, la función de pérdida mide el error para un solo punto de datos, la función de costo mide el error para todo el conjunto de datos y la función objetivo es una función que necesita ser optimizada para obtener el objetivo deseado.</p>
+</section>
+<section id="algoritmo-modelohipótesis-y-técnica" class="level4">
+<h4 class="anchored" data-anchor-id="algoritmo-modelohipótesis-y-técnica">Algoritmo, modelo/hipótesis y técnica</h4>
+<p>Como principiante, es esencial poder diferenciar entre modelos y algoritmos de aprendizaje automático. Un algoritmo en ML es la instrucción paso a paso proporcionada en forma de código y ejecutada en un conjunto de datos específico. Este algoritmo es análogo a un código de programación general. Por ejemplo, encontrar el promedio aritmético de un conjunto de números. De manera similar, en ML, un algoritmo se puede aplicar para aprender las estadísticas de un conjunto de datos o aplicar estadísticas actuales para predecir cualquier dato futuro.</p>
+<p>Por otro lado, un modelo de ML puede ser representado como un conjunto de parámetros que se aprenden a partir de datos dados. Por ejemplo, supongamos una función <span class="math inline">\(f (x) = xθ\)</span>, donde <span class="math inline">\(θ\)</span> es el parámetro de la función dada y <span class="math inline">\(x\)</span> es la entrada. Así, para una entrada <span class="math inline">\(x\)</span> dado, el output depende del parámetro de la función <span class="math inline">\(θ\)</span>. De manera similar, en ML, la entrada <span class="math inline">\(x\)</span> se etiqueta como la característica de entrada, y <span class="math inline">\(θ\)</span> se define como un parámetro de modelo de ML. El objetivo de cualquier algoritmo de ML es aprender el conjunto de parámetros de un modelo dado. En algunos casos, el modelo también se conoce como una <strong>hipótesis</strong>. Supongamos que la hipótesis o modelo se denota por <span class="math inline">\(h_θ\)</span>. Si se ingiere datos <span class="math inline">\(x(i)\)</span> al modelo, el output predicho será <span class="math inline">\(h_θ (x(i))\)</span>.</p>
+<p>En contraste, una técnica de ML puede verse como un enfoque general para intentar resolver un problema en particular. En muchos casos, puede ser necesario combinar una amplia variedad de algoritmos para desarrollar una técnica para resolver un problema de ML.</p>
+</section>
+</section>
+<section id="diferencia-entre-la-ciencia-de-datos-el-aprendizaje-automático-la-inteligencia-artificial-y-el-aprendizaje-profundo" class="level3">
+<h3 class="anchored" data-anchor-id="diferencia-entre-la-ciencia-de-datos-el-aprendizaje-automático-la-inteligencia-artificial-y-el-aprendizaje-profundo">Diferencia entre la ciencia de datos, el aprendizaje automático, la inteligencia artificial y el aprendizaje profundo</h3>
+<p>La ciencia de datos (<strong>DS</strong>), la inteligencia artificial (<strong>AI</strong>), el aprendizaje automático (<strong>ML</strong>) y el aprendizaje profund (<strong>DL</strong>) o son términos relacionados estrechamente, y las personas suelen confundirlos o utilizarlos de manera alternativa. Sin embargo, estos son campos de tecnología claramente separados. El aprendizaje automático cae dentro del subconjunto de la inteligencia artificial, mientras que el aprendizaje profundo se considera que cae dentro del subconjunto del aprendizaje automático, como se demuestra en la <a href="#fig-venn">Fig. 3.</a></p>
+<div id="fig-venn" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/clipboard-76734573.png" class="img-fluid figure-img" width="250">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Figure 3. El aprendizaje profundo cae dentro del subconjunto del aprendizaje automático, y el aprendizaje automático cae dentro del subconjunto de la inteligencia artificial. La ciencia de datos implica una parte de todos estos tres campos.
+</figcaption>
+</figure>
+</div>
+<p>La diferencia entre el aprendizaje automático y el aprendizaje profundo radica en el hecho de que el aprendizaje profundo requiere más recursos de computación y conjuntos de datos muy grandes. Gracias al avance de los recursos de computación en hardware, las personas están pasando hacia enfoques de aprendizaje profundo para resolver problemas similares que el aprendizaje automático puede resolver. El aprendizaje profundo es especialmente útil para manejar grandes volúmenes de texto o imágenes.</p>
+<p>La ciencia de datos es un campo interdisciplinario que implica identificar patrones en los datos y hacer inferencias, predicciones o insights a partir de ellos. La ciencia de datos está estrechamente relacionada con el aprendizaje profundo, el minería de datos y los grandes datos. Aquí, la minería de datos es el campo que se ocupa de identificar patrones y extraer información de conjuntos de datos grandes utilizando técnicas que combinan estadística, sistemas de bases de datos y ML, y por definición, los grandes datos se refieren a datos vastos y complejos que son demasiado grandes para ser procesados por sistemas tradicionales utilizando algoritmos tradicionales. El ML es una de los principales herramientas utilizadas para ayudar al proceso de análisis de datos en la ciencia de datos, especialmente para hacer extrapolaciones o predicciones sobre tendencias futuras de datos.</p>
+<p>Por ejemplo, predecir el precio del mercado de casas en el próximo año es una aplicación de ML. Considere un conjunto de datos de muestra como se muestra en la tabla 1.1.</p>
+<div id="tbl-estimacasas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-estimacasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Tabla 1.1. Muestra de datos de precios de casas.
+</figcaption>
+<div aria-describedby="tbl-estimacasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Año</th>
+<th style="text-align: center;">Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2001</td>
+<td style="text-align: center;">$200</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2002</td>
+<td style="text-align: center;">$400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2003</td>
+<td style="text-align: center;">$800</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>La observación de los datos en la tabla 1.1 nos permite formar la intuición de que el próximo precio en 2004 será de $1600. Esta intuición se forma basada en los precios de las casas de los años anteriores, que muestran una tendencia clara de duplicar el precio cada año.</p>
+<p>Sin embargo, para conjuntos de datos grandes y complejos, esta predicción no puede ser tan sencilla. Luego, requerimos un modelo de predicción de ML para predecir los precios de las casas.</p>
+<p>Con suficientes recursos de computación, estos problemas pueden ser resueltos utilizando modelos de aprendizaje profundo categorizados bajo aprendizaje profundo. En general, el aprendizaje automático y el aprendizaje profundo caen dentro de la inteligencia artificial, pero todos requieren el procesamiento, preparación y limpieza de los datos disponibles; por lo tanto, la ciencia de datos es una parte integral de todos estos tres ramas.</p>
+</section>
+</section>
+<section id="desarrollo-histórico-de-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="desarrollo-histórico-de-machine-learning">Desarrollo histórico de Machine Learning</h2>
+<p>El aprendizaje automático ha estado en desarrollo desde la década de 1940. No es el fruto de la mente de un humano ingenioso ni el resultado de un evento en particular. La ciencia multifacética del aprendizaje automático ha sido moldeada por años de estudios y investigación, y por los esfuerzos dedicados de numerosos científicos, ingenieros, matemáticos, programadores, investigadores y estudiantes. El aprendizaje automático es un campo en constante progreso y sigue en desarrollo. La tabla 1.2 enumera los hitos más significativos marcados en la historia del desarrollo del aprendizaje automático. No te asustes si no conoces aún algunos de los términos mencionados en la tabla. Los exploraremos más adelante.</p>
+<div id="tbl-historia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-historia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Tabla 1.2. Desarrollo histórico de Machine Learning
+</figcaption>
+<div aria-describedby="tbl-historia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 0%">
+<col style="width: 99%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Año</th>
+<th style="text-align: left;">Desarrollo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1940s</td>
+<td style="text-align: left;">El artículo “<em>A logical calculus of the ideas immanent in nervous activity</em>”, credao por Walter Pitts y Warren McCulloch en 1943, es el primero en discutir el modelo matemático de redes neuronales.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1950s</td>
+<td style="text-align: left;">• El término “<em>Aprendizaje Automático</em>” es utilizado por primera vez por Arthur Samuel. Diseñó un programa de ajedrez por computadora que estaba a la altura de los juegos de nivel superior. • En 1951, Marvin Minsky y Dean Edmonds desarrollaron la primera red neuronal artificial compuesta por 40 neuronas. La red neuronal tenía capacidades de memoria a corto y largo plazo. • El taller de dos meses en Dartmouth en 1956 introduce por primera vez la investigación en Inteligencia Artificial (IA) y Aprendizaje Automático (AA). Muchos reconocen este taller como el “<em>lugar de nacimiento de la IA</em>”.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1960s</td>
+<td style="text-align: left;">• En 1960, Alexey (Oleksii) Ivakhnenko y Valentin Lapa presentan la representación jerárquica de una red neuronal. Alexey Ivakhnenko se considera el padre del aprendizaje profundo. • Thomas Cover y Peter E. Hart publicaron un artículo sobre los algoritmos de vecino más cercano en 1967. Estos algoritmos se utilizan ahora para tareas de regresión y clasificación en el aprendizaje automático. • Un proyecto relacionado con un robot inteligente, Stanford Cart, comenzó en esta década. El objetivo era navegar a través de un espacio 3D de manera autónoma.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1970s</td>
+<td style="text-align: left;">• Kunihiko Fukushima, un científico informático japonés, publicó un trabajo sobre reconocimiento de patrones utilizando redes neuronales jerárquicas y multilayered. Este trabajo más tarde sentó las bases para las redes neuronales convolucionales. • El proyecto Stanford Cart finalmente logró recorrer una habitación llena de sillas durante cinco horas sin intervención humana en 1979.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1980s</td>
+<td style="text-align: left;">• En 1985, se inventa la red neuronal artificial llamada NETtalk por Terrence Sejnowski. NETtalk puede simplificar modelos de tareas cognitivas humanas de manera que las máquinas puedan aprender a hacerlas. • La máquina de Boltzmann restringida (RBM), inicialmente llamada Harmonium, inventada por Paul Smolensky, se introduce en 1986. Puede analizar un conjunto de entrada y aprender distribución de probabilidades a partir de él. En la actualidad, la RBM modificada por Geoffrey Hinton se utiliza para modelado de temas, recomendaciones impulsadas por inteligencia artificial, clasificación, regresión, reducción de dimensionalidad, filtrado colaborativo, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1990s</td>
+<td style="text-align: left;">• El boosting para el aprendizaje automático se introduce en el papel “<em>The Strength of Weak Learnability</em>”, creado por Robert Schapire y Yoav Freund en 1990. El algoritmo de boosting aumenta la capacidad predictiva de los modelos de inteligencia artificial. El algoritmo genera y combina muchos modelos débiles utilizando técnicas como la media o la votación en las predicciones. • En 1995, Tin Kam Ho introduce bosques de decisiones aleatorios en su artículo. El algoritmo crea múltiples árboles de decisión aleatoriamente y los combina para crear un “bosque”. El uso de múltiples árboles de decisión mejora significativamente la precisión de los modelos. • En 1997, Christoph Bregler, Michele Covell y Malcolm Slaney desarrollan el software “deepfake” más antiguo del mundo. • El año 1997 será un hito importante en el AI. El programa de ajedrez basado en IA, Deep Blue, derrotó a uno de los mejores jugadores de ajedrez de la historia humana, Garry Kasparov. Este incidente arrojó nueva luz sobre la tecnología de IA.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2000</td>
+<td style="text-align: left;">Igor Aizenberg, un investigador de redes neuronales, introduce por primera vez el término “<em>aprendizaje profundo</em>”. Utilizó este término para describir las redes más grandes compuestas por neuronas de umbral booleano.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2009</td>
+<td style="text-align: left;">Fei-Fei Li lanzó el conjunto de datos más extenso de imágenes etiquetadas, ImageNet. Fue diseñado para contribuir a proporcionar datos de entrenamiento versátiles y reales para modelos de IA y ML. The Economist ha comentado sobre ImageNet como un evento excepcional para popularizar la IA a lo largo de la comunidad tecnológica y dar un paso hacia un nuevo era de historia del aprendizaje profundo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2011</td>
+<td style="text-align: left;">El equipo de X Lab de Google desarrolla un algoritmo de inteligencia artificial llamado Google Brain para el procesamiento de imágenes, que es capaz de identificar gatos en imágenes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2014</td>
+<td style="text-align: left;"><ol type="1">
+<li><p>Ian Goodfellow y sus colegas desarrollaron redes neuronales generadoras adversarias (GANs). Los marcos se utilizan para que los modelos de IA sean capaces de generar datos enteramente nuevos dados su conjunto de entrenamiento.</p></li>
+<li><p>El equipo de investigación de Facebook desarrolló DeepFace, que puede distinguir caras humanas casi tan bien como los seres humanos con una tasa de precisión del 97,35%. DeepFace es una red neuronal compuesta por nueve capas. La red se entrena en más de 4 millones de imágenes tomadas de usuarios de Facebook.</p></li>
+<li><p>Google ha comenzado a utilizar Sibyl para hacer predicciones para sus productos. Sibyl es un sistema de aprendizaje automático a escala más amplia. El sistema consta de muchos nuevos algoritmos combinados. Ha mejorado significativamente el rendimiento a través de boosting paralelo y datos orientados a columnas. Además, utiliza el comportamiento de los usuarios para clasificar productos y publicidad.</p></li>
+<li><p>Eugene Goostman, un chatbot de IA desarrollado por tres amigos de San Petersburgo en 2001, se considera el primer chatbot de IA que se asemeja a la inteligencia humana. Este personaje de IA se representa como un niño de 13 años de Odessa, Ucrania, que tiene un conejo de Indias y un padre ginecólogo. Eugene Goostman superó la competencia del test de Turing el 7 de junio de 2014 en la Royal Society.</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2015</td>
+<td style="text-align: left;">El primer programa de IA “<em>AlphaGo</em>” supera a un jugador profesional de Go. Go era un juego que inicialmente era imposible enseñar a una computadora.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2016</td>
+<td style="text-align: left;">Un grupo de científicos presenta Face2Face durante la Conferencia sobre Visión por Computadora y Reconocimiento de Patrones. La mayoría del software “<em>deepfake</em>” utilizado en la actualidad se basa en la lógica y los algoritmos de Face2Face.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2017</td>
+<td style="text-align: left;"><ol type="1">
+<li><p>Se introducen coches autónomos o sin conductor en EE. UU. por parte de Waymo.</p></li>
+<li><p>Se publica el famoso papel “<em>Attention is All You Need</em>”, que introduce la arquitectura del Transformer basada en el mecanismo de autoatención, lo que conduce a un progreso significativo en el procesamiento de lenguaje natural.</p></li>
+</ol></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2021</td>
+<td style="text-align: left;">Google DeepMind’s AlphaFold 2 model places first in the CASP13 protein folding competition in the free modeling (FM) category, bringing a breakthrough in deep-learning-based protein structure prediction.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2022</td>
+<td style="text-align: left;">OpenAI y Google revolucionan los modelos de lenguaje grande para uso masivo. Diversas aplicaciones del aprendizaje automático han comenzado a convertirse en parte de las actividades diarias.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="por-qué-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-machine-learning">Por qué Machine Learning?</h2>
+<p>Antes de profundizar más, es importante tener una visión clara de la finalidad y los motivos detrás del aprendizaje automático. Por lo tanto, las secciones siguientes discutirán la finalidad, los motivos y la importancia del aprendizaje automático para que pueda implementarse en escenarios de vida real.</p>
+<section id="motivación" class="level3">
+<h3 class="anchored" data-anchor-id="motivación">Motivación</h3>
+<p>La motivación para crear un campo multidimensional como el aprendizaje automático surgió del trabajo monótono que los seres humanos tenían que realizar. Con el aumento del uso de sistemas de comunicación digital, dispositivos inteligentes y la Internet, se generan grandes cantidades de datos cada momento. Buscar y organizar todos esos datos cada vez que se necesita resolver un tarea es exhaustivo, tiempo consumidor y monótono. Por lo tanto, en lugar de ir a través del proceso laborioso de revisar billones de datos, los seres humanos optaron por un proceso más automatizado. El proceso automatizado busca encontrar patrones relevantes en los datos y luego utilizar estos patrones para evaluar y resolver tareas. Fue entonces cuando surgió el concepto de programación. Sin embargo, incluso con la programación, los seres humanos tenían que codificar explícitamente o instruir a las máquinas sobre qué hacer, cuándo y cómo hacerlo. Para superar el nuevo problema de codificar cada comando para que las máquinas lo entiendan, los seres humanos desarrollaron la idea de hacer que las máquinas aprendieran ellas mismas de la manera en que los seres humanos lo hacen - simplemente reconociendo patrones.</p>
+</section>
+<section id="propósito" class="level3">
+<h3 class="anchored" data-anchor-id="propósito">Propósito</h3>
+<p>El propósito del aprendizaje automático es hacer que las máquinas inteligentes y automatizar tareas que de otra manera serían tediosas y propensas a errores humanos. El uso de modelos de aprendizaje automático puede hacer que las tareas sean más accesibles y eficientes en el tiempo.</p>
+<p>Por ejemplo, considere un conjunto de datos <span class="math inline">\((x, y) = (0, 0);(1, 1);(2, 2);(3, ?)\)</span>. Aquí, para definir la relación entre <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>, <span class="math inline">\(y\)</span> se puede expresar como una función de <span class="math inline">\(x\)</span>, es decir, <span class="math inline">\(y = f (x) = θ x\)</span>. Esta representación de los dos elementos del conjunto de datos se conoce como el modelo. El propósito del aprendizaje automático es aprender qué es <span class="math inline">\(θ\)</span> a partir de los datos existentes y luego aplicar el aprendizaje automático para determinar que <span class="math inline">\(θ = 1\)</span>. Este conocimiento se puede utilizar luego para encontrar el valor del valor desconocido de <span class="math inline">\(y\)</span> cuando <span class="math inline">\(x = 3\)</span>. Seguro aprenderás cómo formular el modelo hipotético y cómo resolver los valores de <span class="math inline">\(θ\)</span>.</p>
+</section>
+<section id="importancia" class="level3">
+<h3 class="anchored" data-anchor-id="importancia">Importancia</h3>
+<p>Al igual que las máquinas, la ciencia del aprendizaje automático se creó con el fin de hacer que las tareas humanas más fáciles. El análisis de datos era un trabajo tedioso y laborioso, propenso a muchos errores cuando se hacía manualmente. Pero gracias al aprendizaje automático, todos los seres humanos tienen que hacer es proporcionar la máquina con el conjunto de datos o la fuente del conjunto de datos, y la máquina puede analizar los datos, reconocer un patrón y tomar decisiones valiosas sobre los datos.</p>
+<p>Otra ventaja del aprendizaje automático es que los seres humanos no necesitan decirle a la máquina cada paso del trabajo. La máquina misma genera las instrucciones después de aprender de la entrada del conjunto de datos. Por ejemplo, un modelo de reconocimiento de imágenes no requiere decirle a la máquina sobre cada objeto en una imagen. En el caso del aprendizaje supervisado, solo necesitamos decirle a la máquina sobre los etiquetas (como vaca o perro) junto con sus atributos (como proporciones faciales, tamaño del cuerpo, tamaño de las orejas, presencia de cuernos, etc.), y la máquina identificará automáticamente los objetos etiquetados en cualquier imagen basada en los atributos marcados.</p>
+<p>El aprendizaje automático también es esencial en el caso de la predicción de tendencias de datos desconocidos o futuras. Esta aplicación es extremadamente valiosa para crear planes de negocio y esquemas de marketing, y preparar recursos para el futuro. Por ejemplo, el aprendizaje automático puede ayudar a predecir el crecimiento futuro de las instalaciones de módulos solares, incluso hasta 2050 o 2100, basado en tendencias históricas de precios. En comparación con otras herramientas de predicción y técnicas, el aprendizaje automático puede predecir valores con mayor precisión y considerar muchos parámetros adicionales que no se pueden incorporar en fórmulas de predicción definidas utilizadas en herramientas de predicción tradicionales, como la extrapolación de datos estadísticos.</p>
+</section>
+</section>
+<section id="conocimientos-previos-para-aprender-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="conocimientos-previos-para-aprender-machine-learning">Conocimientos previos para aprender Machine Learning</h2>
+<p>El aprendizaje automático es una <strong>ciencia avanzada</strong>; una persona no puede simplemente sumergirse en el mundo del ML sin tener algún conocimiento y habilidades básicos. Para poder entender los conceptos de ML, utilizar los algoritmos y aplicar técnicas de ML en casos prácticos, una persona debe estar equipada con varios temas en matemáticas y ciencias avanzadas, algunos de los cuales se discuten en las siguientes secciones.</p>
+<p>Esta sección muestra solo los temas que un entusiasta de ML debe conocer antes de aprender ML. Los temas no se cubren en detalle aquí.</p>
+<section id="álgebra-lineal" class="level3">
+<h3 class="anchored" data-anchor-id="álgebra-lineal">Álgebra Lineal</h3>
+<p>La álgebra lineal es la rama de matemáticas que se ocupa de las transformaciones lineales. Estas transformaciones lineales se realizan utilizando ecuaciones lineales y funciones lineales. Vectores y matrices se utilizan para notar las ecuaciones lineales y funciones lineales necesarias. Una buena base en álgebra lineal es requerida para entender la intuición más profunda detrás de diferentes algoritmos de ML. Es la base para resolver problemas como aquel de nuestra <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/">app de mantenimiento</a>.</p>
+<section id="ecuaciones-lineales" class="level4">
+<h4 class="anchored" data-anchor-id="ecuaciones-lineales">Ecuaciones Lineales</h4>
+<p>Las ecuaciones lineales son más fáciles de describir matemáticamente y pueden combinarse con transformaciones de modelos no lineales. Hay dos propiedades de una ecuación para ser denominada lineal - <strong>homogeneidad</strong> y <strong>superposición</strong>. El conocimiento de ecuaciones lineales puede ser conveniente para modelar sistemas lineales. Un ejemplo de ecuación lineal es <span class="math inline">\(p_1x_1 + p_2x_2 + ... + p_nx_n + q = 0\)</span>, donde <span class="math inline">\(x_1, x_2 ..., x_n\)</span> son las variables, <span class="math inline">\(p_1, p_2 ..., p_n\)</span> son los coeficientes y <span class="math inline">\(q\)</span> es un constante.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-eq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-eq-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Fig. 1.4. Ejemplos de dos líneas rectas con ecuaciones lineales
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Utilizando álgebra lineal, podemos resolver las ecuaciones de la <a href="#fig-eq">Fig. 1.4</a>, es decir, podemos encontrar la intersección de estas dos líneas. Las ecuaciones para las dos líneas son las siguientes:</p>
+<p><span id="eq-1.2"><span class="math display">\[
+y=\frac{3}{5}x+2, (1.2)
+\tag{2}\]</span></span></p>
+<p><span id="eq-1.3"><span class="math display">\[\frac{x}{5} + \frac{y}{5} = 1.  (1.3) \tag{3}\]</span></span></p>
+<p>Ahora, al resolver la ecuación <span class="math inline">\((1.3)\)</span>, obtenemos:</p>
+<p><span class="math display">\[
+x+y=5,
+\]</span></p>
+<p><span class="math display">\[
+⟹x+(\frac{3}{5}x+2)=5,
+\]</span></p>
+<p><span class="math display">\[
+⟹8x=15,
+\]</span></p>
+<p><span class="math display">\[
+⟹x=1.875.
+\]</span></p>
+<p>Poniendo el valor de <span class="math inline">\(x\)</span> en la ecuación <a href="#eq-1.2"><span class="math inline">\((1.2)\)</span></a>, obtenemos <span class="math inline">\(y = 3.125\)</span>. Por lo tanto, el punto de intersección es <span class="math inline">\((x, y) = (1.875, 3.125)\)</span>.</p>
+</section>
+<section id="tensor-y-rango-de-tensor" class="level4">
+<h4 class="anchored" data-anchor-id="tensor-y-rango-de-tensor">Tensor y Rango de Tensor</h4>
+<p>Un tensor es un término general para vectores y matrices. Es la estructura de datos utilizada en modelos de ML. Un tensor puede tener cualquier dimensión. Un escalar es un tensor con cero dimensiones, un vector es un tensor con una dimensión y una matriz tiene dos dimensiones. Cualquier tensor con más de dos dimensiones se llama tensor <code>n-dimensional</code>. Vectores y matrices se discuten a continuación.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-vec-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Fig. 1.5. Ejemplo de un vector
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="vector" class="level5">
+<h5 class="anchored" data-anchor-id="vector">Vector</h5>
+<p>Un vector es un array unidimensional de números, términos o elementos. Las características del conjunto de datos se representan como vectores. Un vector se puede representar en dimensiones geométricas. Por ejemplo, un vector <span class="math inline">\([3, 5]\)</span> se puede representar geométricamente en un espacio <code>2-dimensional</code>, como se muestra en la <a href="#fig-vec">Fig. 1.5</a>. Este espacio se puede llamar espacio de vectores o espacio de características. En el espacio de vectores, un vector se puede visualizar como una línea con dirección y magnitud.</p>
+</section>
+<section id="matriz" class="level5">
+<h5 class="anchored" data-anchor-id="matriz">Matriz</h5>
+<p>Una matriz es un array bidimensional de escalares con una o más columnas y una o más filas. Un vector con más de una dimensión se llama matriz. El número de filas y columnas se expresa como la dimensión de esa matriz. Por ejemplo, una matriz con una dimensión de <span class="math inline">\(4 × 3\)</span> contiene 4 filas y 3 columnas. Las operaciones de matrices proporcionan cálculos más eficientes que operaciones piecemeal para modelos de aprendizaje automático. Los matrices deben tener la misma dimensión para la suma y resta. Para la multiplicación de matrices, el tamaño de la columna del primer matriz y el tamaño de la fila del segundo matriz deben ser idénticos. Si se multiplica una matriz con dimensión <span class="math inline">\(m × n\)</span> por una matriz con dimensión <span class="math inline">\(n × p\)</span>, entonces el resultado de esta multiplicación será una matriz con dimensión <span class="math inline">\(m × p\)</span>.</p>
+<p>La <a href="#eq-1.4">ecuación 1.4</a> muestra la matriz <span class="math inline">\(A\)</span> con una dimensión de <span class="math inline">\(2 × 3\)</span> y la matriz <span class="math inline">\(B\)</span> con una dimensión de <span class="math inline">\(3 × 1\)</span>. Por lo tanto, estas dos matrices se pueden multiplicar porque cumplen con la condición de multiplicación de matrices. El resultado de la multiplicación será la matriz <span class="math inline">\(C\)</span>, mostrada en la <a href="#eq-1.5">ecuación 1.5</a>. Tiene una dimensión de <span class="math inline">\(2 × 1\)</span>.</p>
+<p><span id="eq-1.4"><span class="math display">\[A=\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\end{bmatrix}; B=\begin{bmatrix}11\\12\\13\end{bmatrix}.&nbsp;&nbsp;&nbsp;(1.4) \tag{4}\]</span></span></p>
+<p><span id="eq-1.5"><span class="math display">\[
+Producto, C=\begin{bmatrix}74\\182\end{bmatrix}.&nbsp;&nbsp;&nbsp;(1.5)
+\tag{5}\]</span></span></p>
+<p>Algunas matrices fundamentales se utilizan con frecuencia, como la matriz de fila, la matriz cuadrada, la matriz de columna, la matriz de identidad, etc. Por ejemplo, una matriz que consiste solo en una fila se conoce como matriz de fila, y una matriz que consiste solo en una columna se conoce como matriz de columna. Una matriz que consiste en un número igual de filas y columnas se llama matriz cuadrada. Una matriz cuadrada con todos los <strong>1</strong>’s a lo largo de su diagonal principal y todos los <strong>0</strong>’s en todos los elementos no diagonales es una <strong>matriz de identidad</strong>. Se muestran ejemplos de matrices diferentes en la Fig. 1.6.</p>
+</section>
+<section id="rango-vs.-dimensión" class="level5">
+<h5 class="anchored" data-anchor-id="rango-vs.-dimensión">Rango vs.&nbsp;Dimensión</h5>
+<p>Rango y dimensión son dos términos relacionados pero distinos en álgebra lineal, aunque a menudo se utilizan indistintamente en aprendizaje automático. En perspectiva de aprendizaje automático, cada columna de una matriz o tensor representa cada característica o subespacio. Por lo tanto, la dimensión de su columna (es decir, subespacio) será el rango de esa matriz o tensor.</p>
+</section>
+<section id="comparación-entre-escalar-vector-matriz-y-tensor" class="level5">
+<h5 class="anchored" data-anchor-id="comparación-entre-escalar-vector-matriz-y-tensor">Comparación entre Escalar, Vector, Matriz y Tensor</h5>
+<p>Un escalar es simplemente un valor numérico sin dirección asignada. Un vector es un array de números de una dimensión que denota una dirección específica. Una matriz es un array de números de dos dimensiones. Finalmente, un tensor es un array de datos de <span class="math inline">\(n\)</span> dimensiones.</p>
+<p>Según las cantidades mencionadas, escalares, vectores y matrices también pueden considerarse tensors, pero limitados a 0, 1 y 2 dimensiones, respectivamente. Las tablas 1.3 y 1.4 resumen las diferencias en el rango o dimensión de estas cuatro cantidades con ejemplos.</p>
+<p>&nbsp;</p>
+<div id="fig-diffmatrix" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffmatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><span class="math display">\[\text{Cuadrada 2x2}\begin{bmatrix}5&amp;2\\-6&amp;1\end{bmatrix};\\
+\text{Rectangular 3x2}\begin{bmatrix}4&amp;1\\2&amp;-1\\-7&amp;5\end{bmatrix};\\
+\text{Ceros 3x5}\begin{bmatrix}0&amp;0&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;0&amp;0\end{bmatrix};\\
+\text{Fila 1x4}\begin{bmatrix}5&amp;-1&amp;0&amp;3\end{bmatrix};\\
+\text{Columna 3x1}\begin{bmatrix}1\\2\\-7\end{bmatrix};\\
+\text{Identidad 3x3}\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\]</span></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-diffmatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6
+</figcaption>
+</figure>
+</div>
+<div id="tbl-comparaciones" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Tabla 1.3. Comparación entre escalar, vector, matrix y tensor.
+</figcaption>
+<div aria-describedby="tbl-comparaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Rango/Dimensión</th>
+<th style="text-align: center;">Objeto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">Escalar</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2 o más</td>
+<td style="text-align: center;">Matriz <span class="math inline">\(m * n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cualquiera</td>
+<td style="text-align: center;">Tensor</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>&nbsp;</p>
+<div id="tbl-ejemplos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Tabla 1.4. Ejemplos de escalar, vector, matriz y tensor.
+</figcaption>
+<div aria-describedby="tbl-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Escalar</th>
+<th style="text-align: center;">Vector</th>
+<th style="text-align: center;">Matriz</th>
+<th style="text-align: center;">Tensor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\begin{bmatrix}1\\2\end{bmatrix}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\begin{bmatrix}1&amp;2\\3&amp;4\end{bmatrix}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\begin{bmatrix}\begin{bmatrix}1&amp;2\end{bmatrix}&amp;\begin{bmatrix}3&amp;4\end{bmatrix}\\\begin{bmatrix}5&amp;6\end{bmatrix}&amp;\begin{bmatrix}7&amp;8\end{bmatrix}\end{bmatrix}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>&nbsp;</p>
+<div id="tbl-defmeds" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-defmeds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Tabla 1.5. Defición de media, mediana y moda.
+</figcaption>
+<div aria-describedby="tbl-defmeds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nombre</th>
+<th style="text-align: center;">Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Media</td>
+<td style="text-align: center;">El valor promedio aritmético.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Mediana</td>
+<td style="text-align: center;">El valor del medio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Moda</td>
+<td style="text-align: center;">El valor más común.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>&nbsp;</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Fig. 1.7. Representación gráfica de la media, mediana y moda
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="estadística" class="level3">
+<h3 class="anchored" data-anchor-id="estadística">Estadística</h3>
+<p>La estadística es un campo vasto de las matemáticas que ayuda a organizar y analizar conjuntos de datos. El análisis de datos es mucho más fácil, rápido y preciso cuando las máquinas lo realizan. Por lo tanto, el aprendizaje automático se utiliza predominantemente para encontrar patrones dentro de los datos. La estadística es el componente fundamental del aprendizaje automático. Por lo tanto, es necesario tener conocimientos de términos estadísticos para aprovechar plenamente los beneficios del aprendizaje automático.</p>
+<section id="medidas-de-tendencia-central" class="level4">
+<h4 class="anchored" data-anchor-id="medidas-de-tendencia-central">Medidas de Tendencia Central</h4>
+<p>Los tres términos estadísticos más comunes utilizados ampliamente en diversas aplicaciones son la media, la mediana y la moda. Estas tres funciones son las medidas de tendencia central de cualquier conjunto de datos, que denotan los valores centrales o medios del conjunto de datos. La tabla 1.5 establece las distinciones entre estos tres términos. Estas son las medidas de tendencia central de un conjunto de datos. La figura 1.7 proporciona una representación gráfica de la media, la mediana y la moda.</p>
+<p>Se presentan tres ejemplos aquí y en la tabla 1.6. Vamos a considerar el primer conjunto de datos: <span class="math inline">\(\{1, 2, 9, 2, 13, 15\}\)</span>. Para encontrar la media de este conjunto de datos, debemos calcular la suma de los números. Aquí, la suma es 42. El conjunto de datos tiene seis puntos de datos. Por lo tanto, la media de este conjunto de datos será 42 ÷ 6 = 7. A continuación, para encontrar la mediana del conjunto de datos, el conjunto de datos necesita ser ordenado en orden ascendente: <span class="math inline">\(\{1, 2, 2, 9, 13, 15\}\)</span>.</p>
+<div id="tbl-varios" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-varios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Tabla 1.6. Varios conjuntos de datos y sus medidas de tendencia central
+</figcaption>
+<div aria-describedby="tbl-varios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Conjuntos</th>
+<th style="text-align: center;">{1,2,9,2,13,15}</th>
+<th style="text-align: center;">{0,5,5,10}</th>
+<th style="text-align: center;">{18,22,24,24,25}</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Media</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">22.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Mediana</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Moda</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Dado que el número de puntos de datos es par, tomaremos los dos valores medios y los promediamos para calcular la mediana. Para este conjunto de datos, el valor de mediana sería <span class="math inline">\((2 + 9) ÷ 2 = 5.5\)</span>. Para la moda, el punto de datos más repetido debe considerarse. Aquí, <span class="math inline">\(2\)</span> es la moda para este conjunto de datos. Este conjunto de datos está desviado hacia la izquierda, es decir, la distribución de los datos es más larga hacia la izquierda o tiene una cola izquierda larga.</p>
+<p>De manera similar, si consideramos el conjunto de datos <span class="math inline">\(\{0, 5, 5, 10\}\)</span>, la media, la mediana y la moda todos son <span class="math inline">\(5\)</span>. Este conjunto de datos está distribuido normalmente. ¿Puedes calcular la media, la mediana y la moda para el conjunto de datos desviado hacia la derecha <span class="math inline">\(\{18, 22, 24, 24, 25\}\)</span>?</p>
+</section>
+<section id="desviación-estándar" class="level4">
+<h4 class="anchored" data-anchor-id="desviación-estándar">Desviación Estándar</h4>
+<p>La desviación estándar (SD) se utiliza para medir la estimación de la variación de los puntos de datos en un conjunto de datos en relación con la media aritmética. Un conjunto de datos completo se conoce como una población, mientras que un subconjunto del conjunto de datos se conoce como una muestra. Las ecuaciones para calcular la desviación estándar de la población y la desviación estándar de la muestra se expresan como Ecuaciones <a href="#eq-1.6">1.6</a> y <a href="#eq-1.7">1.7</a>, respectivamente.</p>
+<p><span id="eq-1.6"><span class="math display">\[
+\text{Desviación estándar poblacional, } \sigma=\sqrt{\frac{1}{N}\sum_{i=1}^N{(x_i-\mu)^2}}.
+\tag{6}\]</span></span></p>
+<p>Donde <span class="math inline">\(\sigma\)</span> simboliza la desviación estándar de la población, <span class="math inline">\(i\)</span> es una variable que enumera los puntos de datos, <span class="math inline">\(x_i\)</span> denota cualquier punto de datos particular, <span class="math inline">\(\mu\)</span> es la media aritmética de la población y <span class="math inline">\(N\)</span> es el número total de puntos de datos en la población.</p>
+<p><span id="eq-1.7"><span class="math display">\[
+\text{Desviación estándar muestral, } s=\sqrt{\frac{1}{N-1}\sum_{i=1}^N{(x_i-\overline{x})^2}}.
+\tag{7}\]</span></span></p>
+<p>Donde <span class="math inline">\(s\)</span> simboliza la desviación estándar de la muestra, <span class="math inline">\(i\)</span> es una variable que enumera los puntos de datos, <span class="math inline">\(x_i\)</span> denota cualquier punto de datos particular, <span class="math inline">\(x\)</span> es la media aritmética de la muestra y <span class="math inline">\(N\)</span> es el número total de puntos de datos en la muestra.</p>
+<p>Un valor bajo de la desviación estándar indica que los puntos de datos se encuentran razonablemente cerca de la media del conjunto de datos, como se muestra en la Fig. 1.8a. Por otro lado, un valor alto de la desviación estándar indica que los puntos de datos se encuentran lejos de la media del conjunto de datos, cubriendo un rango amplio, como se muestra en la Fig. 1.8b.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-desvest" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-desvest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-desvest-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-desvest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Fig. 1.8. Desviación estándas de los datos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="correlación" class="level4">
+<h4 class="anchored" data-anchor-id="correlación">Correlación</h4>
+<p>La correlación muestra cómo de fuerte es la relación entre dos variables. Es una medida estadística de la relación entre dos (y a veces más) variables. Por ejemplo, si una persona puede nadar, probablemente puede sobrevivir después de caerse de un barco. Sin embargo, la correlación no es causalidad. Una correlación fuerte no siempre significa una relación fuerte entre dos variables; podría ser pura coincidencia. Un ejemplo famoso en este sentido es la correlación entre las ventas de helado y los ataques de tiburones. Hay una correlación fuerte entre las ventas de helado y los ataques de tiburones, <strong>pero</strong> los ataques de tiburones ciertamente no ocurren debido a las ventas de helado.</p>
+<p>La correlación se puede clasificar de muchas maneras, como se describe en las secciones siguientes.</p>
+<section id="correlación-positiva-negativa-y-cero" class="level5">
+<h5 class="anchored" data-anchor-id="correlación-positiva-negativa-y-cero">Correlación Positiva, Negativa y Cero</h5>
+<p>En una correlación positiva, la dirección del cambio es la misma para ambas variables, es decir, cuando el valor de una variable aumenta o disminuye, el valor de la otra variable también aumenta o disminuye, respectivamente. En una correlación negativa, la dirección del cambio es opuesta para ambas variables, es decir, cuando el valor de una variable aumenta, el valor de la otra variable disminuye, y viceversa. Para una correlación cero, las dos variables son independientes, es decir, no existe correlación entre ellas. Estos conceptos se presentan detalladamente en la Fig. 1.9.</p>
+</section>
+<section id="correlación-simple-parcial-y-multiple" class="level5">
+<h5 class="anchored" data-anchor-id="correlación-simple-parcial-y-multiple">Correlación Simple, Parcial y Multiple</h5>
+<p>La correlación entre dos variables es una correlación simple. Pero si el número de variables es de tres o más, es una correlación parcial o múltiple. En una correlación parcial, la correlación entre dos variables de interés se determina mientras se mantiene constante la otra variable. Por ejemplo, la correlación entre la cantidad de comida ingerida y la presión arterial para un grupo de edad específico se puede considerar como una correlación parcial. Cuando se determina la correlación entre tres o más variables al mismo tiempo, se llama correlación múltiple. Por ejemplo, la relación entre la cantidad de comida comida, la altura, el peso y la presión arterial se puede considerar como un caso de correlación múltiple.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-correlaciones" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-correlaciones-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Fig. 1.9. Visualización de correlación cero, positiva y negativa a diferentes niveles
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="correlación-lineal-y-no-lineal" class="level5">
+<h5 class="anchored" data-anchor-id="correlación-lineal-y-no-lineal">Correlación Lineal y No Lineal</h5>
+<p>Cuando la dirección del cambio es constante en todos los puntos para todas las variables, la correlación entre ellas es lineal. Si la dirección del cambio cambia, es decir, no es constante en todos los puntos, entonces se conoce como correlación no lineal, también conocida como correlación curvilínea. Un ejemplo de correlación no lineal sería la relación entre la satisfacción del cliente y la alegría del personal. La alegría del personal podría mejorar la experiencia del cliente, pero demasiada alegría podría tener un efecto negativo.</p>
+</section>
+<section id="coeficiente-de-correlación" class="level5">
+<h5 class="anchored" data-anchor-id="coeficiente-de-correlación">Coeficiente de Correlación</h5>
+<p>El coeficiente de correlación se utiliza para representar la correlación de manera numérica. Indica la fuerza de la relación entre las variables. Hay muchos tipos de coeficientes de correlación. Sin embargo, los dos más utilizados y más importantes se discuten brevemente aquí.</p>
+<p><em>Coeficiente de Correlación de Pearson</em></p>
+<p>El Coeficiente de Correlación de Pearson, también conocido como <span class="math inline">\(\text{r de Pearson}\)</span>, es el más popular y ampliamente utilizado para determinar la correlación lineal entre dos variables. En otras palabras, describe la fuerza de la relación entre dos variables basada en la dirección del cambio en las variables.</p>
+<p>Para el coeficiente de correlación de una muestra,</p>
+<p><span id="eq-1.8"><span class="math display">\[
+r_{xy}=\frac{Cov(x,y)}{s_xs_y}=\frac{\frac{\sum{(x_i-\overline{x})(y_i-\overline{y})}}{n-1}}{\sqrt{\frac{(x_i-\overline{x})^2}{n-1}}\sqrt{\frac{y_i-\overline{y})^2}{n-1}}}=\frac{\sum{(x_i-\overline{x})(y_i-\overline{y})}}{\sum{(x_i-\overline{x})^2(y_i-\overline{y})^2}}
+\tag{8}\]</span></span></p>
+<p>Aquí, <span class="math inline">\(r_{xy}\)</span> es el coeficiente de correlación de muestra entre dos variables <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(Cov(x, y)\)</span> es la covarianza de muestra entre dos variables <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(s_x\)</span> , <span class="math inline">\(s_y\)</span> son la desviación estándar de muestra de <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(\overline{x}\)</span>, <span class="math inline">\(\overline{y}\)</span> son el valor promedio de <span class="math inline">\(x\)</span> y el valor promedio de <span class="math inline">\(y\)</span>; <span class="math inline">\(n\)</span> es el número de puntos de datos en <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>.</p>
+<p>Para el coeficiente de correlación de una población,</p>
+<p><span id="eq-1.9"><span class="math display">\[
+\rho_{xy}=\frac{Cov(x,y)}{\sigma_x\sigma_y}=\frac{\frac{\sum{(x_i-\overline{x})(y_i-\overline{y})}}{n}}{\sqrt{\frac{(x_i-\overline{x})^2}{n}}\sqrt{\frac{y_i-\overline{y})^2}{n}}}=\frac{\sum{(x_i-\overline{x})(y_i-\overline{y})}}{\sum{(x_i-\overline{x})^2(y_i-\overline{y})^2}}
+\tag{9}\]</span></span></p>
+<p>Aquí, <span class="math inline">\(\rho_{xy}\)</span> es el coeficiente de correlación de población entre dos variables <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(Cov(x, y)\)</span> es la covarianza de población entre dos variables <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(\sigma_x\)</span> , <span class="math inline">\(\sigma_y\)</span> son la desviación estándar de población de <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>; <span class="math inline">\(\overline{x}\)</span>, <span class="math inline">\(\overline{y}\)</span> son el valor promedio de <span class="math inline">\(x\)</span> y el valor promedio de <span class="math inline">\(y\)</span> y <span class="math inline">\(n\)</span> es el número de puntos de datos en <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>.</p>
+<p>El valor del coeficiente de correlación de Pearson varía entre -1 y 1. Aquí, -1 indica una correlación negativa perfecta, y el valor 1 indica una correlación positiva perfecta. Un coeficiente de correlación de 0 significa que no hay correlación. El coeficiente de correlación de Pearson se aplica cuando los datos de ambas variables provienen de una distribución normal, no hay outliers en los datos y la relación entre las dos variables es lineal.</p>
+<p><em>Coeficiente de Correlación de Spearman</em></p>
+<p>El Coeficiente de Correlación de Spearman determina la relación no-paramétrica entre los rangos de dos variables, es decir, el cálculo se realiza entre los rangos de las dos variables en lugar de los datos en sí mismos. Los rangos se determinan generalmente asignando el rango 1 al dato más pequeño, el rango 2 al siguiente dato más pequeño y así sucesivamente hasta el dato más grande. Por ejemplo, los datos contenidos en una variable son {55, 25, 78, 100, 96, 54}. Por lo tanto, el rango para esa variable particular será {3, 1, 4, 6, 5, 2}. Al calcular los rangos de ambas variables, se puede calcular el coeficiente de correlación de Spearman como sigue:</p>
+<p><span id="eq-1.10"><span class="math display">\[
+\rho=1-\frac{6\sum{d_i^2}}{n(n^2-1)}.
+\tag{10}\]</span></span></p>
+<p>Aquí, <span class="math inline">\(\rho\)</span> es el coeficiente de correlación de Spearman, <span class="math inline">\(n\)</span> es el número de puntos de datos en las variables y <span class="math inline">\(d_i\)</span> es la diferencia de rango en el i-ésimo dato.</p>
+<p>El coeficiente de correlación de Pearson determina la linealidad de la relación, mientras que el coeficiente de correlación de Spearman determina la monotonicidad de la relación. La representación gráfica de la monotonicidad de la relación se muestra en la Fig. 1.10.</p>
+<p>A diferencia de una relación lineal, el ritmo de cambio de los datos no es siempre el mismo en una relación monotónica. Si el ritmo de cambio es en la misma dirección para ambas variables, la relación es positiva monotónica. Por otro lado, si la dirección es opuesta para ambas variables, la relación es negativa monotónica. La relación se llama no-monotónica cuando la dirección del cambio no es siempre la misma o opuesta, sino una combinación.</p>
+<p>El valor del coeficiente de correlación de Spearman varía entre -1 y 1. Un valor de -1 indica una correlación negativa perfecta (correlación negativa de rango), un valor de 1 indica una correlación positiva perfecta (correlación positiva de rango) y un valor de 0 indica que no hay correlación. El coeficiente de correlación de Spearman se utiliza cuando se cumplen uno o más condiciones del coeficiente de correlación de Pearson.</p>
+<p>Además de estos dos coeficientes de correlación, también se utilizan otros como: coeficiente de correlación de rango de Cramer (Cramer’s <span class="math inline">\(\tau\)</span>), coeficiente de correlación de Kendall (Kendall’s <span class="math inline">\(\varphi\)</span>), coeficiente biserial de punto. El uso de los diferentes coeficientes de correlación depende del tipo de aplicación y del tipo de datos.</p>
+</section>
+</section>
+<section id="anomalías" class="level4">
+<h4 class="anchored" data-anchor-id="anomalías">Anomalías</h4>
+<p>Una anomalía es un punto de datos en el conjunto de datos que posee propiedades diferentes a todas las demás y, por lo tanto, varía significativamente del patrón de otras observaciones. Se trata del valor que tiene la mayor deviación del patrón típico seguido por todos los demás valores en el conjunto de datos.</p>
+<p>Los algoritmos de ML tienen una alta sensibilidad a la distribución y el rango de valores de atributos. Las anomalías tienen la tendencia a confundir el proceso de entrenamiento del algoritmo, lo que eventualmente conduce a observaciones erróneas, resultados inexactos, tiempos de entrenamiento más largos y resultados pobres.</p>
+<p>Considera el conjunto de datos <span class="math inline">\((x, y)\)</span>. Aquí, <span class="math inline">\(x\)</span> es la tasa de consumo de agua por día y <span class="math inline">\(y\)</span> es la tasa de consumo de electricidad por día. En la <a href="#fig-outliers">Figura 1.11</a>, podemos ver que estos datos se distribuyen en 2 grupos diferentes, pero uno de los puntos de datos no puede agruparse con ninguno de estos grupos. Este punto de datos actúa como una anomalía en este caso.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-outliers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-outliers-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Fig. 1.11. Representación de un valor atípico. Los puntos negros se encuentran dentro de límites específicos, pero un punto azul está más allá de esos círculos de datos. El punto azul es un valor atípico.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Es importante destacar que ruido y anomalías son dos cosas diferentes. Mientras que una anomalía es un valor de datos significativamente desviado, el ruido es simplemente un valor erróneo.</p>
+<p>La <a href="#fig-anomalia">Figura 1.12</a> visualiza la diferencia entre anomalía y ruido utilizando una señal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-anomalia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anomalia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-anomalia-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anomalia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Fig. 1.12. Diferencia entre anomalía y ruido.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Considera una lista de 100 precios de casas, que principalmente incluye precios que van desde los 3000 hasta los 5000 dólares. Primero, hay una casa en la lista con un precio de 20,000 dólares. Luego, hay una casa en la lista con un precio de -100 dólares. 20,000 es una anomalía aquí, ya que difiere significativamente de los demás precios de casas. Por otro lado, -100 es un ruido, ya que el precio de algo no puede ser un valor negativo. Dado que la anomalía distorsiona significativamente la media aritmética del conjunto de datos y conduce a observaciones erróneas, eliminar anomalías del conjunto de datos es el requisito previo para lograr el resultado correcto.</p>
+</section>
+<section id="histograma" class="level4">
+<h4 class="anchored" data-anchor-id="histograma">Histograma</h4>
+<p>Un histograma se asemeja a un gráfico de columnas y representa la distribución de frecuencia de los datos en barras verticales en un sistema de ejes bidimensional. Los histogramas tienen la capacidad de expresar los datos de manera estructurada, lo que facilita la visualización de datos. Las barras en un histograma se colocan al lado uno del otro sin espacios en blanco entre ellas. El histograma agrupa los datos en barras, lo que proporciona una comprensión clara de la distribución de los datos. La disposición también proporciona una comprensión clara de la distribución de los datos según sus características en el conjunto de datos.</p>
+<p>La Figura 1.13 ilustra tres tipos de histogramas, con una distribución desviada a la izquierda, una distribución normal y una distribución desviada a la derecha.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-histogramas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histogramas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-histogramas-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histogramas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Fig. 1.13. Representación de varias distribuciones usando histogramas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="errores" class="level4">
+<h4 class="anchored" data-anchor-id="errores">Errores</h4>
+<p>El conocimiento de los errores es útil al evaluar la precisión de un modelo de aprendizaje automático (ML). En particular, cuando se prueba el modelo entrenado contra un conjunto de datos de prueba, se compara el resultado del modelo con el resultado conocido del conjunto de datos de prueba. La deviación entre los datos predichos y los datos reales se conoce como el error. Si el error está dentro de los límites tolerables, entonces el modelo está listo para usar; en caso contrario, debe ser reentrenado para mejorar su precisión.</p>
+<p>Hay varios métodos para estimar la precisión del rendimiento de un modelo de ML. Algunos de los métodos más populares son medir el porcentaje de error absoluto promedio (MAPE), el error cuadrado medio (MSE), el error absoluto medio (MAE) y el error raiz cuadrado medio (RMSE). En las ecuaciones de la Tabla 1.7, <span class="math inline">\(n\)</span> representa el número total de veces que ocurre la iteración, <span class="math inline">\(t\)</span> representa una iteración específica o una instancia del conjunto de datos, <span class="math inline">\(e_t\)</span> es la diferencia entre el valor real y el valor predicho del punto de datos, y <span class="math inline">\(y_t\)</span> es el valor real.</p>
+<div id="tbl-errores" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-errores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7: Tabla 1.7. Diferentes tipos de errores
+</figcaption>
+<div aria-describedby="tbl-errores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nombre del error</th>
+<th style="text-align: center;">Ecuación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Error cuadrático medio</td>
+<td style="text-align: center;"><span class="math display">\[
+MSE=\frac{1}{n}\sum_{t=1}^ne_t^2
+\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Raíz del error cuadrático medio</td>
+<td style="text-align: center;"><span class="math display">\[
+RMSE=\sqrt{\frac{1}{n}\sum_{t=1}^ne_t^2}
+\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Error absoluto medio</td>
+<td style="text-align: center;"><span class="math display">\[
+MAE=\sqrt{\frac{1}{n}\sum_{t=1}^n|e_t|}
+\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Error porcentual absoluto medio</td>
+<td style="text-align: center;"><span class="math display">\[
+MAPE=\frac{100%}{n}\sqrt{\sum_{t=1}^n|\frac{e_t}{y_t}|}
+\]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>El concepto de errores es vital para crear un modelo de ML preciso para varios propósitos. Estos se describen con mayor profundidad en la Sección 2.2 del Capítulo 2.</p>
+</section>
+</section>
+<section id="teoría-de-la-probabilidad" class="level3">
+<h3 class="anchored" data-anchor-id="teoría-de-la-probabilidad">Teoría de la Probabilidad</h3>
+<p>La probabilidad es una medida de la probabilidad de que un evento específico ocurra.</p>
+<p>La probabilidad se encuentra entre 0 y 1, donde 0 significa que el evento nunca ocurrirá y 1 significa que el evento es seguro de ocurrir. La probabilidad se define como la ratio del número de resultados deseados al número total de resultados.</p>
+<p><span id="eq-1.11"><span class="math display">\[P(A)=\frac{n(A)}{n}. \tag{11}\]</span></span></p>
+<p>Donde <span class="math inline">\(P (A)\)</span> denota la probabilidad de un evento <span class="math inline">\(A\)</span>, <span class="math inline">\(n (A)\)</span> denota el número de ocurrencias del evento <span class="math inline">\(A\)</span> y <span class="math inline">\(n\)</span> denota el número total de resultados posibles, también conocido como el espacio muestral.</p>
+<p>Vamos a ver un ejemplo común. Un dado estándar con seis caras contiene un número entre 1 y 6 en cada una de las caras. Cuando se lanza un dado, cualquier uno de los seis números puede aparecer en la cara superior. Por lo tanto, la probabilidad de obtener un 6 en el dado se determina según se muestra en la ecuación 1.12.</p>
+<p><span id="eq-1.12"><span class="math display">\[
+P(6)=\frac{1}{6}=0.167=16.7\text{%}
+\tag{12}\]</span></span></p>
+<p>La teoría de la probabilidad es el campo que abarca las matemáticas relacionadas con la probabilidad. Cualquier algoritmo de aprendizaje depende de la suposición probabilística de los datos. Como los modelos de ML manejan la incertidumbre de los datos, el ruido, la distribución de probabilidad, etc., varios conceptos fundamentales de la teoría de la probabilidad son necesarios, que se cubren en esta sección 1.5.3.</p>
+<section id="distribución-de-probabilidad" class="level4">
+<h4 class="anchored" data-anchor-id="distribución-de-probabilidad">Distribución de Probabilidad</h4>
+<p>En la teoría de la probabilidad, todos los posibles resultados numéricos de cualquier experimento se representan mediante variables aleatorias. Una función de distribución de probabilidad produce los valores numéricos posibles de una variable aleatoria dentro de un rango específico. Las variables aleatorias son de dos tipos: discretas y continuas. Por lo tanto, la distribución de probabilidad se puede categorizar en dos tipos según el tipo de variable aleatoria involucrada—función de densidad de probabilidad y función de masa de probabilidad.</p>
+<section id="función-de-densidad-de-probabilidad" class="level5">
+<h5 class="anchored" data-anchor-id="función-de-densidad-de-probabilidad">Función de Densidad de Probabilidad</h5>
+<p>Los valores numéricos posibles de una variable aleatoria continua se pueden calcular utilizando la función de densidad de probabilidad (PDF). La representación gráfica de esta distribución es continua. Por ejemplo, en la <a href="#fig-funcionFDP">Figura 1.14</a>, cuando un modelo busca la probabilidad de la altura de las personas en el rango de 160-170 cm, podría utilizar una PDF para indicar la probabilidad total de que el rango de la variable aleatoria continua ocurra. Aquí, f (x) es la PDF de la variable aleatoria x.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-funcionFDP" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funcionFDP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-funcionFDP-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funcionFDP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Fig. 1.14. Ejemplo de función de densidad de probabilidad.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="función-de-masa-de-probabilidad" class="level5">
+<h5 class="anchored" data-anchor-id="función-de-masa-de-probabilidad">Función de Masa de Probabilidad</h5>
+<p>Cuando se implementa una función para encontrar los valores numéricos posibles de una variable aleatoria discreta, la función se conoce como función de masa de probabilidad (PMF). Las variables aleatorias discretas tienen un número finito de valores. Por lo tanto, no obtenemos una curva continua cuando se representa gráficamente la PMF. Por ejemplo, si consideramos el lanzamiento de un dado de seis caras, tendremos un número finito de resultados, como se muestra en la <a href="#fig-funcionFMP">Figura 1.15</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-funcionFMP" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-funcionFMP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-funcionFMP-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funcionFMP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Fig. 1.15. Ejemplo de función de masa de probabilidad.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="distribución-gaussiana-o-distribución-normal" class="level4">
+<h4 class="anchored" data-anchor-id="distribución-gaussiana-o-distribución-normal">Distribución Gaussiana o Distribución Normal</h4>
+<p>La probabilidad acumulada de variables aleatorias normales se presenta en la distribución Gaussiana o normal. El gráfico depende de la media y la distribución estándar de los datos. En una distribución estándar, la media de los datos es 0 y la desviación estándar es 1. Un gráfico de distribución normal es una curva en forma de campana, como se muestra en la <a href="#fig-normalDistr">Fig. 1.16</a>. Por lo tanto, también se conoce como distribución de curva en forma de campana.</p>
+<p>La ecuación que representa la distribución Gaussiana o normal es:</p>
+<p><span id="eq-1.13"><span class="math display">\[
+P(x)=\frac{1}{\alpha\sqrt{2\pi}}e^{\frac{-(x+\mu)^2}{2\alpha^2}}
+\tag{13}\]</span></span></p>
+<p>Donde <span class="math inline">\(P(x)\)</span> denota la densidad de probabilidad de la distribución normal, <span class="math inline">\(α\)</span> denota la desviación estándar, <span class="math inline">\(μ\)</span> denota la media del conjunto de datos y <span class="math inline">\(x\)</span> denota un punto de datos.</p>
+</section>
+<section id="distribución-de-bernoulli" class="level4">
+<h4 class="anchored" data-anchor-id="distribución-de-bernoulli">Distribución de Bernoulli</h4>
+<p>Una distribución de probabilidad sobre el ensayo de Bernoulli es la distribución de Bernoulli. El ensayo de Bernoulli es un experimento o evento que solo tiene dos resultados. Por ejemplo, lanzar una moneda se puede considerar como un ensayo de Bernoulli, ya que solo puede tener dos resultados - cara o sello. Normalmente, los resultados se observan en términos de éxito o fracaso. En este caso, podemos decir que obtener una cara será un éxito. Por otro lado, no obtener una cara o obtener un sello sería un fracaso. La distribución de Bernoulli se ha visualizado en la <a href="#fig-bernoulliDistr">Fig. 1.17</a>, que plotea la probabilidad de dos ensayos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-normalDistr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normalDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-normalDistr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Fig. 1.16. Distribución normal.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bernoulliDistr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bernoulliDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bernoulliDistr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bernoulliDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Fig. 1.17. Distribución de Bernoulli
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-centralTeorema" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-centralTeorema-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-centralTeorema-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-centralTeorema-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Fig. 1.18. Demostración gráfica del teorema del límite central.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="teorema-del-límite-central" class="level4">
+<h4 class="anchored" data-anchor-id="teorema-del-límite-central">Teorema del Límite Central</h4>
+<p>Considera un conjunto de datos grande de cualquier distribución. El teorema del límite central afirma que, independientemente de la distribución de los números en el conjunto de datos, la media aritmética de las muestras de datos extraídas del conjunto de datos principal tendrá una distribución normal. Cuanto mayor sea el tamaño de la muestra, más cerca estará la media de una distribución normal. El teorema se ha demostrado en la <a href="#fig-centralTeorema">Fig. 1.18</a>. Se puede ver que la población no sigue una distribución normal, pero cuando se muestrea la media, la muestra forma una distribución normal.</p>
+</section>
+</section>
+<section id="cálculo" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo">Cálculo</h3>
+<p>El cálculo de Newton es ampliamente útil para resolver una variedad de problemas. Uno de los algoritmos más populares de ML es el algoritmo de <strong>descenso de gradientes</strong>. El algoritmo de descenso de gradientes, junto con la retropropagación (backpropagation), es útil en el proceso de entrenamiento de modelos de ML, que dependen intensivamente del cálculo. Por lo tanto, el cálculo diferencial, el cálculo integral y las ecuaciones diferenciales son todos aspectos necesarios para familiarizarse con antes de estudiar ML.</p>
+<section id="derivada-y-pendiente" class="level4">
+<h4 class="anchored" data-anchor-id="derivada-y-pendiente">Derivada y Pendiente</h4>
+<p>La derivada se define como la tasa de cambio de una función con respecto a una variable. Por ejemplo, la velocidad de un coche es la derivada de la desplazamiento del coche con respecto al tiempo. La derivada es equivalente a la pendiente de una línea en un punto específico. La pendiente ayuda a visualizar cómo empinada es una línea. Una línea con una pendiente más alta es más empinada que una línea con una pendiente más baja. El concepto de pendiente se muestra en la <a href="#fig-pendiente">Figura 1.19</a>.</p>
+<p><span id="eq-1.14"><span class="math display">\[
+pendiente, m =\frac{\Delta{y}}{\Delta{x}}
+\tag{14}\]</span></span></p>
+<p>Se utiliza ampliamente la derivada en ML, especialmente en problemas de optimización, como el descenso de gradientes. Por ejemplo, en el descenso de gradientes, se utilizan derivadas para encontrar el camino más empinado para maximizar o minimizar una función objetivo (por ejemplo, la precisión o función de error de un modelo).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pendiente" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pendiente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-pendiente-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pendiente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Fig. 1.19. Ilustración concepto de pendiente.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="derivadas-parciales" class="level4">
+<h4 class="anchored" data-anchor-id="derivadas-parciales">Derivadas Parciales</h4>
+<p>Si una función depende de dos o más variables, entonces la derivada parcial de la función es su derivada con respecto a una de las variables, manteniendo las otras variables constantes. Las derivadas parciales se requieren para técnicas de optimización en ML, que utilizan derivadas parciales para ajustar los pesos para cumplir con la función objetivo. Las funciones objetivo son diferentes para cada problema. Por lo tanto, la derivada parcial ayuda a decidir si aumentar o disminuir los pesos para hacer un ajuste a la función objetivo.</p>
+</section>
+<section id="máximos-y-mínimos" class="level4">
+<h4 class="anchored" data-anchor-id="máximos-y-mínimos">Máximos y Mínimos</h4>
+<p>Para una función no lineal, el pico más alto o el valor máximo se refiere a los máximos, y el pico más bajo o el valor mínimo se refiere a los mínimos. En otras palabras, el punto en el que la derivada de una función es cero se define como los máximos o los mínimos. Estos son los puntos en los que el valor de la función se mantiene constante, es decir, la tasa de cambio es cero. Este concepto de máximos y mínimos es necesario para minimizar la función de coste (diferencia entre el valor verdadero y el valor de salida) de cualquier modelo de ML. Un mínimo local es el valor de una función que es menor que los puntos vecinos, pero no necesariamente menor que todos los puntos en el espacio de solución. Un mínimo global es el valor más pequeño de la función que existe en ese espacio de solución. El caso es el mismo para máximos globales y locales. Un máximo local es el valor de una función que es mayor que los puntos vecinos, pero no necesariamente mayor que todos los puntos en el espacio de solución. Un máximo global es el valor más grande de la función que existe en ese espacio de solución. La <a href="#fig-derivadas">figura 1.20</a> muestra máximos y mínimos globales y locales en un espacio de solución.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-derivadas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-derivadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-derivadas-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-derivadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Fig. 1.20. Representación de máximos y mínimos.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ecuación-diferencial" class="level4">
+<h4 class="anchored" data-anchor-id="ecuación-diferencial">Ecuación Diferencial</h4>
+<p>Una ecuación diferencial (ED) representa la relación entre una o más funciones y sus derivadas con respecto a una o más variables. Las EDs son muy útiles en el modelado de sistemas y, por lo tanto, se pueden utilizar en ML para modelado dinámico, especialmente en redes neuronales.</p>
+<p>El siguiente es un ejemplo de una ecuación diferencial:</p>
+<p><span id="eq-1.15"><span class="math display">\[
+\frac{d^2y}{dx^2}+4=1.
+\tag{15}\]</span></span></p>
+<section id="orden-y-grado" class="level5">
+<h5 class="anchored" data-anchor-id="orden-y-grado">Orden y Grado</h5>
+<p>En ecuaciones diferenciales, el orden más alto de la derivada utilizada en la ecuación es el orden de la ecuación. El grado de una ecuación diferencial es el poder de su derivada más alta. Por ejemplo, esta es una ecuación diferencial de cuarto orden y primer grado:</p>
+<p><span id="eq-1.16"><span class="math display">\[
+\frac{d^4y}{dx^4}+(\frac{d^2y}{dx^2})^2+4\frac{dy}{dx}+6x=0.
+\tag{16}\]</span></span></p>
+<p>aquí, la derivada más alta es <span class="math inline">\(\frac{d^4y}{dx^4}\)</span>. El orden de la derivada más alta es 4, por lo que esta es una ecuación diferencial de cuarto orden. El poder de la derivada más alta es 1, y por lo tanto, esta es una ecuación diferencial de primer grado. Algunos ejemplos adicionales se muestran en la Tabla 1.8</p>
+<div id="tbl-ecuacionesDiff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ecuacionesDiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8: Tabla 1.8. Ecuaciones diferenciales con su grado y orden.
+</figcaption>
+<div aria-describedby="tbl-ecuacionesDiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ecuación</th>
+<th style="text-align: center;">Orden</th>
+<th style="text-align: center;">Grado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[
+    \frac{d^3y}{dx^3}+6x\frac{dy}{dx}=e^y
+                              \]</span></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[
+    \frac{dy}{dx}+(\frac{d^2y}{dx^2})^3=7x
+                              \]</span></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[
+    \frac{d^2y}{dx^2}+(\frac{dy}{dx})^3=7x
+                              \]</span></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="ecuación-diferencial-ordinaria-y-parcial" class="level5">
+<h5 class="anchored" data-anchor-id="ecuación-diferencial-ordinaria-y-parcial">Ecuación Diferencial Ordinaria y Parcial</h5>
+<p>Como se discutió anteriormente, las ecuaciones diferenciales pueden tener más de una variable. Cuando una ecuación consiste en diferenciales con respecto a una variable, se llama ecuación diferencial ordinaria (EDO). Por otro lado, cuando la ecuación involucra diferenciales con respecto a más de una variable, se conoce como ecuación diferencial parcial (EDP). El símbolo <span class="math inline">\(d\)</span> se utiliza para ecuaciones diferenciales ordinarias y el símbolo <span class="math inline">\(\partial\)</span> se utiliza para ecuaciones diferenciales parciales.</p>
+<p>Por ejemplo: <span class="math inline">\(\frac{d^2y}{dx^2} + \frac{dy}{dx} + 1 = 0\)</span> es una EDO y <span class="math inline">\(\frac{\partial^2y}{\partial{x}^2} + \frac{\partial{y}}{\partial{x}} + 1 = 0\)</span> es una EDP.</p>
+</section>
+<section id="ecuación-lineal-y-no-lineal" class="level5">
+<h5 class="anchored" data-anchor-id="ecuación-lineal-y-no-lineal">Ecuación Lineal y No Lineal</h5>
+<p>Las ecuaciones pueden tener variables dependientes e independientes. Estas variables pueden tener grados más altos dependiendo del tipo de ecuación. Cuando las ecuaciones diferenciales contienen variables dependientes con grado 1, se consideran ecuaciones diferenciales lineales. Por otro lado, si las ecuaciones diferenciales contienen variables dependientes con un grado más alto, se consideran ecuaciones diferenciales no lineales.</p>
+<p>Por ejemplo, en la ecuación <span class="math inline">\(\frac{d^2y}{dx^2} + \frac{dy}{dx} + 1 = 0\)</span>, el grado de la derivada más alta es 1. Por lo tanto, es una ecuación lineal. De nuevo, la ecuación <span class="math inline">\((\frac{dy}{dx})^2 + x = 0\)</span> tiene 2 como su grado de la derivada más alta. Por lo tanto, es un ejemplo de ecuación no lineal.</p>
+<p>Hasta aquí tienes los conceptos básicos que deberías revisar, repasar, aprender o profundizar, para lograr aplicar ML.</p>
+
+
+</section>
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Introducción Al {Machine} {Learning}},
+  date = {2025-02-05},
+  url = {https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2025. <span>“Introducción Al Machine
+Learning.”</span> February 5, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/">https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2024, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
