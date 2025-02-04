@@ -82,3 +82,13 @@ div.quarto-grid-item:hover{
   transform: scale(1.05);
   box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
 }
+
+.page-item{
+    background-color: $naranja-oscuro;
+    color: $azul-oscuro;
+}
+
+.page-item:hoover{
+    background-color: $azul-oscuro;
+    color: $naranja-oscuro;
+}
