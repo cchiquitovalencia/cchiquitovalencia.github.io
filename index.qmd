@@ -23,7 +23,7 @@ about:
 
 # Crossing the path to Data Science
 
-#### Technical Skills: R, Quarto, Amazon Web Services, Power BI, Excel.
+#### **Technical Skills**: [R](https://www.r-project.org/), [Quarto](https://quarto.org/), [Amazon Web Services](https://aws.amazon.com/), [Power BI](https://app.powerbi.com/), Excel, Maintenance Scheduling, Data Analysis, Mixed Integer Linear Programming, Machine Learning, [Shopify Web Design](https://www.shopify.com/co).
 
 ## Education
 

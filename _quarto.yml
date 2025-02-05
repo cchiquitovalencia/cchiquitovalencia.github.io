@@ -10,9 +10,9 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
-      - resources.qmd
+        text: Inicio
+      #- about.qmd
+      #- resources.qmd
       - posts.qmd
   page-footer:
     background: light
