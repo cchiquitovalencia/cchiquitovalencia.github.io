@@ -50,7 +50,7 @@
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: El diagrama de bloques del flujo de trabajo de aprendizaje automático
+Figura&nbsp;1: El diagrama de bloques del flujo de trabajo de aprendizaje automático
 </figcaption>
 </figure>
 </div>
@@ -90,7 +90,7 @@ Figure&nbsp;1: El diagrama de bloques del flujo de trabajo de aprendizaje autom�
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: El diagrama de bloques de preprocesamiento de datos
+Figura&nbsp;2: El diagrama de bloques de preprocesamiento de datos
 </figcaption>
 </figure>
 </div>
@@ -163,7 +163,7 @@ Figure&nbsp;2: El diagrama de bloques de preprocesamiento de datos
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/images/clipboard-76734573.png" class="img-fluid figure-img" width="250">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Figure 3. El aprendizaje profundo cae dentro del subconjunto del aprendizaje automático, y el aprendizaje automático cae dentro del subconjunto de la inteligencia artificial. La ciencia de datos implica una parte de todos estos tres campos.
+Figura&nbsp;3: Figure 3. El aprendizaje profundo cae dentro del subconjunto del aprendizaje automático, y el aprendizaje automático cae dentro del subconjunto de la inteligencia artificial. La ciencia de datos implica una parte de todos estos tres campos.
 </figcaption>
 </figure>
 </div>
@@ -173,7 +173,7 @@ Figure&nbsp;3: Figure 3. El aprendizaje profundo cae dentro del subconjunto del 
 <div id="tbl-estimacasas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-estimacasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Tabla 1.1. Muestra de datos de precios de casas.
+Tabla&nbsp;1: Tabla 1.1. Muestra de datos de precios de casas.
 </figcaption>
 <div aria-describedby="tbl-estimacasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -212,7 +212,7 @@ Table&nbsp;1: Tabla 1.1. Muestra de datos de precios de casas.
 <div id="tbl-historia" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-historia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Tabla 1.2. Desarrollo histórico de Machine Learning
+Tabla&nbsp;2: Tabla 1.2. Desarrollo histórico de Machine Learning
 </figcaption>
 <div aria-describedby="tbl-historia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -338,7 +338,7 @@ Table&nbsp;2: Tabla 1.2. Desarrollo histórico de Machine Learning
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-eq-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Fig. 1.4. Ejemplos de dos líneas rectas con ecuaciones lineales
+Figura&nbsp;4: Fig. 1.4. Ejemplos de dos líneas rectas con ecuaciones lineales
 </figcaption>
 </figure>
 </div>
@@ -365,7 +365,7 @@ Figure&nbsp;4: Fig. 1.4. Ejemplos de dos líneas rectas con ecuaciones lineales
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-vec-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Fig. 1.5. Ejemplo de un vector
+Figura&nbsp;5: Fig. 1.5. Ejemplo de un vector
 </figcaption>
 </figure>
 </div>
@@ -398,14 +398,14 @@ Figure&nbsp;5: Fig. 1.5. Ejemplo de un vector
 <p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCuadrada%202x2%7D%5Cbegin%7Bbmatrix%7D5&amp;2%5C%5C-6&amp;1%5Cend%7Bbmatrix%7D;%5C%5C%0A%5Ctext%7BRectangular%203x2%7D%5Cbegin%7Bbmatrix%7D4&amp;1%5C%5C2&amp;-1%5C%5C-7&amp;5%5Cend%7Bbmatrix%7D;%5C%5C%0A%5Ctext%7BCeros%203x5%7D%5Cbegin%7Bbmatrix%7D0&amp;0&amp;0&amp;0&amp;0%5C%5C0&amp;0&amp;0&amp;0&amp;0%5C%5C0&amp;0&amp;0&amp;0&amp;0%5Cend%7Bbmatrix%7D;%5C%5C%0A%5Ctext%7BFila%201x4%7D%5Cbegin%7Bbmatrix%7D5&amp;-1&amp;0&amp;3%5Cend%7Bbmatrix%7D;%5C%5C%0A%5Ctext%7BColumna%203x1%7D%5Cbegin%7Bbmatrix%7D1%5C%5C2%5C%5C-7%5Cend%7Bbmatrix%7D;%5C%5C%0A%5Ctext%7BIdentidad%203x3%7D%5Cbegin%7Bbmatrix%7D1&amp;0&amp;0%5C%5C0&amp;1&amp;0%5C%5C0&amp;0&amp;1%5Cend%7Bbmatrix%7D"></p>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-diffmatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6
+Figura&nbsp;6
 </figcaption>
 </figure>
 </div>
 <div id="tbl-comparaciones" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Tabla 1.3. Comparación entre escalar, vector, matrix y tensor.
+Tabla&nbsp;3: Tabla 1.3. Comparación entre escalar, vector, matrix y tensor.
 </figcaption>
 <div aria-describedby="tbl-comparaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -441,7 +441,7 @@ Table&nbsp;3: Tabla 1.3. Comparación entre escalar, vector, matrix y tensor.
 <div id="tbl-ejemplos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Tabla 1.4. Ejemplos de escalar, vector, matriz y tensor.
+Tabla&nbsp;4: Tabla 1.4. Ejemplos de escalar, vector, matriz y tensor.
 </figcaption>
 <div aria-describedby="tbl-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -475,7 +475,7 @@ Table&nbsp;4: Tabla 1.4. Ejemplos de escalar, vector, matriz y tensor.
 <div id="tbl-defmeds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-defmeds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5: Tabla 1.5. Defición de media, mediana y moda.
+Tabla&nbsp;5: Tabla 1.5. Defición de media, mediana y moda.
 </figcaption>
 <div aria-describedby="tbl-defmeds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -512,7 +512,7 @@ Table&nbsp;5: Tabla 1.5. Defición de media, mediana y moda.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Fig. 1.7. Representación gráfica de la media, mediana y moda
+Figura&nbsp;7: Fig. 1.7. Representación gráfica de la media, mediana y moda
 </figcaption>
 </figure>
 </div>
@@ -531,7 +531,7 @@ Figure&nbsp;7: Fig. 1.7. Representación gráfica de la media, mediana y moda
 <div id="tbl-varios" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-varios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6: Tabla 1.6. Varios conjuntos de datos y sus medidas de tendencia central
+Tabla&nbsp;6: Tabla 1.6. Varios conjuntos de datos y sus medidas de tendencia central
 </figcaption>
 <div aria-describedby="tbl-varios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -586,7 +586,7 @@ Table&nbsp;6: Tabla 1.6. Varios conjuntos de datos y sus medidas de tendencia ce
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-desvest-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-desvest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Fig. 1.8. Desviación estándas de los datos
+Figura&nbsp;8: Fig. 1.8. Desviación estándas de los datos
 </figcaption>
 </figure>
 </div>
@@ -612,7 +612,7 @@ Figure&nbsp;8: Fig. 1.8. Desviación estándas de los datos
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-correlaciones-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Fig. 1.9. Visualización de correlación cero, positiva y negativa a diferentes niveles
+Figura&nbsp;9: Fig. 1.9. Visualización de correlación cero, positiva y negativa a diferentes niveles
 </figcaption>
 </figure>
 </div>
@@ -658,7 +658,7 @@ Figure&nbsp;9: Fig. 1.9. Visualización de correlación cero, positiva y negativ
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-outliers-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Fig. 1.11. Representación de un valor atípico. Los puntos negros se encuentran dentro de límites específicos, pero un punto azul está más allá de esos círculos de datos. El punto azul es un valor atípico.
+Figura&nbsp;10: Fig. 1.11. Representación de un valor atípico. Los puntos negros se encuentran dentro de límites específicos, pero un punto azul está más allá de esos círculos de datos. El punto azul es un valor atípico.
 </figcaption>
 </figure>
 </div>
@@ -674,7 +674,7 @@ Figure&nbsp;10: Fig. 1.11. Representación de un valor atípico. Los puntos negr
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-anomalia-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anomalia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Fig. 1.12. Diferencia entre anomalía y ruido.
+Figura&nbsp;11: Fig. 1.12. Diferencia entre anomalía y ruido.
 </figcaption>
 </figure>
 </div>
@@ -694,7 +694,7 @@ Figure&nbsp;11: Fig. 1.12. Diferencia entre anomalía y ruido.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-histogramas-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histogramas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Fig. 1.13. Representación de varias distribuciones usando histogramas.
+Figura&nbsp;12: Fig. 1.13. Representación de varias distribuciones usando histogramas.
 </figcaption>
 </figure>
 </div>
@@ -708,7 +708,7 @@ Figure&nbsp;12: Fig. 1.13. Representación de varias distribuciones usando histo
 <div id="tbl-errores" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-errores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;7: Tabla 1.7. Diferentes tipos de errores
+Tabla&nbsp;7: Tabla 1.7. Diferentes tipos de errores
 </figcaption>
 <div aria-describedby="tbl-errores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -770,7 +770,7 @@ Table&nbsp;7: Tabla 1.7. Diferentes tipos de errores
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-funcionFDP-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funcionFDP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Fig. 1.14. Ejemplo de función de densidad de probabilidad.
+Figura&nbsp;13: Fig. 1.14. Ejemplo de función de densidad de probabilidad.
 </figcaption>
 </figure>
 </div>
@@ -788,7 +788,7 @@ Figure&nbsp;13: Fig. 1.14. Ejemplo de función de densidad de probabilidad.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-funcionFMP-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funcionFMP-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Fig. 1.15. Ejemplo de función de masa de probabilidad.
+Figura&nbsp;14: Fig. 1.15. Ejemplo de función de masa de probabilidad.
 </figcaption>
 </figure>
 </div>
@@ -814,7 +814,7 @@ Figure&nbsp;14: Fig. 1.15. Ejemplo de función de masa de probabilidad.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-normalDistr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Fig. 1.16. Distribución normal.
+Figura&nbsp;15: Fig. 1.16. Distribución normal.
 </figcaption>
 </figure>
 </div>
@@ -828,7 +828,7 @@ Figure&nbsp;15: Fig. 1.16. Distribución normal.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-bernoulliDistr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bernoulliDistr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Fig. 1.17. Distribución de Bernoulli
+Figura&nbsp;16: Fig. 1.17. Distribución de Bernoulli
 </figcaption>
 </figure>
 </div>
@@ -842,7 +842,7 @@ Figure&nbsp;16: Fig. 1.17. Distribución de Bernoulli
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-centralTeorema-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-centralTeorema-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Fig. 1.18. Demostración gráfica del teorema del límite central.
+Figura&nbsp;17: Fig. 1.18. Demostración gráfica del teorema del límite central.
 </figcaption>
 </figure>
 </div>
@@ -870,7 +870,7 @@ Figure&nbsp;17: Fig. 1.18. Demostración gráfica del teorema del límite centra
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-pendiente-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pendiente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Fig. 1.19. Ilustración concepto de pendiente.
+Figura&nbsp;18: Fig. 1.19. Ilustración concepto de pendiente.
 </figcaption>
 </figure>
 </div>
@@ -892,7 +892,7 @@ Figure&nbsp;18: Fig. 1.19. Ilustración concepto de pendiente.
 <img src="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/index_files/figure-html/fig-derivadas-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-derivadas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Fig. 1.20. Representación de máximos y mínimos.
+Figura&nbsp;19: Fig. 1.20. Representación de máximos y mínimos.
 </figcaption>
 </figure>
 </div>
@@ -912,7 +912,7 @@ Figure&nbsp;19: Fig. 1.20. Representación de máximos y mínimos.
 <div id="tbl-ecuacionesDiff" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ecuacionesDiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;8: Tabla 1.8. Ecuaciones diferenciales con su grado y orden.
+Tabla&nbsp;8: Tabla 1.8. Ecuaciones diferenciales con su grado y orden.
 </figcaption>
 <div aria-describedby="tbl-ecuacionesDiff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -967,14 +967,14 @@ Table&nbsp;8: Tabla 1.8. Ecuaciones diferenciales con su grado y orden.
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Introducción Al {Machine} {Learning}},
   date = {2025-02-05},
   url = {https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Introducción Al Machine
 Learning.”</span> February 5, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/">https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/</a>.
 </div></div></section></div> ]]></description>
@@ -1028,14 +1028,14 @@ Learning.”</span> February 5, 2025. <a href="https://cchiquitovalencia.github.
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Una Aplicación Robusta Para {Mantenimiento}},
   date = {2025-02-04},
   url = {https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Una Aplicación Robusta Para
 Mantenimiento.”</span> February 4, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/">https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/</a>.
 </div></div></section></div> ]]></description>
@@ -1128,17 +1128,6 @@ PLAN.”</span> February 3, 2025. <a href="https://cchiquitovalencia.github.io/p
   <guid>https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/</guid>
   <pubDate>Mon, 03 Feb 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/gantt.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title></title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>AWS</category>
-  <category>EC2</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/</guid>
-  <pubDate>Thu, 30 Jan 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/deploy_shiny.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Desplegar Shiny App</title>
@@ -15821,6 +15810,611 @@ November 13, 2023. <a href="https://cchiquitovalencia.github.io/posts/2023-11-13
   <guid>https://cchiquitovalencia.github.io/posts/2023-11-13-random_search_algorithm/</guid>
   <pubDate>Mon, 13 Nov 2023 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2023-11-13-random_search_algorithm/random_search_image_5.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Stochastic Hill Climbing</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="taxonomía" class="level2">
+<h2 class="anchored" data-anchor-id="taxonomía">Taxonomía</h2>
+<p>El algoritmo <code>Stochastic Hill Climbing</code> es un algoritmo de <code>Optimización Estocástica</code> y es un algoritmo de <code>Optimización Local</code> (a diferencia de la <code>Optimización Global</code>). Es una técnica de búsqueda directa, ya que no requiere derivadas del espacio de búsqueda. <code>Stochastic Hill Climbing</code> es una extensión de los algoritmos deterministas como el <code>Simple Hill Climbing</code> (primer mejor vecino), <code>Steepest-Ascent Hill Climbing</code> (mejor vecino), y un padre de enfoques como <code>Parallel Hill Climbing</code> y <code>Random-Restart Hill Climbing</code>.</p>
+</section>
+<section id="estrategia" class="level2">
+<h2 class="anchored" data-anchor-id="estrategia">Estrategia</h2>
+<p>La estrategia del <code>Stochastic Hill Climbing</code> consiste en iterar el proceso de selección aleatoria de un vecino para una solución candidata y aceptarla sólo si da lugar a una mejora. La estrategia se propuso para hacer frente a las limitaciones de las técnicas de ascenso determinista que se atascaban en óptimos locales debido a su avariciosa aceptación de movimientos vecinos.</p>
+</section>
+<section id="procedimiento" class="level2">
+<h2 class="anchored" data-anchor-id="procedimiento">Procedimiento</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/psd_stochastic_hill_climbing.png" class="img-fluid figure-img"></p>
+<figcaption>Pseudocódigo Stochastic Hill Climbing</figcaption>
+</figure>
+</div>
+</section>
+<section id="heurística" class="level2">
+<h2 class="anchored" data-anchor-id="heurística">Heurística</h2>
+<p><code>Stochastic Hill Climbing</code> fue diseñado para ser utilizado en dominios discretos con vecinos explícitos, como la optimización combinatoria (en comparación con la optimización de funciones continuas).</p>
+<p>La estrategia del algoritmo puede aplicarse a dominios continuos haciendo uso de un tamaño de paso para definir los vecinos de la solución candidata (como la <code>Localized Random Search</code> y la <code>Fixed Step-Size Random Search</code>).</p>
+<p><code>Stochastic Hill Climbing</code> es una técnica de búsqueda local (en comparación a la búsqueda global) y puede utilizarse para refinar un resultado tras la ejecución de un algoritmo de búsqueda global.</p>
+<p>Aunque la técnica utiliza un proceso estocástico, aún puede atascarse en óptimos locales.</p>
+<p>Los vecinos con mejor o igual costo deben ser aceptados, lo que permite a la técnica navegar a través de mesetas en la superficie de respuesta.</p>
+<p>El algoritmo puede reiniciarse y repetirse una serie de veces veces después de que converja para obtener un resultado mejorado (lo que se denomina <code>Multiple Restart Hill Climbing</code>).</p>
+<p>El procedimiento puede aplicarse a varias soluciones candidatas simultáneamente, lo que permite ejecutar varios algoritmos al mismo tiempo (llamado <code>Parallel Hill Climbing</code>).</p>
+</section>
+<section id="código" class="level2">
+<h2 class="anchored" data-anchor-id="código">Código</h2>
+<p>El algoritmo se ejecuta durante un número fijo de iteraciones y se aplica a un problema de optimización de cadena binaria denominado ‘One Max’. El objetivo de este problema de maximización es preparar una cadena con todos los bits ‘1’, donde la función de costo sólo informa del número de bits en una cadena dada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función para calcular la suma de los unos en un vector</span></span>
+<span id="cb1-2">onemax <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(vector) {</span>
+<span id="cb1-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(vector <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>))</span>
+<span id="cb1-4">}</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función para generar una cadena de bits aleatorios</span></span>
+<span id="cb1-7">random_bitstring <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(num_bits) {</span>
+<span id="cb1-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>), num_bits, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span>
+<span id="cb1-9">}</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función para generar un vecino aleatorio cambiando un bit</span></span>
+<span id="cb1-12">random_neighbor <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(bitstring) {</span>
+<span id="cb1-13">    mutant <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> bitstring</span>
+<span id="cb1-14">    pos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq_along</span>(bitstring), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-15">    mutant[pos] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(mutant[pos] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>)</span>
+<span id="cb1-16">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(mutant)</span>
+<span id="cb1-17">}</span>
+<span id="cb1-18"></span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función de búsqueda principal</span></span>
+<span id="cb1-20">search <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(max_iterations, num_bits) {</span>
+<span id="cb1-21">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inicializar el candidato con un vector aleatorio y calcular su costo</span></span>
+<span id="cb1-22">    candidate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb1-23">    candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">random_bitstring</span>(num_bits)</span>
+<span id="cb1-24">    candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">onemax</span>(candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector)</span>
+<span id="cb1-25">    costs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>()  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vector para almacenar los costos</span></span>
+<span id="cb1-26">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Iterar hasta el número máximo de iteraciones</span></span>
+<span id="cb1-27">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (iter <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq_len</span>(max_iterations)) {</span>
+<span id="cb1-28">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Generar un vecino y calcular su costo</span></span>
+<span id="cb1-29">        neighbor <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb1-30">        neighbor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">random_neighbor</span>(candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector)</span>
+<span id="cb1-31">        neighbor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">onemax</span>(neighbor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector)</span>
+<span id="cb1-32">        costs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(costs, candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Almacenar el costo de la iteración actual</span></span>
+<span id="cb1-33">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si el vecino es mejor o igual, actualizar el candidato</span></span>
+<span id="cb1-34">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (neighbor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost) {</span>
+<span id="cb1-35">            candidate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> neighbor</span>
+<span id="cb1-36">        }</span>
+<span id="cb1-37">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si se encuentra la solución óptima, terminar</span></span>
+<span id="cb1-38">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (candidate<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> num_bits) {</span>
+<span id="cb1-39">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span>
+<span id="cb1-40">        }</span>
+<span id="cb1-41">    }</span>
+<span id="cb1-42">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Devolver el mejor candidato encontrado y los costos</span></span>
+<span id="cb1-43">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">best =</span> candidate, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">costs =</span> costs))</span>
+<span id="cb1-44">}</span>
+<span id="cb1-45"></span>
+<span id="cb1-46"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configuración del problema</span></span>
+<span id="cb1-47">num_bits <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span></span>
+<span id="cb1-48"></span>
+<span id="cb1-49"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Configuración del algoritmo</span></span>
+<span id="cb1-50">max_iterations <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span></span>
+<span id="cb1-51"></span>
+<span id="cb1-52"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ejecutar el algoritmo</span></span>
+<span id="cb1-53">result <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">search</span>(max_iterations, num_bits)</span>
+<span id="cb1-54">best <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> result<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>best</span>
+<span id="cb1-55">costs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> result<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>costs</span></code></pre></div>
+</div>
+<p>Revisamemos el comportamiento del algoritmo para encontrar la solución óptima:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear un gráfico del progreso de la función objetivo</span></span>
+<span id="cb2-3">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb2-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Iteration =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(costs),</span>
+<span id="cb2-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Cost =</span> costs</span>
+<span id="cb2-6">)</span>
+<span id="cb2-7"></span>
+<span id="cb2-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear modificaciones al plot</span></span>
+<span id="cb2-9">crear_tema <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>() {</span>
+<span id="cb2-10">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-11">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-12">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>), </span>
+<span id="cb2-13">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>), </span>
+<span id="cb2-14">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>), </span>
+<span id="cb2-15">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>), </span>
+<span id="cb2-16">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4d6080"</span>),</span>
+<span id="cb2-17">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4d6080"</span>),</span>
+<span id="cb2-18">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4d6080"</span>),</span>
+<span id="cb2-19">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#de6f41"</span>), </span>
+<span id="cb2-20">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4d6080"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>), </span>
+<span id="cb2-21">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.key =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey90"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb2-22">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#de6f41"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb2-23">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#de6f41"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-24">        )</span>
+<span id="cb2-25">}</span>
+<span id="cb2-26"></span>
+<span id="cb2-27"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(df, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> Iteration, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> Cost)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"steelblue"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb2-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Progreso de la función objetivo"</span>,</span>
+<span id="cb2-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Visualización del costo a lo largo de las iteraciones"</span>,</span>
+<span id="cb2-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Iteración"</span>,</span>
+<span id="cb2-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Costo"</span></span>
+<span id="cb2-34">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-35">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">crear_tema</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/index_files/figure-html/graficar-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La solución óptima es entonces:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">result<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>best<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>vector</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1"
+[20] "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1"
+[39] "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1" "1"
+[58] "1" "1" "1" "1" "1" "1" "1"</code></pre>
+</div>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2023,
+  author = {Chiquito Valencia, Cristian},
+  title = {Stochastic {Hill} {Climbing}},
+  date = {2023-11-13},
+  url = {https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2023" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2023. <span>“Stochastic Hill
+Climbing.”</span> November 13, 2023. <a href="https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/">https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>optimización</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/</guid>
+  <pubDate>Mon, 13 Nov 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/stochastic_hill_climbing_1.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
