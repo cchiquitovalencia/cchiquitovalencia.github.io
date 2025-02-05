@@ -10,7 +10,7 @@ categories: [Mantenimiento, Software, Programación Lineal Entera Mixta, MILP, O
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/
 image: fleet-vehicle2.jpeg
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 Usar un software de [mantenimiento](https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/) para la gestión de flotas es, sin lugar a dudas, una de las mejores *decisiones estratégicas* que se pueden asumir en coherencia con la gerencia.
