@@ -8,6 +8,15 @@ website:
   description: "Un blog para aprender"
   title: "Cristian Chiquito Valencia"
   navbar:
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/cchiquitovalencia/
+      - icon: github
+        href: https://github.com/cchiquitovalencia/
+      - icon: envelope-at-fill
+        href: mailto:cchiquito.valencia@gmail.com
+      - icon: twitter
+        href: https://x.com/cchiquitov
     left:
       - href: index.qmd
         text: Acerca de mi
@@ -18,15 +27,6 @@ website:
     background: light
     left: 
       - "Copyright 2025, Cristian Chiquito Valencia"
-    right: 
-      - icon: linkedin
-        href: https://www.linkedin.com/in/cchiquitovalencia/
-      - icon: github
-        href: https://github.com/cchiquitovalencia/
-      - icon: envelope-at-fill
-        href: mailto:cchiquito.valencia@gmail.com
-      - icon: twitter
-        href: https://x.com/cchiquitov
 
 format:
   html:
