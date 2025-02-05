@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-01-28">
 <meta name="description" content="MTTO Serie - Parte 3">
 
-<title>Crear Shiny Server en AWS – CHV</title>
+<title>Crear Shiny Server en AWS – Cristian Chiquito Valencia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,22 +91,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Crear Shiny Server en AWS – Cristian Chiquito Valencia">
+<meta property="og:description" content="MTTO Serie - Parte 3">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg">
+<meta property="og:site_name" content="Cristian Chiquito Valencia">
+<meta name="twitter:title" content="Crear Shiny Server en AWS – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="MTTO Serie - Parte 3">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg">
+<meta name="twitter:creator" content="@cchiquitov">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -117,30 +126,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">CHV</span>
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">What’s inside?</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../resources.html"> 
-<span class="menu-text">Resources</span></a>
+<span class="menu-text">Acerca de mi</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../posts.html"> 
-<span class="menu-text">Blog</span></a>
+<span class="menu-text">Aquí mi Blog</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -170,8 +171,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
     
   <div class="quarto-title-meta-author column-page-left">
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading">Affiliation</div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
     
       <div class="quarto-title-meta-contents">
       <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
@@ -187,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         
       <div>
-      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
         <p class="date">January 28, 2025</p>
       </div>
@@ -202,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">En esta página</h2>
    
   <ul>
   <li><a href="#acceder-a-la-consola" id="toc-acceder-a-la-consola" class="nav-link active" data-scroll-target="#acceder-a-la-consola">Acceder a la consola</a></li>
@@ -231,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="images/clipboard-1445765871.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Pantalla inicial consola AWS
+Figura&nbsp;1: Pantalla inicial consola AWS
 </figcaption>
 </figure>
 </div>
@@ -247,7 +248,7 @@ Figure&nbsp;1: Pantalla inicial consola AWS
 <img src="images/clipboard-709308694.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Dashboard de recursos
+Figura&nbsp;2: Dashboard de recursos
 </figcaption>
 </figure>
 </div>
@@ -258,7 +259,7 @@ Figure&nbsp;2: Dashboard de recursos
 <img src="images/clipboard-2969538307.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="170">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Menú desplegable instancias
+Figura&nbsp;3: Menú desplegable instancias
 </figcaption>
 </figure>
 </div>
@@ -269,7 +270,7 @@ Figure&nbsp;3: Menú desplegable instancias
 <img src="images/clipboard-1850881502.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Lanzar instancia.
+Figura&nbsp;4: Lanzar instancia.
 </figcaption>
 </figure>
 </div>
@@ -280,7 +281,7 @@ Figure&nbsp;4: Lanzar instancia.
 <img src="images/clipboard-2169563867.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Configuración de instancia
+Figura&nbsp;5: Configuración de instancia
 </figcaption>
 </figure>
 </div>
@@ -292,7 +293,7 @@ Figure&nbsp;5: Configuración de instancia
 <img src="images/clipboard-1456359353.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)
+Figura&nbsp;6: Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)
 </figcaption>
 </figure>
 </div>
@@ -303,7 +304,7 @@ Figure&nbsp;6: Configuración del software (sistema operativo, servidor de aplic
 <img src="images/clipboard-2328512798.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Tipo de instancia
+Figura&nbsp;7: Tipo de instancia
 </figcaption>
 </figure>
 </div>
@@ -315,7 +316,7 @@ Figure&nbsp;7: Tipo de instancia
 <img src="images/clipboard-88852163.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Elección de key pair.
+Figura&nbsp;8: Elección de key pair.
 </figcaption>
 </figure>
 </div>
@@ -326,7 +327,7 @@ Figure&nbsp;8: Elección de key pair.
 <img src="images/clipboard-4153240866.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Esquema funcionamiento key pair.
+Figura&nbsp;9: Esquema funcionamiento key pair.
 </figcaption>
 </figure>
 </div>
@@ -338,7 +339,7 @@ Figure&nbsp;9: Esquema funcionamiento key pair.
 <img src="images/clipboard-624860931.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="485">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Crear un Key Pair
+Figura&nbsp;10: Crear un Key Pair
 </figcaption>
 </figure>
 </div>
@@ -349,7 +350,7 @@ Figure&nbsp;10: Crear un Key Pair
 <img src="images/clipboard-2099239300.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Archivo con llave privada
+Figura&nbsp;11: Archivo con llave privada
 </figcaption>
 </figure>
 </div>
@@ -360,7 +361,7 @@ Figure&nbsp;11: Archivo con llave privada
 <img src="images/clipboard-3498927731.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Redes de la instancia.
+Figura&nbsp;12: Redes de la instancia.
 </figcaption>
 </figure>
 </div>
@@ -371,7 +372,7 @@ Figure&nbsp;12: Redes de la instancia.
 <img src="images/clipboard-804051784.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Configura almacenamiento de instancia.
+Figura&nbsp;13: Configura almacenamiento de instancia.
 </figcaption>
 </figure>
 </div>
@@ -382,7 +383,7 @@ Figure&nbsp;13: Configura almacenamiento de instancia.
 <img src="images/clipboard-1948489044.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Parámetros de instancia.
+Figura&nbsp;14: Parámetros de instancia.
 </figcaption>
 </figure>
 </div>
@@ -394,7 +395,7 @@ Figure&nbsp;14: Parámetros de instancia.
 <img src="images/clipboard-1590700222.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Mensaje de espera por lanzamiento.
+Figura&nbsp;15: Mensaje de espera por lanzamiento.
 </figcaption>
 </figure>
 </div>
@@ -405,7 +406,7 @@ Figure&nbsp;15: Mensaje de espera por lanzamiento.
 <img src="images/clipboard-1246047716.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Creación exitosa de instancia.
+Figura&nbsp;16: Creación exitosa de instancia.
 </figcaption>
 </figure>
 </div>
@@ -416,7 +417,7 @@ Figure&nbsp;16: Creación exitosa de instancia.
 <img src="images/clipboard-2163327434.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Dashboard instancias desactualizado.
+Figura&nbsp;17: Dashboard instancias desactualizado.
 </figcaption>
 </figure>
 </div>
@@ -427,7 +428,7 @@ Figure&nbsp;17: Dashboard instancias desactualizado.
 <img src="images/clipboard-79624457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Actualizar.
+Figura&nbsp;18: Actualizar.
 </figcaption>
 </figure>
 </div>
@@ -439,7 +440,7 @@ Figure&nbsp;18: Actualizar.
 <img src="images/clipboard-912805618.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Dashboard instancias actualizado.
+Figura&nbsp;19: Dashboard instancias actualizado.
 </figcaption>
 </figure>
 </div>
@@ -447,11 +448,11 @@ Figure&nbsp;19: Dashboard instancias actualizado.
 <section id="acceder-al-servidor" class="level2">
 <h2 class="anchored" data-anchor-id="acceder-al-servidor">Acceder al servidor</h2>
 <p>Debemos cambiar nuestro directorio de trabajo (working directory) hacia donde tenemos el archivo <code>.pem</code>, yo lo he dejado en <code>Downloads</code>. Así que en la Terminal:</p>
-<div class="sourceCode" id="code-1" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><a href="#code-1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Downloads/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="code-2" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-2-1"><a href="#code-2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-1" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><a href="#code-1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Downloads/</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-2" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-2-1"><a href="#code-2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y vamos a cambiar los permisos de este archivo, siendo una llave privada pues debería ser privada realmente:</p>
-<div class="sourceCode" id="code-3" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-3-1"><a href="#code-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 400 mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="code-4" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-4-1"><a href="#code-4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-r--------</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-3" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-3-1"><a href="#code-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 400 mi-key-pair-useast2.pem</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-4" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-4-1"><a href="#code-4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-r--------</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ahora debes ir a la consola de EC2 para revisar la <strong>IPv4</strong> de tu instancia, con esto completaremos el siguiente comando para acceder al servidor.</p>
 <div id="fig-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -459,14 +460,14 @@ Figure&nbsp;19: Dashboard instancias actualizado.
 <img src="images/clipboard-1208286890.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: IPv4 pública de la instancia.
+Figura&nbsp;20: IPv4 pública de la instancia.
 </figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="code-5" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-5-1"><a href="#code-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> <span class="st">"mi-key-pair-useast2.pem"</span> ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-5" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-5-1"><a href="#code-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> <span class="st">"mi-key-pair-useast2.pem"</span> ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="code-6" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-6-1"><a href="#code-6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com (18.117.232.180)'</span> can<span class="st">'t be established.</span></span>
 <span id="code-6-2"><a href="#code-6-2" aria-hidden="true" tabindex="-1"></a><span class="st">ECDSA key fingerprint is SHA256:N55CqCIT1Yyi5tpAY2UDj2Q/1r4aOS4+aTUgXTWfDK8.</span></span>
-<span id="code-6-3"><a href="#code-6-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-6-3"><a href="#code-6-3" aria-hidden="true" tabindex="-1"></a><span class="st">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Di “<code>yes</code>” y lo lograste. Estas dentro de tu instancia.</p>
 <div class="sourceCode" id="code-7" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-7-1"><a href="#code-7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Warning:</span> Permanently added <span class="st">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com,18.117.232.180'</span> <span class="er">(</span><span class="ex">ECDSA</span><span class="kw">)</span> <span class="ex">to</span> the list of known hosts.</span>
 <span id="code-7-2"><a href="#code-7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Welcome</span> to Ubuntu 24.04.1 LTS <span class="er">(</span><span class="ex">GNU/Linux</span> 6.8.0-1021-aws x86_64<span class="kw">)</span></span>
@@ -507,7 +508,7 @@ Figure&nbsp;20: IPv4 pública de la instancia.
 <span id="code-7-37"><a href="#code-7-37" aria-hidden="true" tabindex="-1"></a><span class="ex">applicable</span> law.</span>
 <span id="code-7-38"><a href="#code-7-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="code-7-39"><a href="#code-7-39" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> run a command as administrator <span class="er">(</span><span class="ex">user</span> <span class="st">"root"</span><span class="kw">)</span><span class="ex">,</span> use <span class="st">"sudo &lt;command&gt;"</span>.</span>
-<span id="code-7-40"><a href="#code-7-40" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> <span class="st">"man sudo_root"</span> for details.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-7-40"><a href="#code-7-40" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> <span class="st">"man sudo_root"</span> for details.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para desconectar puedes usar “<code>exit</code>”.</p>
 </section>
 <section id="instalar-r" class="level2">
@@ -535,7 +536,7 @@ Figure&nbsp;20: IPv4 pública de la instancia.
 <span id="code-8-19"><a href="#code-8-19" aria-hidden="true" tabindex="-1"></a>    libxt-dev <span class="dt">\</span></span>
 <span id="code-8-20"><a href="#code-8-20" aria-hidden="true" tabindex="-1"></a>    libv8-dev <span class="dt">\</span></span>
 <span id="code-8-21"><a href="#code-8-21" aria-hidden="true" tabindex="-1"></a>    libhdf5-dev <span class="dt">\</span></span>
-<span id="code-8-22"><a href="#code-8-22" aria-hidden="true" tabindex="-1"></a>    git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-8-22"><a href="#code-8-22" aria-hidden="true" tabindex="-1"></a>    git</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puedes obtener una explicación de qué hace cada expresión:</p>
 <div id="fig-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -543,7 +544,7 @@ Figure&nbsp;20: IPv4 pública de la instancia.
 <a href="https://explainshell.com/"><img src="images/clipboard-3390664839.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Detalle de expresión.
+Figura&nbsp;21: Detalle de expresión.
 </figcaption>
 </figure>
 </div>
@@ -559,9 +560,9 @@ Figure&nbsp;21: Detalle de expresión.
 <span id="code-9-9"><a href="#code-9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
 <span id="code-9-10"><a href="#code-9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span>
 <span id="code-9-11"><a href="#code-9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Install recommended packages</span></span>
-<span id="code-9-12"><a href="#code-9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install r-base r-base-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-9-12"><a href="#code-9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install r-base r-base-dev</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Revisamos la versión instalada con:</p>
-<div class="sourceCode" id="code-10" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-10-1"><a href="#code-10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-10" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-10-1"><a href="#code-10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y deberías obtener algo parecido a esto (es muy probable que exista una versión superior para cuando leas esto).</p>
 <div class="sourceCode" id="code-11" data-key="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-11-1"><a href="#code-11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> version 4.4.2 <span class="er">(</span><span class="ex">2024-10-31</span><span class="kw">)</span> <span class="ex">--</span> <span class="st">"Pile of Leaves"</span></span>
 <span id="code-11-2"><a href="#code-11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2024</span> The R Foundation for Statistical Computing</span>
@@ -571,31 +572,31 @@ Figure&nbsp;21: Detalle de expresión.
 <span id="code-11-6"><a href="#code-11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are welcome to redistribute it under the terms of the</span>
 <span id="code-11-7"><a href="#code-11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">GNU</span> General Public License versions 2 or 3.</span>
 <span id="code-11-8"><a href="#code-11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">For</span> more information about these matters see</span>
-<span id="code-11-9"><a href="#code-11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">https://www.gnu.org/licenses/.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-11-9"><a href="#code-11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">https://www.gnu.org/licenses/.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="instalar-shiny-server" class="level2">
 <h2 class="anchored" data-anchor-id="instalar-shiny-server">Instalar Shiny Server</h2>
 <p>Después de instalar <strong>R</strong>, pero antes de instalar <strong>Shiny Server</strong>, debes instalar <strong>Shiny</strong>. Puedes hacerlo de dos formas:</p>
 <p>La primera es ejecutando R para abrirlo directamente en la terminal.</p>
 <div class="sourceCode" id="code-12" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-12-1"><a href="#code-12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> R</span>
-<span id="code-12-2"><a href="#code-12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> install.packages<span class="kw">(</span><span class="st">"shiny"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-12-2"><a href="#code-12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> install.packages<span class="kw">(</span><span class="st">"shiny"</span><span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La otra es “por debajo”:</p>
-<div class="sourceCode" id="code-13" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-13-1"><a href="#code-13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su <span class="at">-</span> <span class="at">-c</span> <span class="st">"R -e </span><span class="dt">\"</span><span class="st">install.packages('shiny', repos='https://cran.rstudio.com/')</span><span class="dt">\"</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-13" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-13-1"><a href="#code-13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> su <span class="at">-</span> <span class="at">-c</span> <span class="st">"R -e </span><span class="dt">\"</span><span class="st">install.packages('shiny', repos='https://cran.rstudio.com/')</span><span class="dt">\"</span><span class="st">"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La instalación de Shiny puede tomar un poco de tiempo en la instancia t2.micro por la cantidad de recursos que establecimos.</p>
 <p>Ya podemos instalar Shiny Server:</p>
 <div class="sourceCode" id="code-14" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-14-1"><a href="#code-14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Shiny Server</span></span>
 <span id="code-14-2"><a href="#code-14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
 <span id="code-14-3"><a href="#code-14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.22.1017-amd64.deb</span>
-<span id="code-14-4"><a href="#code-14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi shiny-server-1.5.22.1017-amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-14-4"><a href="#code-14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi shiny-server-1.5.22.1017-amd64.deb</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Verificamos la instalación:</p>
-<div class="sourceCode" id="code-15" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-15-1"><a href="#code-15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status shiny-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="code-15" data-key="bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-15-1"><a href="#code-15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status shiny-server</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-22" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/clipboard-514002333.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Shiny Server ejecutando.
+Figura&nbsp;22: Shiny Server ejecutando.
 </figcaption>
 </figure>
 </div>
@@ -611,7 +612,7 @@ Figure&nbsp;22: Shiny Server ejecutando.
 <img src="images/clipboard-724427698.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: IP actual.
+Figura&nbsp;23: IP actual.
 </figcaption>
 </figure>
 </div>
@@ -624,7 +625,7 @@ Figure&nbsp;23: IP actual.
 <img src="images/clipboard-3414933636.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: Entrar a editar Security group.
+Figura&nbsp;24: Entrar a editar Security group.
 </figcaption>
 </figure>
 </div>
@@ -635,7 +636,7 @@ Figure&nbsp;24: Entrar a editar Security group.
 <img src="images/clipboard-2239456429.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: Editar inbound.
+Figura&nbsp;25: Editar inbound.
 </figcaption>
 </figure>
 </div>
@@ -646,7 +647,7 @@ Figure&nbsp;25: Editar inbound.
 <img src="images/clipboard-1972583042.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26: Añade regla.
+Figura&nbsp;26: Añade regla.
 </figcaption>
 </figure>
 </div>
@@ -661,7 +662,7 @@ Figure&nbsp;26: Añade regla.
 <img src="images/clipboard-524523470.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;27: Revisión reglas.
+Figura&nbsp;27: Revisión reglas.
 </figcaption>
 </figure>
 </div>
@@ -672,7 +673,7 @@ Figure&nbsp;27: Revisión reglas.
 <img src="images/clipboard-2109939771.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28: Guardar regla.
+Figura&nbsp;28: Guardar regla.
 </figcaption>
 </figure>
 </div>
@@ -683,7 +684,7 @@ Figure&nbsp;28: Guardar regla.
 <img src="images/clipboard-1010272928.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29: Creación exitosa de regla.
+Figura&nbsp;29: Creación exitosa de regla.
 </figcaption>
 </figure>
 </div>
@@ -694,7 +695,7 @@ Figure&nbsp;29: Creación exitosa de regla.
 <img src="images/clipboard-2343593722.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;30: Shiny app por defecto accesible desde IPv4.
+Figura&nbsp;30: Shiny app por defecto accesible desde IPv4.
 </figcaption>
 </figure>
 </div>
@@ -706,14 +707,14 @@ Figure&nbsp;30: Shiny app por defecto accesible desde IPv4.
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Crear {Shiny} {Server} En {AWS}},
   date = {2025-01-28},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Chiquito Valencia, Cristian. 2025. <span>“Crear Shiny Server En
 AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/">https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</a>.
 </div></div></section></div></main> <!-- /main -->
@@ -760,12 +761,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -809,7 +810,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/cchiquitovalencia\.github\.io\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1143,7 +1144,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Copyright 2024, Cristian Chiquito Valencia
+ Copyright 2025, Cristian Chiquito Valencia
   </li>  
 </ul>
     </div>   

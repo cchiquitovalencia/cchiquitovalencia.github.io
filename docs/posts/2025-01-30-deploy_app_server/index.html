@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-01-30">
 <meta name="description" content="MTTO Serie - Parte 5">
 
-<title>Desplegar Shiny App – CHV</title>
+<title>Desplegar Shiny App – Cristian Chiquito Valencia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,17 +91,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -136,6 +136,15 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Desplegar Shiny App – Cristian Chiquito Valencia">
+<meta property="og:description" content="MTTO Serie - Parte 5">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/deploy_shiny.jpeg">
+<meta property="og:site_name" content="Cristian Chiquito Valencia">
+<meta name="twitter:title" content="Desplegar Shiny App – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="MTTO Serie - Parte 5">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/deploy_shiny.jpeg">
+<meta name="twitter:creator" content="@cchiquitov">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -146,30 +155,22 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">CHV</span>
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">What’s inside?</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../resources.html"> 
-<span class="menu-text">Resources</span></a>
+<span class="menu-text">Acerca de mi</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../posts.html"> 
-<span class="menu-text">Blog</span></a>
+<span class="menu-text">Aquí mi Blog</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -199,8 +200,8 @@ window.Quarto = {
   </div>
     
   <div class="quarto-title-meta-author column-page-left">
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading">Affiliation</div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
     
       <div class="quarto-title-meta-contents">
       <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
@@ -216,7 +217,7 @@ window.Quarto = {
 
         
       <div>
-      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
         <p class="date">January 30, 2025</p>
       </div>
@@ -231,7 +232,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">En esta página</h2>
    
   <ul>
   <li><a href="#iniciar-instancia" id="toc-iniciar-instancia" class="nav-link active" data-scroll-target="#iniciar-instancia">Iniciar instancia</a></li>
@@ -269,7 +270,7 @@ window.Quarto = {
 <img src="images/clipboard-142781457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Inicio de instancia.
+Figura&nbsp;1: Inicio de instancia.
 </figcaption>
 </figure>
 </div>
@@ -280,7 +281,7 @@ Figure&nbsp;1: Inicio de instancia.
 <img src="images/clipboard-3378946257.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Inicio exitoso.
+Figura&nbsp;2: Inicio exitoso.
 </figcaption>
 </figure>
 </div>
@@ -317,7 +318,7 @@ Figure&nbsp;2: Inicio exitoso.
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> updates can be applied immediately.</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">Enable</span> ESM Apps to receive additional future security updates.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> https://ubuntu.com/esm or run: sudo pro status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> https://ubuntu.com/esm or run: sudo pro status</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Conectados, ejecutamos el siguiente comando para entrar a la carpeta que contiene los archivos de la app por defecto</p>
 <div class="code-with-filename">
@@ -325,27 +326,27 @@ Figure&nbsp;2: Inicio exitoso.
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="cb2" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> cd /srv/shiny-server/</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> ls</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Resulta: un archivo <code>.html</code> y una carpeta <code>sample-apps</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
-<div class="sourceCode" id="cb3" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">index.html</span>  sample-apps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">index.html</span>  sample-apps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Veamos qué contiene la carpeta:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> ls sample-apps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> ls sample-apps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span>  rmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span>  rmd</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ingresemos a ver en <code>hello</code>:</p>
 <div class="code-with-filename">
@@ -353,13 +354,13 @@ Figure&nbsp;2: Inicio exitoso.
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="cb6" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> cd sample-apps/hello</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server/sample-apps/hello$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server/sample-apps/hello$</span> ls</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
-<div class="sourceCode" id="cb7" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server.R</span>  ui.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server.R</span>  ui.R</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Entonces aquí es de donde Shiny Server toma los archivos. Aquí estan el <code>ui</code> y el <code>server</code>, las bases de cualquier app de Shiny.</p>
 </section>
@@ -371,7 +372,7 @@ Figure&nbsp;2: Inicio exitoso.
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vamos a Github para copiar el link <code>https</code>:</p>
 <div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -380,7 +381,7 @@ Figure&nbsp;2: Inicio exitoso.
 <img src="images/clipboard-1586057462.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Copiar HTTPS
+Figura&nbsp;3: Copiar HTTPS
 </figcaption>
 </figure>
 </div>
@@ -391,7 +392,7 @@ Figure&nbsp;3: Copiar HTTPS
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="cb9" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/cchiquitovalencia/dev_shiny_mtto_app.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/cchiquitovalencia/dev_shiny_mtto_app.git</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -402,7 +403,7 @@ Figure&nbsp;3: Copiar HTTPS
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Counting objects: 100% <span class="er">(</span><span class="ex">8/8</span><span class="kw">)</span><span class="ex">,</span> done.</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Compressing objects: 100% <span class="er">(</span><span class="ex">7/7</span><span class="kw">)</span><span class="ex">,</span> done.</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Receiving</span> objects: 100% <span class="er">(</span><span class="ex">8/8</span><span class="kw">)</span><span class="ex">,</span> 4.10 KiB <span class="kw">|</span> <span class="ex">840.00</span> KiB/s, done.</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Total 8 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> reused 8 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> pack-reused 0 <span class="er">(</span><span class="ex">from</span> 0<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Total 8 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> reused 8 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> pack-reused 0 <span class="er">(</span><span class="ex">from</span> 0<span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="creamos-un-atajo-en-srvshiny-server" class="level3">
@@ -412,7 +413,7 @@ Figure&nbsp;3: Copiar HTTPS
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="code-1" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><a href="#code-1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /srv/shiny-server</span>
-<span id="code-1-2"><a href="#code-1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> sudo ln <span class="at">-s</span> ~/dev_shiny_mtto_app</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="code-1-2"><a href="#code-1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> sudo ln <span class="at">-s</span> ~/dev_shiny_mtto_app</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Recuerda que puedes ir a <a href="https://explainshell.com/" class="uri">https://explainshell.com/</a> para entender el código:</p>
 <div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -421,7 +422,7 @@ Figure&nbsp;3: Copiar HTTPS
 <img src="images/clipboard-3246803262.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Explicación de código.
+Figura&nbsp;4: Explicación de código.
 </figcaption>
 </figure>
 </div>
@@ -430,7 +431,7 @@ Figure&nbsp;4: Explicación de código.
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
-<div class="sourceCode" id="cb11" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dev_shiny_mtto_app</span>  index.html  sample-apps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dev_shiny_mtto_app</span>  index.html  sample-apps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="eliminamos-el-resto-con" class="level3">
@@ -440,7 +441,7 @@ Figure&nbsp;4: Explicación de código.
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="cb12" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> sudo rm index.html</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> sudo rm <span class="at">-R</span> sample-apps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/srv/shiny-server$</span> sudo rm <span class="at">-R</span> sample-apps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="podemos-mover-los-archivos" class="level3">
@@ -451,7 +452,7 @@ Figure&nbsp;4: Explicación de código.
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="cb13" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /srv/shiny-server <span class="co"># para pararte en la carpeta destino</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv ~/dev_shiny_mtto_app . <span class="co"># mover todo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv ~/dev_shiny_mtto_app . <span class="co"># mover todo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ahora que tenemos nuestro archivo <code>app.R</code> en la carpeta donde debe estar podemos ir al explorador e ingresar <code>&lt;IP:3838&gt;</code> (recuerda que la IP de la instancia cambia cada que la reiniciamos en caso de no haber establecido una <strong>Elastic IP</strong>)</p>
 <p>Justo ahora la IP que AWS me asigna es: <strong>3.141.200.204.</strong></p>
@@ -461,7 +462,7 @@ Figure&nbsp;4: Explicación de código.
 <img src="images/clipboard-3322795931.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Conexión a la app.
+Figura&nbsp;5: Conexión a la app.
 </figcaption>
 </figure>
 </div>
@@ -472,7 +473,7 @@ Figure&nbsp;5: Conexión a la app.
 <img src="images/clipboard-2086920855.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Error ejecutar la app.
+Figura&nbsp;6: Error ejecutar la app.
 </figcaption>
 </figure>
 </div>
@@ -486,7 +487,7 @@ Figure&nbsp;6: Error ejecutar la app.
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="cb14" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/shiny-server/shiny-server.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/shiny-server/shiny-server.conf</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -511,7 +512,7 @@ Figure&nbsp;6: Error ejecutar la app.
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># When a user visits the base URL rather than a particular application,</span></span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># an index of the applications available in this directory will be shown.</span></span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">directory_index</span> on<span class="kw">;</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li><p><code>run_as shiny</code> indica el usuario detrás del Shiny Server. Cuando iniciaste sesión a través de <code>ssh</code>, actuaste como usuario <code>ubuntu</code>, el predeterminado. Pero cuando instalamos Shiny Server, creamos un nuevo usuario llamado <code>shiny</code>, y ese es el que ejecuta el Shiny Server.</p></li>
@@ -525,7 +526,7 @@ Figure&nbsp;6: Error ejecutar la app.
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="reiniciar" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="reiniciar-1"><a href="#reiniciar-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl reload shiny-server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="reiniciar" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="reiniciar-1"><a href="#reiniciar-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl reload shiny-server</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Preservar logs para obligar a guardar todo comportamiento del servidor (parece que no siempre ocurre), y “<em>estilizar</em>” (<strong>on</strong>) implica no mostrar al usuario el print de los logs cuando hay errores.</p>
 </section>
@@ -537,28 +538,28 @@ Figure&nbsp;6: Error ejecutar la app.
 <pre><strong>Bash</strong></pre>
 </div>
 <div class="sourceCode" id="cb16" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~$</span> cd /var/log/shiny-server</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/var/log/shiny-server$</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/var/log/shiny-server$</span> ls</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
 <div class="sourceCode" id="cb17" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dev_shiny_mtto_app-shiny-20250129-003756-35481.log</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dev_shiny_mtto_app-shiny-20250129-012205-43913.log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dev_shiny_mtto_app-shiny-20250129-012205-43913.log</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Miremos uno de ellos:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Bash</strong></pre>
 </div>
-<div class="sourceCode" id="cb18" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tail dev_shiny_mtto_app-shiny-20250129-012205-43913.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tail dev_shiny_mtto_app-shiny-20250129-012205-43913.log</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Output</strong></pre>
 </div>
 <div class="sourceCode" id="cb19" data-filename="Output"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">su:</span> ignoring <span class="at">--preserve-environment,</span> it<span class="st">'s mutually exclusive with --login</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">-bash: line 1: cd: /srv/shiny-server/dev_shiny_mtto_app: Permission denied</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">-bash: line 1: cd: /srv/shiny-server/dev_shiny_mtto_app: Permission denied</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Con este mensaje pasé varias horas revisando internet para depurar cuál había sido el error. Ya ves que el mensaje no dice mucho, pero refiere a permisos.</p>
 <p>Vamos a repasar nuestro proceso para desplegar la app:</p>
@@ -574,7 +575,7 @@ Figure&nbsp;6: Error ejecutar la app.
 </div>
 <div class="sourceCode" id="cb20" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> cchv</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gpasswd</span> <span class="at">-a</span> cchv sudo</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span> cchv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">su</span> <span class="at">-</span> cchv</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Creo un grupo de usuarios llamado <code>shiny-apps</code> y añado los usuarios <code>cchv</code> y <code>shiny</code>. Vamos a hacer que toda la carpeta <code>/srv/shiny-server</code> tenga permisos de <strong>lectura+escritura</strong> para este grupo:</p>
 <div class="code-with-filename">
@@ -587,7 +588,7 @@ Figure&nbsp;6: Error ejecutar la app.
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /srv/shiny-server</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> cchv:shiny-apps .</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod g+w .</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod g+s .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod g+s .</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Los pasos que seguí los encontré <a href="https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/#shiny-user-perms">aquí</a>.</p>
 <p>Ingresamos a nuestra app con <code>&lt;IP:3838&gt;</code> y:</p>
@@ -597,7 +598,7 @@ Figure&nbsp;6: Error ejecutar la app.
 <img src="images/clipboard-1874597480.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: No se encuentran librerías.
+Figura&nbsp;7: No se encuentran librerías.
 </figcaption>
 </figure>
 </div>
@@ -615,7 +616,7 @@ Figure&nbsp;7: No se encuentran librerías.
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"ompr.roi"</span><span class="kw">)</span></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"ROI.plugin.glpk"</span><span class="kw">)</span> </span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"ggplot2"</span><span class="kw">)</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pak::pkg_install</span><span class="er">(</span><span class="st">"tidyverse/dplyr"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pak::pkg_install</span><span class="er">(</span><span class="st">"tidyverse/dplyr"</span><span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ten presente que hay un paso adicional que debe ejecutarse antes de la instalacion de <code>ROI.plugin.glpk</code> para que la app funcione.</p>
 <div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -624,7 +625,7 @@ Figure&nbsp;7: No se encuentran librerías.
 <a href="http://roi.r-forge.r-project.org/installation.html#ROIpluginglpk"><img src="images/clipboard-2784004687.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Requerimiento adicional para solver.
+Figura&nbsp;8: Requerimiento adicional para solver.
 </figcaption>
 </figure>
 </div>
@@ -639,7 +640,7 @@ Figure&nbsp;8: Requerimiento adicional para solver.
 <img src="images/clipboard-2656752860.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Aplicación funcionando en la web.
+Figura&nbsp;9: Aplicación funcionando en la web.
 </figcaption>
 </figure>
 </div>
@@ -650,7 +651,7 @@ Figure&nbsp;9: Aplicación funcionando en la web.
 <img src="images/clipboard-388471584.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Resultado modelo.
+Figura&nbsp;10: Resultado modelo.
 </figcaption>
 </figure>
 </div>
@@ -677,14 +678,14 @@ Figure&nbsp;10: Resultado modelo.
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Desplegar {Shiny} {App}},
   date = {2025-01-30},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Chiquito Valencia, Cristian. 2025. <span>“Desplegar Shiny App.”</span>
 January 30, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/">https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/</a>.
 </div></div></section></div></main> <!-- /main -->
@@ -731,12 +732,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -780,7 +781,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/cchiquitovalencia\.github\.io\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1114,7 +1115,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Copyright 2024, Cristian Chiquito Valencia
+ Copyright 2025, Cristian Chiquito Valencia
   </li>  
 </ul>
     </div>   

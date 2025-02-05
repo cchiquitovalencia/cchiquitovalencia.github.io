@@ -1112,14 +1112,14 @@ El éxito en los negocios es fácil si haces dos cosas bien: planea tú trabajo 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Indispensable Crear El {PLAN}},
   date = {2025-02-03},
   url = {https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Indispensable Crear El
 PLAN.”</span> February 3, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/">https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/</a>.
 </div></div></section></div> ]]></description>
@@ -1150,7 +1150,7 @@ PLAN.”</span> February 3, 2025. <a href="https://cchiquitovalencia.github.io/p
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-142781457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Inicio de instancia.
+Figura&nbsp;1: Inicio de instancia.
 </figcaption>
 </figure>
 </div>
@@ -1161,7 +1161,7 @@ Figure&nbsp;1: Inicio de instancia.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-3378946257.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Inicio exitoso.
+Figura&nbsp;2: Inicio exitoso.
 </figcaption>
 </figure>
 </div>
@@ -1318,7 +1318,7 @@ font-style: inherit;">cd</span></span></code></pre></div>
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-1586057462.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Copiar HTTPS
+Figura&nbsp;3: Copiar HTTPS
 </figcaption>
 </figure>
 </div>
@@ -1438,7 +1438,7 @@ font-style: inherit;">-s</span> ~/dev_shiny_mtto_app</span></code></pre></div>
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-3246803262.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Explicación de código.
+Figura&nbsp;4: Explicación de código.
 </figcaption>
 </figure>
 </div>
@@ -1494,7 +1494,7 @@ font-style: inherit;"># mover todo</span></span></code></pre></div>
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-3322795931.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Conexión a la app.
+Figura&nbsp;5: Conexión a la app.
 </figcaption>
 </figure>
 </div>
@@ -1505,7 +1505,7 @@ Figure&nbsp;5: Conexión a la app.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-2086920855.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Error ejecutar la app.
+Figura&nbsp;6: Error ejecutar la app.
 </figcaption>
 </figure>
 </div>
@@ -1727,7 +1727,7 @@ font-style: inherit;">sudo</span> chmod g+s .</span></code></pre></div>
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-1874597480.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: No se encuentran librerías.
+Figura&nbsp;7: No se encuentran librerías.
 </figcaption>
 </figure>
 </div>
@@ -1816,7 +1816,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <a href="http://roi.r-forge.r-project.org/installation.html#ROIpluginglpk"><img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-2784004687.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Requerimiento adicional para solver.
+Figura&nbsp;8: Requerimiento adicional para solver.
 </figcaption>
 </figure>
 </div>
@@ -1831,7 +1831,7 @@ Figure&nbsp;8: Requerimiento adicional para solver.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-2656752860.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Aplicación funcionando en la web.
+Figura&nbsp;9: Aplicación funcionando en la web.
 </figcaption>
 </figure>
 </div>
@@ -1842,7 +1842,7 @@ Figure&nbsp;9: Aplicación funcionando en la web.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/images/clipboard-388471584.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Resultado modelo.
+Figura&nbsp;10: Resultado modelo.
 </figcaption>
 </figure>
 </div>
@@ -1869,14 +1869,14 @@ Figure&nbsp;10: Resultado modelo.
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Desplegar {Shiny} {App}},
   date = {2025-01-30},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Desplegar Shiny App.”</span>
 January 30, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/">https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/</a>.
 </div></div></section></div> ]]></description>
@@ -1888,812 +1888,6 @@ January 30, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-30-
   <guid>https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/</guid>
   <pubDate>Thu, 30 Jan 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/deploy_shiny.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Crear Shiny Server en AWS</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>En este post veremos cómo instalar y poner en funcionamiento un <a href="https://posit.co/products/open-source/shiny-server/">Shiny Server</a> en una <a href="https://aws.amazon.com/es/ec2/">instancia EC2 de AWS</a>. Este es un primer paso para lograr subir a producción una <a href="https://shiny.posit.co/">Shiny app</a>.</p>
-<section id="acceder-a-la-consola" class="level2">
-<h2 class="anchored" data-anchor-id="acceder-a-la-consola">Acceder a la consola</h2>
-<p>Lo primero que tienes que hacer es <strong>crear una cuenta en AWS</strong>. Los pasos no son difícles, te lo puedo asegurar. Así que iniciamos en la pantalla principal que nos muestra <em>inmediatamente luego de creada</em>.</p>
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1445765871.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Pantalla inicial consola AWS
-</figcaption>
-</figure>
-</div>
-<p>Posiblemente las únicas diferencias que podrían tener con esta imágen son: el nombre de usuario <code>cchiquitov</code> y la <em>Availability Zone</em> (<strong>AZ</strong>) que automáticamente se creó en Ohio, <code>useast-2</code>.</p>
-</section>
-<section id="crear-servidor-en-ec2-elastic-compute-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="crear-servidor-en-ec2-elastic-compute-cloud">Crear servidor en EC2 (Elastic Compute Cloud)</h2>
-<p>En el campo <strong>Search</strong> podemos buscar <strong>EC2</strong>, o aprovechamos que nos aparece la opción en “<em>Recently visited</em>”</p>
-<p>Es claro que acabo de crear la cuenta porque en los <em>Recursos</em> solamente tenemos un <strong>Security group</strong>.</p>
-<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-709308694.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Dashboard de recursos
-</figcaption>
-</figure>
-</div>
-<p>Ingresamos a <strong>Instances</strong>:</p>
-<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2969538307.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="170">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Menú desplegable instancias
-</figcaption>
-</figure>
-</div>
-<p>y <strong>Launch Instances</strong></p>
-<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1850881502.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Lanzar instancia.
-</figcaption>
-</figure>
-</div>
-<p>Te encontrarás en la siguiente pantalla, a ti te aparecerán las opciones expandidas:</p>
-<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2169563867.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Configuración de instancia
-</figcaption>
-</figure>
-</div>
-<p>Aquí ya nombré a mi instancia “<code>My first Web Server</code>”, muy astuto.</p>
-<p>Para la <strong>AMI</strong> (Amazon Machine Image) elijo Ubuntu:</p>
-<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1456359353.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)
-</figcaption>
-</figure>
-</div>
-<p>Para el tipo de instancia voy con la que me da el <em>Free Tier</em>:</p>
-<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2328512798.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Tipo de instancia
-</figcaption>
-</figure>
-</div>
-<p>Contiene una CPU con sólo 1 núcleo, sólo 1 GB de RAM y una conexión a Internet aceptable.</p>
-<p>Ahora para lograr una conexión segura debemos crear un <code>key pair</code>.</p>
-<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-88852163.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Elección de key pair.
-</figcaption>
-</figure>
-</div>
-<p>Un <code>key pair</code>, formado por una <strong>llave pública</strong> y una <strong>llave privada</strong>, es un conjunto de credenciales de seguridad que utiliza para demostrar tu identidad al conectarse a una instancia de Amazon EC2. En el caso de las instancias de Linux, la llave privada te permite conectarse a tu instancia mediante SSH de forma segura. En el caso de las instancias de Windows, la llave privada se requiere para descifrar la contraseña de administrador, que luego se utiliza para conectarse a la instancia. Amazon EC2 almacena la llave pública en tu instancia, y tu almacenas la llave privada.</p>
-<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-4153240866.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Esquema funcionamiento key pair.
-</figcaption>
-</figure>
-</div>
-<p><strong>Es muy importante que guardes tu llave privada en un lugar seguro, ya que cualquiera que posea tu llave privada puede conectarse a tus instancias que utilizan el <code>key pair</code></strong>.</p>
-<p>Entonces, creo mi key pair, para poder seleccionarlo dentro de la lista desplegable, le llamaré “<code>mi-key-pair-useast2</code>”</p>
-<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-624860931.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="485">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Crear un Key Pair
-</figcaption>
-</figure>
-</div>
-<p>Cuando lo creas, inmediatamente descargas un archivo, <strong>la llave privada</strong>, que para mi caso es:</p>
-<div id="fig-11" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2099239300.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Archivo con llave privada
-</figcaption>
-</figure>
-</div>
-<p>Continuamos con la configuración de las redes, donde realmente dejamos lo que viene por defecto.</p>
-<div id="fig-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3498927731.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Redes de la instancia.
-</figcaption>
-</figure>
-</div>
-<p>Para el almacenamiento podríamos cambiar <strong>hasta 30Gb</strong> sin que debamos pagar (en el primer año) pero lo dejaré por defecto.</p>
-<div id="fig-13" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-804051784.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Configura almacenamiento de instancia.
-</figcaption>
-</figure>
-</div>
-<p>Finalmente tenemos una instancia así:</p>
-<div id="fig-14" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1948489044.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Parámetros de instancia.
-</figcaption>
-</figure>
-</div>
-<p>y le damos en “<em>Launch instance</em>”.</p>
-<p>Esperamos pocos minutos mientras surte el proceso:</p>
-<div id="fig-15" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1590700222.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Mensaje de espera por lanzamiento.
-</figcaption>
-</figure>
-</div>
-<p>Aparecerá:</p>
-<div id="fig-16" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1246047716.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Creación exitosa de instancia.
-</figcaption>
-</figure>
-</div>
-<p>Nos devolvemos a Instances para ver qué tenemos ahora:</p>
-<div id="fig-17" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2163327434.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Dashboard instancias desactualizado.
-</figcaption>
-</figure>
-</div>
-<p>Parece que no tuvieramos instancia alguna creada, pero en realidad debemos dar click en</p>
-<div id="fig-18" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-79624457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Actualizar.
-</figcaption>
-</figure>
-</div>
-<p>para actualizar el dashboard.</p>
-<p>Ahora sí tenemos nuestra instancia llamada “<code>My first Web Server</code>” creada y corriendo.</p>
-<div id="fig-19" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-912805618.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Dashboard instancias actualizado.
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="acceder-al-servidor" class="level2">
-<h2 class="anchored" data-anchor-id="acceder-al-servidor">Acceder al servidor</h2>
-<p>Debemos cambiar nuestro directorio de trabajo (working directory) hacia donde tenemos el archivo <code>.pem</code>, yo lo he dejado en <code>Downloads</code>. Así que en la Terminal:</p>
-<div class="sourceCode" id="code-1" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> Downloads/</span></code></pre></div>
-<div class="sourceCode" id="code-2" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-2-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">-rw-rw-r--</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code></pre></div>
-<p>Y vamos a cambiar los permisos de este archivo, siendo una llave privada pues debería ser privada realmente:</p>
-<div class="sourceCode" id="code-3" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-3-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">chmod</span> 400 mi-key-pair-useast2.pem</span></code></pre></div>
-<div class="sourceCode" id="code-4" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-4-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">-r--------</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code></pre></div>
-<p>Ahora debes ir a la consola de EC2 para revisar la <strong>IPv4</strong> de tu instancia, con esto completaremos el siguiente comando para acceder al servidor.</p>
-<div id="fig-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1208286890.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: IPv4 pública de la instancia.
-</figcaption>
-</figure>
-</div>
-<div class="sourceCode" id="code-5" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ssh</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-i</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mi-key-pair-useast2.pem"</span> ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com</span></code></pre></div>
-<div class="sourceCode" id="code-6" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-6-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">The</span> authenticity of host <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com (18.117.232.180)'</span> can<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'t be established.</span></span>
-<span id="code-6-2"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">ECDSA key fingerprint is SHA256:N55CqCIT1Yyi5tpAY2UDj2Q/1r4aOS4+aTUgXTWfDK8.</span></span>
-<span id="code-6-3"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span></code></pre></div>
-<p>Di “<code>yes</code>” y lo lograste. Estas dentro de tu instancia.</p>
-<div class="sourceCode" id="code-7" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-7-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Warning:</span> Permanently added <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com,18.117.232.180'</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">ECDSA</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">to</span> the list of known hosts.</span>
-<span id="code-7-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Welcome</span> to Ubuntu 24.04.1 LTS <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">GNU/Linux</span> 6.8.0-1021-aws x86_64<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="code-7-3"></span>
-<span id="code-7-4"> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">*</span> Documentation:  https://help.ubuntu.com</span>
-<span id="code-7-5"> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">*</span> Management:     https://landscape.canonical.com</span>
-<span id="code-7-6"> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">*</span> Support:        https://ubuntu.com/pro</span>
-<span id="code-7-7"></span>
-<span id="code-7-8"> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">System</span> information as of Wed Jan 22 19:38:46 UTC 2025</span>
-<span id="code-7-9"></span>
-<span id="code-7-10">  <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">System</span> load:  0.0               Processes:             106</span>
-<span id="code-7-11">  <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Usage</span> of /:   24.9% of 6.71GB   Users logged in:       0</span>
-<span id="code-7-12">  <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Memory</span> usage: 20%               IPv4 address for enX0: 172.31.5.157</span>
-<span id="code-7-13">  <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Swap</span> usage:   0%</span>
-<span id="code-7-14"></span>
-<span id="code-7-15"> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">*</span> Ubuntu Pro delivers the most comprehensive open source security and</span>
-<span id="code-7-16">   <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">compliance</span> features.</span>
-<span id="code-7-17"></span>
-<span id="code-7-18">   <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">https://ubuntu.com/aws/pro</span></span>
-<span id="code-7-19"></span>
-<span id="code-7-20"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Expanded</span> Security Maintenance for Applications is not enabled.</span>
-<span id="code-7-21"></span>
-<span id="code-7-22"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">0</span> updates can be applied immediately.</span>
-<span id="code-7-23"></span>
-<span id="code-7-24"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Enable</span> ESM Apps to receive additional future security updates.</span>
-<span id="code-7-25"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">See</span> https://ubuntu.com/esm or run: sudo pro status</span>
-<span id="code-7-26"></span>
-<span id="code-7-27"></span>
-<span id="code-7-28"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">The</span> list of available updates is more than a week old.</span>
-<span id="code-7-29"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">To</span> check for new updates run: sudo apt update</span>
-<span id="code-7-30"></span>
-<span id="code-7-31"></span>
-<span id="code-7-32"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">The</span> programs included with the Ubuntu system are free software<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span></span>
-<span id="code-7-33"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">the</span> exact distribution terms for each program are described in the</span>
-<span id="code-7-34"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">individual</span> files in /usr/share/doc/<span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">*</span>/copyright.</span>
-<span id="code-7-35"></span>
-<span id="code-7-36"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Ubuntu</span> comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span>
-<span id="code-7-37"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">applicable</span> law.</span>
-<span id="code-7-38"></span>
-<span id="code-7-39"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">To</span> run a command as administrator <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"root"</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> use <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"sudo &lt;command&gt;"</span>.</span>
-<span id="code-7-40"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">See</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"man sudo_root"</span> for details.</span></code></pre></div>
-<p>Para desconectar puedes usar “<code>exit</code>”.</p>
-</section>
-<section id="instalar-r" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-r">Instalar R</h2>
-<p>Recuerda que aquí hemos creado la instancia de Ubuntu, por lo que de ahora en adelante aplican comandos para este sistema operativo.</p>
-<p>Ahora, antes de R debemos instalar algunas dependencias:</p>
-<div class="sourceCode" id="code-8" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-8-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Update commands</span></span>
-<span id="code-8-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt update</span>
-<span id="code-8-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt-get update <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-y</span></span>
-<span id="code-8-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt-get dist-upgrade <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-y</span></span>
-<span id="code-8-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Install some system libraries</span></span>
-<span id="code-8-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">$</span> sudo apt-get <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-y</span> install <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-7">nginx <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-8">    gdebi-core <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-9">    apache2-utils <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-10">    pandoc <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-11">    libssl-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-12">    libcurl4-gnutls-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-13">    libcairo2-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-14">    libgsl0-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-15">    libgdal-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-16">    libgeos-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-17">    libproj-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-18">    libxml2-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-19">    libxt-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-20">    libv8-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-21">    libhdf5-dev <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\</span></span>
-<span id="code-8-22">    git</span></code></pre></div>
-<p>Puedes obtener una explicación de qué hace cada expresión:</p>
-<div id="fig-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://explainshell.com/"><img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3390664839.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Detalle de expresión.
-</figcaption>
-</figure>
-</div>
-<p>Ahora sí vamos con los comandos para R:</p>
-<div class="sourceCode" id="code-9" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-9-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Update indices</span></span>
-<span id="code-9-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt update <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-qq</span></span>
-<span id="code-9-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Install two helper packages </span></span>
-<span id="code-9-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt install <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--no-install-recommends</span> software-properties-common dirmngr</span>
-<span id="code-9-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Add the signing key (by Michael Rutter) for these repositories</span></span>
-<span id="code-9-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc </span></span>
-<span id="code-9-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Fingerprint: 298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
-<span id="code-9-8"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">wget</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> tee <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
-<span id="code-9-9"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
-<span id="code-9-10"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> add-apt-repository <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">$(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">lsb_release</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-cs</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">)</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">-cran40/"</span></span>
-<span id="code-9-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Install recommended packages</span></span>
-<span id="code-9-12"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt install r-base r-base-dev</span></code></pre></div>
-<p>Revisamos la versión instalada con:</p>
-<div class="sourceCode" id="code-10" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-10-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">R</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--version</span></span></code></pre></div>
-<p>Y deberías obtener algo parecido a esto (es muy probable que exista una versión superior para cuando leas esto).</p>
-<div class="sourceCode" id="code-11" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-11-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">R</span> version 4.4.2 <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2024-10-31</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">--</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pile of Leaves"</span></span>
-<span id="code-11-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Copyright</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">C</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2024</span> The R Foundation for Statistical Computing</span>
-<span id="code-11-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Platform:</span> x86_64-pc-linux-gnu</span>
-<span id="code-11-4"></span>
-<span id="code-11-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</span>
-<span id="code-11-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">You</span> are welcome to redistribute it under the terms of the</span>
-<span id="code-11-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">GNU</span> General Public License versions 2 or 3.</span>
-<span id="code-11-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">For</span> more information about these matters see</span>
-<span id="code-11-9"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">https://www.gnu.org/licenses/.</span></span></code></pre></div>
-</section>
-<section id="instalar-shiny-server" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-shiny-server">Instalar Shiny Server</h2>
-<p>Después de instalar <strong>R</strong>, pero antes de instalar <strong>Shiny Server</strong>, debes instalar <strong>Shiny</strong>. Puedes hacerlo de dos formas:</p>
-<p>La primera es ejecutando R para abrirlo directamente en la terminal.</p>
-<div class="sourceCode" id="code-12" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-12-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> R</span>
-<span id="code-12-2"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> install.packages<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"shiny"</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span></code></pre></div>
-<p>La otra es “por debajo”:</p>
-<div class="sourceCode" id="code-13" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-13-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> su <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"R -e </span><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\"</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">install.packages('shiny', repos='https://cran.rstudio.com/')</span><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\"</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span></code></pre></div>
-<p>La instalación de Shiny puede tomar un poco de tiempo en la instancia t2.micro por la cantidad de recursos que establecimos.</p>
-<p>Ya podemos instalar Shiny Server:</p>
-<div class="sourceCode" id="code-14" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-14-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Install Shiny Server</span></span>
-<span id="code-14-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> apt-get install gdebi-core</span>
-<span id="code-14-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">wget</span> https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.22.1017-amd64.deb</span>
-<span id="code-14-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> gdebi shiny-server-1.5.22.1017-amd64.deb</span></code></pre></div>
-<p>Verificamos la instalación:</p>
-<div class="sourceCode" id="code-15" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-15-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> systemctl status shiny-server</span></code></pre></div>
-<div id="fig-22" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-514002333.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Shiny Server ejecutando.
-</figcaption>
-</figure>
-</div>
-<p>Por defecto Shiny Server viene con una Shiny app ejecutandose en tu servidor.</p>
-</section>
-<section id="acceder-a-la-shiny-app-por-defecto" class="level2">
-<h2 class="anchored" data-anchor-id="acceder-a-la-shiny-app-por-defecto">Acceder a la Shiny app por defecto</h2>
-<p>Cada vez que reinicias la instancia, a no ser que hayas pasado por una <strong>Elastic IP</strong>, tu IPv4 va a cambiar. Por ahora realizamos de nuevo el ejercicio de arriba para obtener la IP actual.</p>
-<p>Para este momento es:</p>
-<div id="fig-23" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-724427698.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: IP actual.
-</figcaption>
-</figure>
-</div>
-<p>y para acceder a la app debemos ingresar <code>&lt;IP:3838&gt;</code>. Este puerto <code>3838</code> corresponde al servicio de Shiny Server. Para mi caso es “<code>3.145.162.7:3838</code>”.</p>
-<p>Ojo, si ingresas “<code>https://3.145.162.7:3838</code>” no te va a funcionar. Aquí hay dos problemas por resolver. Uno de ellos es el <code>https</code>, no hemos hecho nada aún. El otro es que debemos habilitar la conexión con un <strong>security group</strong>:</p>
-<p>Seleccionamos nuestra instancia, vamos a la pestaña <strong>Security</strong>, y finalmente al link de <strong>Security groups</strong>:</p>
-<div id="fig-24" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3414933636.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: Entrar a editar Security group.
-</figcaption>
-</figure>
-</div>
-<p>Y editamos (<strong>Edit inbound rules</strong>):</p>
-<div id="fig-25" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2239456429.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: Editar inbound.
-</figcaption>
-</figure>
-</div>
-<p>Añadimos regla:</p>
-<div id="fig-26" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1972583042.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26: Añade regla.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><p><strong>Type</strong> = Custom TCP</p></li>
-<li><p><strong>Port range</strong> = 3838</p></li>
-<li><p><strong>Source</strong> = Custom 0.0.0.0/0</p></li>
-</ul>
-<div id="fig-27" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-524523470.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;27: Revisión reglas.
-</figcaption>
-</figure>
-</div>
-<p>Guardamos regla:</p>
-<div id="fig-28" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2109939771.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28: Guardar regla.
-</figcaption>
-</figure>
-</div>
-<p>Si ves un mensaje emergente como el siguiente, estas listo para ingresar de nuevo <code>&lt;IP:3838&gt;</code></p>
-<div id="fig-29" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1010272928.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29: Creación exitosa de regla.
-</figcaption>
-</figure>
-</div>
-<p>Lo que estábamos esperando:</p>
-<div id="fig-30" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2343593722.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;30: Shiny app por defecto accesible desde IPv4.
-</figcaption>
-</figure>
-</div>
-<p>Hasta aquí hemos hecho lo básico para acceder a una Shiny app desde cualquier dispositivo.</p>
-<p>Puedes intentarlo desde tu celular, pues acabamos de dejar expuesto el puerto <code>3838</code> donde se encuentra nuestro servicio de <strong>Shiny Server</strong> en una instancia de <strong>AWS</strong> que hemos decidido dejar con acceso abierto.</p>
-<p>No olvides detener tu instancia. Los recursos que te da AWS son gratuitos, pero tienen un límite de uso. Revisa las condiciones del <strong>Free Tier</strong>.</p>
-<p>En un próximo post te enseño cómo cambiar la app que viene por defecto en shiny Server.</p>
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
-  author = {Chiquito Valencia, Cristian},
-  title = {Crear {Shiny} {Server} En {AWS}},
-  date = {2025-01-28},
-  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2025. <span>“Crear Shiny Server En
-AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/">https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</a>.
-</div></div></section></div> ]]></description>
-  <category>Cloud</category>
-  <category>AWS</category>
-  <category>EC2</category>
-  <category>Shiny Server</category>
-  <category>Shiny App</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</guid>
-  <pubDate>Tue, 28 Jan 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Crear Shiny App</title>
@@ -2719,7 +1913,7 @@ AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/po
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-2089501707.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Opciones para iniciar nuevo proyecto.
+Figura&nbsp;1: Opciones para iniciar nuevo proyecto.
 </figcaption>
 </figure>
 </div>
@@ -2731,7 +1925,7 @@ Figure&nbsp;1: Opciones para iniciar nuevo proyecto.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-1800608861.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Configuración del proyecto.
+Figura&nbsp;2: Configuración del proyecto.
 </figcaption>
 </figure>
 </div></li>
@@ -2744,7 +1938,7 @@ Figure&nbsp;2: Configuración del proyecto.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-610318707.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Vista inmediata de la creación del proyecto.
+Figura&nbsp;3: Vista inmediata de la creación del proyecto.
 </figcaption>
 </figure>
 </div>
@@ -2872,7 +2066,7 @@ font-style: inherit;">nuevo</span> archivo:  dev_shiny_mtto_app.Rproj</span></co
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-2407796287.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Clic en Commit.
+Figura&nbsp;4: Clic en Commit.
 </figcaption>
 </figure>
 </div>
@@ -2883,7 +2077,7 @@ Figure&nbsp;4: Clic en Commit.
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-277284033.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Resultados commit.
+Figura&nbsp;5: Resultados commit.
 </figcaption>
 </figure>
 </div>
@@ -2944,7 +2138,7 @@ font-style: inherit;">&gt;</span>.</span></code></pre></div>
 <a href="https://github.com/cchiquitovalencia/dev_shiny_mtto_app"><img src="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/images/clipboard-1618772576.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Repositorio creado local en Github.
+Figura&nbsp;6: Repositorio creado local en Github.
 </figcaption>
 </figure>
 </div>
@@ -3819,22 +3013,828 @@ font-style: inherit;">server =</span> server)</span></code></pre></div>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Crear {Shiny} {App}},
-  date = {2025-01-28},
+  date = {2025-01-29},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Crear Shiny App.”</span>
-January 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/">https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/</a>.
+January 29, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/">https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/</a>.
 </div></div></section></div> ]]></description>
   <category>Github</category>
   <category>Shiny App</category>
   <guid>https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/</guid>
-  <pubDate>Tue, 28 Jan 2025 05:00:00 GMT</pubDate>
+  <pubDate>Wed, 29 Jan 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/local_to_github.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Crear Shiny Server en AWS</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>En este post veremos cómo instalar y poner en funcionamiento un <a href="https://posit.co/products/open-source/shiny-server/">Shiny Server</a> en una <a href="https://aws.amazon.com/es/ec2/">instancia EC2 de AWS</a>. Este es un primer paso para lograr subir a producción una <a href="https://shiny.posit.co/">Shiny app</a>.</p>
+<section id="acceder-a-la-consola" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-la-consola">Acceder a la consola</h2>
+<p>Lo primero que tienes que hacer es <strong>crear una cuenta en AWS</strong>. Los pasos no son difícles, te lo puedo asegurar. Así que iniciamos en la pantalla principal que nos muestra <em>inmediatamente luego de creada</em>.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1445765871.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Pantalla inicial consola AWS
+</figcaption>
+</figure>
+</div>
+<p>Posiblemente las únicas diferencias que podrían tener con esta imágen son: el nombre de usuario <code>cchiquitov</code> y la <em>Availability Zone</em> (<strong>AZ</strong>) que automáticamente se creó en Ohio, <code>useast-2</code>.</p>
+</section>
+<section id="crear-servidor-en-ec2-elastic-compute-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="crear-servidor-en-ec2-elastic-compute-cloud">Crear servidor en EC2 (Elastic Compute Cloud)</h2>
+<p>En el campo <strong>Search</strong> podemos buscar <strong>EC2</strong>, o aprovechamos que nos aparece la opción en “<em>Recently visited</em>”</p>
+<p>Es claro que acabo de crear la cuenta porque en los <em>Recursos</em> solamente tenemos un <strong>Security group</strong>.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-709308694.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Dashboard de recursos
+</figcaption>
+</figure>
+</div>
+<p>Ingresamos a <strong>Instances</strong>:</p>
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2969538307.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="170">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Menú desplegable instancias
+</figcaption>
+</figure>
+</div>
+<p>y <strong>Launch Instances</strong></p>
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1850881502.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Lanzar instancia.
+</figcaption>
+</figure>
+</div>
+<p>Te encontrarás en la siguiente pantalla, a ti te aparecerán las opciones expandidas:</p>
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2169563867.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: Configuración de instancia
+</figcaption>
+</figure>
+</div>
+<p>Aquí ya nombré a mi instancia “<code>My first Web Server</code>”, muy astuto.</p>
+<p>Para la <strong>AMI</strong> (Amazon Machine Image) elijo Ubuntu:</p>
+<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1456359353.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: Configuración del software (sistema operativo, servidor de aplicaciones y aplicaciones)
+</figcaption>
+</figure>
+</div>
+<p>Para el tipo de instancia voy con la que me da el <em>Free Tier</em>:</p>
+<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2328512798.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7: Tipo de instancia
+</figcaption>
+</figure>
+</div>
+<p>Contiene una CPU con sólo 1 núcleo, sólo 1 GB de RAM y una conexión a Internet aceptable.</p>
+<p>Ahora para lograr una conexión segura debemos crear un <code>key pair</code>.</p>
+<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-88852163.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8: Elección de key pair.
+</figcaption>
+</figure>
+</div>
+<p>Un <code>key pair</code>, formado por una <strong>llave pública</strong> y una <strong>llave privada</strong>, es un conjunto de credenciales de seguridad que utiliza para demostrar tu identidad al conectarse a una instancia de Amazon EC2. En el caso de las instancias de Linux, la llave privada te permite conectarse a tu instancia mediante SSH de forma segura. En el caso de las instancias de Windows, la llave privada se requiere para descifrar la contraseña de administrador, que luego se utiliza para conectarse a la instancia. Amazon EC2 almacena la llave pública en tu instancia, y tu almacenas la llave privada.</p>
+<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-4153240866.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;9: Esquema funcionamiento key pair.
+</figcaption>
+</figure>
+</div>
+<p><strong>Es muy importante que guardes tu llave privada en un lugar seguro, ya que cualquiera que posea tu llave privada puede conectarse a tus instancias que utilizan el <code>key pair</code></strong>.</p>
+<p>Entonces, creo mi key pair, para poder seleccionarlo dentro de la lista desplegable, le llamaré “<code>mi-key-pair-useast2</code>”</p>
+<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-624860931.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="485">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10: Crear un Key Pair
+</figcaption>
+</figure>
+</div>
+<p>Cuando lo creas, inmediatamente descargas un archivo, <strong>la llave privada</strong>, que para mi caso es:</p>
+<div id="fig-11" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2099239300.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;11: Archivo con llave privada
+</figcaption>
+</figure>
+</div>
+<p>Continuamos con la configuración de las redes, donde realmente dejamos lo que viene por defecto.</p>
+<div id="fig-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3498927731.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12: Redes de la instancia.
+</figcaption>
+</figure>
+</div>
+<p>Para el almacenamiento podríamos cambiar <strong>hasta 30Gb</strong> sin que debamos pagar (en el primer año) pero lo dejaré por defecto.</p>
+<div id="fig-13" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-804051784.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13: Configura almacenamiento de instancia.
+</figcaption>
+</figure>
+</div>
+<p>Finalmente tenemos una instancia así:</p>
+<div id="fig-14" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1948489044.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14: Parámetros de instancia.
+</figcaption>
+</figure>
+</div>
+<p>y le damos en “<em>Launch instance</em>”.</p>
+<p>Esperamos pocos minutos mientras surte el proceso:</p>
+<div id="fig-15" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1590700222.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15: Mensaje de espera por lanzamiento.
+</figcaption>
+</figure>
+</div>
+<p>Aparecerá:</p>
+<div id="fig-16" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1246047716.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16: Creación exitosa de instancia.
+</figcaption>
+</figure>
+</div>
+<p>Nos devolvemos a Instances para ver qué tenemos ahora:</p>
+<div id="fig-17" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2163327434.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17: Dashboard instancias desactualizado.
+</figcaption>
+</figure>
+</div>
+<p>Parece que no tuvieramos instancia alguna creada, pero en realidad debemos dar click en</p>
+<div id="fig-18" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-79624457.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18: Actualizar.
+</figcaption>
+</figure>
+</div>
+<p>para actualizar el dashboard.</p>
+<p>Ahora sí tenemos nuestra instancia llamada “<code>My first Web Server</code>” creada y corriendo.</p>
+<div id="fig-19" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-912805618.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;19: Dashboard instancias actualizado.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="acceder-al-servidor" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-al-servidor">Acceder al servidor</h2>
+<p>Debemos cambiar nuestro directorio de trabajo (working directory) hacia donde tenemos el archivo <code>.pem</code>, yo lo he dejado en <code>Downloads</code>. Así que en la Terminal:</p>
+<div class="sourceCode" id="code-1" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-1-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> Downloads/</span></code></pre></div>
+<div class="sourceCode" id="code-2" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">-rw-rw-r--</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code></pre></div>
+<p>Y vamos a cambiar los permisos de este archivo, siendo una llave privada pues debería ser privada realmente:</p>
+<div class="sourceCode" id="code-3" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chmod</span> 400 mi-key-pair-useast2.pem</span></code></pre></div>
+<div class="sourceCode" id="code-4" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-4-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">-r--------</span>  1 cchvcpcj cchvcpcj       1678 Jan 22 13:33  mi-key-pair-useast2.pem</span></code></pre></div>
+<p>Ahora debes ir a la consola de EC2 para revisar la <strong>IPv4</strong> de tu instancia, con esto completaremos el siguiente comando para acceder al servidor.</p>
+<div id="fig-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1208286890.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;20: IPv4 pública de la instancia.
+</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="code-5" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ssh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-i</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mi-key-pair-useast2.pem"</span> ubuntu@ec2-18-117-232-180.us-east-2.compute.amazonaws.com</span></code></pre></div>
+<div class="sourceCode" id="code-6" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-6-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">The</span> authenticity of host <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com (18.117.232.180)'</span> can<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'t be established.</span></span>
+<span id="code-6-2"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ECDSA key fingerprint is SHA256:N55CqCIT1Yyi5tpAY2UDj2Q/1r4aOS4+aTUgXTWfDK8.</span></span>
+<span id="code-6-3"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span></code></pre></div>
+<p>Di “<code>yes</code>” y lo lograste. Estas dentro de tu instancia.</p>
+<div class="sourceCode" id="code-7" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-7-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Warning:</span> Permanently added <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ec2-18-117-232-180.us-east-2.compute.amazonaws.com,18.117.232.180'</span> <span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">ECDSA</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">to</span> the list of known hosts.</span>
+<span id="code-7-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Welcome</span> to Ubuntu 24.04.1 LTS <span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">GNU/Linux</span> 6.8.0-1021-aws x86_64<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="code-7-3"></span>
+<span id="code-7-4"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">*</span> Documentation:  https://help.ubuntu.com</span>
+<span id="code-7-5"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">*</span> Management:     https://landscape.canonical.com</span>
+<span id="code-7-6"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">*</span> Support:        https://ubuntu.com/pro</span>
+<span id="code-7-7"></span>
+<span id="code-7-8"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">System</span> information as of Wed Jan 22 19:38:46 UTC 2025</span>
+<span id="code-7-9"></span>
+<span id="code-7-10">  <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">System</span> load:  0.0               Processes:             106</span>
+<span id="code-7-11">  <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Usage</span> of /:   24.9% of 6.71GB   Users logged in:       0</span>
+<span id="code-7-12">  <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Memory</span> usage: 20%               IPv4 address for enX0: 172.31.5.157</span>
+<span id="code-7-13">  <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Swap</span> usage:   0%</span>
+<span id="code-7-14"></span>
+<span id="code-7-15"> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">*</span> Ubuntu Pro delivers the most comprehensive open source security and</span>
+<span id="code-7-16">   <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">compliance</span> features.</span>
+<span id="code-7-17"></span>
+<span id="code-7-18">   <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">https://ubuntu.com/aws/pro</span></span>
+<span id="code-7-19"></span>
+<span id="code-7-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Expanded</span> Security Maintenance for Applications is not enabled.</span>
+<span id="code-7-21"></span>
+<span id="code-7-22"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">0</span> updates can be applied immediately.</span>
+<span id="code-7-23"></span>
+<span id="code-7-24"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Enable</span> ESM Apps to receive additional future security updates.</span>
+<span id="code-7-25"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">See</span> https://ubuntu.com/esm or run: sudo pro status</span>
+<span id="code-7-26"></span>
+<span id="code-7-27"></span>
+<span id="code-7-28"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">The</span> list of available updates is more than a week old.</span>
+<span id="code-7-29"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">To</span> check for new updates run: sudo apt update</span>
+<span id="code-7-30"></span>
+<span id="code-7-31"></span>
+<span id="code-7-32"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">The</span> programs included with the Ubuntu system are free software<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">;</span></span>
+<span id="code-7-33"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">the</span> exact distribution terms for each program are described in the</span>
+<span id="code-7-34"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">individual</span> files in /usr/share/doc/<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>/copyright.</span>
+<span id="code-7-35"></span>
+<span id="code-7-36"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Ubuntu</span> comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span>
+<span id="code-7-37"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">applicable</span> law.</span>
+<span id="code-7-38"></span>
+<span id="code-7-39"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">To</span> run a command as administrator <span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">user</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"root"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span> use <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sudo &lt;command&gt;"</span>.</span>
+<span id="code-7-40"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">See</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"man sudo_root"</span> for details.</span></code></pre></div>
+<p>Para desconectar puedes usar “<code>exit</code>”.</p>
+</section>
+<section id="instalar-r" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-r">Instalar R</h2>
+<p>Recuerda que aquí hemos creado la instancia de Ubuntu, por lo que de ahora en adelante aplican comandos para este sistema operativo.</p>
+<p>Ahora, antes de R debemos instalar algunas dependencias:</p>
+<div class="sourceCode" id="code-8" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Update commands</span></span>
+<span id="code-8-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt update</span>
+<span id="code-8-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt-get update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="code-8-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt-get dist-upgrade <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span></span>
+<span id="code-8-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install some system libraries</span></span>
+<span id="code-8-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">$</span> sudo apt-get <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span> install <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-7">nginx <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-8">    gdebi-core <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-9">    apache2-utils <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-10">    pandoc <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-11">    libssl-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-12">    libcurl4-gnutls-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-13">    libcairo2-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-14">    libgsl0-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-15">    libgdal-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-16">    libgeos-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-17">    libproj-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-18">    libxml2-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-19">    libxt-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-20">    libv8-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-21">    libhdf5-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="code-8-22">    git</span></code></pre></div>
+<p>Puedes obtener una explicación de qué hace cada expresión:</p>
+<div id="fig-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://explainshell.com/"><img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3390664839.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;21: Detalle de expresión.
+</figcaption>
+</figure>
+</div>
+<p>Ahora sí vamos con los comandos para R:</p>
+<div class="sourceCode" id="code-9" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Update indices</span></span>
+<span id="code-9-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt update <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-qq</span></span>
+<span id="code-9-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install two helper packages </span></span>
+<span id="code-9-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--no-install-recommends</span> software-properties-common dirmngr</span>
+<span id="code-9-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add the signing key (by Michael Rutter) for these repositories</span></span>
+<span id="code-9-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc </span></span>
+<span id="code-9-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fingerprint: 298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
+<span id="code-9-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">wget</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> tee <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
+<span id="code-9-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
+<span id="code-9-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> add-apt-repository <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">lsb_release</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-cs</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-cran40/"</span></span>
+<span id="code-9-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install recommended packages</span></span>
+<span id="code-9-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt install r-base r-base-dev</span></code></pre></div>
+<p>Revisamos la versión instalada con:</p>
+<div class="sourceCode" id="code-10" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-10-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--version</span></span></code></pre></div>
+<p>Y deberías obtener algo parecido a esto (es muy probable que exista una versión superior para cuando leas esto).</p>
+<div class="sourceCode" id="code-11" data-key="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-11-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R</span> version 4.4.2 <span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">2024-10-31</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">--</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pile of Leaves"</span></span>
+<span id="code-11-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Copyright</span> <span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">C</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">2024</span> The R Foundation for Statistical Computing</span>
+<span id="code-11-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Platform:</span> x86_64-pc-linux-gnu</span>
+<span id="code-11-4"></span>
+<span id="code-11-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R</span> is free software and comes with ABSOLUTELY NO WARRANTY.</span>
+<span id="code-11-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">You</span> are welcome to redistribute it under the terms of the</span>
+<span id="code-11-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">GNU</span> General Public License versions 2 or 3.</span>
+<span id="code-11-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">For</span> more information about these matters see</span>
+<span id="code-11-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">https://www.gnu.org/licenses/.</span></span></code></pre></div>
+</section>
+<section id="instalar-shiny-server" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-shiny-server">Instalar Shiny Server</h2>
+<p>Después de instalar <strong>R</strong>, pero antes de instalar <strong>Shiny Server</strong>, debes instalar <strong>Shiny</strong>. Puedes hacerlo de dos formas:</p>
+<p>La primera es ejecutando R para abrirlo directamente en la terminal.</p>
+<div class="sourceCode" id="code-12" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-12-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> R</span>
+<span id="code-12-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> install.packages<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"shiny"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span></code></pre></div>
+<p>La otra es “por debajo”:</p>
+<div class="sourceCode" id="code-13" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-13-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> su <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R -e </span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\"</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">install.packages('shiny', repos='https://cran.rstudio.com/')</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\"</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div>
+<p>La instalación de Shiny puede tomar un poco de tiempo en la instancia t2.micro por la cantidad de recursos que establecimos.</p>
+<p>Ya podemos instalar Shiny Server:</p>
+<div class="sourceCode" id="code-14" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install Shiny Server</span></span>
+<span id="code-14-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt-get install gdebi-core</span>
+<span id="code-14-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">wget</span> https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.22.1017-amd64.deb</span>
+<span id="code-14-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> gdebi shiny-server-1.5.22.1017-amd64.deb</span></code></pre></div>
+<p>Verificamos la instalación:</p>
+<div class="sourceCode" id="code-15" data-key="bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="code-15-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> systemctl status shiny-server</span></code></pre></div>
+<div id="fig-22" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-514002333.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;22: Shiny Server ejecutando.
+</figcaption>
+</figure>
+</div>
+<p>Por defecto Shiny Server viene con una Shiny app ejecutandose en tu servidor.</p>
+</section>
+<section id="acceder-a-la-shiny-app-por-defecto" class="level2">
+<h2 class="anchored" data-anchor-id="acceder-a-la-shiny-app-por-defecto">Acceder a la Shiny app por defecto</h2>
+<p>Cada vez que reinicias la instancia, a no ser que hayas pasado por una <strong>Elastic IP</strong>, tu IPv4 va a cambiar. Por ahora realizamos de nuevo el ejercicio de arriba para obtener la IP actual.</p>
+<p>Para este momento es:</p>
+<div id="fig-23" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-724427698.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;23: IP actual.
+</figcaption>
+</figure>
+</div>
+<p>y para acceder a la app debemos ingresar <code>&lt;IP:3838&gt;</code>. Este puerto <code>3838</code> corresponde al servicio de Shiny Server. Para mi caso es “<code>3.145.162.7:3838</code>”.</p>
+<p>Ojo, si ingresas “<code>https://3.145.162.7:3838</code>” no te va a funcionar. Aquí hay dos problemas por resolver. Uno de ellos es el <code>https</code>, no hemos hecho nada aún. El otro es que debemos habilitar la conexión con un <strong>security group</strong>:</p>
+<p>Seleccionamos nuestra instancia, vamos a la pestaña <strong>Security</strong>, y finalmente al link de <strong>Security groups</strong>:</p>
+<div id="fig-24" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-3414933636.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;24: Entrar a editar Security group.
+</figcaption>
+</figure>
+</div>
+<p>Y editamos (<strong>Edit inbound rules</strong>):</p>
+<div id="fig-25" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2239456429.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;25: Editar inbound.
+</figcaption>
+</figure>
+</div>
+<p>Añadimos regla:</p>
+<div id="fig-26" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1972583042.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;26: Añade regla.
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Type</strong> = Custom TCP</p></li>
+<li><p><strong>Port range</strong> = 3838</p></li>
+<li><p><strong>Source</strong> = Custom 0.0.0.0/0</p></li>
+</ul>
+<div id="fig-27" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-524523470.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;27: Revisión reglas.
+</figcaption>
+</figure>
+</div>
+<p>Guardamos regla:</p>
+<div id="fig-28" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2109939771.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;28: Guardar regla.
+</figcaption>
+</figure>
+</div>
+<p>Si ves un mensaje emergente como el siguiente, estas listo para ingresar de nuevo <code>&lt;IP:3838&gt;</code></p>
+<div id="fig-29" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-1010272928.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;29: Creación exitosa de regla.
+</figcaption>
+</figure>
+</div>
+<p>Lo que estábamos esperando:</p>
+<div id="fig-30" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/images/clipboard-2343593722.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;30: Shiny app por defecto accesible desde IPv4.
+</figcaption>
+</figure>
+</div>
+<p>Hasta aquí hemos hecho lo básico para acceder a una Shiny app desde cualquier dispositivo.</p>
+<p>Puedes intentarlo desde tu celular, pues acabamos de dejar expuesto el puerto <code>3838</code> donde se encuentra nuestro servicio de <strong>Shiny Server</strong> en una instancia de <strong>AWS</strong> que hemos decidido dejar con acceso abierto.</p>
+<p>No olvides detener tu instancia. Los recursos que te da AWS son gratuitos, pero tienen un límite de uso. Revisa las condiciones del <strong>Free Tier</strong>.</p>
+<p>En un próximo post te enseño cómo cambiar la app que viene por defecto en shiny Server.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Crear {Shiny} {Server} En {AWS}},
+  date = {2025-01-28},
+  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Crear Shiny Server En
+AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/">https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</a>.
+</div></div></section></div> ]]></description>
+  <category>Cloud</category>
+  <category>AWS</category>
+  <category>EC2</category>
+  <category>Shiny Server</category>
+  <category>Shiny App</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</guid>
+  <pubDate>Tue, 28 Jan 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Gestión de sistemas de mantenimiento</title>
@@ -3880,7 +3880,7 @@ January 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-28-
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-2458725265.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Ejemplo de restricción de programación de mantenimiento según calendario.
+Figura&nbsp;1: Ejemplo de restricción de programación de mantenimiento según calendario.
 </figcaption>
 </figure>
 </div>
@@ -3898,7 +3898,7 @@ Figure&nbsp;1: Ejemplo de restricción de programación de mantenimiento según 
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-3845605873.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Ejemplo de restricción de programación de mantenimiento según operación.
+Figura&nbsp;2: Ejemplo de restricción de programación de mantenimiento según operación.
 </figcaption>
 </figure>
 </div>
@@ -3964,14 +3964,14 @@ Figure&nbsp;2: Ejemplo de restricción de programación de mantenimiento según 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Gestión de Sistemas de Mantenimiento},
   date = {2025-01-27},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Gestión de Sistemas de
 Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/">https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</a>.
 </div></div></section></div> ]]></description>
@@ -4015,7 +4015,7 @@ Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.gi
 <img src="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/images/clipboard-2962206774.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Estrategias de mantenimiento.
+Figura&nbsp;1: Estrategias de mantenimiento.
 </figcaption>
 </figure>
 </div>
@@ -4077,14 +4077,14 @@ Figure&nbsp;1: Estrategias de mantenimiento.
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
   title = {Introducción a Los Sistemas de Mantenimiento},
   date = {2025-01-27},
   url = {https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/},
   langid = {en}
 }
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
 Chiquito Valencia, Cristian. 2025. <span>“Introducción a Los Sistemas de
 Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/">https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/</a>.
 </div></div></section></div> ]]></description>

@@ -5,7 +5,7 @@ author:
   - name: Cristian Chiquito Valencia
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
-date: 01-28-2025
+date: 01-29-2025
 categories: [Github, Shiny App] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-01-28-dev_mtto_app/
@@ -15,7 +15,7 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 Vamos a crear una app para nuestro modelo de optimización de mantenimiento que hemos definido [aquí](https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/).
 
-## Crear un proyecto local 
+## Crear un proyecto local
 
 Este repositorio va a contener los archivos necesarios para nuestra app.
 
@@ -41,15 +41,13 @@ Mi sesión de RStudio queda así:
 
 -   `.Rproj`: es un archivo de configuración para RStudio que contiene información sobre el proyecto, como el directorio de trabajo, los paquetes instalados, las opciones de visualización y los scripts de ejecución.
 
--   `app.R`: es el archivo principal de un proyecto Shiny que contiene la
-    configuración, la interfaz de usuario y la lógica de negocio de la
-    aplicación.
+-   `app.R`: es el archivo principal de un proyecto Shiny que contiene la configuración, la interfaz de usuario y la lógica de negocio de la aplicación.
 
 -   `.gitignore`: es un archivo de configuración para Git que contiene una lista de patrones de archivos y directorios que se deben ignorar por Git.
 
 Ten presente que en la esquina superior derecha nos indica el proyecto en el que estamos trabajando `dev_shiny_mtto_app.Rproj`. En la parte inferior izquierda, en la pestaña de Git, tenemos los cambios que hemos hecho hasta que realicemos un `commit`.
 
-## Clonar el repositorio desde local a Github. 
+## Clonar el repositorio desde local a Github.
 
 Por ahora no voy a modificar el `app.R`, solo quiero montar la infraestructura para ejecutar el workflow.
 

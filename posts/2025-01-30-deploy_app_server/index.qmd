@@ -338,7 +338,6 @@ Qué se puede incluir en la aplicación?
 
 Si estás interesado en conocer más acerca del modelo y las posibilidades, no dudes en contactarme por correo electrónico, agendamos un espacio y hablamos del desarrollo de la solución.
 
-Tener solo un plan maestro y/o una programación maestra no garantiza el
-éxito. Al igual que con todos los procesos y herramientas, el plan maestro y/o la programación maestra **deben ser administrados**. El fracaso a la hora de gestionar el plan maestro y/o la programación maestra conduce a la mala asignación de los recursos de manufactura y abastecimiento de la empresa. Esto, a su vez, puede significar que la empresa no sea capaz de responder a las necesidades de los clientes o sea ineficiente en el uso de sus recursos. En última instancia, la empresa corre el riesgo de perder su posición competitiva.
+Tener solo un plan maestro y/o una programación maestra no garantiza el éxito. Al igual que con todos los procesos y herramientas, el plan maestro y/o la programación maestra **deben ser administrados**. El fracaso a la hora de gestionar el plan maestro y/o la programación maestra conduce a la mala asignación de los recursos de manufactura y abastecimiento de la empresa. Esto, a su vez, puede significar que la empresa no sea capaz de responder a las necesidades de los clientes o sea ineficiente en el uso de sus recursos. En última instancia, la empresa corre el riesgo de perder su posición competitiva.
 
 Además, si el plan maestro y/o la programación maestra no se gestiona correctamente, muchos de los beneficios del proceso de planeación empresarial integrada o planeación de ventas y operaciones se perderán.
