@@ -3837,6 +3837,154 @@ AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/po
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Gestión de sistemas de mantenimiento</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Usar un software de <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/">mantenimiento</a> para la gestión de flotas es, sin lugar a dudas, una de las mejores <em>decisiones estratégicas</em> que se pueden asumir en coherencia con la gerencia.</p>
+<p>Cualquier software de gestión de mantenimiento debe ser una herramienta valiosa para las empresas que buscan optimizar sus operaciones de mantenimiento. Uno de los beneficios más importantes es la mejora en la planeación y programación. Debes ser capaz de planificar y programar los mantenimientos con anticipación, evitando retrasos y reduciendo los tiempos de inactividad de los vehículos. Esto es especialmente importante en industrias como la logística y el transporte, donde la disponibilidad de los vehículos es crucial para el éxito de la empresa. Además, la planeación y programación efectiva también puede ayudar a reducir costos y mejorar la eficiencia de los procesos.</p>
+<p>Otro beneficio importante es la mejora en la toma de decisiones. El software de gestión de mantenimiento debe proporcionar información detallada sobre los activos y los procesos para que los gerentes puedan tomar decisiones informadas sobre cómo manejar sus activos. Esto puede incluir decisiones sobre cuando reemplazar un componente, cómo asignar recursos y cómo optimizar los procesos. Con esta información, los gerentes pueden identificar oportunidades para reducir costos y mejorar la eficiencia, lo que puede tener un impacto significativo en el éxito de la empresa.</p>
+<p>La reducción de costos es otro beneficio importante del software de gestión de mantenimiento. Al monitorear el progreso de los mantenimientos y los costos asociados, las empresas pueden identificar oportunidades para reducir gastos y optimizar sus procesos de mantenimiento. Esto puede incluir la identificación de componentes que no son esenciales para el funcionamiento del vehículo, la optimización de los procesos de mantenimiento y la reducción de los costos de repuestos. Además, la reducción de costos también puede ayudar a mejorar la eficiencia y la productividad de los empleados, lo que puede tener un impacto positivo en la cultura de la empresa.</p>
+<section id="proyecto-optimización-de-mantenimiento" class="level2">
+<h2 class="anchored" data-anchor-id="proyecto-optimización-de-mantenimiento">Proyecto optimización de mantenimiento</h2>
+<p>Crearemos un modelo que proyecte el <strong>calendario de mantenimiento óptimo</strong> para una flota de <img src="https://latex.codecogs.com/png.latex?m"> unidades y <img src="https://latex.codecogs.com/png.latex?H"> periodos de tiempo. El mantenimiento se refiere a <strong>cuándo</strong> debe ocurrir y <strong>cuántas</strong> horas de funcionamiento se planean para cada unidad en cada período de tiempo. Las unidades <img src="https://latex.codecogs.com/png.latex?i"> y los periodos de tiempo <img src="https://latex.codecogs.com/png.latex?t"> se representan mediante conjuntos.</p>
+<p><img src="https://latex.codecogs.com/png.latex?i%20%E2%88%88%20%5C%7B1,2,...,m%5C%7D"></p>
+<p>y</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0At%20%E2%88%88%20%5C%7B1,2,...,H%5C%7D%0A"></p>
+<p>En primer lugar, se utilizan dos variables para definir un calendario. Una variable binaria que almacena el mantenimiento planeado.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D=%5Ccases%7B1,%20%5Ctext%7Bsi%20se%20realiza%20mantenimiento%20de%20la%20unidad%20i%20en%20el%20tiempo%20t%7D%5C%5C0,%20%5Ctext%7Bde%20lo%20contrario%7D%7D%0A"></p>
+<p>Y una variable <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D%20%E2%89%A5%200"> que representa el número de horas de funcionamiento para la unidad <img src="https://latex.codecogs.com/png.latex?i"> en el período de tiempo <img src="https://latex.codecogs.com/png.latex?t">.</p>
+<p>Para encontrar un calendario de mantenimiento óptimo para una flota, se escribe un <strong>MILP</strong> (Programación Lineal Entera Mixta) donde el objetivo es minimizar el número de ocasiones de mantenimiento planeadas, es decir, minimizar la suma de <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> sobre cada unidad <img src="https://latex.codecogs.com/png.latex?i"> y período de tiempo <img src="https://latex.codecogs.com/png.latex?t">. Para el programa principal, las restricciones incluidas son una demanda de tiempo de funcionamiento para la flota completa de <img src="https://latex.codecogs.com/png.latex?D"> horas y requisitos de mantenimiento después de al menos <img src="https://latex.codecogs.com/png.latex?U_i"> tiempo periodos o <img src="https://latex.codecogs.com/png.latex?T_i"> horas de funcionamiento desde el último mantenimiento, lo que sea lo primero. Esto se puede escribir como:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Amin%20%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dy_%7Bi,t%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bsujeto%20a%20%7D%20%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dx_%7Bi,t%7D%5Cge%20D,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=%5Ctau%7D%5E%7B%5Ctau+U_i%7Dy_%7Bi,t%7D%20%5Cge%201,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7B1,2,...,H-U_i%5C%7D,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D%5Cle%20T_i+T_i%20%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,t%7D%20+%20x%5E%7Bmax%7Dy_%7Bi,t%7D%20%5Cle%20x%5E%7Bmax%7D,%20%5Cquad%20%E2%88%80i,%20t,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,t%7D%20%5Cge%200,%20%5Cquad%20%E2%88%80i,%20t,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D%20%E2%88%88%20%5C%7B0,1%5C%7D,%20%5Cquad%20%E2%88%80i,t,%0A"></p>
+<p>Donde Eq.2 garantiza que se cumple la demanda de horas de funcionamiento y Eq.3 y Eq.4 manejan las restricciones de mantenimiento. La restricción Eq.5 garantiza que no se planean operaciones para una unidad que está en mantenimiento, es decir, fuerza la deducción:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D=1%20%E2%9F%B6%20x_%7Bi,t%7D=0,%20%5Cquad%20%E2%88%80i,%20t.%0A"></p>
+<p>El parámetro <img src="https://latex.codecogs.com/png.latex?x%5E%7Bmax%7D"> es el límite superior de <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D">, que se establece en <img src="https://latex.codecogs.com/png.latex?744"> horas, ya que ese es el máximo número de horas que un mes puede tener.</p>
+</section>
+<section id="restricción-de-programación-de-mantenimiento-según-calendario" class="level2">
+<h2 class="anchored" data-anchor-id="restricción-de-programación-de-mantenimiento-según-calendario">Restricción de programación de mantenimiento según calendario</h2>
+<p>La Eq.3 controla que el mantenimiento se realice al menos después de <img src="https://latex.codecogs.com/png.latex?U_i"> periodos de tiempo desde el último mantenimiento. Esta restricción establece que para la suma de <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> dentro de todos los periodos de tamaño <img src="https://latex.codecogs.com/png.latex?U_i%20+%201">, al menos uno de los periodos tiene que tener un evento de mantenimiento planeado con <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D%20=%201">, según el requisito de mantenimiento basado en calendario. Para visualizar las restricciones, se muestra un ejemplo para una unidad <img src="https://latex.codecogs.com/png.latex?j"> con <img src="https://latex.codecogs.com/png.latex?U_j%20=%203"> y <img src="https://latex.codecogs.com/png.latex?H%20=%208">.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-2458725265.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Ejemplo de restricción de programación de mantenimiento según calendario.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="restricción-de-programación-de-mantenimiento-según-uso" class="level2">
+<h2 class="anchored" data-anchor-id="restricción-de-programación-de-mantenimiento-según-uso">Restricción de programación de mantenimiento según uso</h2>
+<p>La restricción Eq.4 se compone de la suma del tiempo de funcionamiento, operación o funcionamiento,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"> y la suma de eventos de mantenimiento</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D%0A"></p>
+<p>sobre todos los periodos de tiempo continuos de diferentes tamaños. Para cada evento de mantenimiento en el período, se agregan <img src="https://latex.codecogs.com/png.latex?T_i"> unidades de tiempo dentro del área aceptable de tiempo de funcionamiento. Por lo tanto, la restricción se escribe como: <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D%5Cle%20T_i+T_i%20%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"></p>
+<p>Los periodos desde <img src="https://latex.codecogs.com/png.latex?t"> hasta <img src="https://latex.codecogs.com/png.latex?t%20+%20u"> se visualizan en la Figura 2 para una unidad y <img src="https://latex.codecogs.com/png.latex?H%20=%206">.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-3845605873.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Ejemplo de restricción de programación de mantenimiento según operación.
+</figcaption>
+</figure>
+</div>
+<p>Las ecuaciones de la restricción Eq.4 escritas son:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20%5Cle%20T_i+T_iy_%7Bi,1%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+%20x_%7Bi,2%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+%20T_iy_%7Bi,2%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+x_%7Bi,2%7D%20+x_%7Bi,3%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+T_iy_%7Bi,2%7D+T_iy_%7Bi,3%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+x_%7Bi,2%7D%20+...+x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+T_iy_%7Bi,2%7D+...+T_iy_%7Bi,H%7D%0A"></p>
+<hr>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20%5Cle%20T_i+T_iy_%7Bi,2%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+%20x_%7Bi,3%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+%20T_iy_%7Bi,3%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+x_%7Bi,3%7D%20+x_%7Bi,4%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+T_iy_%7Bi,3%7D+T_iy_%7Bi,4%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+x_%7Bi,3%7D%20+...+x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+T_iy_%7Bi,3%7D+...+T_iy_%7Bi,H%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H-1%7D%20%5Cle%20T_i+T_iy_%7Bi,H-1%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H-1%7D%20+%20x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,H-1%7D%20+%20T_iy_%7Bi,H%7D%0A"></p>
+<hr>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H%7D%20%5Cle%20T_i+T_iy_%7Bi,H%7D%0A"></p>
+<p>para cada unidad <img src="https://latex.codecogs.com/png.latex?i">.</p>
+</section>
+<section id="ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo">Ejemplo</h2>
+<p>Un pequeño ejemplo del modelo descrito, con valores de parámetros de entrada listados en la Tabla No.1, se resuelve:</p>
+<table class="caption-top table">
+<caption>Tabla No.1. Valores de entrada para un pequeño ejemplo.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Parámetro</th>
+<th style="text-align: center;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?m"></td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?H"></td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?D"></td>
+<td style="text-align: center;">480</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?U_i"></td>
+<td style="text-align: center;">c(3, 3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?T_i"></td>
+<td style="text-align: center;">c(90, 90)</td>
+</tr>
+</tbody>
+</table>
+<p>El número total de horas de operación para la solución es:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dx_%7Bi,t%7D%5E%7B*%7D=D,%0A"></p>
+<p>las horas máximas de funcionamiento y los periodos de tiempo entre mantenimientos son iguales a <img src="https://latex.codecogs.com/png.latex?T_i"> y <img src="https://latex.codecogs.com/png.latex?U_i"> ,respectivamente, y el número de eventos de mantenimiento es:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Btot%7D%5E%7B*%7D=%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dy_%7Bi,t%7D%5E%7B*%7D=4%0A"></p>
+<p>Es claro que el problema planteado aquí es en extremo básico, y seguramente no se ajusta a cualquiera que sea tu necesidad. Pero, en mi defensa, mi intención es mostrar que no es imposible crear un servicio en la nube para lograr optimizar los recursos que se encuentran bajo tu control y administración.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Gestión de Sistemas de Mantenimiento},
+  date = {2025-01-27},
+  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Gestión de Sistemas de
+Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/">https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</a>.
+</div></div></section></div> ]]></description>
+  <category>Mantenimiento</category>
+  <category>Software</category>
+  <category>Programación Lineal Entera Mixta</category>
+  <category>MILP</category>
+  <category>Optimización</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</guid>
+  <pubDate>Mon, 27 Jan 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/fleet-vehicle2.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>Introducción a los sistemas de mantenimiento</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/</link>
@@ -16263,824 +16411,6 @@ Climbing.”</span> November 13, 2023. <a href="https://cchiquitovalencia.github
   <guid>https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/</guid>
   <pubDate>Mon, 13 Nov 2023 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2023-11-13-stochastic_hill_climbing/stochastic_hill_climbing_1.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Adaptative Random Search</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="taxonomía" class="level2">
-<h2 class="anchored" data-anchor-id="taxonomía">Taxonomía</h2>
-<p>El algoritmo <code>Adaptative Random Search</code> pertenece al conjunto general de enfoques conocidos como <code>Optimización Estocástica</code> y <code>Optimización Global</code>.</p>
-<p>Es un método de búsqueda directa, en el sentido de que no requiere derivadas para para navegar por el espacio de búsqueda. <code>Adaptative Random Search</code> es una extensión de los algoritmos <code>Random Search</code>.</p>
-</section>
-<section id="estrategia" class="level2">
-<h2 class="anchored" data-anchor-id="estrategia">Estrategia</h2>
-<p>El algoritmo <code>Adaptative Random Search</code> fue diseñado para abordar las limitaciones del tamaño de paso fijo en el algoritmo de <code>Localized Random Search</code>.</p>
-<p>La estrategia de la <code>Adaptative Random Search</code> consiste en realizar paso óptimo necesario para alcanzar el óptimo global en el espacio de búsqueda. Esto se consigue probando y adoptando tamaños de paso menores o mayores sólo si mejoran el rendimiento de la búsqueda.</p>
-<p>La estrategia del algoritmo <code>Adaptive Step Size Random Search</code> (la técnica específica revisada) consiste en probar un paso mayor en cada iteración y adoptarlo si mejora el resultado. Los pasos muy grandes se prueban de la misma manera, aunque con una frecuencia mucho menor. Esta estrategia de preferir movimientos grandes tiene por objeto permitir que la técnica escape a los óptimos locales. Los pasos más pequeños se adoptan si no se produce ninguna mejora durante un periodo prolongado.</p>
-</section>
-<section id="procedimiento" class="level2">
-<h2 class="anchored" data-anchor-id="procedimiento">Procedimiento</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/psd_adaptative_random_search.png" class="img-fluid figure-img"></p>
-<figcaption>Pseudocódigo Random Search</figcaption>
-</figure>
-</div>
-</section>
-<section id="heurística" class="level2">
-<h2 class="anchored" data-anchor-id="heurística">Heurística</h2>
-<p><code>Adaptative Random Search</code> fue diseñado para dominios de problemas de optimización de funciones continuas.</p>
-<p>Los candidatos con igual costo deben considerarse mejoras para permitir que el algoritmo progrese a través de mesetas en la superficie de respuesta.</p>
-<p><code>Adaptative Random Search</code> puede adaptar la dirección de búsqueda además del tamaño del paso.</p>
-<p>El tamaño del paso puede adaptarse para todos los parámetros o para cada parámetro individualmente.</p>
-</section>
-<section id="código" class="level2">
-<h2 class="anchored" data-anchor-id="código">Código</h2>
-<p>En el ejemplo, el algoritmo se ejecuta durante un número fijo de iteraciones y devuelve la mejor solución candidata descubierta. El problema del ejemplo es un caso de optimización de una función continua que busca</p>
-<p><img src="https://latex.codecogs.com/png.latex?min%20f(x)"> donde <img src="https://latex.codecogs.com/png.latex?f%20=%20%E2%88%91_%7Bi=1%7D%5En%20X_i%5E2">, <img src="https://latex.codecogs.com/png.latex?-5.0%3C=x_i%3C=5.0"> y <img src="https://latex.codecogs.com/png.latex?n=2">.</p>
-<p>La solución óptima para esta función es <img src="https://latex.codecogs.com/png.latex?(v_0,...,v_%7Bn-1%7D)=0.0"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Definir la función objetivo</span></span>
-<span id="cb1-2">objective_function <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(vector) {</span>
-<span id="cb1-3">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sum</span>(vector<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>))</span>
-<span id="cb1-4">}</span>
-<span id="cb1-5"></span>
-<span id="cb1-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Generar un número aleatorio en el intervalo [min, max]</span></span>
-<span id="cb1-7">rand_in_bounds <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(min, max) {</span>
-<span id="cb1-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(min <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> ((max<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>min) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">runif</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)))</span>
-<span id="cb1-9">}</span>
-<span id="cb1-10"></span>
-<span id="cb1-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Generar un vector aleatorio en el espacio de búsqueda</span></span>
-<span id="cb1-12">random_vector <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(minmax) {</span>
-<span id="cb1-13">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#minmax &lt;- matrix(bounds,nrow = problem_size, ncol = problem_size, byrow = FALSE)</span></span>
-<span id="cb1-14">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">runif</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(minmax), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">min =</span> minmax[,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>], <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">max =</span> minmax[,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]))</span>
-<span id="cb1-15">}</span>
-<span id="cb1-16"></span>
-<span id="cb1-17"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Dar un paso en una dirección aleatoria</span></span>
-<span id="cb1-18">take_step <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(minmax, current, step_size) {</span>
-<span id="cb1-19">    position <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">numeric</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(current))</span>
-<span id="cb1-20">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(current)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>problem_size)) {</span>
-<span id="cb1-21">        min <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">max</span>(minmax[i,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>], current[i]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>step_size)</span>
-<span id="cb1-22">        max <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">min</span>(minmax[i,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>], current[i]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span>step_size)</span>
-<span id="cb1-23">        position[i] <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">rand_in_bounds</span>(min, max)</span>
-<span id="cb1-24">    }</span>
-<span id="cb1-25">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(position)</span>
-<span id="cb1-26">}</span>
-<span id="cb1-27"></span>
-<span id="cb1-28"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Dar un paso grande en una dirección aleatoria</span></span>
-<span id="cb1-29">large_step_size <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(iter, step_size, s_factor, l_factor, iter_mult) {</span>
-<span id="cb1-30">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> (iter <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&amp;&amp;</span> iter <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%%</span> iter_mult <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>) {</span>
-<span id="cb1-31">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(step_size <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> l_factor)</span>
-<span id="cb1-32">    } <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> {</span>
-<span id="cb1-33">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(step_size <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> s_factor)</span>
-<span id="cb1-34">    }</span>
-<span id="cb1-35">}</span>
-<span id="cb1-36"></span>
-<span id="cb1-37"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Dar un paso y un gran paso en direcciones aleatorias</span></span>
-<span id="cb1-38">take_steps <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(bounds, current, step_size, big_stepsize) {</span>
-<span id="cb1-39">    step <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">list</span>()</span>
-<span id="cb1-40">    big_step <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">list</span>()</span>
-<span id="cb1-41">    step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">take_step</span>(bounds, current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector, step_size)</span>
-<span id="cb1-42">    step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">objective_function</span>(step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector)</span>
-<span id="cb1-43">    big_step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">take_step</span>(bounds, current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector, big_stepsize)</span>
-<span id="cb1-44">    big_step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">objective_function</span>(big_step<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector)</span>
-<span id="cb1-45">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">list</span>(step, big_step))</span>
-<span id="cb1-46">}</span>
-<span id="cb1-47"></span>
-<span id="cb1-48"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Inicializar un dataframe para almacenar los resultados</span></span>
-<span id="cb1-49">results <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">iteration =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">integer</span>(), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">cost =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">numeric</span>())</span>
-<span id="cb1-50"></span>
-<span id="cb1-51"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Realizar la búsqueda aleatoria adaptativa</span></span>
-<span id="cb1-52">search <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, max_no_impr) {</span>
-<span id="cb1-53">    step_size <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> (bounds[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span>bounds[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> init_factor</span>
-<span id="cb1-54">    current <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">list</span>()</span>
-<span id="cb1-55">    current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">random_vector</span>(bounds)</span>
-<span id="cb1-56">    current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">objective_function</span>(current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector)</span>
-<span id="cb1-57">    count <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb1-58">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> (iter <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>max_iter) {</span>
-<span id="cb1-59">        big_stepsize <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">large_step_size</span>(iter, step_size, s_factor, l_factor, iter_mult)</span>
-<span id="cb1-60">        steps <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">take_steps</span>(bounds, current, step_size, big_stepsize)</span>
-<span id="cb1-61">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> (steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">||</span> steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost) {</span>
-<span id="cb1-62">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> (steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost) {</span>
-<span id="cb1-63">                step_size <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> big_stepsize</span>
-<span id="cb1-64">                current <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]]</span>
-<span id="cb1-65">            } <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> {</span>
-<span id="cb1-66">                current <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> steps[[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]]</span>
-<span id="cb1-67">            }</span>
-<span id="cb1-68">            count <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb1-69">        } <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> {</span>
-<span id="cb1-70">            count <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> count <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span>
-<span id="cb1-71">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> (count <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> max_no_impr) {</span>
-<span id="cb1-72">                step_size <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> step_size <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> s_factor</span>
-<span id="cb1-73">                count <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb1-74">            }</span>
-<span id="cb1-75">        }</span>
-<span id="cb1-76">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Almacenar los resultados en el dataframe</span></span>
-<span id="cb1-77">        results <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">rbind</span>(results, <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">iteration =</span> iter, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">cost =</span> current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>cost))</span>
-<span id="cb1-78">    }</span>
-<span id="cb1-79">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(current)</span>
-<span id="cb1-80">}</span>
-<span id="cb1-81"></span>
-<span id="cb1-82"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Configuración del problema</span></span>
-<span id="cb1-83">problem_size <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span></span>
-<span id="cb1-84">bounds <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">matrix</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">nrow =</span> problem_size, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">ncol =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">byrow =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">TRUE</span>)</span>
-<span id="cb1-85"></span>
-<span id="cb1-86"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Configuración del algoritmo</span></span>
-<span id="cb1-87">max_iter <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span></span>
-<span id="cb1-88">init_factor <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.05</span></span>
-<span id="cb1-89">s_factor <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.3</span></span>
-<span id="cb1-90">l_factor <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3.0</span></span>
-<span id="cb1-91">iter_mult <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span></span>
-<span id="cb1-92">max_no_impr <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">30</span></span>
-<span id="cb1-93"></span>
-<span id="cb1-94"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Ejecutar el algoritmo</span></span>
-<span id="cb1-95">best <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">search</span>(max_iter, bounds, init_factor, s_factor, l_factor, iter_mult, max_no_impr)</span></code></pre></div>
-</div>
-<p>Revisamemos el comportamiento del algoritmo para encontrar la solución óptima:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(ggplot2)</span>
-<span id="cb2-2"></span>
-<span id="cb2-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Crear modificaciones al plot</span></span>
-<span id="cb2-4">crear_tema <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>() {</span>
-<span id="cb2-5">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb2-6">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme</span>(</span>
-<span id="cb2-7">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>), </span>
-<span id="cb2-8">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">panel.grid.major =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>), </span>
-<span id="cb2-9">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.2</span>), </span>
-<span id="cb2-10">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>), </span>
-<span id="cb2-11">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">14</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#4d6080"</span>),</span>
-<span id="cb2-12">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">12</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#4d6080"</span>),</span>
-<span id="cb2-13">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#4d6080"</span>),</span>
-<span id="cb2-14">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.5</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#de6f41"</span>), </span>
-<span id="cb2-15">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">legend.background =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#4d6080"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>), </span>
-<span id="cb2-16">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">legend.key =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey90"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>),</span>
-<span id="cb2-17">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.ticks.x =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#de6f41"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>),</span>
-<span id="cb2-18">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.ticks.y =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_line</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#de6f41"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)</span>
-<span id="cb2-19">        )</span>
-<span id="cb2-20">}</span>
-<span id="cb2-21"></span>
-<span id="cb2-22"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ggplot</span>(results, <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> iteration, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">y =</span> cost)) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb2-23">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb2-24">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Progreso de la función objetivo"</span>, </span>
-<span id="cb2-25">         <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Iteración"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Costo"</span>)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb2-26">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">crear_tema</span>()</span></code></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/index_files/figure-html/graficar-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>La solución óptima es entonces:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">best<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>vector</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.1144359 -0.1796417  0.0000000  0.0000000</code></pre>
-</div>
-</div>
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2023,
-  author = {Chiquito Valencia, Cristian},
-  title = {Adaptative {Random} {Search}},
-  date = {2023-11-13},
-  url = {https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2023" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2023. <span>“Adaptative Random
-Search.”</span> November 13, 2023. <a href="https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/">https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/</a>.
-</div></div></section></div> ]]></description>
-  <category>R</category>
-  <category>optimización</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/</guid>
-  <pubDate>Mon, 13 Nov 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2023-11-13-adaptative_random_search/random_search_image_2.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
