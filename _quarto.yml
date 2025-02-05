@@ -5,6 +5,10 @@ project:
 website:
   favicon: logo_2.png
   site-url: "https://cchiquitovalencia.github.io/"
+  open-graph: true
+  twitter-card: 
+    creator: "@cchiquitov"
+    card-style: summary
   description: "Un blog para aprender"
   title: "Cristian Chiquito Valencia"
   navbar:
