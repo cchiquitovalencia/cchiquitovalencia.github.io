@@ -4,7 +4,9 @@ project:
 
 website:
   favicon: logo_2.png
-  title: "CHV"
+  site-url: "https://cchiquitovalencia.github.io/"
+  description: "Un blog para aprender"
+  title: "Cristian Chiquito Valencia"
   navbar:
     left:
       - href: index.qmd
@@ -15,7 +17,7 @@ website:
   page-footer:
     background: light
     left: 
-      - "Copyright 2024, Cristian Chiquito Valencia"
+      - "Copyright 2025, Cristian Chiquito Valencia"
     right: 
       - icon: linkedin
         href: https://www.linkedin.com/in/cchiquitovalencia/
@@ -38,4 +40,6 @@ format:
     page-layout: full
 
 editor: visual
+
+language: _language-es.yml
 

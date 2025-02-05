@@ -83,12 +83,27 @@ div.quarto-grid-item:hover{
   box-shadow: 0 10px 20px $naranja-oscuro, 0 4px 8px $naranja-claro;
 }
 
-.page-item{
+.page-item .page-link {
     background-color: $naranja-oscuro;
     color: $azul-oscuro;
 }
 
-.page-item:hoover{
+.page-item.active .page-link {
+    background-color: $naranja-oscuro;
+    color: $azul-oscuro;
+}
+
+.page-item .page-link {
+    background-color: $naranja-oscuro;
+    color: $azul-oscuro;
+}
+
+.page-item.active .page-link:hover {
+    background-color: $azul-oscuro;
+    color: $naranja-oscuro;
+}
+
+.page-item .page-link:hover {
     background-color: $azul-oscuro;
     color: $naranja-oscuro;
 }
