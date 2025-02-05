@@ -25,7 +25,7 @@ El objetivo del `Greedy Randomized Adaptative Search` es muestrear repetidamente
 
 Se presenta un pseudocódigo del `Greedy Randomized Adaptative Search` para minimizar una función de costo.
 
-![Pseudocódigo Greedy Randomized Adaptative Search](psd_greedy_randomized_adapatative_search_1.png){alt="Pseudocódigo Greedy Randomized Adaptative Search"}
+![Pseudocódigo Greedy Randomized Adaptative Search](psd_greedy_randomized_adapatative_search_1.png)
 
 Además, el pseudocódigo de la función de construcción aleatoria codiciosa. La función consiste en la construcción paso a paso de una solución candidata utilizando un proceso de construcción estocástico. La función trabaja construyendo una Lista Restringida de Candidatos (RCL por sus siglas en inglés) que restringe los componentes de una solución (características) que pueden seleccionarse en cada ciclo. La RCL puede limitarse mediante un tamaño explícito o utilizando un umbral $(⍺ ∈ [0,1])$ en el costo de añadir cada característica a la solución candidata actual.
 

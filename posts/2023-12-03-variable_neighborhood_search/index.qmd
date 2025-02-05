@@ -25,7 +25,7 @@ La estrategia para `Variable Neighborhood Search` implica la exploración iterat
 
 El pseudocódigo muestra que la búsqueda sistemática de vecindarios en expansión para un óptimo local se abandona cuando se alcanza una mejora global (mostrada con el salto Break).
 
-![Pseudocódigo Variable Neighborhood Search](psd_variable_neighborhood_search.png){alt="Pseudocódigo Variable Neighborhood Search"}
+![Pseudocódigo Variable Neighborhood Search](psd_variable_neighborhood_search.png)
 
 ## Heurística
 

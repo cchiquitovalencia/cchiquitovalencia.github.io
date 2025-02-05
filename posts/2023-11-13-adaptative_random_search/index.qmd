@@ -29,7 +29,7 @@ La estrategia del algoritmo `Adaptive Step Size Random Search` (la técnica espe
 
 ## Procedimiento
 
-![Pseudocódigo Adaptative Random Search](psd_adaptative_random_search.png){alt="Pseudocódigo Random Search"}
+![Pseudocódigo Random Search](psd_adaptative_random_search.png)
 
 ## Heurística
 
