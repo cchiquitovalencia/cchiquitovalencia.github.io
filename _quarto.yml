@@ -10,7 +10,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: About
+        text: Acerca de mi
       #- about.qmd
       #- resources.qmd
       - posts.qmd
