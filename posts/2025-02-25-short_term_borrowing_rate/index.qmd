@@ -1,0 +1,84 @@
+---
+title: "Por qué no usar una tasa de préstamo?"
+description: "INVENTARIOS Serie - Parte 7"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-25-2025
+categories: [Inventarios, Supply Chain, Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-25-short_term_borrowing_rate/
+image: short.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### La Tasa de Préstamo a Corto Plazo
+
+Una razón para utilizar la tasa de préstamo a corto plazo es que el inventario es un activo a corto plazo financiado por préstamos a corto plazo. Técnicamente, el inventario es un activo a corto plazo, o lo que se denomina un "**activo corriente**". Por ejemplo, supongamos que una empresa tiene $100$ millones en inventario, y que ese inventario representa un surtido de bienes de $60$ días. En promedio, los $100$ millones en inventario se convierten en efectivo y/o cuentas por cobrar cada $60$ días. Sin embargo, el defecto en el argumento del activo a corto plazo es que, mientras la empresa siga teniendo $60$ días de inventario, necesitará invertir $100$ millones en inventario para mantener sus ventas actuales. En este caso, el inventario debe considerarse como un "`activo corriente permanente`", a pesar de que se renueva cada $60$ días. `Por lo tanto, se debe utilizar un costo de capital a largo plazo al calcular el cargo por el mantenimiento del inventario`.
+
+Otro argumento común para utilizar la tasa de préstamo a corto plazo es que el inventario se utiliza como colateral en acuerdos de préstamos basados en activos. *Es cierto que los préstamos con garantía de inventario son comunes*. Sin embargo, hay varios defectos al utilizar la tasa de préstamo a corto plazo como el costo de capital general para el inventario. Uno de ellos es que **los acreedores rara vez otorgan préstamos hasta el** $100\%$ **del valor del inventario**. Un acuerdo de préstamo más típico es hasta el $50\%$ del valor. El porcentaje puede ser menor (como en el caso de alta tecnología) o mayor (como en el caso de materias primas), en función del riesgo subyacente del inventario. Además, los acuerdos de préstamo a menudo requieren que la empresa comprometa el flujo de caja de todas las demás fuentes como medio para devolver el préstamo, incluso si el inventario se utiliza como colateral.
+
+Supongamos que una empresa con $100$ millones en inventario financia el $50\%$ ($\$50$ millones) mediante un préstamo bancario. Esto deja el $50\%$ restante para ser financiado a través de otras fuentes, como crédito comercial, bonos y capital—todas ellas con costos significativamente más altos que la tasa de préstamo a corto plazo. En particular, el crédito comercial es comúnmente visto como una fuente de financiamiento para el inventario. El crédito comercial aumenta el pasivo de la empresa compradora (*cuentas por pagar*) que financia el activo del inventario. Sin embargo, en los últimos años, muchas empresas compradoras han exigido plazos de crédito más largos a los proveedores.
+
+[Nuestra investigación](https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/#sec-razón-de-rotación-de-cuentas-por-pagar) muestra la siguiente proporción de cuentas por pagar con respecto al inventario para un grupo de empresas de muestra: industria manufacturera (**35%)**, construcción (**40%**) y retail (**34%**). Los resultados sugieren que el crédito comercial representa el $30\%$ o más del inventario, lo que argumenta en contra del uso de una tasa a corto plazo.
+
+Otro defecto en el uso del costo de préstamo a corto plazo para el costo de capital del inventario es que no considera la "**estructura de capital objetivo**" de la empresa—es decir, qué porcentaje la empresa desea financiar a largo plazo con deuda (suma de deuda a corto y largo plazo) y qué porcentaje financiar mediante capital. La estructura de capital objetivo es una decisión de la gerencia senior que está impulsada por factores como el riesgo de los activos, el ciclo de vida del producto y la vida económica útil de los activos fijos. El nivel y el porcentaje de financiamiento con deuda que los acreedores están dispuestos a proporcionar también son factores importantes. Por ejemplo, muchos préstamos incluyen restricciones sobre la cantidad total de financiamiento con deuda en general.
+
+Anteriormente, demostramos que para la [empresa promedio (Valle del Cauca)](https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/ "En el gráfico de diagramas de cajas y bigotes."), la estructura de capital es aproximadamente $60\%$ de capital y $40\%$ de deuda (para empresas con más de $15$ años de constitución). Sin embargo, esta estructura varía según la industria. Las empresas de alta tecnología, como las que fabrican computadoras, dispositivos de almacenamiento y dispositivos periféricos, venden productos con ciclos de vida muy cortos y demanda volátil. Su estructura de capital promedio podría ser de $95\%$ de capital y $5\%$ de deuda. En el otro extremo se encuentran las empresas que proporcionan servicios eléctricos y de gas, las cuales podrían tener una estructura de capital promedio de $50\%$ de capital y $50\%$ de deuda. El mayor porcentaje de deuda refleja la demanda más estable de los servicios públicos y las largas vidas útiles de sus plantas y equipos de generación y transmisión.
+
+El cálculo a continuación para una empresa de manufactura de la muestra de Pymes del Valle del Cauca ilustra la necesidad de tener en cuenta el impacto de la financiación del inventario con deuda y, a su vez, de aplicar el costo de capital correcto al estimar el costo de mantenimiento del inventario.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gt)
+
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+
+#| fig-cap: "Financiación del inventario"
+
+data.frame(Capital = c("Inventario", "Todo lo otro", "Total"),
+           Valor = c("$100m", "$67m", "$167m"),
+           Porcentaje = c("60%", "40%", "100%")) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+```{r}
+
+#| fig-cap: "Costo de capital"
+
+data.frame(Estructura_Capital = c("Deuda", "Capital", "Total"),
+           Valor = c("$50m", "$117m", "$167m"),
+           Porcentaje = c("30%", "70%", "100%")) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Este cálculo se basa en los resultados para una empresa con $100$ millones en inventario. El inventario representa el $60\%$ del capital total, y la estructura de capital es $70\%$ de capital y $30\%$ de deuda. Todo el capital restante, que asciende a $\$67$ millones, está compuesto por la inversión neta en cuentas por cobrar, propiedades, plantas y equipos, y otros activos. Los $\$50$ millones en deuda corresponden a un préstamo sobre los $\$100$ millones en inventario. Las condiciones especifican que el $50\%$ del inventario puede ser financiado mediante el préstamo ($\$50$ millones de préstamo = $\$100$ millones de inventario × $50\%$ de financiamiento con préstamo).
+
+Este ejemplo destaca la necesidad de tener en cuenta el impacto del financiamiento de la deuda del inventario en la capacidad de endeudamiento de la empresa. La capacidad total de deuda de la empresa es de $\$50$ millones ($\$167$ millones de capital × $30\%$ de deuda) con una estructura de capital de $30\%$ de deuda y $70\%$ de capital. Si la empresa financia el $50\%$ del inventario con un préstamo de $\$50$ millones, `no habrá deuda adicional disponible` para financiar otros activos, como cuentas por cobrar, propiedades, plantas y equipos. Por lo tanto, estos activos deben ser financiados al $100\%$ mediante capital en adición a los $\$50$ millones del inventario financiados mediante capital.
+
+Con fines de toma de decisiones, no es razonable aplicar el $100\%$ del costo del capital a estos activos. Es por eso que la práctica financiera moderna aplica el costo ponderado de capital a la mayoría de los activos, ya que esta metodología asigna los costos de la deuda y el capital, tiene en cuenta la estructura de capital objetivo y compensa el riesgo de un activo si este no difiere significativamente del riesgo promedio de la empresa.

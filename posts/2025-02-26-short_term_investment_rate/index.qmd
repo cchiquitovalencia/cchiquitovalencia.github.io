@@ -1,0 +1,40 @@
+---
+title: "Qué pasa con una tasa de inversión?"
+description: "INVENTARIOS Serie - Parte 8"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-26-2025
+categories: [Inventarios, Supply Chain, Evaluación de Proyectos] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-26-short_term_investment_rate/
+image: invest.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### La Tasa de Inversión a Corto Plazo
+
+Una tasa de inversión a corto plazo, como la rentabilidad de un instrumento del mercado monetario, como el papel comercial o un certificado de depósito, también se utiliza comúnmente como el costo de oportunidad de mantener el inventario. Sin embargo, al igual que las tasas de préstamo a corto plazo, las tasas de inversión a corto plazo ignoran el principio básico de riesgo/rendimiento que subyace a la aplicación del costo de capital. Estas tasas restan significativamente al costo de capital acorde con el riesgo del inventario.
+
+Varios factores hacen que el papel comercial, los certificados de depósito y otros instrumentos del mercado monetario exhiban un menor riesgo y, por lo tanto, un rendimiento esperado más bajo. Específicamente:
+
+-   Existe una obligación contractual legalmente vinculante de que el emisor pagará a los inversionistas una cantidad fija en intereses y devolverá el principal en fechas específicas.
+
+-   Debido a que la madurez es a corto plazo (típicamente uno, tres o seis meses), los inversionistas no están expuestos al riesgo crediticio a largo plazo.
+
+-   Los instrumentos del mercado monetario son bastante líquidos y pueden venderse en mercados secundarios si los inversionistas necesitan vender la inversión antes de la fecha de vencimiento.
+
+Estos factores contrastan marcadamente con las realidades de la inversión en inventario:
+
+-   La mayor parte de la inversión en inventario es especulativa, especialmente en el sector mayorista/distribución y minorista. No hay un contrato legalmente vinculante que obligue a los clientes a comprar el inventario. En los casos en los que el inventario se produce bajo pedido, el comprador a menudo puede cambiar o cancelar el pedido sin compensar plenamente a la empresa vendedora por el valor total del inventario.
+
+-   El inventario puede renovarse cada 60 días, por ejemplo, pero la empresa debe seguir reinviertiendo en inventario para mantener las ventas. Esta es la naturaleza de "activo corriente permanente" del inventario que se discutió anteriormente.
+
+-   El inventario generalmente no es líquido. El deshacerse del inventario antes de su venta en el curso normal de los negocios a menudo resulta en procedimientos netos que son sustancialmente menores que la inversión original en el inventario. Las excepciones son las existencias de materias primas invertidas en commodities como productos agrícolas y metales preciosos.
+
+Es razonable suponer que, para muchas empresas, el riesgo asociado con la inversión en inventario es sustancialmente mayor que el riesgo de invertir en instrumentos del mercado monetario. Utilizar la rentabilidad de un instrumento del mercado monetario como aproximación para el costo de capital del inventario reduce significativamente el cargo por mantener el inventario. Esto, a su vez, puede llevar a decisiones incorrectas relacionadas con el inventario.
+
+Resumiendo nuestra serie de posts, **ni la tasa de endeudamiento a corto plazo ni la tasa de inversión a corto plazo deberían usarse para calcular el cargo por el capital del inventario**. Ambas ignoran el principio fundamental de riesgo/rendimiento que subyace al uso del costo del capital para la toma de decisiones. Además, ambas reducen significativamente el costo de oportunidad de mantener el inventario, lo que, a su vez, perjudica el proceso de toma de decisiones.
+
+El costo ponderado del capital (WACC) es una tasa mucho más adecuada para calcular el cargo por el capital del inventario. `El WACC es proporcional con el riesgo de mantener el inventario y con la contribución que el inventario hace al riesgo operativo general de una empresa`. Además, esta metodología también tiene en cuenta la estructura de capital objetivo de la empresa y su capacidad de endeudamiento.

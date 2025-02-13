@@ -1,0 +1,60 @@
+---
+title: "Usa el costo de capital promedio ponderado"
+description: "INVENTARIOS Serie - Parte 4"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-20-2025
+categories: [Inventarios, Supply Chain, Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-20-WACC/
+image: wacc.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### Costo de Capital Promedio Ponderado
+
+Dado el [riesgo inherente del inventario](https://cchiquitovalencia.github.io/posts/2025-02-19-charge_inventory/), lo mejor es usar un *costo promedio ponderado de capital* (**WACC**, por sus siglas en inglés) para calcular la carga de capital del inventario. `El WACC es el costo oportunidad para una empresa de su inversión de riesgo promedio`. Teóricamente, un WACC diferente debería aplicarse a inversiones de riesgo diferente. Sin embargo, como asunto práctico, el mismo WACC se aplica internamente a todas las inversiones a menos que haya una diferencia sustancial en el riesgo.
+
+El WACC se compone del costo del capital propio (patrimonio) y el costo de la deuda después de impuestos. El costo del capital propio es el costo de proporcionar a los accionistas retornos competitivos en su dinero invertidos. El costo de la deuda es simplemente la tasa de interés general en la deuda tomada para financiar el proyecto, reducida por el beneficio fiscal del gasto en intereses. Expresado como un porcentaje, el costo de capital es el promedio del retorno requerido de capital propio y la tasa de interés en la deuda, ponderado por la proporción de capital propio y deuda, respectivamente, en la capitalización total.
+
+El concepto del costo de capital promedio ponderado se puede explicar en el contexto de una cartera de inversiones personales.
+
+-   Supongamos que tu portafolio tiene un $30\%$ invertido en TES que tienen una rentabilidad esperada del $6\%$.
+
+-   El $70\%$ restante está invertido en acciones con una rentabilidad esperada a largo plazo del $11\%$.
+
+-   La rentabilidad promedio ponderada de tu portafolio es aproximadamente del $9.5\% = (30\% × 6\% + 70\% × 11\%)$.
+
+-   Al evaluar el valor futuro de los ahorros para la pensión y otras decisiones, utilizarías la tasa promedio del $9.5\%$. Esto es, si alguien te ofrece invertir en un negocio que promete un $8\%$ debes tener claro que es una mala inversión, porque tu portafolio te da más que eso.
+
+El costo promedio ponderado del capital (WACC) de una empresa se calcula de la siguiente manera:
+
+$WACC = \text{\% capital propio} × \text{Costo de capital propio} + \text{\% Deuda} × \text{Costo de la Deuda} × \text{(100\% - Tasa Impositiva Marginal)}$
+
+Donde:
+
+-   $\text{\% Capital propio}$ es el porcentaje objetivo de capital financiado con capital propio.
+
+-   $\text{\% Deuda}$ es el porcentaje objetivo de capital financiado con deuda.
+
+-   $\% \text{ Capital propio} + \% \text{ Deuda} = 100\%$.
+
+**Estimar el costo de capital propio es la parte más desafiante al derivar el WACC**. Hay diversas metodologías utilizadas para estimar el costo de capital propio. `Usaremos una de ellas en otro post`. Pero basta decir que la mayoría de las empresas actualizan la estimación del costo de capital propio, así como los demás componentes del WACC, una vez al año.
+
+`Por ahora` asumamos que tenemos un WACC de $9\%$, como se determina a continuación:
+
+$$
+\text{70\% de capital propio × 11\% de Costo de capital propio }+
+$$
+
+$$
+\text{30\% de Deuda × 6.5\% de Costo de la Deuda × (100\% - 40\% de Tasa Impositiva Marginal)}
+$$
+
+$$
+\text{≅ 9.0\% de Costo Promedio Ponderado del Capital}
+$$
+
+Es importante destacar que el `WACC es una tasa después de impuestos`. El $11\%$ de costo de capital propio utilizado aquí es un costo después de impuestos porque comprende los dividendos pagados a los accionistas y el crecimiento del precio de las acciones, *ninguno de los cuales es deducible de impuestos*. El $6.5\%$ de costo de la deuda es una tasa antes de impuestos que se ajusta a una tasa después de impuestos multiplicándolo por el término $(100\% - 40\% \text{ de tasa impositiva marginal)}$. Este ajuste tiene en cuenta la deducibilidad fiscal de los intereses.

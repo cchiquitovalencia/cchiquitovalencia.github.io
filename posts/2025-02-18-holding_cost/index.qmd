@@ -1,0 +1,125 @@
+---
+title: "Cuáles son los costos no capitalizados de mantener los inventarios?"
+description: "INVENTARIOS Serie - Parte 2"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-18-2025
+categories: [Inventarios, Supply Chain, Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-18-holding_cost/
+image: nocapital.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### Costos No Capitalizados del Inventario
+
+La ENL producida por el `Departamento Nacional de Planeación` (**DNP**) estima que, a nivel macro, los costos no capitalizados del inventario son aproximadamente del **13% - 25%** del inventario.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gt)
+
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+```
+
+```{r}
+
+data.frame(Concepto = c("Costos Logístico como % de Ventas"),
+           ENL_2020 = c(0.1260),
+           ENL_2022 = c(0.1790)) |> 
+    gt() |> 
+    aplicar_theme_table() |> 
+    fmt_percent(columns = c(ENL_2020, ENL_2022))
+```
+
+Estos porcentajes de costo logístico se dividen de la siguiente forma:
+
+```{r}
+data.frame(Concepto = c("Transporte",
+                        "Almacenamiento",
+                        "Inventarios",
+                        "Administrativos",
+                        "Otros costos"),
+           ENL_2020 = c(0.3070,0.1390,0.2930,0.1780,0.0830),
+           ENL_2022 = c(0.3590,0.2510,0.2550,0.1020,0.0330)) |> 
+    gt() |> 
+    aplicar_theme_table() |> 
+    fmt_percent(columns = c(ENL_2020, ENL_2022))
+```
+
+Seguro que la tasa tiende a variar según la industria, siendo un factor clave siendo el **riesgo de obsolescencia**. Hace falta ver el caso de [NVIDIA vs DeepSeek](https://www.economist.com/leaders/2025/01/29/the-real-meaning-of-the-deepseek-drama) e imaginar cúal fue el impacto en el tiempo de más que los procesadores más avanzados del primero se quedaron en las bodegas.
+
+Hay varios desafíos en la estimación de costos no capitalizados del inventario. Estos se refieren a los costos asociados con el mantenimiento que no se capitalizan, es decir, `que no se consideran parte del valor del activo y se registran como gastos en el momento en que se incurren`. Por un lado, muchos sistemas de información de las empresas no capturan estos costos de manera que proporcione información útil para la toma de decisiones. Aunque esta información de costos puede ser capturada a nivel empresarial y aplicada a todo el inventario, a menudo no está disponible para una línea de productos, una región, un grupo de clientes o un canal.
+
+Otro desafío es comprender cómo estos costos, que pueden ser fijos o variables, fluctúan con los movimientos en el inventario. Por ejemplo, una reducción en el inventario resultante de una mejor gestión de la cadena de suministro tiende a reducir la obsolescencia, seguros e impuestos. Pero a menos que haya un cambio significativo en la red, los costos de almacenamiento y otros costos relacionados con el inventario tienden a permanecer constantes.
+
+Cuando se evalúan iniciativas de cadena de suministro, las empresas a menudo descuentan, o incluso omiten, los beneficios de reducir costos no capitalizados del inventario porque no poseen estimaciones creíbles de estos costos. Muchos estarán de acuerdo con que estos beneficios existen. Pero sin estimaciones creíbles, los beneficios suelen ser excluidos del análisis. Si el impacto en estos costos no puede ser medido razonablemente, el valor verdadero de muchas iniciativas de cadena de suministro será subestimado.
+
+Supongamos que con un proyecto se espera reducir permanentemente el inventario en **\$10** millones. Los costos no capitalizados variables como porcentaje del inventario son del **10%**. La tasa marginal de impuestos es del **40%** y el costo de capital después de impuestos es del **9%**. La ecuación siguiente muestra que el valor de este proyecto es el cambio en el valor total del inventario. Ese valor es de 10 millones `si se excluyen` los costos no capitalizados. Sin embargo, el valor es sustancialmente más alto - prácticamente `$7 millones más alto`- cuando se incluye el impacto en los costos no capitalizados.
+
+```{r}
+#| fig-cap: "Evaluación Ilustrativa del Cambio en el Inventario"
+
+data.frame(Concepto = c("Cambio en Inventario",
+                        "% No capitalizado",
+                        "Cambio en Costo No capitalizado",
+                        "Tasa Impuestos",
+                        "Impuestos",
+                        "Cambio en Utilidad después de Impuestos anual",
+                        "Valor presente de Utilidad después de Impuestos @ 9.0% Costo de Capital (%0.6m/9.0%)",
+                        "Valor Total"),
+           Incluído = c("$10.0m",
+                        "10.0%",
+                        "$1.0m",
+                        "40.0%",
+                        "$0.4m",
+                        "$0.60",
+                        "$6.7m",
+                        "$16.7m"),
+           Excluído = c("$10.0m",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "$10.0m")) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Este ejemplo destaca la necesidad de que los profesionales de la cadena de suministro construyan estimaciones más creíbles de los costos no capitalizados del inventario. El fracaso en hacerlo conduce a subestimar el valor real de las iniciativas de la cadena de suministro, lo que puede llevar al rechazo de proyectos que deberían ser aceptados.
+
+Considero que el enfoque debe estar en las estimaciones de los componentes de costos no capitalizados relacionados con la *obsolescencia, seguros y los impuestos* por las siguientes razones:
+
+1.  Con mucha probabilidad van a ser variables.
+
+2.  La información para estos componentes suelen estar disponibles o pueden ser extraídos fácilmente.
+
+3.  No requieren la asignación de costos generales fijos.
+
+Con esto en mente, nuestra tarea ahora es encontrar una buena estimación para incluir este costo en el total.

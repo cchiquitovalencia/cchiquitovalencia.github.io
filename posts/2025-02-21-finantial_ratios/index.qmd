@@ -1,0 +1,859 @@
+---
+title: "Análisis de las razones financieras"
+description: "INVENTARIOS Serie - Parte 5"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-21-2025
+categories: [Inventarios, Supply Chain, Logística, Finanzas] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/
+image: finantial.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+code-fold: true
+---
+
+Para continuar con nuestro análisis del impacto de la administración de inventarios, debemos tener presente algunas razones financieras. No vamos a cubrirlas todas, pero sí vamos a estimar los valores de las Pymes en el Valle del Cauca, con la intención de que puedas usar estos datos para el desarrollo de la serie.
+
+Lo primero, por si no lo sabías, existe un [**Sistema Integrado de Información Societaria**](https://siis.ia.supersociedades.gov.co/) donde puedes ver el `Estado de Situación Financiera`, el `Estado de Resultado Integral`, entre otros, que reportan las empresas. Lo administra una entidad adscrita del **Ministerio de Comercio, Industria y Turismo**: la **Superintendencia de Sociedades**.
+
+::: {.callout-note appearance="minimal"}
+Adscrita: creada por la ley o autorizadas por esta, que cumplen funciones administrativas que integran la rama ejecutiva y cuentan con personería jurídica (tiene libertad para desarrollar su objeto, capaz de adquirir derechos y obligaciones, representar y ser representada), patrimonio propio y autonomía propia.
+:::
+
+```{r cargar_librerias, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+library(data.table)
+library(gt)
+
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = "center")
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+```
+
+Vamos a revisar los datos:
+
+```{r cargar_datos, cache=FALSE}
+
+data <- openxlsx::read.xlsx("./210030_Estado de situación financiera, corriente_no corriente.xlsx") |> 
+    data.table()
+
+# Función para extraer texto dentro de parentesis
+extraer_texto <- function(texto){
+    inicial <- gregexpr("\\(", texto)[[1]]
+    final <- gregexpr("\\)", texto)[[1]]
+    substring(texto, inicial + 1, final - 1)
+}
+
+# Vector con los nombres extraídos
+nuevo_nombre <- colnames(data) |> 
+    purrr::map(~extraer_texto(.x)) |> 
+    unlist()
+
+# Asignar nombres en inglés
+data <- setNames(data, ifelse(nuevo_nombre != "", nuevo_nombre, colnames(data)))
+
+# Cambiar otros nombres
+data <- data |> 
+    rename(Razon.Social = "Raz&#243;n.social.de.la.sociedad",
+           Direccion = "Direcci&#243;n.de.notificaci&#243;n.judicial.registrada.en.C&#225;mara.de.Comercio",
+           Departamento = "Departamento.de.la.direcci&#243;n.del.domicilio",
+           Ciudad = "Ciudad.de.la.direcci&#243;n.del.domicilio",
+           TotalCurrentFinancialAssetsSELL= "Total_activos_corrientes_distintos_de_los_activos_no_corrientes_o_grupo_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios",
+           OtherCurrentFinancialAssetsSELL= "Activos_no_corrientes_o_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios",
+           PropertyPlantAndEquipmentWithDEP= "Propiedades_de_inversi&#243;n_al_costo_menos_depreciacion_acumulada_y_deterioro",
+           TotalCurrentFinancialLiabilitiesSELL = "Total_pasivos_corrientes_distintos_de_los_pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta",
+           OtherCurrentFinancialLiabilitiesSELL= "Pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta")
+
+# Solo veremos el periodo final
+data <- data |> 
+    filter(Periodo == "Periodo Actual",
+           Fecha.de.Corte == "2022-12-31")
+
+
+gt(head(data,5)) |> 
+    aplicar_theme_table() |> 
+    tab_options(table.width = pct(50))
+```
+
+Revisemos cuántos datos tenemos envolatados (missing values):
+
+```{r missing_contar}
+
+# Aplicar a cada columna una validación de NA
+sapply(data, function(x) sum(is.na(x))) |> 
+    data.frame() |> 
+    rownames_to_column() |> 
+    setNames(c("Rubro","Missing")) |> 
+    gt_preview(top_n = 5, bottom_n = 10) |> 
+    aplicar_theme_table()
+
+```
+
+Y qué pasa entonces con los valores en cero:
+
+```{r ceros_contar}
+
+# Aplicar a cada columna una validación de CEROS
+sapply(data, function(x) sum(x==0, na.rm = TRUE)) |> 
+    data.frame() |> 
+    rownames_to_column() |> 
+    setNames(c("Rubro","Missing")) |> 
+    gt_preview(top_n = 5, bottom_n = 10) |> 
+    aplicar_theme_table()
+```
+
+Me parece razonable suponer que habrán errores en las empresas que no reportan, o que reportan en ceros, `Assets, Liabilities, Equity y EquityAndLiabilities`. Así que van para afuera.
+
+```{r filtrar_na_0s}
+
+# Descartar NA y 0's
+# data <- data |> 
+#     filter_at(vars(Assets, Liabilities, Equity, EquityAndLiabilities),
+#               all_vars(!is.na(.))) |> 
+#     filter_at(vars(Assets, Liabilities, Equity, EquityAndLiabilities),
+#               all_vars(!.==0))
+
+cols <- c("Assets", "Liabilities", "Equity", "EquityAndLiabilities")
+
+data <- data |>
+  filter_at(vars(!!!cols), ~ !is.na(.) & . != 0)
+```
+
+Vamos a ver por departamento cuántas empresas tiene el reporte:
+
+```{r tabla_dep}
+
+# Tabla para cantidad de empresas por departamento
+data |> 
+    group_by(Departamento) |> 
+    summarise(Cantidad = n()) |> 
+    arrange(desc(Cantidad)) |> 
+    mutate(Proporcion = round(100*Cantidad / sum(Cantidad),2),
+           Acumulado = paste0(cumsum(Proporcion),"%")) |> 
+    gt_preview() |> 
+    aplicar_theme_table()
+```
+
+El **balance general** resume los bienes, pasivos y capital de los dueños de un negocio `en un momento`, que generalmente es a final del año o de un trimestre. El **estado de pérdidas y ganancias** resume los ingresos y gastos de la compañía `durante` un periodo determinado. El primero es una `foto` de la posición financiera, el segundo es el resumen de la `rentabilidad en el tiempo`.
+
+Existen razones financieras para comparar las empresas.
+
+## **Razones de liquidez**
+
+*Capacidad de una empresa para cumplir con sus obligaciones a corto plazo.*
+
+### Liquidez corriente
+
+$$
+\frac{\text{Activos corriente}}{\text{Pasivos corrientes}}
+$$
+
+En teoría, entre más alta sea la liquidez corriente, mayor será la capacidad de la empresa para pagar sus deudas. Aunque esta razón debe verse como una medida burda porque no toma en cuenta la liquidez de los componentes individuales de los activos corrientes. Una empresa que tiene activos corrientes compuestos principalmente de efectivo y cuentas por cobrar no vencidas, en general se ve como con más liquidez que una empresa cuyos activos corrientes son principalmente inventarios. En consecuencia, recurrimos a una prueba de la liquidez de la empresa más severa: la razón de la prueba ácida.
+
+::: {.callout-tip appearance="minimal"}
+La liquidez tiene dos dimensiones:
+
+1\. El tiempo requerido para convertir el activo en efectivo.
+
+2\. La certidumbre del precio obtenido.
+
+Incluso si el precio obtenido en cuentas por cobrar fuera tan predecible como el obtenido sobre los inventarios, las cuentas por cobrar serían un activo más líquido que los inventarios, en virtud del tiempo más corto requerido para convertir el activo en efectivo. Si se tuviera más certidumbre del precio obtenido sobre las cuentas por cobrar que sobre los inventarios, las cuentas por cobrar se considerarían de mayor liquidez.
+:::
+
+```{r plot_liquidez_corriente}
+#| code-fold: true
+#| fig-align: center
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(liquidez_corriente = CurrentAssets/CurrentLiabilities) |> 
+    filter(liquidez_corriente < 10) |> 
+    ggplot(aes(liquidez_corriente))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN LIQUIDEZ CORRIENTE", y = "DENSIDAD",
+         title = "LIQUIDEZ CORRIENTE EN EL VALLE DEL CAUCA")+
+    scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+Aquí las cifras más aterrizadas para los que les gustan los datos;
+
+```{r datos_liquidez_corriente}
+#| code-fold: true
+
+resultado_liquidez_corriente <- data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(liquidez_corriente = CurrentAssets/CurrentLiabilities) |> 
+    filter(liquidez_corriente < 10) |> 
+    with(ecdf(liquidez_corriente)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+
+resultado_liquidez_corriente
+```
+
+### Razon de la prueba ácida (rápida)
+
+$$
+\frac{\text{Activos corrientes - Inventarios}}{\text{Pasivos corrientes}}
+$$
+
+Esta razón sirve como *complemento* de la liquidez corriente al analizar la liquidez. Excluye los inventarios —que se supone es la porción **menos líquida** de los activos corrientes— del numerador. La razón se concentra principalmente en los activos corrientes más líquidos —`efectivo, valores de corto plazo y cuentas por cobrar`— en relación con las obligaciones actuales. Así, esta razón ofrece una medida más precisa de la liquidez que la liquidez corriente:
+
+```{r graf_acida}
+#| code-fold: true
+#| fig-align: center
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(prueba_acida = (CurrentAssets - Inventories)/CurrentLiabilities) |> 
+    filter(prueba_acida < 10) |> 
+    ggplot(aes(prueba_acida))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN LIQUIDEZ CORRIENTE (sin Inventarios)", y = "DENSIDAD",
+         title = "PRUEBA ÁCIDA EN EL VALLE DEL CAUCA")+
+    scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+```{r data_acida}
+#| code-fold: true
+
+resultado_prueba_acida <- data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(prueba_acida = (CurrentAssets - Inventories)/CurrentLiabilities) |> 
+    filter(prueba_acida < 10) |>
+    with(ecdf(prueba_acida)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+
+resultado_prueba_acida
+```
+
+Tenemos una diferencia de `{r} as.numeric(data.frame(resultado_liquidez_corriente)[3,])-as.numeric(data.frame(resultado_prueba_acida)[3,])` entre las medianas de las razones.
+
+::: {.callout-important appearance="minimal"}
+Estas razones no nos dicen si las cuentas por cobrar y/o los inventarios de hecho son demasiado altos. Si lo son, esto afectaría nuestra impresión inicial favorable de la liquidez de la compañía. Por eso, necesitamos ir detrás de las razones y examinar el tamaño, la composición y la calidad de estos dos activos corrientes importantes
+:::
+
+## **Razones de apalancamiento financiero** **(deuda)**
+
+*Indican el grado en el que una empresa se financia mediante deuda.*
+
+### Razón entre deuda y capital
+
+$$
+\frac{\text{Deuda total}}{\text{Capital de accionistas}}
+$$
+
+Nos dice cuánto de cada peso aportan los accionistas como financiamiento. En general, si fueras un `acreedor`, querrías tener una razón baja, porque así será mayor el nivel de financiamiento de la empresa que aportan los accionistas, el márgen de protección de los acreedores en caso de una disminución del valor de los activos o de pérdidas totales.
+
+```{r graf_deudacapital}
+#| code-fold: true
+#| fig-align: center
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(deuda_capital = Liabilities/Equity) |> 
+    filter(deuda_capital >= 0, deuda_capital <= 5) |> 
+    ggplot(aes(deuda_capital))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN DEUDA CAPITAL", y = "DENSIDAD",
+         title = "DEUDA / CAPITAL EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+Podría requerirse, dependiendo de la naturaleza del negocio, excluir las acciones preferenciales del capital e incluirlo en deuda porque representan una reclamación anterior desde el punto de vista de los inversionistas en acciones ordinarias. Pero aquí, lo hacemos de manera sencilla.
+
+```{r tabla_deudacapital}
+#| code-fold: true
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(deuda_capital = Liabilities/Equity) |> 
+    filter(deuda_capital >= 0, deuda_capital <= 5) |> 
+    with(ecdf(deuda_capital)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Una comparación de la razón entre deuda y capital para una companía dada con empresas similares nos indica si es digna de crédito, así como el riesgo financiero de la empresa.
+
+### Razón entre deuda y activos totales
+
+Esta razón tiene un propósito *similar* a la razón entre deuda y capital. Resalta la importancia relativa del financiamiento mediante deuda mostrando el porcentaje de los activos de la empresa que está solventado por el financiamiento mediante deuda.
+
+$$
+\frac{\text{Deuda total}}{\text{Activos totales}}
+$$
+
+Si la empresa tuviera que liquidarse ya, los activos podrían venderse por una cantidad neta antes de que los acreedores tuvieran pérdidas. Cuanto más alta esta razón, más alto el riesgo de financiamiento.
+
+```{r graf_deudaactivos}
+#| code-fold: true
+#| fig-align: center
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(deuda_activos_total = Liabilities/Assets) |> 
+    filter(deuda_activos_total >= 0, deuda_activos_total <= 2) |> 
+    ggplot(aes(deuda_activos_total))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN DEUDA ACTIVOS TOTALES", y = "DENSIDAD",
+         title = "DEUDA / ACTIVOS TOTALES EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+Aquí se nos presenta una distribución con dos picos. Seguro que algún día les explico cómo enfrentarse a esto.
+
+```{r tabla_deudaactivos}
+#| code-fold: true
+
+data |> 
+    filter(Departamento == "VALLE") |> 
+    mutate(deuda_activos_total = Liabilities/Assets) |> 
+    filter(deuda_activos_total >= 0, deuda_activos_total <= 2) |> 
+    with(ecdf(deuda_activos_total)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Podríamos decir por ahora que el **46%** de los bienes de la empresa están financiados con **deuda**, de varios tipos. Y el **54%** restante del financiamiento proviene del **capital** de los accionistas.
+
+Los datos anteriores reflejan `cortes de diciembre del año 2022`. Si te interesa conocer la información más actual, o profundizar en otro tipo de análisis no dudes en contactarme.
+
+Recuerda que ninguna razón por sí sola nos entrega suficiente información para juzgar las condiciones financieras y el desempeño de una empresa. Debemos asegurarnos de analizar un grupo de indicadores, determinar si hay estacionalidad en las cifras, revisar las tendencias.
+
+## **Razones de cobertura**
+
+*Relacionan los cargos financieros de una empresa con su capacidad para servirlos o cubrirlos.*
+
+### Razón de cobertura de interés
+
+```{r}
+
+# Función para extraer texto dentro de parentesis
+extraer_texto <- function(texto){
+    inicial <- gregexpr("\\(", texto)[[1]]
+    final <- gregexpr("\\)", texto)[[1]]
+    substring(texto, inicial + 1, final - 1)
+}
+
+# Vector con los nombres extraídos
+nuevo_nombre <- function(info){
+    colnames(info) |> 
+    purrr::map(~last(extraer_texto(.x))) |> 
+    unlist()
+}
+
+pyg <- openxlsx::read.xlsx("./310030_Estado de resultado integral, resultado del periodo, por funcion de gasto(3).xlsx") |> 
+    data.table() |> 
+    filter(Fecha.de.Corte == "2022-12-31")
+
+# Asignar nombres en inglés
+pyg <- setNames(pyg, ifelse(nuevo_nombre(pyg) != "", nuevo_nombre(pyg), colnames(pyg)))
+
+pyg <- pyg |> 
+    filter(Periodo == "Periodo Actual", 
+           `Departamento.de.la.direcci&#243;n.del.domicilio` == "VALLE")
+```
+
+Esta razón sirve como medida de la capacidad de una empresa para cumplir con los pagos de interés y evitar bancarrota. A mayor valor, mayor la probabilidad de lograr cubrir pagos sin dificultad. Además, da información acerca de la posibilidad de enfrentar nueva deuda.
+
+```{r}
+
+pyg |> 
+    mutate(cobertura_interes = ProfitLossBeforeTax/FinanceCosts) |> 
+    filter(cobertura_interes >= 0, cobertura_interes <= 20) |> 
+    ggplot(aes(cobertura_interes))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN COBERTURA INTERÉS", y = "DENSIDAD",
+         title = "UAII/GASTO INTERÉS EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+Estos son los resultados para la razón de cobertura de interés:
+
+```{r}
+
+pyg |> 
+    mutate(cobertura_interes = ProfitLossBeforeTax/FinanceCosts) |> 
+    filter(cobertura_interes >= 0, cobertura_interes <= 20) |> 
+    with(ecdf(cobertura_interes)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Además de los pagos de interés, podemos agregar pagos del principal sobre las obligaciones de deuda, los dividendos de acciones preferenciales y los pagos de arrendamiento. Un análisis más amplio evaluará la capacidad de una empresa para cubrir todos los cargos de naturaleza fija.
+
+## **Razones de actividad**
+
+*Miden qué tan efectiva es la manera en que la empresa usa sus activos.*
+
+### Razón de rotación de cuentas por cobrar
+
+Proporciona un panorama de la calidad de las cuentas por cobrar de la empresa y qué tan exitosa es en sus cobros.
+
+$$
+\frac{\text{Ventas netas a crédito anuales}}{\text{Cuentas por cobrar}}
+$$
+
+```{r}
+
+caratula <- openxlsx::read.xlsx("./10000_Carátula.xlsx") |> 
+    data.table()
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RCC = Revenue / `TradeAndOtherCurrentReceivables`,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RCC > 0, RCC <= 20, !is.na(RCC), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+   # ggplot(aes(as.numeric(tiempo), RCC, group = as.factor(tiempo)))+
+    ggplot(aes(RCC))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN ROTACIÓN CUENTAS POR COBRAR", y = "DENSIDAD",
+         title = "VENTAS A CRÉDITO / CUENTAS POR COBRAR EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+Nos dice el número de veces que las cuentas por cobrar se han convertido en efectivo durante el año. Aquí estamos suponiendo que todos los ingresos fueron por ventas a crédito (no tenemos información acerca de la cantidad exacta a través de los archivos de SIIS).
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RCC = Revenue / `TradeAndOtherCurrentReceivables`,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RCC > 0, RCC <= 20, !is.na(RCC), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    with(ecdf(RCC)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Cuando las ventas son estacionales o han aumentado considerablemente en el año, usar el balance de las cuentas por cobrar al final del año puede no ser adecuado. Con estacionalidad, un promedio de los balances mensuales puede ser lo más apropiado. Con crecimiento, el balance de las cuentas por cobrar será engañosamente alto en relación con las ventas. El resultado es que la conversión de cuentas por cobrar en efectivo calculado es una estimación sesgada y baja del número de conversiones durante el año. En este caso, un promedio de las cuentas por cobrar al inicio y final del año será adecuado si el crecimiento en las ventas fue estable en el año.
+
+### Rotación de cuentas por cobrar en días
+
+$$
+\frac{\text{Días del año}}{\text{Rotación de cuentas por cobrar}} = \frac{\text{Cuentas por cobrar x días del año}}{\text{Ventas a crédito anuales}}
+$$
+
+Nos dice el número promedio de días que las cuentas por cobrar están en circulación antes de ser cobradas, que para el caso de las empresas del Valle del Cauca es:
+
+$$
+\frac{365}{4}≅90
+$$
+
+Podríamos decir que aunque un periodo promedio de cobro demasiado alto suele ser malo, **un promedio muy bajo no necesariamente es bueno**. Un periodo promedio muy bajo de cobro puede ser un síntoma de una política de crédito excesivamente restrictiva. Las pocas cuentas por cobrar que aparecen en los libros tal vez sean de primera calidad, pero las ventas quizás estén indebidamente restringidas —`y las ganancias son menores a las que podrían ser`— debido a que se otorgan créditos con muchas restricciones a los clientes.
+
+### Razón de rotación de cuentas por pagar {#sec-razón-de-rotación-de-cuentas-por-pagar}
+
+Capacidad de pago oportuno a los proveedores o el de algún potencial cliente candidato a crédito.
+
+$$
+\frac{\text{Días en el año}}{\text{Rotación de cuentas por pagar}}=\frac{\text{Cuentas por pagar x días en el año}}{\text{Compras a crédito anuales}}
+$$
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,43,51,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RCP = (CurrentLiabilities+Inventories) / CostOfSales,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RCP > 0, RCP < 5, !is.na(RCP), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+   # ggplot(aes(as.numeric(tiempo), RCC, group = as.factor(tiempo)))+
+    ggplot(aes(RCP))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN ROTACIÓN CUENTAS POR PAGAR", y = "DENSIDAD",
+         title = "CUENTAS POR PAGAR / COMPRAS A CRÉDITO EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,43,51,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RCP = (CurrentLiabilities+Inventories) / CostOfSales,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RCP > 0, RCP < 5, !is.na(RCP), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    with(ecdf(RCP)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+### Razón de rotación de inventarios
+
+Determina qué tan efectiva es la empresa al administrar el inventario y también es una indicación de la liquidez del inventario.
+
+$$
+\frac{\text{Costo de bienes vendidos}}{\text{Inventarios}}
+$$
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RDI = CostOfSales / Inventories,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RDI > 0, RDI <= 20, !is.na(RDI), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    ggplot(aes(RDI))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN ROTACIÓN INVENTARIOS", y = "DENSIDAD",
+         title = "COSTO DE BIENES / INVENTARIOS EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+La razón de rotación de inventario nos dice cuántas veces el inventario se convierte en cuentas por cobrar a través de las ventas durante el año. Esta razón, como las otras, debe juzgarse en relación con las razones del pasado y el futuro esperado de la empresa y en relación con las razones de empresas similares, o el promedio de la industria o ambos.
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,14,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(RDI = CostOfSales / Inventories,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(RDI > 0, RDI <= 20, !is.na(RDI), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    with(ecdf(RDI)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+En general, cuanto más alta sea la rotación de inventario, más eficiente será su manejo, y más “fresco” y líquido será ese inventario. Sin embargo, **algunas veces una rotación alta del inventario indica una existencia precaria. Por lo tanto, en realidad puede ser un síntoma de que hay un nivel de inventario muy bajo y con frecuencia se incurre en faltantes**. Una rotación de inventario relativa- mente baja muchas veces es señal de un movimiento lento o de artículos obsoletos en el inventario
+
+Rotación de inventario en días
+
+$$
+\frac{\text{Días del año}}{\text{Rotación de inventario}}=\frac{\text{Inventario x Días en el año}}{\text{Costo de bienes vendidos}}
+$$
+
+Nos dice cuántos días, en promedio, pasan antes de que el inventario se convierta en cuentas por pagar mediante las ventas.
+
+$$
+\frac{365}{3.61}≅100
+$$
+
+### Ciclo de operación
+
+Es el tiempo que transcurre desde el **compromiso** de efectivo para compras hasta el cobro de las cuentas por cobrar que resultan de la venta de bienes o servicios.
+
+$$
+\text{Rotación de inventario en días } +\text{ Rotación de cuentas por cobrar en días}
+$$
+
+La mayoría de las empresas no pagan la materia prima de inmediato, sino compran a crédito e incurren en una cuenta por pagar.
+
+$$
+100+90=190 \text{ días para empresas del Valle del Cauca}
+$$
+
+`¿Por qué preocuparse por el ciclo de operación de una empresa?` Una empresa con un ciclo de operación muy corto puede operar de manera efectiva con una cantidad relativamente pequeña de activos corrientes, y liquidez corriente y razón de prueba ácida relativamente bajas. Esta empresa tiene una liquidez relativa en un sentido “dinámico”: puede generar un producto, venderlo y cobrar en efectivo por él, todo en un periodo relativamente corto. No tiene que apoyarse en niveles de liquidez “estáticos” altos como los mide la liquidez corriente o la razón de la prueba ácida.
+
+### Razón de rotación de activos totales
+
+Nos indica la eficiencia relativa con la que una empresa usa sus activos totales para generar ventas.
+
+$$
+\frac{\text{Ventas netas}}{\text{Activos totales}}
+$$
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,39,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(rotacion_capital = Revenue / Assets,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(rotacion_capital > 0, rotacion_capital <= 5, !is.na(rotacion_capital), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    ggplot(aes(rotacion_capital))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "RAZÓN ROTACIÓN ACTIVOS TOTALES", y = "DENSIDAD",
+         title = "VENTAS NETAS / ACTIVOS TOTALES EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+```{r}
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,13,39,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12,13)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(rotacion_capital = Revenue / Assets,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(rotacion_capital > 0, rotacion_capital <= 5, !is.na(rotacion_capital), tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    with(ecdf(rotacion_capital)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Podría existir una inversión excesiva en cuentas por cobrar y en **inventarios**.
+
+## **Razones de rentabilidad**
+
+*Relacionan las ganancias con las ventas y la inversión.*
+
+### Márgen de ganancias brutas
+
+Nos da la ganancia de la empresa relativa a las ventas, después de deducir el costo de producir los bienes. Es una medida de la eficiencia en la operación de la empresa, al igual que un indicador de cómo se asigna precio a los productos.
+
+$$
+\frac{\text{Ventas netas - Costo de bienes vendidos}}{\text{Ventas netas}}
+$$
+
+```{r}
+
+pyg |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(margen_bruto = 100 * (Revenue-CostOfSales)/Revenue,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(margen_bruto > 0, margen_bruto <= 200, !is.na(margen_bruto), tiempo >=0, !is.na(tiempo)) |> 
+    ggplot(aes(margen_bruto))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "MARGEN DE GANANCIAS BRUTAS (%)", y = "DENSIDAD",
+         title = "RENTABILIDAD (VENTAS) EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+```{r}
+
+pyg |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(margen_bruto = 100 * (Revenue-CostOfSales)/Revenue,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(margen_bruto > 0, margen_bruto <= 200, !is.na(margen_bruto), tiempo >=0, !is.na(tiempo)) |> 
+    with(ecdf(margen_bruto)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Si el márgen de tu empresa está por encima del $30\%$ significa que es más efectiva al producir y vender productos por arriba del costo que la mitad de las empresas en la región considerada.
+
+### Márgen de ganancia neta
+
+Una medida de la rentabilidad de las ventas después de impuestos de la empresa tomando en cuenta todos los gastos e impuestos sobre la renta. Nos indica el ingreso neto por peso de venta.
+
+$$
+\frac{\text{Ganancia neta después de impuestos}}{\text{Ventas netas}}
+$$
+
+```{r}
+
+pyg |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(margen_neto = 100 * (ProfitLoss)/Revenue,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(margen_neto > 0, margen_neto <= 30, !is.na(margen_neto), tiempo >=0, !is.na(tiempo)) |> 
+    ggplot(aes(margen_neto))+
+    geom_density(col = "orange", size = 1.2) +
+    labs(x = "MARGEN DE GANANCIAS NETAS (%)", y = "DENSIDAD",
+         title = "RENTABILIDAD (VENTAS) EN EL VALLE DEL CAUCA")+
+    #scale_x_continuous(breaks = c(seq(0, 100, by = 1)))+
+    theme_minimal()+
+    theme(text = element_text(color = "#1e2c46"))
+```
+
+```{r}
+
+pyg |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(margen_neto = 100 * (ProfitLoss)/Revenue,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(margen_neto > 0, margen_neto <= 30, !is.na(margen_neto), tiempo >=0, !is.na(tiempo)) |> 
+    with(ecdf(margen_neto)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Si el margen de ganancia bruta en esencia no cambia en un periodo de varios años, pero el margen de ganancia neta disminuye en el mismo periodo, sabemos que se puede deber a gastos de ventas, generales y administrativos más altos en relación con las ventas o a una tasa de impuestos más alta. Por otro lado, si el margen de ganancia bruta disminuye, sabemos que el costo de producir bienes con respecto a las ventas ha aumentado. Este suceso, a la vez, puede deberse a precios más bajos o a menor eficiencia operativa en relación con el volumen.
+
+### Rendimiento sobre la inversión
+
+Es la capacidad de generar ganancias sobre los activos totales.
+
+$$
+\text{Capacidad para generar ganancias = Rentabilidad x Eficiencia de activos}
+$$
+
+$$
+\text{RSI = Márgen de ganancia neta x Rotación de activos totales}
+$$
+
+Ni el margen de ganancia neta ni la razón de rotación de activos totales, por sí mismos, representan una medida adecuada de la efectividad global. El margen de ganancia neta ignora la utilización de activos, y la razón de rotación de los activos totales ignora la rentabilidad sobre las ventas. La razón del rendimiento sobre la inversión, o capacidad de generar ganancias, resuelve estas deficiencias.
+
+Para el Valle del Cauca:
+
+$$
+\text{4.58\% x 0.74= 3.38\%}
+$$
+
+Aquí lo calculamos usando valores de la mediana y no la media.
+
+### Rendimiento sobre capital
+
+Compara la ganancia neta después de impuestos (menos los dividendos de acciones preferenciales, si las hay) con el capital que los accionistas han invertido en la empresa:
+
+$$
+\frac{\text{Ganancia neta después de impuestos}}{\text{Capital de accionistas}}
+$$
+
+O con el enfoque Du Pont:
+
+$$
+\text{Rendimiento sobre capital = Márgen de ganancia neta x Rotación de activos totales x Multiplicador de capital}
+$$
+
+```{r}
+
+data |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(multiplicador = Assets/Equity,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(multiplicador > 0, multiplicador <= 30, !is.na(multiplicador), tiempo >=0, !is.na(tiempo)) |> 
+    with(ecdf(multiplicador)) |> 
+    estilo_summary() |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+El multiplicador de capital se calcula como $\text{Activos totales / Capital accionistas}$ por lo que para el Valle del Cauca el rendimiento sobre capital es
+
+$$
+3.38\% \text{ x } 1.81=6.11\%
+$$
+
+Aquí terminamos con las bases financieras para nuestra serie.

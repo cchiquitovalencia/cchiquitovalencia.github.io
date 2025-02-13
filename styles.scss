@@ -16,14 +16,14 @@ $blanco-codigo: #eff6fe;
 $body-color: $gris-oscuro; // page text
 
 // Inline code
-$code-bg: $blanco-codigo; // The background color of inline code. Defaults to a mix between the body-bg and body-color.
+$code-bg: $naranja-claro; // The background color of inline code. Defaults to a mix between the body-bg and body-color.
 $code-color: $azul-oscuro; // The text color of inline code. Defaults to a generated contrasting color against the code-bg.
 
 // Code blocks
 $code-block-bg: $blanco-codigo;
 
 // Aditional
-$link-color: $azul-oscuro;
+$link-color: $naranja-oscuro;
 $link-hover-color: $naranja-oscuro;
 
 // The color used for the copy button at the top right of code blocks
@@ -55,10 +55,10 @@ div.quarto-about-trestles .about-entity .about-link:hover {
 }
 
 a.nav-link:hover {
-  background-color: $naranja-oscuro;
+  background-color: $azul-oscuro;
   border-color: $naranja-claro;
   border-bottom: 2px solid $azul-oscuro;
-  color: $azul-oscuro;
+  color: $naranja-oscuro;
 }
 
 a.quarto-grid-link:hover{

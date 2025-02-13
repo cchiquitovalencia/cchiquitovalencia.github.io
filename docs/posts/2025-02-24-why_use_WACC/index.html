@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2025-02-24">
+<meta name="description" content="INVENTARIOS Serie - Parte 6">
+
+<title>Por qué usar el WACC como costo de mantener inventario? – Cristian Chiquito Valencia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Por qué usar el WACC como costo de mantener inventario? – Cristian Chiquito Valencia">
+<meta property="og:description" content="INVENTARIOS Serie - Parte 6">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/why_wacc.jpeg">
+<meta property="og:site_name" content="Cristian Chiquito Valencia">
+<meta name="twitter:title" content="Por qué usar el WACC como costo de mantener inventario? – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="INVENTARIOS Serie - Parte 6">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/why_wacc.jpeg">
+<meta name="twitter:creator" content="@cchiquitov">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Acerca de mi</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Aquí mi Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">Por qué usar el WACC como costo de mantener inventario?</h1>
+                  <div>
+        <div class="description">
+          INVENTARIOS Serie - Parte 6
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Inventarios</div>
+                <div class="quarto-category">Supply Chain</div>
+                <div class="quarto-category">Evaluación de Proyectos</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page">
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 24, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+
+<p><strong>¿Por qué usar el WACC?</strong></p>
+<p>El costo ponderado promedio del capital de una empresa está determinado por el riesgo de sus activos, como el inventario, las propiedades, las plantas y el equipo, y los cuentas por cobrar.</p>
+<p>Vamos a revisar <code>qué tan representativo es el inventario para las industrias en el Valle del Cauca</code>, en cuanto a sus activos operativos netos.</p>
+<p>Primero mostramos el Estado de resultado integral que ya conocímos <a href="https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/">aquí</a>:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">fig.align =</span> <span class="st">"center"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>estilo_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(resumen){</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    resumen <span class="sc">|&gt;</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summary</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#dplyr::select(c(Var2,Freq)) |&gt; </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rename</span>(<span class="at">Medida =</span> rowname,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">Frecuencia =</span> x) <span class="sc">|&gt;</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">Frecuencia =</span> <span class="fu">round</span>(Frecuencia,<span class="dv">4</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>aplicar_theme_table <span class="ot">&lt;-</span> <span class="cf">function</span>(gt_table) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    gt_table <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"center"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tab_options</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">table.border.top.color =</span> <span class="st">"orange"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">table.font.color =</span> <span class="st">"#1e2c46"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">table_body.hlines.color =</span> <span class="st">"orange"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">column_labels.background.color =</span> <span class="st">"#1e2c46"</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para extraer texto dentro de parentesis</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>extraer_texto <span class="ot">&lt;-</span> <span class="cf">function</span>(texto){</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    inicial <span class="ot">&lt;-</span> <span class="fu">gregexpr</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">("</span>, texto)[[<span class="dv">1</span>]]</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    final <span class="ot">&lt;-</span> <span class="fu">gregexpr</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">)"</span>, texto)[[<span class="dv">1</span>]]</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">substring</span>(texto, inicial <span class="sc">+</span> <span class="dv">1</span>, final <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector con los nombres extraídos</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>nuevo_nombre <span class="ot">&lt;-</span> <span class="cf">function</span>(info){</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(info) <span class="sc">|&gt;</span> </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">map</span>(<span class="sc">~</span><span class="fu">last</span>(<span class="fu">extraer_texto</span>(.x))) <span class="sc">|&gt;</span> </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>()</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>pyg <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"./310030_Estado de resultado integral, resultado del periodo, por funcion de gasto(3).xlsx"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Fecha.de.Corte <span class="sc">==</span> <span class="st">"2022-12-31"</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar nombres en inglés</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>pyg <span class="ot">&lt;-</span> <span class="fu">setNames</span>(pyg, <span class="fu">ifelse</span>(<span class="fu">nuevo_nombre</span>(pyg) <span class="sc">!=</span> <span class="st">""</span>, <span class="fu">nuevo_nombre</span>(pyg), <span class="fu">colnames</span>(pyg)))</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>pyg <span class="ot">&lt;-</span> pyg <span class="sc">|&gt;</span> </span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Periodo <span class="sc">==</span> <span class="st">"Periodo Actual"</span>, </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">Departamento.de.la.direcci&amp;#243;n.del.domicilio</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"VALLE"</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>pyg <span class="sc">|&gt;</span> </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt_preview</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aplicar_theme_table</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="zopkwgumam" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zopkwgumam table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zopkwgumam thead, #zopkwgumam tbody, #zopkwgumam tfoot, #zopkwgumam tr, #zopkwgumam td, #zopkwgumam th {
+  border-style: none;
+}
+
+#zopkwgumam p {
+  margin: 0;
+  padding: 0;
+}
+
+#zopkwgumam .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1E2C46;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFA500;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zopkwgumam .gt_title {
+  color: #1E2C46;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zopkwgumam .gt_subtitle {
+  color: #1E2C46;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zopkwgumam .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zopkwgumam .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zopkwgumam .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zopkwgumam .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zopkwgumam .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zopkwgumam .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zopkwgumam .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zopkwgumam .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zopkwgumam .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zopkwgumam .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zopkwgumam .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFA500;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zopkwgumam .gt_stub {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zopkwgumam .gt_stub_row_group {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zopkwgumam .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zopkwgumam .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zopkwgumam .gt_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zopkwgumam .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zopkwgumam .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_grand_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zopkwgumam .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zopkwgumam .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_footnotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zopkwgumam .gt_sourcenotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zopkwgumam .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zopkwgumam .gt_left {
+  text-align: left;
+}
+
+#zopkwgumam .gt_center {
+  text-align: center;
+}
+
+#zopkwgumam .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zopkwgumam .gt_font_normal {
+  font-weight: normal;
+}
+
+#zopkwgumam .gt_font_bold {
+  font-weight: bold;
+}
+
+#zopkwgumam .gt_font_italic {
+  font-style: italic;
+}
+
+#zopkwgumam .gt_super {
+  font-size: 65%;
+}
+
+#zopkwgumam .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zopkwgumam .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zopkwgumam .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zopkwgumam .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zopkwgumam .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zopkwgumam .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zopkwgumam .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zopkwgumam .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zopkwgumam div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Punto.de.Entrada" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Punto.de.Entrada</th>
+<th id="Nombre.Formulario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Nombre.Formulario</th>
+<th id="NIT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NIT</th>
+<th id="Fecha.de.Corte" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Fecha.de.Corte</th>
+<th id="Raz&amp;#243;n.social.de.la.sociedad" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Raz&amp;#243;n.social.de.la.sociedad</th>
+<th id="CIIU" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CIIU</th>
+<th id="Tipo.societario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Tipo.societario</th>
+<th id="Direcci&amp;#243;n.de.notificaci&amp;#243;n.judicial.registrada.en.C&amp;#225;mara.de.Comercio" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Direcci&amp;#243;n.de.notificaci&amp;#243;n.judicial.registrada.en.C&amp;#225;mara.de.Comercio</th>
+<th id="Departamento.de.la.direcci&amp;#243;n.del.domicilio" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Departamento.de.la.direcci&amp;#243;n.del.domicilio</th>
+<th id="Ciudad.de.la.direcci&amp;#243;n.del.domicilio" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ciudad.de.la.direcci&amp;#243;n.del.domicilio</th>
+<th id="Periodo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Periodo</th>
+<th id="Revenue" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Revenue</th>
+<th id="CostOfSales" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CostOfSales</th>
+<th id="GrossProfit" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">GrossProfit</th>
+<th id="OtherIncome" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherIncome</th>
+<th id="DistributionCosts" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">DistributionCosts</th>
+<th id="AdministrativeExpense" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">AdministrativeExpense</th>
+<th id="OtherExpenseByFunction" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherExpenseByFunction</th>
+<th id="OtherGainsLosses" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherGainsLosses</th>
+<th id="GananciaPerdidaPorActividadesDeOperacion" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">GananciaPerdidaPorActividadesDeOperacion</th>
+<th id="FinanceIncome" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">FinanceIncome</th>
+<th id="FinanceCosts" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">FinanceCosts</th>
+<th id="ProfitLossBeforeTax" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">ProfitLossBeforeTax</th>
+<th id="IncomeTaxExpenseContinuingOperations" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">IncomeTaxExpenseContinuingOperations</th>
+<th id="ProfitLossFromContinuingOperations" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">ProfitLossFromContinuingOperations</th>
+<th id="ProfitLossFromDiscontinuedOperations" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">ProfitLossFromDiscontinuedOperations</th>
+<th id="ProfitLoss" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">ProfitLoss</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">1</td>
+<td class="gt_row gt_center" headers="stub_1_1 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_1 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_1 NIT">800000241</td>
+<td class="gt_row gt_center" headers="stub_1_1 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_1 Razón.social.de.la.sociedad">CERERIA EL SAGRADO CORAZON LTDA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CIIU">C3290 - Otras industrias manufactureras n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_1 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">KM 5.5 VIA LA BUITRERA PREDIO LA CANANEA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_1 Ciudad.de.la.dirección.del.domicilio">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_1 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_1 Revenue">15028675</td>
+<td class="gt_row gt_center" headers="stub_1_1 CostOfSales">10346586</td>
+<td class="gt_row gt_center" headers="stub_1_1 GrossProfit">4682089</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherIncome">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 DistributionCosts">973304</td>
+<td class="gt_row gt_center" headers="stub_1_1 AdministrativeExpense">2191209</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherExpenseByFunction">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 GananciaPerdidaPorActividadesDeOperacion">1517576</td>
+<td class="gt_row gt_center" headers="stub_1_1 FinanceIncome">152265</td>
+<td class="gt_row gt_center" headers="stub_1_1 FinanceCosts">547097</td>
+<td class="gt_row gt_center" headers="stub_1_1 ProfitLossBeforeTax">1122744</td>
+<td class="gt_row gt_center" headers="stub_1_1 IncomeTaxExpenseContinuingOperations">413536</td>
+<td class="gt_row gt_center" headers="stub_1_1 ProfitLossFromContinuingOperations">709208</td>
+<td class="gt_row gt_center" headers="stub_1_1 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 ProfitLoss">709208</td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">2</td>
+<td class="gt_row gt_center" headers="stub_1_2 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_2 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_2 NIT">800000393</td>
+<td class="gt_row gt_center" headers="stub_1_2 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_2 Razón.social.de.la.sociedad">CONFEPLASTICOS SAS</td>
+<td class="gt_row gt_center" headers="stub_1_2 CIIU">C2229 - Fabricaci&amp;#243;n de art&amp;#237;culos de pl&amp;#225;stico n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_2 Tipo.societario">08. SOCIEDAD POR ACCIONES SIMPLIFICADA SAS</td>
+<td class="gt_row gt_center" headers="stub_1_2 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">CL 27 4 55</td>
+<td class="gt_row gt_center" headers="stub_1_2 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_2 Ciudad.de.la.dirección.del.domicilio">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_2 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_2 Revenue">2117949</td>
+<td class="gt_row gt_center" headers="stub_1_2 CostOfSales">2327453</td>
+<td class="gt_row gt_center" headers="stub_1_2 GrossProfit">-209504</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherIncome">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 DistributionCosts">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 AdministrativeExpense">438142</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherExpenseByFunction">73654</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 GananciaPerdidaPorActividadesDeOperacion">-721300</td>
+<td class="gt_row gt_center" headers="stub_1_2 FinanceIncome">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 FinanceCosts">232828</td>
+<td class="gt_row gt_center" headers="stub_1_2 ProfitLossBeforeTax">-954128</td>
+<td class="gt_row gt_center" headers="stub_1_2 IncomeTaxExpenseContinuingOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 ProfitLossFromContinuingOperations">-954128</td>
+<td class="gt_row gt_center" headers="stub_1_2 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 ProfitLoss">-954128</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">3</td>
+<td class="gt_row gt_center" headers="stub_1_3 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_3 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_3 NIT">800000469</td>
+<td class="gt_row gt_center" headers="stub_1_3 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_3 Razón.social.de.la.sociedad">RIVERA CORREA Y CRUZ Y COMPA&amp;#209;IA LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CIIU">G4731 - Comercio al por menor de combustible para automotores</td>
+<td class="gt_row gt_center" headers="stub_1_3 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_3 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">CRA 24 12 25</td>
+<td class="gt_row gt_center" headers="stub_1_3 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_3 Ciudad.de.la.dirección.del.domicilio">BUGA-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_3 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_3 Revenue">5189953</td>
+<td class="gt_row gt_center" headers="stub_1_3 CostOfSales">4510177</td>
+<td class="gt_row gt_center" headers="stub_1_3 GrossProfit">679776</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherIncome">66584</td>
+<td class="gt_row gt_center" headers="stub_1_3 DistributionCosts">343831</td>
+<td class="gt_row gt_center" headers="stub_1_3 AdministrativeExpense">300699</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherExpenseByFunction">457</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 GananciaPerdidaPorActividadesDeOperacion">101373</td>
+<td class="gt_row gt_center" headers="stub_1_3 FinanceIncome">75</td>
+<td class="gt_row gt_center" headers="stub_1_3 FinanceCosts">87259</td>
+<td class="gt_row gt_center" headers="stub_1_3 ProfitLossBeforeTax">14189</td>
+<td class="gt_row gt_center" headers="stub_1_3 IncomeTaxExpenseContinuingOperations">9090</td>
+<td class="gt_row gt_center" headers="stub_1_3 ProfitLossFromContinuingOperations">5099</td>
+<td class="gt_row gt_center" headers="stub_1_3 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 ProfitLoss">5099</td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">4</td>
+<td class="gt_row gt_center" headers="stub_1_4 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_4 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_4 NIT">800001020</td>
+<td class="gt_row gt_center" headers="stub_1_4 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_4 Razón.social.de.la.sociedad">DISTRIBUIDORA DE DROGAS LA REBAJA PRINCIPAL S.A.</td>
+<td class="gt_row gt_center" headers="stub_1_4 CIIU">N7740 - Arrendamiento de propiedad intelectual y productos similares, excepto obras protegidas por derechos de autor</td>
+<td class="gt_row gt_center" headers="stub_1_4 Tipo.societario">01. SOCIEDAD AN&amp;#211;NIMA</td>
+<td class="gt_row gt_center" headers="stub_1_4 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">CR 3 12 40 OF 1101</td>
+<td class="gt_row gt_center" headers="stub_1_4 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_4 Ciudad.de.la.dirección.del.domicilio">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_4 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_4 Revenue">5063032</td>
+<td class="gt_row gt_center" headers="stub_1_4 CostOfSales">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 GrossProfit">5063032</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherIncome">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 DistributionCosts">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 AdministrativeExpense">1613519</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherExpenseByFunction">23190</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 GananciaPerdidaPorActividadesDeOperacion">3426323</td>
+<td class="gt_row gt_center" headers="stub_1_4 FinanceIncome">356968</td>
+<td class="gt_row gt_center" headers="stub_1_4 FinanceCosts">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 ProfitLossBeforeTax">3783291</td>
+<td class="gt_row gt_center" headers="stub_1_4 IncomeTaxExpenseContinuingOperations">1317122</td>
+<td class="gt_row gt_center" headers="stub_1_4 ProfitLossFromContinuingOperations">2466169</td>
+<td class="gt_row gt_center" headers="stub_1_4 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 ProfitLoss">2466169</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">5</td>
+<td class="gt_row gt_center" headers="stub_1_5 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_5 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_5 NIT">800001047</td>
+<td class="gt_row gt_center" headers="stub_1_5 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_5 Razón.social.de.la.sociedad">MAYA Y BEDOYA LTDA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CIIU">G4773 - Comercio al por menor de productos farmac&amp;#233;uticos y medicinales, cosm&amp;#233;ticos y art&amp;#237;culos de tocador en establecimientos especializados</td>
+<td class="gt_row gt_center" headers="stub_1_5 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_5 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">CALLE 8 6 -80</td>
+<td class="gt_row gt_center" headers="stub_1_5 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_5 Ciudad.de.la.dirección.del.domicilio">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_5 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_5 Revenue">17015456</td>
+<td class="gt_row gt_center" headers="stub_1_5 CostOfSales">12716657</td>
+<td class="gt_row gt_center" headers="stub_1_5 GrossProfit">4298799</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherIncome">24143</td>
+<td class="gt_row gt_center" headers="stub_1_5 DistributionCosts">2581954</td>
+<td class="gt_row gt_center" headers="stub_1_5 AdministrativeExpense">1014383</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherExpenseByFunction">72255</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 GananciaPerdidaPorActividadesDeOperacion">654350</td>
+<td class="gt_row gt_center" headers="stub_1_5 FinanceIncome">18956</td>
+<td class="gt_row gt_center" headers="stub_1_5 FinanceCosts">51</td>
+<td class="gt_row gt_center" headers="stub_1_5 ProfitLossBeforeTax">673255</td>
+<td class="gt_row gt_center" headers="stub_1_5 IncomeTaxExpenseContinuingOperations">265550</td>
+<td class="gt_row gt_center" headers="stub_1_5 ProfitLossFromContinuingOperations">407705</td>
+<td class="gt_row gt_center" headers="stub_1_5 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 ProfitLoss">407705</td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier; font-size: x-small; background-color: #E4E4E4">6..2391</td>
+<td class="gt_row gt_center" headers="stub_1_6 Punto.de.Entrada" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Nombre.Formulario" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NIT" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Fecha.de.Corte" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Razón.social.de.la.sociedad" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CIIU" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Tipo.societario" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Departamento.de.la.dirección.del.domicilio" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Ciudad.de.la.dirección.del.domicilio" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Periodo" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Revenue" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CostOfSales" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 GrossProfit" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherIncome" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 DistributionCosts" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 AdministrativeExpense" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherExpenseByFunction" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherGainsLosses" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 GananciaPerdidaPorActividadesDeOperacion" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 FinanceIncome" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 FinanceCosts" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 ProfitLossBeforeTax" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 IncomeTaxExpenseContinuingOperations" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 ProfitLossFromContinuingOperations" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 ProfitLossFromDiscontinuedOperations" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 ProfitLoss" style="background-color: #E4E4E4"></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">2392</td>
+<td class="gt_row gt_center" headers="stub_1_7 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_7 Nombre.Formulario">Estado de resultado integral, resultado del periodo, por funcion de gasto</td>
+<td class="gt_row gt_center" headers="stub_1_7 NIT">901468892</td>
+<td class="gt_row gt_center" headers="stub_1_7 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_7 Razón.social.de.la.sociedad">INVERSIONES ATELIER SAS</td>
+<td class="gt_row gt_center" headers="stub_1_7 CIIU">M7490 - Otras actividades profesionales, cient&amp;#237;ficas y t&amp;#233;cnicas n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_7 Tipo.societario">08. SOCIEDAD POR ACCIONES SIMPLIFICADA SAS</td>
+<td class="gt_row gt_center" headers="stub_1_7 Dirección.de.notificación.judicial.registrada.en.Cámara.de.Comercio">CL 67 NORTE # 6 - 85</td>
+<td class="gt_row gt_center" headers="stub_1_7 Departamento.de.la.dirección.del.domicilio">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_7 Ciudad.de.la.dirección.del.domicilio">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_7 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_7 Revenue">600262</td>
+<td class="gt_row gt_center" headers="stub_1_7 CostOfSales">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 GrossProfit">600262</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherIncome">1857</td>
+<td class="gt_row gt_center" headers="stub_1_7 DistributionCosts">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 AdministrativeExpense">631283</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherExpenseByFunction">193067</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherGainsLosses">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 GananciaPerdidaPorActividadesDeOperacion">-222231</td>
+<td class="gt_row gt_center" headers="stub_1_7 FinanceIncome">13805</td>
+<td class="gt_row gt_center" headers="stub_1_7 FinanceCosts">16544</td>
+<td class="gt_row gt_center" headers="stub_1_7 ProfitLossBeforeTax">-224970</td>
+<td class="gt_row gt_center" headers="stub_1_7 IncomeTaxExpenseContinuingOperations">22615</td>
+<td class="gt_row gt_center" headers="stub_1_7 ProfitLossFromContinuingOperations">-247585</td>
+<td class="gt_row gt_center" headers="stub_1_7 ProfitLossFromDiscontinuedOperations">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 ProfitLoss">-247585</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Y ahora el Estado de situación financiera que también vimos <a href="https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/#razones-de-cobertura">aquí</a>:</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"./210030_Estado de situación financiera, corriente_no corriente.xlsx"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.table</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Fecha.de.Corte <span class="sc">==</span> <span class="st">"2022-12-31"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar nombres en inglés</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">setNames</span>(data, <span class="fu">ifelse</span>(<span class="fu">nuevo_nombre</span>(data) <span class="sc">!=</span> <span class="st">""</span>, <span class="fu">nuevo_nombre</span>(data), <span class="fu">colnames</span>(data)))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiar otros nombres</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Razon.Social =</span> <span class="st">"Raz&amp;#243;n.social.de.la.sociedad"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">Direccion =</span> <span class="st">"Direcci&amp;#243;n.de.notificaci&amp;#243;n.judicial.registrada.en.C&amp;#225;mara.de.Comercio"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">Departamento =</span> <span class="st">"Departamento.de.la.direcci&amp;#243;n.del.domicilio"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">Ciudad =</span> <span class="st">"Ciudad.de.la.direcci&amp;#243;n.del.domicilio"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">TotalCurrentFinancialAssetsSELL=</span> <span class="st">"Total_activos_corrientes_distintos_de_los_activos_no_corrientes_o_grupo_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">OtherCurrentFinancialAssetsSELL=</span> <span class="st">"Activos_no_corrientes_o_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">PropertyPlantAndEquipmentWithDEP=</span> <span class="st">"Propiedades_de_inversi&amp;#243;n_al_costo_menos_depreciacion_acumulada_y_deterioro"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">TotalCurrentFinancialLiabilitiesSELL =</span> <span class="st">"Total_pasivos_corrientes_distintos_de_los_pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">OtherCurrentFinancialLiabilitiesSELL=</span> <span class="st">"Pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Solo veremos el periodo final</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Periodo <span class="sc">==</span> <span class="st">"Periodo Actual"</span>, </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>           Departamento <span class="sc">==</span> <span class="st">"VALLE"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt_preview</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aplicar_theme_table</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="hffzifjgbz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hffzifjgbz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hffzifjgbz thead, #hffzifjgbz tbody, #hffzifjgbz tfoot, #hffzifjgbz tr, #hffzifjgbz td, #hffzifjgbz th {
+  border-style: none;
+}
+
+#hffzifjgbz p {
+  margin: 0;
+  padding: 0;
+}
+
+#hffzifjgbz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1E2C46;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFA500;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hffzifjgbz .gt_title {
+  color: #1E2C46;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hffzifjgbz .gt_subtitle {
+  color: #1E2C46;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hffzifjgbz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hffzifjgbz .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hffzifjgbz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hffzifjgbz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hffzifjgbz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hffzifjgbz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hffzifjgbz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hffzifjgbz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hffzifjgbz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hffzifjgbz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hffzifjgbz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFA500;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hffzifjgbz .gt_stub {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hffzifjgbz .gt_stub_row_group {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hffzifjgbz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hffzifjgbz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hffzifjgbz .gt_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hffzifjgbz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hffzifjgbz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_grand_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hffzifjgbz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hffzifjgbz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_footnotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hffzifjgbz .gt_sourcenotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hffzifjgbz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hffzifjgbz .gt_left {
+  text-align: left;
+}
+
+#hffzifjgbz .gt_center {
+  text-align: center;
+}
+
+#hffzifjgbz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hffzifjgbz .gt_font_normal {
+  font-weight: normal;
+}
+
+#hffzifjgbz .gt_font_bold {
+  font-weight: bold;
+}
+
+#hffzifjgbz .gt_font_italic {
+  font-style: italic;
+}
+
+#hffzifjgbz .gt_super {
+  font-size: 65%;
+}
+
+#hffzifjgbz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hffzifjgbz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hffzifjgbz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hffzifjgbz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hffzifjgbz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hffzifjgbz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hffzifjgbz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hffzifjgbz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hffzifjgbz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Punto.de.Entrada" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Punto.de.Entrada</th>
+<th id="Nombre.Formulario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Nombre.Formulario</th>
+<th id="NIT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NIT</th>
+<th id="Fecha.de.Corte" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Fecha.de.Corte</th>
+<th id="Razon.Social" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Razon.Social</th>
+<th id="CIIU" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CIIU</th>
+<th id="Tipo.societario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Tipo.societario</th>
+<th id="Direccion" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Direccion</th>
+<th id="Departamento" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Departamento</th>
+<th id="Ciudad" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ciudad</th>
+<th id="Periodo" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Periodo</th>
+<th id="CashAndCashEquivalents" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CashAndCashEquivalents</th>
+<th id="TradeAndOtherCurrentReceivables" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">TradeAndOtherCurrentReceivables</th>
+<th id="Inventories" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Inventories</th>
+<th id="CurrentTaxAssetsCurrent" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentTaxAssetsCurrent</th>
+<th id="CurrentBiologicalAssetsAtCost" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentBiologicalAssetsAtCost</th>
+<th id="CurrentBiologicalAssetsAtFairValue" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentBiologicalAssetsAtFairValue</th>
+<th id="OtherCurrentFinancialAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentFinancialAssets</th>
+<th id="OtherCurrentNonfinancialAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentNonfinancialAssets</th>
+<th id="CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral</th>
+<th id="TotalCurrentFinancialAssetsSELL" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">TotalCurrentFinancialAssetsSELL</th>
+<th id="OtherCurrentFinancialAssetsSELL" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentFinancialAssetsSELL</th>
+<th id="CurrentAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentAssets</th>
+<th id="PropertyPlantAndEquipment" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">PropertyPlantAndEquipment</th>
+<th id="PropertyPlantAndEquipmentWithDEP" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">PropertyPlantAndEquipmentWithDEP</th>
+<th id="InvestmentProperty" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">InvestmentProperty</th>
+<th id="Goodwill" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Goodwill</th>
+<th id="IntangibleAssetsOtherThanGoodwill" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">IntangibleAssetsOtherThanGoodwill</th>
+<th id="NoncurrentBiologicalAssetsAtCost" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentBiologicalAssetsAtCost</th>
+<th id="NoncurrentBiologicalAssetsAtFairValue" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentBiologicalAssetsAtFairValue</th>
+<th id="NoncurrentReceivables" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentReceivables</th>
+<th id="NoncurrentInventories" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentInventories</th>
+<th id="DeferredTaxAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">DeferredTaxAssets</th>
+<th id="CurrentTaxAssetsNoncurrent" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentTaxAssetsNoncurrent</th>
+<th id="OtherNoncurrentFinancialAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherNoncurrentFinancialAssets</th>
+<th id="OtherNoncurrentNonfinancialAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherNoncurrentNonfinancialAssets</th>
+<th id="NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral</th>
+<th id="NoncurrentAssets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentAssets</th>
+<th id="Assets" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Assets</th>
+<th id="CurrentProvisionsForEmployeeBenefits" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentProvisionsForEmployeeBenefits</th>
+<th id="OtherShorttermProvisions" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherShorttermProvisions</th>
+<th id="CurrentProvisions" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentProvisions</th>
+<th id="TradeAndOtherCurrentPayables" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">TradeAndOtherCurrentPayables</th>
+<th id="CurrentTaxLiabilitiesCurrent" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentTaxLiabilitiesCurrent</th>
+<th id="OtherCurrentFinancialLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentFinancialLiabilities</th>
+<th id="ShorttermBorrowings" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">ShorttermBorrowings</th>
+<th id="CurrentPortionOfLongtermBorrowings" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentPortionOfLongtermBorrowings</th>
+<th id="OtherCurrentNonfinancialLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentNonfinancialLiabilities</th>
+<th id="TotalCurrentFinancialLiabilitiesSELL" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">TotalCurrentFinancialLiabilitiesSELL</th>
+<th id="OtherCurrentFinancialLiabilitiesSELL" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherCurrentFinancialLiabilitiesSELL</th>
+<th id="CurrentLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentLiabilities</th>
+<th id="NoncurrentProvisionsForEmployeeBenefits" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentProvisionsForEmployeeBenefits</th>
+<th id="OtherLongtermProvisions" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherLongtermProvisions</th>
+<th id="NoncurrentProvisions" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentProvisions</th>
+<th id="NoncurrentPayables" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentPayables</th>
+<th id="DeferredTaxLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">DeferredTaxLiabilities</th>
+<th id="CurrentTaxLiabilitiesNoncurrent" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">CurrentTaxLiabilitiesNoncurrent</th>
+<th id="OtherNoncurrentFinancialLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherNoncurrentFinancialLiabilities</th>
+<th id="LongtermBorrowings" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">LongtermBorrowings</th>
+<th id="OtherNoncurrentNonfinancialLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherNoncurrentNonfinancialLiabilities</th>
+<th id="NoncurrentLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">NoncurrentLiabilities</th>
+<th id="Liabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Liabilities</th>
+<th id="IssuedCapital" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">IssuedCapital</th>
+<th id="SharePremium" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">SharePremium</th>
+<th id="TreasuryShares" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">TreasuryShares</th>
+<th id="InversionSuplementariaAlCapitalAsignado" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">InversionSuplementariaAlCapitalAsignado</th>
+<th id="OtherEquityInterest" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherEquityInterest</th>
+<th id="SuperavitPorRevaluacion" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">SuperavitPorRevaluacion</th>
+<th id="OtherReserves" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">OtherReserves</th>
+<th id="RetainedEarnings" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">RetainedEarnings</th>
+<th id="Equity" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Equity</th>
+<th id="EquityAndLiabilities" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">EquityAndLiabilities</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">1</td>
+<td class="gt_row gt_center" headers="stub_1_1 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_1 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_1 NIT">800000241</td>
+<td class="gt_row gt_center" headers="stub_1_1 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_1 Razon.Social">CERERIA EL SAGRADO CORAZON LTDA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CIIU">C3290 - Otras industrias manufactureras n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_1 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Direccion">KM 5.5 VIA LA BUITRERA PREDIO LA CANANEA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_1 Ciudad">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_1 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_1 CashAndCashEquivalents">434850</td>
+<td class="gt_row gt_center" headers="stub_1_1 TradeAndOtherCurrentReceivables">3294074</td>
+<td class="gt_row gt_center" headers="stub_1_1 Inventories">2412864</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentTaxAssetsCurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentFinancialAssets">51621</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 TotalCurrentFinancialAssetsSELL">6193409</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentFinancialAssetsSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentAssets">6193409</td>
+<td class="gt_row gt_center" headers="stub_1_1 PropertyPlantAndEquipment">564126</td>
+<td class="gt_row gt_center" headers="stub_1_1 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherNoncurrentFinancialAssets">18708</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherNoncurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentAssets">582834</td>
+<td class="gt_row gt_center" headers="stub_1_1 Assets">6776243</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentProvisionsForEmployeeBenefits">114962</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentProvisions">114962</td>
+<td class="gt_row gt_center" headers="stub_1_1 TradeAndOtherCurrentPayables">2775642</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentTaxLiabilitiesCurrent">294400</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentFinancialLiabilities">253216</td>
+<td class="gt_row gt_center" headers="stub_1_1 ShorttermBorrowings">253216</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentPortionOfLongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 TotalCurrentFinancialLiabilitiesSELL">3438220</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentLiabilities">3438220</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherLongtermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 DeferredTaxLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherNoncurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 LongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherNoncurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 NoncurrentLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 Liabilities">3438220</td>
+<td class="gt_row gt_center" headers="stub_1_1 IssuedCapital">200000</td>
+<td class="gt_row gt_center" headers="stub_1_1 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_1 SuperavitPorRevaluacion">132740</td>
+<td class="gt_row gt_center" headers="stub_1_1 OtherReserves">130902</td>
+<td class="gt_row gt_center" headers="stub_1_1 RetainedEarnings">2874381</td>
+<td class="gt_row gt_center" headers="stub_1_1 Equity">3338023</td>
+<td class="gt_row gt_center" headers="stub_1_1 EquityAndLiabilities">6776243</td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">2</td>
+<td class="gt_row gt_center" headers="stub_1_2 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_2 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_2 NIT">800000393</td>
+<td class="gt_row gt_center" headers="stub_1_2 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_2 Razon.Social">CONFEPLASTICOS SAS</td>
+<td class="gt_row gt_center" headers="stub_1_2 CIIU">C2229 - Fabricaci&amp;#243;n de art&amp;#237;culos de pl&amp;#225;stico n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_2 Tipo.societario">08. SOCIEDAD POR ACCIONES SIMPLIFICADA SAS</td>
+<td class="gt_row gt_center" headers="stub_1_2 Direccion">CL 27 4 55</td>
+<td class="gt_row gt_center" headers="stub_1_2 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_2 Ciudad">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_2 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_2 CashAndCashEquivalents">34675</td>
+<td class="gt_row gt_center" headers="stub_1_2 TradeAndOtherCurrentReceivables">372255</td>
+<td class="gt_row gt_center" headers="stub_1_2 Inventories">9424</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentTaxAssetsCurrent">67673</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 TotalCurrentFinancialAssetsSELL">484027</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentFinancialAssetsSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentAssets">484027</td>
+<td class="gt_row gt_center" headers="stub_1_2 PropertyPlantAndEquipment">3065089</td>
+<td class="gt_row gt_center" headers="stub_1_2 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherNoncurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherNoncurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentAssets">3065089</td>
+<td class="gt_row gt_center" headers="stub_1_2 Assets">3549116</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentProvisionsForEmployeeBenefits">777054</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentProvisions">777054</td>
+<td class="gt_row gt_center" headers="stub_1_2 TradeAndOtherCurrentPayables">1618837</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentTaxLiabilitiesCurrent">401720</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentFinancialLiabilities">778820</td>
+<td class="gt_row gt_center" headers="stub_1_2 ShorttermBorrowings">8121</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentPortionOfLongtermBorrowings">770699</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 TotalCurrentFinancialLiabilitiesSELL">3576431</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentLiabilities">3576431</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherLongtermProvisions">2717</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentProvisions">2717</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 DeferredTaxLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherNoncurrentFinancialLiabilities">689414</td>
+<td class="gt_row gt_center" headers="stub_1_2 LongtermBorrowings">689414</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherNoncurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 NoncurrentLiabilities">692131</td>
+<td class="gt_row gt_center" headers="stub_1_2 Liabilities">4268562</td>
+<td class="gt_row gt_center" headers="stub_1_2 IssuedCapital">200000</td>
+<td class="gt_row gt_center" headers="stub_1_2 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_2 SuperavitPorRevaluacion">394906</td>
+<td class="gt_row gt_center" headers="stub_1_2 OtherReserves">458229</td>
+<td class="gt_row gt_center" headers="stub_1_2 RetainedEarnings">-1772581</td>
+<td class="gt_row gt_center" headers="stub_1_2 Equity">-719446</td>
+<td class="gt_row gt_center" headers="stub_1_2 EquityAndLiabilities">3549116</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">3</td>
+<td class="gt_row gt_center" headers="stub_1_3 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_3 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_3 NIT">800000469</td>
+<td class="gt_row gt_center" headers="stub_1_3 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_3 Razon.Social">RIVERA CORREA Y CRUZ Y COMPA&amp;#209;IA LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CIIU">G4731 - Comercio al por menor de combustible para automotores</td>
+<td class="gt_row gt_center" headers="stub_1_3 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_3 Direccion">CRA 24 12 25</td>
+<td class="gt_row gt_center" headers="stub_1_3 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_3 Ciudad">BUGA-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_3 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_3 CashAndCashEquivalents">83458</td>
+<td class="gt_row gt_center" headers="stub_1_3 TradeAndOtherCurrentReceivables">407300</td>
+<td class="gt_row gt_center" headers="stub_1_3 Inventories">49573</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentTaxAssetsCurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentFinancialAssets">10000</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 TotalCurrentFinancialAssetsSELL">550331</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentFinancialAssetsSELL">22296</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentAssets">572627</td>
+<td class="gt_row gt_center" headers="stub_1_3 PropertyPlantAndEquipment">1345406</td>
+<td class="gt_row gt_center" headers="stub_1_3 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherNoncurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherNoncurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentAssets">1345406</td>
+<td class="gt_row gt_center" headers="stub_1_3 Assets">1918033</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentProvisionsForEmployeeBenefits">104826</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentProvisions">104826</td>
+<td class="gt_row gt_center" headers="stub_1_3 TradeAndOtherCurrentPayables">245856</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentTaxLiabilitiesCurrent">6830</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentFinancialLiabilities">269542</td>
+<td class="gt_row gt_center" headers="stub_1_3 ShorttermBorrowings">97035</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentPortionOfLongtermBorrowings">172507</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 TotalCurrentFinancialLiabilitiesSELL">627054</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentLiabilities">627054</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherLongtermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 DeferredTaxLiabilities">29682</td>
+<td class="gt_row gt_center" headers="stub_1_3 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherNoncurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 LongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherNoncurrentNonfinancialLiabilities">89498</td>
+<td class="gt_row gt_center" headers="stub_1_3 NoncurrentLiabilities">119180</td>
+<td class="gt_row gt_center" headers="stub_1_3 Liabilities">746234</td>
+<td class="gt_row gt_center" headers="stub_1_3 IssuedCapital">102245</td>
+<td class="gt_row gt_center" headers="stub_1_3 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 SuperavitPorRevaluacion">NA</td>
+<td class="gt_row gt_center" headers="stub_1_3 OtherReserves">17087</td>
+<td class="gt_row gt_center" headers="stub_1_3 RetainedEarnings">1052467</td>
+<td class="gt_row gt_center" headers="stub_1_3 Equity">1171799</td>
+<td class="gt_row gt_center" headers="stub_1_3 EquityAndLiabilities">1918033</td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">4</td>
+<td class="gt_row gt_center" headers="stub_1_4 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_4 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_4 NIT">800001020</td>
+<td class="gt_row gt_center" headers="stub_1_4 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_4 Razon.Social">DISTRIBUIDORA DE DROGAS LA REBAJA PRINCIPAL S.A.</td>
+<td class="gt_row gt_center" headers="stub_1_4 CIIU">N7740 - Arrendamiento de propiedad intelectual y productos similares, excepto obras protegidas por derechos de autor</td>
+<td class="gt_row gt_center" headers="stub_1_4 Tipo.societario">01. SOCIEDAD AN&amp;#211;NIMA</td>
+<td class="gt_row gt_center" headers="stub_1_4 Direccion">CR 3 12 40 OF 1101</td>
+<td class="gt_row gt_center" headers="stub_1_4 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_4 Ciudad">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_4 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_4 CashAndCashEquivalents">6059138</td>
+<td class="gt_row gt_center" headers="stub_1_4 TradeAndOtherCurrentReceivables">910913</td>
+<td class="gt_row gt_center" headers="stub_1_4 Inventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentTaxAssetsCurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 TotalCurrentFinancialAssetsSELL">6970051</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentFinancialAssetsSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentAssets">6970051</td>
+<td class="gt_row gt_center" headers="stub_1_4 PropertyPlantAndEquipment">19683</td>
+<td class="gt_row gt_center" headers="stub_1_4 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherNoncurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherNoncurrentNonfinancialAssets">33761</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentAssets">53444</td>
+<td class="gt_row gt_center" headers="stub_1_4 Assets">7023495</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 TradeAndOtherCurrentPayables">24685</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentTaxLiabilitiesCurrent">1415386</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 ShorttermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentPortionOfLongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 TotalCurrentFinancialLiabilitiesSELL">1440071</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentLiabilities">1440071</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherLongtermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 DeferredTaxLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherNoncurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 LongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherNoncurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 NoncurrentLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 Liabilities">1440071</td>
+<td class="gt_row gt_center" headers="stub_1_4 IssuedCapital">53497</td>
+<td class="gt_row gt_center" headers="stub_1_4 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 SuperavitPorRevaluacion">NA</td>
+<td class="gt_row gt_center" headers="stub_1_4 OtherReserves">26749</td>
+<td class="gt_row gt_center" headers="stub_1_4 RetainedEarnings">5503178</td>
+<td class="gt_row gt_center" headers="stub_1_4 Equity">5583424</td>
+<td class="gt_row gt_center" headers="stub_1_4 EquityAndLiabilities">7023495</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">5</td>
+<td class="gt_row gt_center" headers="stub_1_5 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_5 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_5 NIT">800001047</td>
+<td class="gt_row gt_center" headers="stub_1_5 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_5 Razon.Social">MAYA Y BEDOYA LTDA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CIIU">G4773 - Comercio al por menor de productos farmac&amp;#233;uticos y medicinales, cosm&amp;#233;ticos y art&amp;#237;culos de tocador en establecimientos especializados</td>
+<td class="gt_row gt_center" headers="stub_1_5 Tipo.societario">03. SOCIEDAD LIMITADA</td>
+<td class="gt_row gt_center" headers="stub_1_5 Direccion">CALLE 8 6 -80</td>
+<td class="gt_row gt_center" headers="stub_1_5 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_5 Ciudad">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_5 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_5 CashAndCashEquivalents">1946480</td>
+<td class="gt_row gt_center" headers="stub_1_5 TradeAndOtherCurrentReceivables">1162466</td>
+<td class="gt_row gt_center" headers="stub_1_5 Inventories">1872505</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentTaxAssetsCurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentNonfinancialAssets">1201</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 TotalCurrentFinancialAssetsSELL">4982652</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentFinancialAssetsSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentAssets">4982652</td>
+<td class="gt_row gt_center" headers="stub_1_5 PropertyPlantAndEquipment">262823</td>
+<td class="gt_row gt_center" headers="stub_1_5 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherNoncurrentFinancialAssets">10000</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherNoncurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentAssets">272823</td>
+<td class="gt_row gt_center" headers="stub_1_5 Assets">5255475</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentProvisionsForEmployeeBenefits">193609</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentProvisions">193609</td>
+<td class="gt_row gt_center" headers="stub_1_5 TradeAndOtherCurrentPayables">1265130</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentTaxLiabilitiesCurrent">262475</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 ShorttermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentPortionOfLongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentNonfinancialLiabilities">651741</td>
+<td class="gt_row gt_center" headers="stub_1_5 TotalCurrentFinancialLiabilitiesSELL">2372955</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentLiabilities">2372955</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherLongtermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 DeferredTaxLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherNoncurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 LongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherNoncurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 NoncurrentLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 Liabilities">2372955</td>
+<td class="gt_row gt_center" headers="stub_1_5 IssuedCapital">1500000</td>
+<td class="gt_row gt_center" headers="stub_1_5 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 SuperavitPorRevaluacion">NA</td>
+<td class="gt_row gt_center" headers="stub_1_5 OtherReserves">370959</td>
+<td class="gt_row gt_center" headers="stub_1_5 RetainedEarnings">1011561</td>
+<td class="gt_row gt_center" headers="stub_1_5 Equity">2882520</td>
+<td class="gt_row gt_center" headers="stub_1_5 EquityAndLiabilities">5255475</td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier; font-size: x-small; background-color: #E4E4E4">6..2391</td>
+<td class="gt_row gt_center" headers="stub_1_6 Punto.de.Entrada" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Nombre.Formulario" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NIT" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Fecha.de.Corte" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Razon.Social" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CIIU" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Tipo.societario" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Direccion" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Departamento" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Ciudad" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Periodo" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CashAndCashEquivalents" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 TradeAndOtherCurrentReceivables" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Inventories" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentTaxAssetsCurrent" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentBiologicalAssetsAtCost" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentBiologicalAssetsAtFairValue" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentFinancialAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentNonfinancialAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 TotalCurrentFinancialAssetsSELL" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentFinancialAssetsSELL" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 PropertyPlantAndEquipment" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 PropertyPlantAndEquipmentWithDEP" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 InvestmentProperty" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Goodwill" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 IntangibleAssetsOtherThanGoodwill" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentBiologicalAssetsAtCost" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentBiologicalAssetsAtFairValue" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentReceivables" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentInventories" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 DeferredTaxAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentTaxAssetsNoncurrent" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherNoncurrentFinancialAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherNoncurrentNonfinancialAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentAssets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Assets" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentProvisionsForEmployeeBenefits" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherShorttermProvisions" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentProvisions" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 TradeAndOtherCurrentPayables" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentTaxLiabilitiesCurrent" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentFinancialLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 ShorttermBorrowings" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentPortionOfLongtermBorrowings" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentNonfinancialLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 TotalCurrentFinancialLiabilitiesSELL" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherCurrentFinancialLiabilitiesSELL" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentProvisionsForEmployeeBenefits" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherLongtermProvisions" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentProvisions" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentPayables" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 DeferredTaxLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 CurrentTaxLiabilitiesNoncurrent" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherNoncurrentFinancialLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 LongtermBorrowings" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherNoncurrentNonfinancialLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 NoncurrentLiabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Liabilities" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 IssuedCapital" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 SharePremium" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 TreasuryShares" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 InversionSuplementariaAlCapitalAsignado" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherEquityInterest" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 SuperavitPorRevaluacion" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 OtherReserves" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 RetainedEarnings" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 Equity" style="background-color: #E4E4E4"></td>
+<td class="gt_row gt_center" headers="stub_1_6 EquityAndLiabilities" style="background-color: #E4E4E4"></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row" style="font-family: Courier">2392</td>
+<td class="gt_row gt_center" headers="stub_1_7 Punto.de.Entrada">Pymes-Individuales</td>
+<td class="gt_row gt_center" headers="stub_1_7 Nombre.Formulario">Estado de situaci&amp;#243;n financiera, corriente/no corriente</td>
+<td class="gt_row gt_center" headers="stub_1_7 NIT">901468892</td>
+<td class="gt_row gt_center" headers="stub_1_7 Fecha.de.Corte">2022-12-31</td>
+<td class="gt_row gt_center" headers="stub_1_7 Razon.Social">INVERSIONES ATELIER SAS</td>
+<td class="gt_row gt_center" headers="stub_1_7 CIIU">M7490 - Otras actividades profesionales, cient&amp;#237;ficas y t&amp;#233;cnicas n.c.p.</td>
+<td class="gt_row gt_center" headers="stub_1_7 Tipo.societario">08. SOCIEDAD POR ACCIONES SIMPLIFICADA SAS</td>
+<td class="gt_row gt_center" headers="stub_1_7 Direccion">CL 67 NORTE # 6 - 85</td>
+<td class="gt_row gt_center" headers="stub_1_7 Departamento">VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_7 Ciudad">CALI-VALLE</td>
+<td class="gt_row gt_center" headers="stub_1_7 Periodo">Periodo Actual</td>
+<td class="gt_row gt_center" headers="stub_1_7 CashAndCashEquivalents">436111</td>
+<td class="gt_row gt_center" headers="stub_1_7 TradeAndOtherCurrentReceivables">3054731</td>
+<td class="gt_row gt_center" headers="stub_1_7 Inventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentTaxAssetsCurrent">20822</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 TotalCurrentFinancialAssetsSELL">3511664</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentFinancialAssetsSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentAssets">3511664</td>
+<td class="gt_row gt_center" headers="stub_1_7 PropertyPlantAndEquipment">5457219</td>
+<td class="gt_row gt_center" headers="stub_1_7 PropertyPlantAndEquipmentWithDEP">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 InvestmentProperty">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 Goodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 IntangibleAssetsOtherThanGoodwill">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentBiologicalAssetsAtCost">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentBiologicalAssetsAtFairValue">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentReceivables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentInventories">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 DeferredTaxAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentTaxAssetsNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherNoncurrentFinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherNoncurrentNonfinancialAssets">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentNoncashAssetsPledgedAsCollateralForWhichTransfereeHasRightByContractOrCustomToSellOrRepledgeCollateral">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentAssets">5457219</td>
+<td class="gt_row gt_center" headers="stub_1_7 Assets">8968883</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentProvisionsForEmployeeBenefits">19851</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherShorttermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentProvisions">19851</td>
+<td class="gt_row gt_center" headers="stub_1_7 TradeAndOtherCurrentPayables">143592</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentTaxLiabilitiesCurrent">26788</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 ShorttermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentPortionOfLongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 TotalCurrentFinancialLiabilitiesSELL">190231</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherCurrentFinancialLiabilitiesSELL">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentLiabilities">190231</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentProvisionsForEmployeeBenefits">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherLongtermProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentProvisions">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentPayables">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 DeferredTaxLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 CurrentTaxLiabilitiesNoncurrent">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherNoncurrentFinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 LongtermBorrowings">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherNoncurrentNonfinancialLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 NoncurrentLiabilities">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 Liabilities">190231</td>
+<td class="gt_row gt_center" headers="stub_1_7 IssuedCapital">1000</td>
+<td class="gt_row gt_center" headers="stub_1_7 SharePremium">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 TreasuryShares">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 InversionSuplementariaAlCapitalAsignado">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherEquityInterest">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 SuperavitPorRevaluacion">9052026</td>
+<td class="gt_row gt_center" headers="stub_1_7 OtherReserves">NA</td>
+<td class="gt_row gt_center" headers="stub_1_7 RetainedEarnings">-274374</td>
+<td class="gt_row gt_center" headers="stub_1_7 Equity">8778652</td>
+<td class="gt_row gt_center" headers="stub_1_7 EquityAndLiabilities">8968883</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Nos interesa conocer la proporción de <span class="math inline">\(deuda / capital\)</span> que tienen las empresas en el Valle del Cauca:</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>caratula <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"./10000_Carátula.xlsx"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.table</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Periodo <span class="sc">==</span> <span class="st">"Periodo Actual"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">14</span>,<span class="dv">62</span>,<span class="dv">72</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>() </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>pyg <span class="sc">|&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Periodo <span class="sc">==</span> <span class="st">"Periodo Actual"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">12</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(caratula[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">11</span>)], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"NIT"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prop_deuda =</span> <span class="st">`</span><span class="at">Liabilities</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">EquityAndLiabilities</span><span class="st">`</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">tiempo =</span> <span class="dv">2024</span> <span class="sc">-</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(<span class="st">`</span><span class="at">Fecha.de.constitución.(Aaaa-Mm-Dd)</span><span class="st">`</span>,<span class="dv">1</span>,<span class="dv">4</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(prop_deuda <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="sc">!</span><span class="fu">is.na</span>(prop_deuda), prop_deuda<span class="sc">&lt;=</span><span class="dv">1</span>, tiempo <span class="sc">&gt;=</span><span class="dv">0</span>, <span class="sc">!</span><span class="fu">is.na</span>(tiempo)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(tiempo <span class="sc">&lt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as.numeric</span>(tiempo), prop_deuda, <span class="at">group =</span> <span class="fu">as.factor</span>(tiempo)))<span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">"orange"</span>))<span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>()<span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"AÑOS DESDE CREACIÓN"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"PROPORCIÓN DE DEUDA (%)"</span>)<span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Proporción deuda/capital</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora cruzamos la información de los dos reportes financieros para el mostrar el <em>inventario como porcentaje de los activos operativos netos</em> para una muestra de Pymes del Valle del Cauca varios sectores.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sector =</span> <span class="fu">substr</span>(CIIU,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">NOA =</span> (Assets <span class="sc">-</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        OtherCurrentFinancialAssets<span class="sc">+</span>OtherNoncurrentFinancialAssets))<span class="sc">-</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            (Liabilities <span class="sc">-</span>(OtherCurrentFinancialLiabilities<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            OtherNoncurrentFinancialLiabilities)),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">inv_NOA =</span> (Inventories<span class="sc">+</span>NoncurrentInventories)<span class="sc">/</span>NOA) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.nan</span>(inv_NOA), inv_NOA <span class="sc">&lt;=</span><span class="dv">1</span>, inv_NOA<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(inv_NOA)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(sector, media))<span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>)<span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>()<span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"SECTOR (CIIU)"</span>, <span class="at">y =</span> <span class="st">"INVENTARIO / ACTIVOS OPERATIVOS NETOS"</span>)<span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(media,<span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="st">"%"</span>)), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Aquí te muestro el listado de CIIU por división:</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ciiu <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"./Estructura-detallada-CIIU-4AC-2022.xlsx"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ciiu <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_detect</span>(División, <span class="st">"SECC"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(División, Descripción) <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aplicar_theme_table</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="jmzuprvxmf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jmzuprvxmf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jmzuprvxmf thead, #jmzuprvxmf tbody, #jmzuprvxmf tfoot, #jmzuprvxmf tr, #jmzuprvxmf td, #jmzuprvxmf th {
+  border-style: none;
+}
+
+#jmzuprvxmf p {
+  margin: 0;
+  padding: 0;
+}
+
+#jmzuprvxmf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1E2C46;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFA500;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jmzuprvxmf .gt_title {
+  color: #1E2C46;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jmzuprvxmf .gt_subtitle {
+  color: #1E2C46;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jmzuprvxmf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jmzuprvxmf .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jmzuprvxmf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jmzuprvxmf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jmzuprvxmf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jmzuprvxmf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jmzuprvxmf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jmzuprvxmf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jmzuprvxmf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jmzuprvxmf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jmzuprvxmf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFA500;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jmzuprvxmf .gt_stub {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jmzuprvxmf .gt_stub_row_group {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jmzuprvxmf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jmzuprvxmf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jmzuprvxmf .gt_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jmzuprvxmf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jmzuprvxmf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_grand_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jmzuprvxmf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jmzuprvxmf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_footnotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jmzuprvxmf .gt_sourcenotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jmzuprvxmf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jmzuprvxmf .gt_left {
+  text-align: left;
+}
+
+#jmzuprvxmf .gt_center {
+  text-align: center;
+}
+
+#jmzuprvxmf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jmzuprvxmf .gt_font_normal {
+  font-weight: normal;
+}
+
+#jmzuprvxmf .gt_font_bold {
+  font-weight: bold;
+}
+
+#jmzuprvxmf .gt_font_italic {
+  font-style: italic;
+}
+
+#jmzuprvxmf .gt_super {
+  font-size: 65%;
+}
+
+#jmzuprvxmf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jmzuprvxmf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jmzuprvxmf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jmzuprvxmf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jmzuprvxmf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jmzuprvxmf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jmzuprvxmf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jmzuprvxmf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jmzuprvxmf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="División" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">División</th>
+<th id="Descripción" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Descripción</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN A</td>
+<td class="gt_row gt_center" headers="Descripción">AGRICULTURA, GANADERÍA, CAZA, SILVICULTURA Y PESCA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN B</td>
+<td class="gt_row gt_center" headers="Descripción">EXPLOTACIÓN DE MINAS Y CANTERAS</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN C</td>
+<td class="gt_row gt_center" headers="Descripción">INDUSTRIAS MANUFACTURERAS</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN D</td>
+<td class="gt_row gt_center" headers="Descripción">SUMINISTRO DE ELECTRICIDAD, GAS, VAPOR Y AIRE ACONDICIONADO</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN E</td>
+<td class="gt_row gt_center" headers="Descripción">DISTRIBUCIÓN DE AGUA; EVACUACIÓN Y TRATAMIENTO DE AGUAS RESIDUALES, GESTIÓN DE DESECHOS Y ACTIVIDADES DE SANEAMIENTO AMBIENTAL</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN F</td>
+<td class="gt_row gt_center" headers="Descripción">CONSTRUCCIÓN</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN G</td>
+<td class="gt_row gt_center" headers="Descripción">COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN H</td>
+<td class="gt_row gt_center" headers="Descripción">TRANSPORTE Y ALMACENAMIENTO</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN I</td>
+<td class="gt_row gt_center" headers="Descripción">ALOJAMIENTO Y SERVICIOS DE COMIDA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN J</td>
+<td class="gt_row gt_center" headers="Descripción">INFORMACIÓN Y COMUNICACIONES</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN K</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES FINANCIERAS Y DE SEGUROS</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN L</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES INMOBILIARIAS</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN M</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN N</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES DE SERVICIOS ADMINISTRATIVOS Y DE APOYO</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN O</td>
+<td class="gt_row gt_center" headers="Descripción">ADMINISTRACIÓN PÚBLICA Y DEFENSA; PLANES DE SEGURIDAD SOCIAL DE AFILIACIÓN OBLIGATORIA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN P</td>
+<td class="gt_row gt_center" headers="Descripción">EDUCACIÓN</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN Q</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES DE ATENCIÓN DE LA SALUD HUMANA Y DE ASISTENCIA SOCIAL</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN R</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES ARTÍSTICAS, DE ENTRETENIMIENTO Y RECREACIÓN</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN S</td>
+<td class="gt_row gt_center" headers="Descripción">OTRAS ACTIVIDADES DE SERVICIOS</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="División">SECCIÓN T</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES DE LOS HOGARES INDIVIDUALES EN CALIDAD DE EMPLEADORES; ACTIVIDADES NO DIFERENCIADAS DE LOS HOGARES INDIVIDUALES COMO PRODUCTORES DE BIENES Y SERVICIOS PARA USO PROPIO</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="División">SECCIÓN U</td>
+<td class="gt_row gt_center" headers="Descripción">ACTIVIDADES DE ORGANIZACIONES Y ENTIDADES EXTRATERRITORIALES</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Vemos que el inventario para las Pymes en el Valle del Cauca es representativo para: <strong>INDUSTRIAS MANUFACTURERAS, CONSTRUCCIÓN y COMERCIO AL POR MAYOR Y AL POR MENOR</strong>.</p>
+<p>Desde la perspectiva de un inversionista, el inventario es un contribuyente significativo al riesgo general, dado sus riesgos inherentes y su porcentaje de activos operativos. En consecuencia, <code>es razonable aplicar el costo ponderado promedio del capital al calcular la tasa de capital del inventario</code>.</p>
+<p>El uso del costo ponderado promedio del capital es una práctica común en aquellas empresas que utilizan un sistema de gestión financiera como el valor económico agregado (EVA). Sin embargo, debes preguntarte <strong>qué costo de capital usa tu empresa</strong>? Utiliza una tasa de préstamo a corto plazo? O usa una tasa de inversión a corto plazo?.</p>
+<p>Ambas tasas subestiman la tasa de capital que corresponde al riesgo subyacente del inventario. Esto puede llevar a decisiones no óptimas en actividades como la selección del modo de transporte, el diseño de la red y la contratación, que equilibran la inversión en inventario frente a los gastos operativos. La discusión, en los próximos posts, describe las deficiencias de estos enfoques comunes para establecer los costos de capital.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Por Qué Usar El {WACC} Como Costo de Mantener Inventario?},
+  date = {2025-02-24},
+  url = {https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/},
+  langid = {en}
+}
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2025. <span>“Por Qué Usar El WACC Como
+Costo de Mantener Inventario?”</span> February 24, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/">https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cchiquitovalencia\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2025, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

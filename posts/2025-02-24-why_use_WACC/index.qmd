@@ -1,0 +1,193 @@
+---
+title: "Por qué usar el WACC como costo de mantener inventario?"
+description: "INVENTARIOS Serie - Parte 6"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-24-2025
+categories: [Inventarios, Supply Chain, Evaluación de Proyectos] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-24-why_use_WACC/
+image: why_wacc.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+code-fold: true
+---
+
+**¿Por qué usar el WACC?**
+
+El costo ponderado promedio del capital de una empresa está determinado por el riesgo de sus activos, como el inventario, las propiedades, las plantas y el equipo, y los cuentas por cobrar.
+
+Vamos a revisar `qué tan representativo es el inventario para las industrias en el Valle del Cauca`, en cuanto a sus activos operativos netos.
+
+Primero mostramos el Estado de resultado integral que ya conocímos [aquí](https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/):
+
+```{r, message=FALSE, warning=FALSE}
+
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = "center")
+
+library(tidyverse)
+library(data.table)
+library(gt)
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+
+# Función para extraer texto dentro de parentesis
+extraer_texto <- function(texto){
+    inicial <- gregexpr("\\(", texto)[[1]]
+    final <- gregexpr("\\)", texto)[[1]]
+    substring(texto, inicial + 1, final - 1)
+}
+
+# Vector con los nombres extraídos
+nuevo_nombre <- function(info){
+    colnames(info) |> 
+    purrr::map(~last(extraer_texto(.x))) |> 
+    unlist()
+}
+
+pyg <- openxlsx::read.xlsx("./310030_Estado de resultado integral, resultado del periodo, por funcion de gasto(3).xlsx") |> 
+    data.table() |> 
+    filter(Fecha.de.Corte == "2022-12-31")
+
+# Asignar nombres en inglés
+pyg <- setNames(pyg, ifelse(nuevo_nombre(pyg) != "", nuevo_nombre(pyg), colnames(pyg)))
+
+pyg <- pyg |> 
+    filter(Periodo == "Periodo Actual", 
+           `Departamento.de.la.direcci&#243;n.del.domicilio` == "VALLE")
+
+pyg |> 
+    gt_preview() |> 
+    aplicar_theme_table()
+```
+
+Y ahora el Estado de situación financiera que también vimos [aquí](https://cchiquitovalencia.github.io/posts/2025-02-21-finantial_ratios/#razones-de-cobertura):
+
+```{r}
+
+data <- openxlsx::read.xlsx("./210030_Estado de situación financiera, corriente_no corriente.xlsx") |> 
+    data.table() |> 
+    filter(Fecha.de.Corte == "2022-12-31")
+
+# Asignar nombres en inglés
+data <- setNames(data, ifelse(nuevo_nombre(data) != "", nuevo_nombre(data), colnames(data)))
+
+
+# Cambiar otros nombres
+data <- data |> 
+    rename(Razon.Social = "Raz&#243;n.social.de.la.sociedad",
+           Direccion = "Direcci&#243;n.de.notificaci&#243;n.judicial.registrada.en.C&#225;mara.de.Comercio",
+           Departamento = "Departamento.de.la.direcci&#243;n.del.domicilio",
+           Ciudad = "Ciudad.de.la.direcci&#243;n.del.domicilio",
+           TotalCurrentFinancialAssetsSELL= "Total_activos_corrientes_distintos_de_los_activos_no_corrientes_o_grupo_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios",
+           OtherCurrentFinancialAssetsSELL= "Activos_no_corrientes_o_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta_o_como_mantenidos_para_distribuir_a_los_propietarios",
+           PropertyPlantAndEquipmentWithDEP= "Propiedades_de_inversi&#243;n_al_costo_menos_depreciacion_acumulada_y_deterioro",
+           TotalCurrentFinancialLiabilitiesSELL = "Total_pasivos_corrientes_distintos_de_los_pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta",
+           OtherCurrentFinancialLiabilitiesSELL= "Pasivos_incluidos_en_grupos_de_activos_para_su_disposicion_clasificados_como_mantenidos_para_la_venta")
+
+# Solo veremos el periodo final
+data <- data |> 
+    filter(Periodo == "Periodo Actual", 
+           Departamento == "VALLE")
+
+data |> 
+    gt_preview() |> 
+    aplicar_theme_table()
+```
+
+Nos interesa conocer la proporción de $deuda / capital$ que tienen las empresas en el Valle del Cauca:
+
+```{r}
+#| fig-cap: "Proporción deuda/capital"
+
+caratula <- openxlsx::read.xlsx("./10000_Carátula.xlsx") |> 
+    data.table()
+
+full_join(
+data |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,14,62,72)) |> 
+    unique() 
+,
+pyg |> 
+    filter(Periodo == "Periodo Actual") |> 
+    dplyr::select(c(3,4,5,12)) |> 
+    unique()
+) |> 
+    left_join(caratula[,c(3,11)], by = c("NIT")) |> 
+    mutate(prop_deuda = `Liabilities` / `EquityAndLiabilities`,
+           tiempo = 2024 - as.numeric(substr(`Fecha.de.constitución.(Aaaa-Mm-Dd)`,1,4))) |> 
+    filter(prop_deuda > 0, !is.na(prop_deuda), prop_deuda<=1, tiempo >=0, !is.na(tiempo)) |> 
+    filter(tiempo < 50) |> 
+    ggplot(aes(as.numeric(tiempo), prop_deuda, group = as.factor(tiempo)))+
+    geom_boxplot(aes(fill = "orange"))+
+    hrbrthemes::theme_ipsum()+
+    theme(legend.position = "none")+
+    labs(x = "AÑOS DESDE CREACIÓN",
+         y = "PROPORCIÓN DE DEUDA (%)")+
+    scale_y_continuous(labels = scales::percent)
+```
+
+Ahora cruzamos la información de los dos reportes financieros para el mostrar el *inventario como porcentaje de los activos operativos netos* para una muestra de Pymes del Valle del Cauca varios sectores.
+
+```{r}
+
+data |> 
+    mutate(sector = substr(CIIU,1,1)) |> 
+    mutate(NOA = (Assets -(
+        OtherCurrentFinancialAssets+OtherNoncurrentFinancialAssets))-
+            (Liabilities -(OtherCurrentFinancialLiabilities+
+            OtherNoncurrentFinancialLiabilities)),
+    inv_NOA = (Inventories+NoncurrentInventories)/NOA) |> 
+    filter(!is.nan(inv_NOA), inv_NOA <=1, inv_NOA>0) |> 
+    group_by(sector) |> 
+    summarise(media = mean(inv_NOA)) |> 
+    ggplot(aes(sector, media))+
+    geom_bar(stat = "identity", position = "dodge", fill = "orange")+
+    hrbrthemes::theme_ipsum()+
+    theme(axis.text.y = element_blank())+
+    labs(x = "SECTOR (CIIU)", y = "INVENTARIO / ACTIVOS OPERATIVOS NETOS")+
+    geom_text(aes(label = paste0(round(media,2)*100,"%")), size = 3, vjust = -0.3)
+```
+
+Aquí te muestro el listado de CIIU por división:
+
+```{r}
+
+ciiu <- openxlsx::read.xlsx("./Estructura-detallada-CIIU-4AC-2022.xlsx")
+
+ciiu |> 
+    filter(str_detect(División, "SECC")) |> 
+    dplyr::select(División, Descripción) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+Vemos que el inventario para las Pymes en el Valle del Cauca es representativo para: **INDUSTRIAS MANUFACTURERAS, CONSTRUCCIÓN y COMERCIO AL POR MAYOR Y AL POR MENOR**.
+
+Desde la perspectiva de un inversionista, el inventario es un contribuyente significativo al riesgo general, dado sus riesgos inherentes y su porcentaje de activos operativos. En consecuencia, `es razonable aplicar el costo ponderado promedio del capital al calcular la tasa de capital del inventario`.
+
+El uso del costo ponderado promedio del capital es una práctica común en aquellas empresas que utilizan un sistema de gestión financiera como el valor económico agregado (EVA). Sin embargo, debes preguntarte **qué costo de capital usa tu empresa**? Utiliza una tasa de préstamo a corto plazo? O usa una tasa de inversión a corto plazo?.
+
+Ambas tasas subestiman la tasa de capital que corresponde al riesgo subyacente del inventario. Esto puede llevar a decisiones no óptimas en actividades como la selección del modo de transporte, el diseño de la red y la contratación, que equilibran la inversión en inventario frente a los gastos operativos. La discusión, en los próximos posts, describe las deficiencias de estos enfoques comunes para establecer los costos de capital.

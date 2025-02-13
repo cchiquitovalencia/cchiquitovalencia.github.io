@@ -1,0 +1,54 @@
+---
+title: "Ahora la carga de capital de inventario"
+description: "INVENTARIOS Serie - Parte 3"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-19-2025
+categories: [Inventarios, Supply Chain, Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-19-charge_inventory/
+image: charge_inventory.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### Carga de Capital del Inventario
+
+Recuerda que [aquí](https://cchiquitovalencia.github.io/posts/2025-02-17-inventory_management/) definimos la carga de capital del inventario como: $inventario × \text{costo de capital}$. Cuando se calcula correctamente, esta carga a menudo supera los costos no capitalizados. Desafortunadamente, la carga de capital a menudo se subestima porque se aplica un costo de capital incorrecto. Normalmente, esto es el resultado de uno de dos factores:
+
+1.  El riesgo del inventario y el costo de capital no coinciden.
+
+2.  La mezcla de cargas de capital *después de impuestos* con cargas no capitalizadas *antes de impuestos*.
+
+Vamos a explorar cómo hacer coincidir adecuadamente el riesgo del inventario con el costo de capital apropiado.
+
+El costo de capital es uno de los conceptos financieros más importantes y un bloque fundamental en la valoración y en la estimación de costos totales. Desafortunadamente, a menudo se ve como uno de los conceptos financieros más esotéricos. Además, es uno de los más confusos para aquellos que deben utilizarlo para tomar decisiones. Esta confusión a menudo se debe a una falta de entendimiento de qué comprende el costo de capital y la naturaleza de las relaciones **riesgo-retorno**.
+
+Básicamente, `el costo de capital es el costo oportunidad de invertir en un activo en relación con el retorno esperado de activos con riesgo similar`. Esto es comparable a cómo evaluamos inversiones en nuestras vidas personales. Por ejemplo, supongamos que durante el último año ganamos un **12%** en un portafolio de acciones.
+
+### ¿Cómo se desempeñó nuestro portafolio?
+
+Para responder a esta pregunta, muchos de nosotros comparamos el retorno de nuestro portafolio con el desempeño de un índice de acciones de riesgo similar. Si nuestro portafolio está compuesto por un grupo diversificado de acciones, probablemente usaríamos un índice como el [MSCI COLCAP](https://www.bvc.com.co/msci-colcap).
+
+![Rendimiento COLCAP.](images/clipboard-2583982543.png){#fig-1 fig-align="center"}
+
+Supongamos que *durante el último año*, el COLCAP devolvió un **16%**. Entonces, nuestro retorno del 12% se compara menos favorable. Si el COLCAP devolvió un **10%**, por otro lado, entonces ese retorno, nuestro, del 12% fue favorable.
+
+En este ejemplo, el retorno del COLCAP es el costo oportunidad del dinero. Si esperamos que el COLCAP genere un 10% en el futuro, entonces utilizaríamos este benchmark para evaluar inversiones con riesgo similar en planeación para la pensión, educación de los hijos, etc.
+
+Ahora supongamos que nuestra tolerancia al riesgo era mucho más baja que la requerida para inversiones en acciones. Supongamos que estamos pensionados y nos enfocamos más en la generación de ingresos y en mantener el valor del principio de nuestra inversión. En este caso, el costo oportunidad de capital podría ser el retorno de las obligaciones del *Títulos de Tesorería* (**TES**), que actualmente (al momento de crear este post) es de alrededor del **9.31%**.
+
+[![Rendimiento TES.](images/clipboard-1600836544.png){#fig-2 fig-align="center"}](https://suameca.banrep.gov.co/estadisticas-economicas/#/informacionSerie/640001/Deuda%20p%C3%BAblica/Tasas%20Cero%20Cup%C3%B3n%20TES)
+
+Supongamos que fuéramos *extremadamente enemigos al riesgo* y valoráramos mucho mantener el valor del principio y, al mismo tiempo, quisiéramos un muy alto grado de liquidez porque vamos a hacer un pago inicial en una casa u otra compra importante en unos meses. En este ejemplo, el costo oportunidad de capital probablemente sería el retorno de un certificado de depósito a corto plazo, o aproximadamente un **9%** (de nuevo, para la fecha de creación de este post, en los bancos usuales).
+
+Determinar el riesgo del inventario es clave para decidir qué costo de capital debe utilizarse para calcular la carga de capital del inventario. `El mayor riesgo de mantener inventario es que su valor se vuelve menos valioso debido a reducciones de precios, demanda baja y obsolescencia`.
+
+Algunos eventos en la industria de alta tecnología han marcado el riesgo de mantener inventario.
+
+-   [Micron Technology](https://www.forbes.com/2001/12/21/1221dram.html?sh=953515a4ad8b): DRAM (memoria dinámica de acceso aleatorio).
+
+-   [Cisco Systems](https://www.eltiempo.com/archivo/documento/MAM-550157).
+
+Ambos casos resaltan el hecho de que la inversión en inventario no está exenta de riesgo.

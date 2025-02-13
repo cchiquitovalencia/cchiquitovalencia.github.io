@@ -1,0 +1,80 @@
+---
+title: "El impacto de los inventarios"
+description: "INVENTARIOS Serie - Parte 1"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-17-2025
+categories: [Inventarios, Supply Chain, Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-17-inventory_management/
+image: inventory.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Existen cuatro áreas de gran impacto en el costo logístico de las empresas: transporte, inventario, almacenamiento y costos administrativos. Eso es lo que refleja la [Encuesta Nacional de Logística](https://onl.dnp.gov.co/Paginas/Encuesta-Nacional-Logistica.aspx) (**ENL**).
+
+El costo logístico es calculado como la razón entre el costo de las actividades logísticas de una empresa sobre el total de sus ventas en un periodo de tiempo.
+
+Esto es lo que contiene cada rubro:
+
+-   **Transporte**: Incluye costos de transporte primario y secundario, tecnologías asociadas, sistemas de información, seguros de transporte y monitoreo para la planeación, ejecución, distribución, domicilios y otros
+
+-   **Inventario**: Incluye costos de gestión (reposición y manejo) de inventarios. Aquí podemos tener `materia prima, unidades, compradas, productos semiterminados y terminados, repuestos y materiales de consumo`.
+
+-   **Almacenamiento**: Incluye costos de operadores logísticos, administración de almacenamiento, bodegas, arriendos e inversiones, tecnologías asociadas, costo de etiquetados, vigilancia, seguros y otros.
+
+-   **Costos administrativos**: Incluye actividades como servicio al cliente en actividades logísticas, costos de empleados en actividades logísticas, viáticos, capacitaciones, comunicaciones, entre otros.
+
+`Esta serie de posts aborda inventarios y almacenamiento.`
+
+## Qué son los inventarios?
+
+El inventario es un `amortiguador` entre dos procesos: el **abastecimiento** y la **demanda**. El proceso de abastecimiento contribuye con bienes al inventario, mientras que la demanda consume el mismo inventario.
+
+El **inventario es necesario** debido a las diferencias en las tasas y los tiempos entre el abastecimiento y la demanda, y esa diferencia se puede atribuir tanto a factores internos como externos. Los factores externos difícilmente son controlables (`incertidumbre`). Lo que podría estar en control son los internos:
+
+-   Economías de escala.
+
+-   Suavizamiento de la operación.
+
+-   Servicio al cliente.
+
+Como los inventarios son "*cantidad de un bien*", como tal, incurre en costos. Aquí tenemos una estructura general:
+
+-   Costo de compra: costo por artículo pagado a un proveedor.
+
+-   Costo de ordenar: se incurre cada que se coloca una orden y es independiente del tamaño del lote.
+
+-   **Costo de almacenar o mantener**: es un `costo de oportunidad` que se expresa, por lo general, como un porcentaje de la inversión en el inventario. *El valor más bajo de este costo de oportunidad es el interés que ganaría el dinero en una cuenta de ahorros*.
+
+-   Costo por faltante: un faltante ocurre cuando existe una demanda de un producto que no se tiene. En este caso puedes entregarlo con retraso (costo adicional de registro en libros o reprocesos) o simplemente perder la venta (perder la ganancia).
+
+-   Costos de operación o administrativos.
+
+## Cuál es el verdadero costo de almacenar inventario?
+
+El buen manejo de inventario es un poderoso impulsor del desempeño financiero. En respuesta al crecimiento lento y las presiones sobre la rentabilidad, es claro que muchas empresas hoy en día están explorando nuevas formas de manejar mejor el inventario porque:
+
+-   Libera fondos para invertir en otros lugares.
+
+-   Permite vender productos a precios más bajos.
+
+-   Facilita el ingreso a nuevos mercados.
+
+-   Entrega otros beneficios que mejoran el desempeño financiero.
+
+-   Crean ventajas competitivas.
+
+Sin embargo, a pesar de la importancia del manejo de inventario, parece haber poco consenso sobre cómo estimar el **verdadero** costo de mantener inventario - el costo total. Saber ese costo es clave para analizar los beneficios y costos asociados con cualquier iniciativa de manejo de inventario.
+
+En esta serie vamos a explorar los principales factores que componen el costo total de mantener inventario, que incluyen tanto **costos no capitalizados de mantener el inventario** y **costos de capital de inventario**. Entenderemos por qué los profesionales de gestión de cadenas de suministro necesitan desarrollar estimaciones más precisas de costos no capitalizados para calcular el verdadero valor de proyectos diseñados para reducir inventario. La *exclusión o minimización de estos costos puede subestimar* el valor de proyectos de cadena de suministro y puede llevar al rechazo de proyectos que deberían ser aceptados. Es posible que muchas empresas usen un costo de capital que significativamente subestima la carga de capital de inventario y, por lo tanto, lleva a decisiones no óptimas en áreas como transporte, abastecimiento y diseño de red. Veremos por qué el uso de un costo de capital promedio ponderado es un enfoque mejor y cómo, al final, conduce a mejores decisiones de manejo de inventario.
+
+### Costo Total de Mantener Inventario
+
+Los elementos que componen el costo total de mantener inventario (*costos no capitalizados del inventario más la carga de capital del inventario*) se muestran en la [figura 1](#fig-1). Este costo total a menudo se expresa como un porcentaje de la inversión total en inventario para facilitar la comparación a lo largo del tiempo y entre empresas. Un desafío que existe es hacer estimaciones creíbles de los componentes de costos no capitalizados para fines de toma de decisiones.
+
+![Estructura de costos de mantener inventario.](images/clipboard-2078409157.png){#fig-1 fig-align="center"}
+
+Otro desafío importante se encuentra en las cifras de `costo de capital` utilizadas. Antes de presentar el método para llegar a un número de carga de capital más preciso, revisarémos brevemente los temas relacionados con la estimación de costos no capitalizados del inventario en los siguientes posts.
