@@ -16898,23 +16898,23 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
 <p>La ENL producida por el <code>Departamento Nacional de Planeación</code> (<strong>DNP</strong>) estima que, a nivel macro, los costos no capitalizados del inventario son aproximadamente del <strong>13% - 25%</strong> del inventario.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="duzzrtpxxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#duzzrtpxxn table {
+<div id="lmkiuxidsy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lmkiuxidsy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#duzzrtpxxn thead, #duzzrtpxxn tbody, #duzzrtpxxn tfoot, #duzzrtpxxn tr, #duzzrtpxxn td, #duzzrtpxxn th {
+#lmkiuxidsy thead, #lmkiuxidsy tbody, #lmkiuxidsy tfoot, #lmkiuxidsy tr, #lmkiuxidsy td, #lmkiuxidsy th {
   border-style: none;
 }
 
-#duzzrtpxxn p {
+#lmkiuxidsy p {
   margin: 0;
   padding: 0;
 }
 
-#duzzrtpxxn .gt_table {
+#lmkiuxidsy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -16940,12 +16940,12 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-left-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_caption {
+#lmkiuxidsy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#duzzrtpxxn .gt_title {
+#lmkiuxidsy .gt_title {
   color: #1E2C46;
   font-size: 125%;
   font-weight: initial;
@@ -16957,7 +16957,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-width: 0;
 }
 
-#duzzrtpxxn .gt_subtitle {
+#lmkiuxidsy .gt_subtitle {
   color: #1E2C46;
   font-size: 85%;
   font-weight: initial;
@@ -16969,7 +16969,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-width: 0;
 }
 
-#duzzrtpxxn .gt_heading {
+#lmkiuxidsy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -16981,13 +16981,13 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_bottom_border {
+#lmkiuxidsy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_col_headings {
+#lmkiuxidsy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -17002,7 +17002,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_col_heading {
+#lmkiuxidsy .gt_col_heading {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -17022,7 +17022,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#duzzrtpxxn .gt_column_spanner_outer {
+#lmkiuxidsy .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -17034,15 +17034,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 4px;
 }
 
-#duzzrtpxxn .gt_column_spanner_outer:first-child {
+#lmkiuxidsy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#duzzrtpxxn .gt_column_spanner_outer:last-child {
+#lmkiuxidsy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#duzzrtpxxn .gt_column_spanner {
+#lmkiuxidsy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -17054,11 +17054,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   width: 100%;
 }
 
-#duzzrtpxxn .gt_spanner_row {
+#lmkiuxidsy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#duzzrtpxxn .gt_group_heading {
+#lmkiuxidsy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17084,7 +17084,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   text-align: left;
 }
 
-#duzzrtpxxn .gt_empty_group_heading {
+#lmkiuxidsy .gt_empty_group_heading {
   padding: 0.5px;
   color: #1E2C46;
   background-color: #FFFFFF;
@@ -17099,15 +17099,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: middle;
 }
 
-#duzzrtpxxn .gt_from_md > :first-child {
+#lmkiuxidsy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#duzzrtpxxn .gt_from_md > :last-child {
+#lmkiuxidsy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#duzzrtpxxn .gt_row {
+#lmkiuxidsy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17126,7 +17126,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#duzzrtpxxn .gt_stub {
+#lmkiuxidsy .gt_stub {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -17139,7 +17139,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#duzzrtpxxn .gt_stub_row_group {
+#lmkiuxidsy .gt_stub_row_group {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -17153,15 +17153,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: top;
 }
 
-#duzzrtpxxn .gt_row_group_first td {
+#lmkiuxidsy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#duzzrtpxxn .gt_row_group_first th {
+#lmkiuxidsy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#duzzrtpxxn .gt_summary_row {
+#lmkiuxidsy .gt_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -17171,16 +17171,16 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#duzzrtpxxn .gt_first_summary_row {
+#lmkiuxidsy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_first_summary_row.thick {
+#lmkiuxidsy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#duzzrtpxxn .gt_last_summary_row {
+#lmkiuxidsy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17190,7 +17190,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_grand_summary_row {
+#lmkiuxidsy .gt_grand_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -17200,7 +17200,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#duzzrtpxxn .gt_first_grand_summary_row {
+#lmkiuxidsy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17210,7 +17210,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_last_grand_summary_row_top {
+#lmkiuxidsy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17220,11 +17220,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_striped {
+#lmkiuxidsy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#duzzrtpxxn .gt_table_body {
+#lmkiuxidsy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -17233,7 +17233,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_footnotes {
+#lmkiuxidsy .gt_footnotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -17247,7 +17247,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_footnote {
+#lmkiuxidsy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -17256,7 +17256,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#duzzrtpxxn .gt_sourcenotes {
+#lmkiuxidsy .gt_sourcenotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -17270,7 +17270,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#duzzrtpxxn .gt_sourcenote {
+#lmkiuxidsy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -17278,72 +17278,72 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#duzzrtpxxn .gt_left {
+#lmkiuxidsy .gt_left {
   text-align: left;
 }
 
-#duzzrtpxxn .gt_center {
+#lmkiuxidsy .gt_center {
   text-align: center;
 }
 
-#duzzrtpxxn .gt_right {
+#lmkiuxidsy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#duzzrtpxxn .gt_font_normal {
+#lmkiuxidsy .gt_font_normal {
   font-weight: normal;
 }
 
-#duzzrtpxxn .gt_font_bold {
+#lmkiuxidsy .gt_font_bold {
   font-weight: bold;
 }
 
-#duzzrtpxxn .gt_font_italic {
+#lmkiuxidsy .gt_font_italic {
   font-style: italic;
 }
 
-#duzzrtpxxn .gt_super {
+#lmkiuxidsy .gt_super {
   font-size: 65%;
 }
 
-#duzzrtpxxn .gt_footnote_marks {
+#lmkiuxidsy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#duzzrtpxxn .gt_asterisk {
+#lmkiuxidsy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#duzzrtpxxn .gt_indent_1 {
+#lmkiuxidsy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#duzzrtpxxn .gt_indent_2 {
+#lmkiuxidsy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#duzzrtpxxn .gt_indent_3 {
+#lmkiuxidsy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#duzzrtpxxn .gt_indent_4 {
+#lmkiuxidsy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#duzzrtpxxn .gt_indent_5 {
+#lmkiuxidsy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#duzzrtpxxn .katex-display {
+#lmkiuxidsy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#duzzrtpxxn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lmkiuxidsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -17371,23 +17371,23 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
 <p>Estos porcentajes de costo logístico se dividen de la siguiente forma:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tioxnpzpoo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tioxnpzpoo table {
+<div id="pzdbpzxqzs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pzdbpzxqzs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tioxnpzpoo thead, #tioxnpzpoo tbody, #tioxnpzpoo tfoot, #tioxnpzpoo tr, #tioxnpzpoo td, #tioxnpzpoo th {
+#pzdbpzxqzs thead, #pzdbpzxqzs tbody, #pzdbpzxqzs tfoot, #pzdbpzxqzs tr, #pzdbpzxqzs td, #pzdbpzxqzs th {
   border-style: none;
 }
 
-#tioxnpzpoo p {
+#pzdbpzxqzs p {
   margin: 0;
   padding: 0;
 }
 
-#tioxnpzpoo .gt_table {
+#pzdbpzxqzs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -17413,12 +17413,12 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-left-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_caption {
+#pzdbpzxqzs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tioxnpzpoo .gt_title {
+#pzdbpzxqzs .gt_title {
   color: #1E2C46;
   font-size: 125%;
   font-weight: initial;
@@ -17430,7 +17430,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-width: 0;
 }
 
-#tioxnpzpoo .gt_subtitle {
+#pzdbpzxqzs .gt_subtitle {
   color: #1E2C46;
   font-size: 85%;
   font-weight: initial;
@@ -17442,7 +17442,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-width: 0;
 }
 
-#tioxnpzpoo .gt_heading {
+#pzdbpzxqzs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -17454,13 +17454,13 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_bottom_border {
+#pzdbpzxqzs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_col_headings {
+#pzdbpzxqzs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -17475,7 +17475,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_col_heading {
+#pzdbpzxqzs .gt_col_heading {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -17495,7 +17495,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#tioxnpzpoo .gt_column_spanner_outer {
+#pzdbpzxqzs .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -17507,15 +17507,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 4px;
 }
 
-#tioxnpzpoo .gt_column_spanner_outer:first-child {
+#pzdbpzxqzs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tioxnpzpoo .gt_column_spanner_outer:last-child {
+#pzdbpzxqzs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tioxnpzpoo .gt_column_spanner {
+#pzdbpzxqzs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -17527,11 +17527,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   width: 100%;
 }
 
-#tioxnpzpoo .gt_spanner_row {
+#pzdbpzxqzs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tioxnpzpoo .gt_group_heading {
+#pzdbpzxqzs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17557,7 +17557,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   text-align: left;
 }
 
-#tioxnpzpoo .gt_empty_group_heading {
+#pzdbpzxqzs .gt_empty_group_heading {
   padding: 0.5px;
   color: #1E2C46;
   background-color: #FFFFFF;
@@ -17572,15 +17572,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: middle;
 }
 
-#tioxnpzpoo .gt_from_md > :first-child {
+#pzdbpzxqzs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tioxnpzpoo .gt_from_md > :last-child {
+#pzdbpzxqzs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tioxnpzpoo .gt_row {
+#pzdbpzxqzs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17599,7 +17599,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#tioxnpzpoo .gt_stub {
+#pzdbpzxqzs .gt_stub {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -17612,7 +17612,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#tioxnpzpoo .gt_stub_row_group {
+#pzdbpzxqzs .gt_stub_row_group {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -17626,15 +17626,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: top;
 }
 
-#tioxnpzpoo .gt_row_group_first td {
+#pzdbpzxqzs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tioxnpzpoo .gt_row_group_first th {
+#pzdbpzxqzs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tioxnpzpoo .gt_summary_row {
+#pzdbpzxqzs .gt_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -17644,16 +17644,16 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#tioxnpzpoo .gt_first_summary_row {
+#pzdbpzxqzs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_first_summary_row.thick {
+#pzdbpzxqzs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tioxnpzpoo .gt_last_summary_row {
+#pzdbpzxqzs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17663,7 +17663,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_grand_summary_row {
+#pzdbpzxqzs .gt_grand_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -17673,7 +17673,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#tioxnpzpoo .gt_first_grand_summary_row {
+#pzdbpzxqzs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17683,7 +17683,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_last_grand_summary_row_top {
+#pzdbpzxqzs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -17693,11 +17693,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_striped {
+#pzdbpzxqzs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tioxnpzpoo .gt_table_body {
+#pzdbpzxqzs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -17706,7 +17706,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_footnotes {
+#pzdbpzxqzs .gt_footnotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -17720,7 +17720,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_footnote {
+#pzdbpzxqzs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -17729,7 +17729,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#tioxnpzpoo .gt_sourcenotes {
+#pzdbpzxqzs .gt_sourcenotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -17743,7 +17743,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#tioxnpzpoo .gt_sourcenote {
+#pzdbpzxqzs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -17751,72 +17751,72 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#tioxnpzpoo .gt_left {
+#pzdbpzxqzs .gt_left {
   text-align: left;
 }
 
-#tioxnpzpoo .gt_center {
+#pzdbpzxqzs .gt_center {
   text-align: center;
 }
 
-#tioxnpzpoo .gt_right {
+#pzdbpzxqzs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tioxnpzpoo .gt_font_normal {
+#pzdbpzxqzs .gt_font_normal {
   font-weight: normal;
 }
 
-#tioxnpzpoo .gt_font_bold {
+#pzdbpzxqzs .gt_font_bold {
   font-weight: bold;
 }
 
-#tioxnpzpoo .gt_font_italic {
+#pzdbpzxqzs .gt_font_italic {
   font-style: italic;
 }
 
-#tioxnpzpoo .gt_super {
+#pzdbpzxqzs .gt_super {
   font-size: 65%;
 }
 
-#tioxnpzpoo .gt_footnote_marks {
+#pzdbpzxqzs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tioxnpzpoo .gt_asterisk {
+#pzdbpzxqzs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tioxnpzpoo .gt_indent_1 {
+#pzdbpzxqzs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tioxnpzpoo .gt_indent_2 {
+#pzdbpzxqzs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tioxnpzpoo .gt_indent_3 {
+#pzdbpzxqzs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tioxnpzpoo .gt_indent_4 {
+#pzdbpzxqzs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tioxnpzpoo .gt_indent_5 {
+#pzdbpzxqzs .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tioxnpzpoo .katex-display {
+#pzdbpzxqzs .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tioxnpzpoo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pzdbpzxqzs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -17868,23 +17868,23 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
 <p>Supongamos que con un proyecto se espera reducir permanentemente el inventario en <strong>$10</strong> millones. Los costos no capitalizados variables como porcentaje del inventario son del <strong>10%</strong>. La tasa marginal de impuestos es del <strong>40%</strong> y el costo de capital después de impuestos es del <strong>9%</strong>. La ecuación siguiente muestra que el valor de este proyecto es el cambio en el valor total del inventario. Ese valor es de 10 millones <code>si se excluyen</code> los costos no capitalizados. Sin embargo, el valor es sustancialmente más alto - prácticamente <code>$7 millones más alto</code>- cuando se incluye el impacto en los costos no capitalizados.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="rwetghzwkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rwetghzwkz table {
+<div id="rxajtqzidu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rxajtqzidu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rwetghzwkz thead, #rwetghzwkz tbody, #rwetghzwkz tfoot, #rwetghzwkz tr, #rwetghzwkz td, #rwetghzwkz th {
+#rxajtqzidu thead, #rxajtqzidu tbody, #rxajtqzidu tfoot, #rxajtqzidu tr, #rxajtqzidu td, #rxajtqzidu th {
   border-style: none;
 }
 
-#rwetghzwkz p {
+#rxajtqzidu p {
   margin: 0;
   padding: 0;
 }
 
-#rwetghzwkz .gt_table {
+#rxajtqzidu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -17910,12 +17910,12 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-left-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_caption {
+#rxajtqzidu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rwetghzwkz .gt_title {
+#rxajtqzidu .gt_title {
   color: #1E2C46;
   font-size: 125%;
   font-weight: initial;
@@ -17927,7 +17927,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-width: 0;
 }
 
-#rwetghzwkz .gt_subtitle {
+#rxajtqzidu .gt_subtitle {
   color: #1E2C46;
   font-size: 85%;
   font-weight: initial;
@@ -17939,7 +17939,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-width: 0;
 }
 
-#rwetghzwkz .gt_heading {
+#rxajtqzidu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -17951,13 +17951,13 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_bottom_border {
+#rxajtqzidu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_col_headings {
+#rxajtqzidu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -17972,7 +17972,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_col_heading {
+#rxajtqzidu .gt_col_heading {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -17992,7 +17992,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#rwetghzwkz .gt_column_spanner_outer {
+#rxajtqzidu .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #1E2C46;
   font-size: 100%;
@@ -18004,15 +18004,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 4px;
 }
 
-#rwetghzwkz .gt_column_spanner_outer:first-child {
+#rxajtqzidu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rwetghzwkz .gt_column_spanner_outer:last-child {
+#rxajtqzidu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rwetghzwkz .gt_column_spanner {
+#rxajtqzidu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -18024,11 +18024,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   width: 100%;
 }
 
-#rwetghzwkz .gt_spanner_row {
+#rxajtqzidu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rwetghzwkz .gt_group_heading {
+#rxajtqzidu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -18054,7 +18054,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   text-align: left;
 }
 
-#rwetghzwkz .gt_empty_group_heading {
+#rxajtqzidu .gt_empty_group_heading {
   padding: 0.5px;
   color: #1E2C46;
   background-color: #FFFFFF;
@@ -18069,15 +18069,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: middle;
 }
 
-#rwetghzwkz .gt_from_md > :first-child {
+#rxajtqzidu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rwetghzwkz .gt_from_md > :last-child {
+#rxajtqzidu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rwetghzwkz .gt_row {
+#rxajtqzidu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -18096,7 +18096,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   overflow-x: hidden;
 }
 
-#rwetghzwkz .gt_stub {
+#rxajtqzidu .gt_stub {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -18109,7 +18109,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#rwetghzwkz .gt_stub_row_group {
+#rxajtqzidu .gt_stub_row_group {
   color: #1E2C46;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -18123,15 +18123,15 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   vertical-align: top;
 }
 
-#rwetghzwkz .gt_row_group_first td {
+#rxajtqzidu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rwetghzwkz .gt_row_group_first th {
+#rxajtqzidu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rwetghzwkz .gt_summary_row {
+#rxajtqzidu .gt_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -18141,16 +18141,16 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#rwetghzwkz .gt_first_summary_row {
+#rxajtqzidu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_first_summary_row.thick {
+#rxajtqzidu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rwetghzwkz .gt_last_summary_row {
+#rxajtqzidu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -18160,7 +18160,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_grand_summary_row {
+#rxajtqzidu .gt_grand_summary_row {
   color: #1E2C46;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -18170,7 +18170,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#rwetghzwkz .gt_first_grand_summary_row {
+#rxajtqzidu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -18180,7 +18180,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-top-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_last_grand_summary_row_top {
+#rxajtqzidu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -18190,11 +18190,11 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_striped {
+#rxajtqzidu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rwetghzwkz .gt_table_body {
+#rxajtqzidu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -18203,7 +18203,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-bottom-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_footnotes {
+#rxajtqzidu .gt_footnotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -18217,7 +18217,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_footnote {
+#rxajtqzidu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -18226,7 +18226,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#rwetghzwkz .gt_sourcenotes {
+#rxajtqzidu .gt_sourcenotes {
   color: #1E2C46;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -18240,7 +18240,7 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   border-right-color: #D3D3D3;
 }
 
-#rwetghzwkz .gt_sourcenote {
+#rxajtqzidu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -18248,72 +18248,72 @@ Inventario.”</span> February 19, 2025. <a href="https://cchiquitovalencia.gith
   padding-right: 5px;
 }
 
-#rwetghzwkz .gt_left {
+#rxajtqzidu .gt_left {
   text-align: left;
 }
 
-#rwetghzwkz .gt_center {
+#rxajtqzidu .gt_center {
   text-align: center;
 }
 
-#rwetghzwkz .gt_right {
+#rxajtqzidu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rwetghzwkz .gt_font_normal {
+#rxajtqzidu .gt_font_normal {
   font-weight: normal;
 }
 
-#rwetghzwkz .gt_font_bold {
+#rxajtqzidu .gt_font_bold {
   font-weight: bold;
 }
 
-#rwetghzwkz .gt_font_italic {
+#rxajtqzidu .gt_font_italic {
   font-style: italic;
 }
 
-#rwetghzwkz .gt_super {
+#rxajtqzidu .gt_super {
   font-size: 65%;
 }
 
-#rwetghzwkz .gt_footnote_marks {
+#rxajtqzidu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rwetghzwkz .gt_asterisk {
+#rxajtqzidu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rwetghzwkz .gt_indent_1 {
+#rxajtqzidu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rwetghzwkz .gt_indent_2 {
+#rxajtqzidu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rwetghzwkz .gt_indent_3 {
+#rxajtqzidu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rwetghzwkz .gt_indent_4 {
+#rxajtqzidu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rwetghzwkz .gt_indent_5 {
+#rxajtqzidu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rwetghzwkz .katex-display {
+#rxajtqzidu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rwetghzwkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rxajtqzidu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
