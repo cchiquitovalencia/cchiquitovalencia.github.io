@@ -1,6 +1,9 @@
 {
   "listing": "/posts.html",
   "items": [
+    "/posts/2025-03-04-next/index.html",
+    "/posts/2025-03-03-better_decisions/index.html",
+    "/posts/2025-02-28-practial_applications/index.html",
     "/posts/2025-02-27-total_cost_inventory/index.html",
     "/posts/2025-02-26-short_term_investment_rate/index.html",
     "/posts/2025-02-25-short_term_borrowing_rate/index.html",
@@ -13,6 +16,7 @@
     "/posts/2025-02-05-intro_ml/index.html",
     "/posts/2025-02-04-advance_mtto_shiny_app/index.html",
     "/posts/2025-02-03-master_plan/index.html",
+    "/posts/2025-01-30-access_console_AWS/index.html",
     "/posts/2025-01-30-deploy_app_server/index.html",
     "/posts/2025-01-28-dev_mtto_app/index.html",
     "/posts/2025-01-27-start_EC2_instance/index.html",
