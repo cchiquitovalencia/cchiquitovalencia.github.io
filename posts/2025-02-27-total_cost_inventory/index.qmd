@@ -1,0 +1,72 @@
+---
+title: "Costos totales de mantener el inventario antes de impuestos"
+description: "INVENTARIOS Serie - Parte 9"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-27-2025
+categories: [Inventarios, Supply Chain, Evaluación de Proyectos] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/
+image: total_cost.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+**Costos Totales de Mantenimiento de Inventario Antes de Impuestos**
+
+Con el WACC en la ecuación, ahora podemos combinar los costos no capitalizados por mantenimiento del inventario con los costos de capital por mantenimiento para estimar el costo total de mantener el inventario. En nuestro ejemplo, el costo no capital por mantenimiento es el $10\%$ del saldo del inventario. Como se muestra en la [Figura No.1](https://cchiquitovalencia.github.io/posts/2025-02-17-inventory_management/#fig-1), estos costos están compuestos por gastos operativos como *obsolescencia, almacenamiento, hurto, seguro y impuestos*—todos los cuales se expresan en una `base antes de impuestos`. El costo del capital es del $9\%$ y es el costo ponderado promedio del capital `después de impuestos`.
+
+Incluso cuando las empresas utilizan el WACC para calcular el cargo por capital del inventario, a menudo cometen el error de sumar los costos no capitalizados por mantenimiento del inventario antes de impuestos (como nuestro ejemplo del 10%) al costo del capital después de impuestos (digamos del 9%) para obtener el costo total de mantenimiento (19%). El problema es que **al combinar estos costos antes y después de impuestos, se subestima** el costo total de mantener el inventario y se pueden tomar decisiones no óptimas respecto al inventario.
+
+Para obtener una imagen real del costo de mantenimiento del inventario, los dos costos deben expresarse en la misma base—ya sea antes o después de impuestos. Hay dos opciones para hacer esto:
+
+**Opción 1:** Ajustar los costos no capitalizados por mantenimiento del inventario expresados como porcentaje antes de impuestos a una cifra después de impuestos y sumar esto al costo del capital después de impuestos.
+
+**Opción 2:** Convertir el costo del capital después de impuestos a una cifra antes de impuestos y sumarlo a los costos no capitalizados por mantenimiento expresados como porcentaje antes de impuestos.
+
+El costo total de mantenimiento del inventario a menudo se utiliza para informes internos periódicos y para decisiones que se evalúan a nivel operativo en una base antes de impuestos. Para estos fines, recomendamos utilizar la **Opción 2** para estimar el costo total de mantener el inventario. Para los análisis financieros tradicionales que involucran la actualización de flujos de efectivo después de impuestos, la **Opción 1** es la elección requerida.
+
+La siguiente ecuación muestra la derivación del costo de capital antes de impuestos y los costos totales de mantenimiento de inventario.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gt)
+
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+```
+
+```{r}
+data.frame(Concepto = c("Porcentaje Costos No Capitalizados",
+                        "WACC Después de Impuestos",
+                        "Tasa de Impuestos Marginal",
+                        "Costo de Capital Antes de Impuestos (9%/(100%-40%))",
+                        "Costo Total Mantener Inventario Definitivo (% del Inventario)"),
+           Valores = c("10%", "9%", "40%", "15%", "25%")) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+El costo ponderado promedio del capital (WACC) después de impuestos del $9\%$ se restablece en una base antes de impuestos en $15\%$, lo cual representa el $9\%$ incrementado para reflejar los impuestos. La justificación es que si una empresa gana un $15\%$ antes de impuestos y paga el $40\%$ de ese $15\%$ en impuestos $(6\% = 15\% × 40\%\)$, obtiene una ganancia del $9\%$ después de impuestos $(15\% - 6\%\)$.

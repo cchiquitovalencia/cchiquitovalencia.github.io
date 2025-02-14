@@ -10,7 +10,533 @@
 <atom:link href="https://cchiquitovalencia.github.io/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Un blog para aprender</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Wed, 26 Feb 2025 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 27 Feb 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Costos totales de mantener el inventario antes de impuestos</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>Costos Totales de Mantenimiento de Inventario Antes de Impuestos</strong></p>
+<p>Con el WACC en la ecuación, ahora podemos combinar los costos no capitalizados por mantenimiento del inventario con los costos de capital por mantenimiento para estimar el costo total de mantener el inventario. En nuestro ejemplo, el costo no capital por mantenimiento es el <img src="https://latex.codecogs.com/png.latex?10%5C%25"> del saldo del inventario. Como se muestra en la <a href="https://cchiquitovalencia.github.io/posts/2025-02-17-inventory_management/#fig-1">Figura No.1</a>, estos costos están compuestos por gastos operativos como <em>obsolescencia, almacenamiento, hurto, seguro y impuestos</em>—todos los cuales se expresan en una <code>base antes de impuestos</code>. El costo del capital es del <img src="https://latex.codecogs.com/png.latex?9%5C%25"> y es el costo ponderado promedio del capital <code>después de impuestos</code>.</p>
+<p>Incluso cuando las empresas utilizan el WACC para calcular el cargo por capital del inventario, a menudo cometen el error de sumar los costos no capitalizados por mantenimiento del inventario antes de impuestos (como nuestro ejemplo del 10%) al costo del capital después de impuestos (digamos del 9%) para obtener el costo total de mantenimiento (19%). El problema es que <strong>al combinar estos costos antes y después de impuestos, se subestima</strong> el costo total de mantener el inventario y se pueden tomar decisiones no óptimas respecto al inventario.</p>
+<p>Para obtener una imagen real del costo de mantenimiento del inventario, los dos costos deben expresarse en la misma base—ya sea antes o después de impuestos. Hay dos opciones para hacer esto:</p>
+<p><strong>Opción 1:</strong> Ajustar los costos no capitalizados por mantenimiento del inventario expresados como porcentaje antes de impuestos a una cifra después de impuestos y sumar esto al costo del capital después de impuestos.</p>
+<p><strong>Opción 2:</strong> Convertir el costo del capital después de impuestos a una cifra antes de impuestos y sumarlo a los costos no capitalizados por mantenimiento expresados como porcentaje antes de impuestos.</p>
+<p>El costo total de mantenimiento del inventario a menudo se utiliza para informes internos periódicos y para decisiones que se evalúan a nivel operativo en una base antes de impuestos. Para estos fines, recomendamos utilizar la <strong>Opción 2</strong> para estimar el costo total de mantener el inventario. Para los análisis financieros tradicionales que involucran la actualización de flujos de efectivo después de impuestos, la <strong>Opción 1</strong> es la elección requerida.</p>
+<p>La siguiente ecuación muestra la derivación del costo de capital antes de impuestos y los costos totales de mantenimiento de inventario.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="vqdotbtvmb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vqdotbtvmb table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vqdotbtvmb thead, #vqdotbtvmb tbody, #vqdotbtvmb tfoot, #vqdotbtvmb tr, #vqdotbtvmb td, #vqdotbtvmb th {
+  border-style: none;
+}
+
+#vqdotbtvmb p {
+  margin: 0;
+  padding: 0;
+}
+
+#vqdotbtvmb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1E2C46;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFA500;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vqdotbtvmb .gt_title {
+  color: #1E2C46;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vqdotbtvmb .gt_subtitle {
+  color: #1E2C46;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vqdotbtvmb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vqdotbtvmb .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vqdotbtvmb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vqdotbtvmb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vqdotbtvmb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vqdotbtvmb .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vqdotbtvmb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vqdotbtvmb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vqdotbtvmb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vqdotbtvmb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vqdotbtvmb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFA500;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vqdotbtvmb .gt_stub {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vqdotbtvmb .gt_stub_row_group {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vqdotbtvmb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vqdotbtvmb .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vqdotbtvmb .gt_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vqdotbtvmb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vqdotbtvmb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_grand_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vqdotbtvmb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vqdotbtvmb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_footnotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vqdotbtvmb .gt_sourcenotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vqdotbtvmb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vqdotbtvmb .gt_left {
+  text-align: left;
+}
+
+#vqdotbtvmb .gt_center {
+  text-align: center;
+}
+
+#vqdotbtvmb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vqdotbtvmb .gt_font_normal {
+  font-weight: normal;
+}
+
+#vqdotbtvmb .gt_font_bold {
+  font-weight: bold;
+}
+
+#vqdotbtvmb .gt_font_italic {
+  font-style: italic;
+}
+
+#vqdotbtvmb .gt_super {
+  font-size: 65%;
+}
+
+#vqdotbtvmb .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vqdotbtvmb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vqdotbtvmb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vqdotbtvmb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vqdotbtvmb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vqdotbtvmb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vqdotbtvmb .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vqdotbtvmb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vqdotbtvmb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Concepto" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Concepto</th>
+<th id="Valores" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Valores</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Porcentaje Costos No Capitalizados</td>
+<td class="gt_row gt_center" headers="Valores">10%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Concepto">WACC Después de Impuestos</td>
+<td class="gt_row gt_center" headers="Valores">9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Tasa de Impuestos Marginal</td>
+<td class="gt_row gt_center" headers="Valores">40%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Concepto">Costo de Capital Antes de Impuestos (9%/(100%-40%))</td>
+<td class="gt_row gt_center" headers="Valores">15%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Costo Total Mantener Inventario Definitivo (% del Inventario)</td>
+<td class="gt_row gt_center" headers="Valores">25%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>El costo ponderado promedio del capital (WACC) después de impuestos del <img src="https://latex.codecogs.com/png.latex?9%5C%25"> se restablece en una base antes de impuestos en <img src="https://latex.codecogs.com/png.latex?15%5C%25">, lo cual representa el <img src="https://latex.codecogs.com/png.latex?9%5C%25"> incrementado para reflejar los impuestos. La justificación es que si una empresa gana un <img src="https://latex.codecogs.com/png.latex?15%5C%25"> antes de impuestos y paga el <img src="https://latex.codecogs.com/png.latex?40%5C%25"> de ese <img src="https://latex.codecogs.com/png.latex?15%5C%25"> en impuestos <img src="https://latex.codecogs.com/png.latex?(6%5C%25%20=%2015%5C%25%20%C3%97%2040%5C%25%5C)">, obtiene una ganancia del <img src="https://latex.codecogs.com/png.latex?9%5C%25"> después de impuestos <img src="https://latex.codecogs.com/png.latex?(15%5C%25%20-%206%5C%25%5C)">.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Costos Totales de Mantener El Inventario Antes de Impuestos},
+  date = {2025-02-27},
+  url = {https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Costos Totales de Mantener El
+Inventario Antes de Impuestos.”</span> February 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/">https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/</a>.
+</div></div></section></div> ]]></description>
+  <category>Inventarios</category>
+  <category>Supply Chain</category>
+  <category>Evaluación de Proyectos</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/</guid>
+  <pubDate>Thu, 27 Feb 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-27-total_cost_inventory/total_cost.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Qué pasa con una tasa de inversión?</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
@@ -26988,1086 +27514,6 @@ Familia.”</span> November 26, 2024. <a href="https://cchiquitovalencia.github.
   <guid>https://cchiquitovalencia.github.io/posts/2024-11-26-organizar_a_tu_familia/</guid>
   <pubDate>Tue, 26 Nov 2024 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2024-11-26-organizar_a_tu_familia/asignar.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Retomando labores</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Tengo una <a href="https://github.com/cchiquitovalencia/" title="cchiquitovalencia">página en Github</a>, la había creado en el 2023 en un equipo diferente al que ahora estoy usando, la última vez que actualicé la página fue en octubre 2024:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-517215772.png" class="img-fluid"></p>
-<p>Estaba entusiasmado por retomar las publicaciones de lo que puedo compartir de mis experiencias en programación (claramente no soy un experto) para optimizar los procesos. Pero todo lo había creado en un computador que ahora no es mio.</p>
-<p>Por cosas de la vida ahora estoy usando un computador muy antiguo, ni siquiera soportaba Windows 7, asi que, leyendo un poco, ahora esta corriendo Linux Mint. AquÍ las especificaciones:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb1" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Architecture:</span>                       x86_64</span>
-<span id="cb1-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span> op-mode<span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">:</span>                     32-bit, 64-bit</span>
-<span id="cb1-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Byte</span> Order:                         Little Endian</span>
-<span id="cb1-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Address</span> sizes:                      36 bits physical, 48 bits virtual</span>
-<span id="cb1-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span><span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">:</span>                             2</span>
-<span id="cb1-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">On-line</span> CPU<span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">list:</span>                0,1</span>
-<span id="cb1-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Thread</span><span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">per</span> core:                 1</span>
-<span id="cb1-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Core</span><span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">per</span> socket:                 2</span>
-<span id="cb1-9"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Socket</span><span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">:</span>                          1</span>
-<span id="cb1-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">NUMA</span> node<span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">:</span>                       1</span>
-<span id="cb1-11"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Vendor</span> ID:                          AuthenticAMD</span>
-<span id="cb1-12"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span> family:                         20</span>
-<span id="cb1-13"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Model:</span>                              1</span>
-<span id="cb1-14"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Model</span> name:                         AMD E-350 Processor</span>
-<span id="cb1-15"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Stepping:</span>                           0</span>
-<span id="cb1-16"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span> MHz:                            1595.989</span>
-<span id="cb1-17"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span> max MHz:                        1600,0000</span>
-<span id="cb1-18"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CPU</span> min MHz:                        800,0000</span>
-<span id="cb1-19"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">BogoMIPS:</span>                           3191.98</span>
-<span id="cb1-20"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Virtualization:</span>                     AMD-V</span>
-<span id="cb1-21"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">L1d</span> cache:                          64 KiB</span>
-<span id="cb1-22"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">L1i</span> cache:                          64 KiB</span>
-<span id="cb1-23"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">L2</span> cache:                           1 MiB</span>
-<span id="cb1-24"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">NUMA</span> node0 CPU<span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">s</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">:</span>                  0,1</span></code></pre></div>
-</div>
-<p>Como ven, antiguo. Pero funciona!</p>
-<p>Mi tarea ahora es lograr configurar el flujo de trabajo que tenia en ese entonces en mi “nuevo” equipo.</p>
-<p>Voy a la carpeta <code>Documentos</code>, creo una nueva llamada <code>repo_cchiquitovalencia</code> donde alojaré lo que ya había subido a Github.</p>
-<p>Lo que hice:</p>
-<ol type="1">
-<li><p>En GitHub, navegué hasta la página principal del repositorio.</p></li>
-<li><p>Encima de la lista de archivos, hice clic en <strong>Código</strong>.</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1267116206.png" class="img-fluid"></p></li>
-<li><p>Copié la dirección URL del repositorio. Para clonar el repositorio con HTTPS, en “HTTPS”, hice clic en el ícono.</p></li>
-<li><p>Abrí una Terminal.</p></li>
-<li><p>Cambié el directorio de trabajo actual a la ubicación en donde quería clonar el directorio. En mi caso:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb2" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> Documents/repo_cchiquitovalencia</span></code></pre></div>
-</div></li>
-<li><p>Escribí <code>git clone</code> y pegué la dirección URL que he copiado antes.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb3" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">git</span> clone https://github.com/cchiquitovalencia/cchiquitovalencia.github.io.git</span></code></pre></div>
-</div></li>
-<li><p>Presioné <strong>Enter</strong> para crear el clon local.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb4" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Clonando</span> en <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'cchiquitovalencia.github.io'</span>...</span>
-<span id="cb4-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">remote:</span> Enumerating objects: 406, done.</span>
-<span id="cb4-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">remote:</span> Counting objects: 100% <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">406/406</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> done.</span>
-<span id="cb4-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">remote:</span> Compressing objects: 100% <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">249/249</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> done.</span>
-<span id="cb4-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">remote:</span> Total 406 <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">delta</span> 210<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> reused 304 <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">delta</span> 116<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> pack-reused 0 <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">from</span> 0<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb4-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Recibiendo</span> objetos: 100% <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">406/406</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> 2.75 MiB <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">|</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">3.32</span> MiB/s, listo.</span>
-<span id="cb4-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Resolviendo</span> deltas: 100% <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">210/210</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">,</span> listo.</span></code></pre></div>
-</div></li>
-</ol>
-<p>Listo! En este momento los archivos están en mi equipo local. Pero eso es todo, no están en seguimiento. Entonces:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb5" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">~/Documents/repo_cchiquitovalencia$</span> git init</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb6" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Inicializado</span> repositorio Git vacío en /home/cchvcpcj/Documents/repo_cchiquitovalencia/.git/</span></code></pre></div>
-</div>
-<p>Revisemos el estado:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb7" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">~/Documents/repo_cchiquitovalencia$</span> git status</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb8" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">En</span> la rama master</span>
-<span id="cb8-2"></span>
-<span id="cb8-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">No</span> hay commits todavía</span>
-<span id="cb8-4"></span>
-<span id="cb8-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Archivos</span> sin seguimiento:</span>
-<span id="cb8-6">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">usa</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"git add &lt;archivo&gt;..."</span> para incluirlo a lo que se será confirmado<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb8-7"></span>
-<span id="cb8-8">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">cchiquitovalencia.github.io/</span></span>
-<span id="cb8-9"></span>
-<span id="cb8-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">no</span> hay nada agregado al commit pero hay archivos sin seguimiento presentes <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">usa</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"git add"</span> para hacerles seguimiento<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span></code></pre></div>
-</div>
-<p>Hago lo que me dice, agrego:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb9" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">~/Documents/repo_cchiquitovalencia$</span> git add cchiquitovalencia.github.io/</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb10" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">En</span> la rama master</span>
-<span id="cb10-2"></span>
-<span id="cb10-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">No</span> hay commits todavía</span>
-<span id="cb10-4"></span>
-<span id="cb10-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Cambios</span> a ser confirmados:</span>
-<span id="cb10-6">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">usa</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"git rm --cached &lt;archivo&gt;..."</span> para sacar del área de stage<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb10-7"></span>
-<span id="cb10-8">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/.gitignore</span>
-<span id="cb10-9">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/.nojekyll</span>
-<span id="cb10-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">...</span> <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># varias líneas de código después</span></span>
-<span id="cb10-11">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/posts/_metadata.yml</span>
-<span id="cb10-12">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/resources.qmd</span>
-<span id="cb10-13">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/styles.css</span>
-<span id="cb10-14">    <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">nuevo</span> archivo:  cchiquitovalencia.github.io/styles.scss</span></code></pre></div>
-</div>
-<p>Ahora, mientras escribo este post en un documento de Quarto dentro de una sesion de Rstudio, puedo abrir otra para revisar que todo esté en orden: poder hacer <code>commits</code> y <code>push</code> desde local a Github. Con el comando <code>htop</code> puedo ver la carga de mis dos súper procesadores:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1743882111.png" class="img-fluid"></p>
-<p>Bueno, aquí mi primer problema:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-2400752945.png" class="img-fluid"></p>
-<p>El formato ssh no tiene soporte? Como siempre, cuando hay problemas, vamos a <a href="https://stackoverflow.com/">stackoverflow</a>: “<em>push git unsupported gpg.format ssh</em>”, unos blogs más tarde, la respuesta fue:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-2214406612.png" class="img-fluid"></p>
-<p>En este momento, me acordé que hace poco estaba trabajando en <a href="https://cchiquitovalencia.github.io/posts/2024-11-18-intro_git/">otro post sobre Git</a>, y revisé la versión:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-2938406641.png" class="img-fluid"></p>
-<p>Entonces le hice caso a Martin Thoma. Miremos lo que tengo:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb11" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">git</span> config <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--list</span></span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb12" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=cache</span></span>
-<span id="cb12-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=</span></span>
-<span id="cb12-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=/usr/local/share/gcm-core/git-credential-manager-core</span></span>
-<span id="cb12-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.credentialstore=gpg</span></span>
-<span id="cb12-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.name=cchiquitovalencia</span></span>
-<span id="cb12-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.email=cchiquito.valencia@pm.me</span></span>
-<span id="cb12-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.signingkey=/home/cchvcpcj/.ssh/id_ed25519.pub</span></span>
-<span id="cb12-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.https://dev.azure.com.usehttppath=true</span></span>
-<span id="cb12-9"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">commit.gpgsign=false</span></span>
-<span id="cb12-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg.format=ssh</span></span></code></pre></div>
-</div>
-<p>Luego de modificar el .gitconfig (<code>gpgsign = true</code>)</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1573369827.png" class="img-fluid"></p>
-<p>Ahora, <code>PUSH</code>!: y me solicita un <code>PASSPHRASE</code>.</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-248908278.png" class="img-fluid"></p>
-<p>Claro que algo falló, no me acuerdo del passphrase! Luego de investigar un poco sobre como recuperar mi passphrase: <a href="https://medium.com/@fro_g/oh-no-i-forgot-my-pgp-private-keys-passphrase-6ec1d0228b48">puedes revisar en donde esta disponible tu llave y puedes crear el certificado de revocacion de tu llave publica</a>, pero necesitas acordarte del passphrase!</p>
-<p>Y luego seguí revisando otro poco más, y como no entendí nada <a href="https://gpgtools.tenderapp.com/kb/gpg-keychain-faq/how-to-revoke-a-key-or-user-id">aquí</a>, pues me aseguré de no olvidar nunca más el passphrase.</p>
-<p>Al final lo único que entendí fue que debía generar otra llave:</p>
-<ol type="1">
-<li><p>Descargué e instalé las <a href="https://www.gnupg.org/download/">herramientas de línea de comandos GPG</a> para mi sistema operativo.</p>
-<p>Puedes confirmar si tienes una versión instalada:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb13" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--version</span></span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb14" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">GnuPG</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2.2.19</span></span>
-<span id="cb14-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">libgcrypt</span> 1.8.5</span>
-<span id="cb14-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Copyright</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">C</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2019</span> Free Software Foundation, Inc.</span>
-<span id="cb14-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">License</span> GPLv3+: GNU GPL version 3 or later <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>https://gnu.org/licenses/gpl.html<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span></span>
-<span id="cb14-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">This</span> is free software: you are free to change and redistribute it.</span>
-<span id="cb14-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">There</span> is NO WARRANTY, to the extent permitted by law.</span>
-<span id="cb14-7"></span>
-<span id="cb14-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Home:</span> /home/cchvcpcj/.gnupg</span>
-<span id="cb14-9"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Supported</span> algorithms:</span>
-<span id="cb14-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Pubkey:</span> RSA, ELG, DSA, ECDH, ECDSA, EDDSA</span>
-<span id="cb14-11"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Cipher:</span> IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,</span>
-<span id="cb14-12">        <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">CAMELLIA128,</span> CAMELLIA192, CAMELLIA256</span>
-<span id="cb14-13"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Hash:</span> SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224</span>
-<span id="cb14-14"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Compression:</span> Uncompressed, ZIP, ZLIB, BZIP2</span></code></pre></div>
-</div></li>
-<li><p>Abrí una Terminal.</p></li>
-<li><p>Generé un par de claves GPG. Dado que existen varias versiones de GPG, es posible que debas consultar la página de manual correspondiente para encontrar el comando de generación de claves adecuado.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb15" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--full-generate-key</span></span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb16" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">GnuPG</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2.2.19</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">;</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Copyright</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">C</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2019</span> Free Software Foundation, Inc.</span>
-<span id="cb16-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">This</span> is free software: you are free to change and redistribute it.</span>
-<span id="cb16-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">There</span> is NO WARRANTY, to the extent permitted by law.</span>
-<span id="cb16-4"></span>
-<span id="cb16-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Please</span> select what kind of key you want:</span>
-<span id="cb16-6">   <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">1</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">RSA</span> and RSA <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">default</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb16-7">   <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">DSA</span> and Elgamal</span>
-<span id="cb16-8">   <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">3</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">DSA</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">sign</span> only<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb16-9">   <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">4</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">RSA</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">sign</span> only<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb16-10">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">14</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Existing</span> key from card</span>
-<span id="cb16-11"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Your</span> selection<span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">?</span> 1</span>
-<span id="cb16-12"></span>
-<span id="cb16-13"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">RSA</span> keys may be between 1024 and 4096 bits long.</span>
-<span id="cb16-14"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">What</span> keysize do you want<span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">?</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">3072</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">4096</span></span>
-<span id="cb16-15"></span>
-<span id="cb16-16"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Please</span> specify how long the key should be valid.</span>
-<span id="cb16-17">         <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">0</span> = key does not expire</span>
-<span id="cb16-18">      <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>n<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span>  = <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">key</span> expires in n days</span>
-<span id="cb16-19">      <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>n<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span>w <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">=</span> key expires in n weeks</span>
-<span id="cb16-20">      <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>n<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span>m <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">=</span> key expires in n months</span>
-<span id="cb16-21">      <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>n<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span>y <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">=</span> key expires in n years</span>
-<span id="cb16-22"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Key</span> is valid for<span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">?</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">0</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb16-23"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Key</span> does not expire at all</span>
-<span id="cb16-24"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Is</span> this correct<span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">?</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">y/N</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">y</span></span></code></pre></div>
-</div></li>
-</ol>
-<p>Finalmente genero otra llave más porque la que tenia había expirado. Qué tal que hubiera buscado maneras de aligerar la búsqueda de mi llave?, será que al final tendría que haber buscado la manera de ponerla a funcionar luego de expirar?</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb17" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">sec</span>   rsa4096/BE0A7004D70A24F0 2022-03-23 <span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">SC</span><span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">]</span></span>
-<span id="cb17-2">      <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">8D8EDF6C11646AB64D276070BE0A7004D70A24F0</span></span>
-<span id="cb17-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">uid</span>                 <span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">ultimate</span><span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">]</span> cchiquitovalencia <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Key</span> to<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>cchiquito.valencia@pm.me<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span></span>
-<span id="cb17-4"></span>
-<span id="cb17-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">sec</span>   rsa4096/D0A5DB1B2962C681 2024-11-15 <span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">SC</span><span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">]</span></span>
-<span id="cb17-6">      <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">6DA68EDA9FE612269D802528D0A5DB1B2962C681</span></span>
-<span id="cb17-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">uid</span>                 <span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">ultimate</span><span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">]</span> cchiquitovalencia <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Acceso</span> para Github<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span>cchiquito.valencia@pm.me<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span></span>
-<span id="cb17-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">ssb</span>   rsa4096/F4AE44B3682F30AE 2024-11-15 <span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">[</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">E</span><span class="pp" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">]</span></span></code></pre></div>
-</div>
-<p>Es necesario registrar la llave en Github, vamos a Configuración:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1466937778.png" class="img-fluid"></p>
-<p>La zona de acceso</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3850028516.png" class="img-fluid"></p>
-<p>y nueva llave:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3590516325.png" class="img-fluid"></p>
-<p>Y digitamos título y PUBLIC KEY BLOCK:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3789823564.png" class="img-fluid"></p>
-<p>Para obtener la llave completa que debemos registrar, ejecutar en la Terminal:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb18" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">gpg</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--armor</span> <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--export</span> D0A5DB1B2962C681</span></code></pre></div>
-</div>
-<p>Cambiando el <code>Key ID</code> para cada llave generada. Ahora tengo esto:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1028422708.png" class="img-fluid"></p>
-<p>Ahora si, ya:</p>
-<ul>
-<li><p>Cloné el repositorio que se encuentra alojado en <code>Github</code> a mi equipo local.</p></li>
-<li><p>Inicié el seguimiento con <code>Git</code> en mi control de versiones al proyecto local.</p></li>
-<li><p>Actualicé mi version de Git para tener acceso son <code>SSH</code>.</p></li>
-<li><p>Creé una <code>llave pública</code> nueva, porque no recordaba que la anterior expiró.</p></li>
-<li><p>Registré la llave nueva a Github para realizar <code>PUSH</code> desde lo local.</p></li>
-</ul>
-<p>Entonces creo un archivo para realizar la prueba, se llama “actualizado.qmd” y contiene lo siguiente.</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-1306708621.png" class="img-fluid"></p>
-<p>Finalmente guardo el archivo y le doy <code>commit</code>:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3530903950.png" class="img-fluid"></p>
-<p>Ahora, la hora de la verdad: <strong><code>PUSH</code></strong>! No sin antes decirle a Git que cambie la llave porque al principio teniamos: <code>user.signingkey=/home/cchvcpcj/.ssh/id_ed25519.pub</code></p>
-<p>En la Terminal:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb19" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">git</span> config <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--global</span> user.signingkey D0A5DB1B2962C681</span></code></pre></div>
-</div>
-<p><strong><code>PUSH</code></strong>!!!!</p>
-<p>Pues nada pasó a Github. De alguna manera me pide el usuario, y le digo <code>cchiquitovalencia</code>, luego me pide clave, pero de un correo que no tengo registado en Github. Solo tengo registrado cchiquito.valencia@pm.me, entonces pienso que algo tiene que ver con el “<code>credential.manager</code>”:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb20" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">git-credential-manager</span> configure</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb21" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">bash:</span> git-credential-manager: command not found</span></code></pre></div>
-</div>
-<p>Pues a instalarlo se dijo:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-2509223845.png" class="img-fluid"></p>
-<p>Y así:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb22" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">sudo</span> dpkg <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">-i</span> /home/cchvcpcj/Downloads/gcm-linux_amd64.2.6.0.deb</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb23" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Seleccionando</span> el paquete gcm previamente no seleccionado.</span>
-<span id="cb23-2"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Leyendo</span> la base de datos ... 419408 ficheros o directorios instalados actualmente.<span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span></span>
-<span id="cb23-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Preparando</span> para desempaquetar .../gcm-linux_amd64.2.6.0.deb ...</span>
-<span id="cb23-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Desempaquetando</span> gcm <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2.6.0</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">...</span></span>
-<span id="cb23-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Configurando</span> gcm <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">(</span><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">2.6.0</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">)</span> <span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">...</span></span></code></pre></div>
-</div>
-<p>Ahora sí:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb24" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">git-credential-manager</span> configure</span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb25" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Configuring</span> component <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'Git Credential Manager'</span>...</span>
-<span id="cb25-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">Configuring</span> component <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'Azure Repos provider'</span>...</span></code></pre></div>
-</div>
-<p>Reviso la configuracion:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Bash</strong></pre>
-</div>
-<div class="sourceCode" id="cb26" data-filename="Bash" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">git</span> config <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">--list</span></span></code></pre></div>
-</div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Output</strong></pre>
-</div>
-<div class="sourceCode" id="cb27" data-filename="Output" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=cache</span></span>
-<span id="cb27-2"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=</span></span>
-<span id="cb27-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=/usr/local/share/gcm-core/git-credential-manager-core</span></span>
-<span id="cb27-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.credentialstore=gpg</span></span>
-<span id="cb27-5"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.cacheoptions=--timeout</span> 300</span>
-<span id="cb27-6"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=</span></span>
-<span id="cb27-7"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.helper=/usr/local/bin/git-credential-manager</span></span>
-<span id="cb27-8"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.name=cchiquitovalencia</span></span>
-<span id="cb27-9"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.email=cchiquito.valencia@pm.me</span></span>
-<span id="cb27-10"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">user.signingkey=D0A5DB1B2962C681</span></span>
-<span id="cb27-11"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">credential.https://dev.azure.com.usehttppath=true</span></span>
-<span id="cb27-12"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">commit.gpgsign=true</span></span></code></pre></div>
-</div>
-<p>Algunas verificaciones mas tarde, un passphrase muy bien recordado (no lo olvidaré, y me aseguré muy bien de no volver a hacerlo) y finalmente:</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3549676888.png" class="img-fluid"></p>
-<p>y <strong><code>PUSH</code></strong>!!!!!!!!!!</p>
-<p><img src="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/images/clipboard-3318090508.png" class="img-fluid"></p>
-<p>“De nuevo en el negocio.”</p>
-
-
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2024,
-  author = {Chiquito Valencia, Cristian},
-  title = {Retomando Labores},
-  date = {2024-11-20},
-  url = {https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2024" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2024. <span>“Retomando Labores.”</span>
-November 20, 2024. <a href="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/">https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/</a>.
-</div></div></section></div> ]]></description>
-  <category>Git</category>
-  <category>Github</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/</guid>
-  <pubDate>Wed, 20 Nov 2024 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2024-11-20-ejemplo_usarGithub/clone.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
