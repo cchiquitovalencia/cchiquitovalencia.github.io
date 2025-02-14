@@ -103,3 +103,8 @@ div.quarto-grid-item:hover{
     background-color: $gris-claro;
     color: $azul-oscuro;
 }
+
+.page-item.disabled .page-link:hover {
+    background-color: $naranja-oscuro;
+    color: $azul-oscuro;
+}
