@@ -1,0 +1,32 @@
+---
+title: "Toma mejores decisiones"
+description: "INVENTARIOS Serie - Parte 11"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 03-03-2025
+categories: [Inventarios, Supply Chain, Evaluación de Proyectos] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/
+image: better.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### Objetivo: Mejor Toma de Decisiones
+
+Resumiendo nuestra discusión, los profesionales de la gestión de la cadena de suministro deben desarrollar mejores estimaciones de los componentes del costo total de mantener el inventario: los costos de mantenimiento no relacionados con el capital y el cargo por el capital. Mejores estimaciones de estos componentes (que casi siempre son más altos que las estimaciones actuales utilizadas) proporcionan perspectivas más precisas sobre el costo total de mantener el inventario. Y **conocer este costo total más preciso puede ser un poderoso catalizador para explorar nuevas soluciones para gestionar el inventario de manera más efectiva.**
+
+En particular, los profesionales de la cadena de suministro deben desarrollar estimaciones más creíbles de los costos de mantenimiento no relacionados con el capital: obsolescencia, almacenamiento, hurtos, daños, seguros, impuestos, y así sucesivamente. Las estimaciones actuales de estos costos a menudo no se pueden rastrear hasta costos específicos de ítems de línea e incorporar en los presupuestos. Por lo tanto, a menudo se excluyen al calcular el valor de las iniciativas de reducción de inventario, tales como inversiones en tecnología para mejorar la previsión y la visibilidad del inventario.
+
+La exclusión de estos costos subestima la rentabilidad de estas iniciativas y puede resultar en el rechazo de proyectos que deberían ser aceptados. Nuevamente, como punto de partida, las empresas deberían enfocarse en estimar los componentes de costos de mantenimiento no relacionados con el capital de *obsolescencia, seguros e impuestos*. La información sobre estos costos tiende a estar más disponible a nivel de línea de producto, geográfico o de línea de negocio que otros costos de mantenimiento no relacionados con el capital. La obsolescencia, los seguros y los impuestos también suelen ser costos variables—que varían con el nivel de inversión en inventario.
+
+Las empresas también deben ser conscientes de usar un costo de capital que reduzca significativamente la carga de capital de inventario. Específicamente, a menudo utilizan una tasa de préstamo o crédito a corto plazo en lugar del más preciso costo ponderado promedio del capital (WACC). `El uso del WACC puede llevar a mejores decisiones de gestión de inventarios`.
+
+**La gestión del transporte** es solo un ejemplo. El inventario se puede reducir utilizando medios de transporte más rápidos; por ejemplo, pasando de carga completa (full truckload) a carga parcial (less than truckload, LTL), o de LTL a transporte aéreo. Aunque el uso de medios de transporte más rápidos aumenta los costos de transporte, reduce el costo total de mantener el inventario.
+
+Aplicar el WACC al calcular la carga de capital de inventario justificaría esta iniciativa. La razón: aunque los costos totales de transporte aumentan, el costo total de mantener el inventario y los costos totales de la cadena de suministro disminuyen, lo que mejora el desempeño financiero general.
+
+**El diseño de la red** es otra área donde el uso del costo ponderado promedio del capital en el cálculo de la carga de capital conlleva a mejores decisiones. Una parte del diseño de la red es equilibrar los gastos totales de transporte contra los costos totales de mantener el inventario. Cuando se utiliza un WACC más preciso, los costos totales de mantener el inventario son mayores. Esto justifica incurrir en mayores costos de transporte con el fin de reducir los costos totales de mantener el inventario y, a su vez, los costos totales de la red. Por lo tanto, en muchos casos, una red más consolidada es óptima, incluso aunque los costos totales de transporte sean más altos.
+
+Finalmente, considera el impacto de conocer el costo total de los inventarios en las **decisiones de aprovisionamiento**. Por ejemplo, muchas empresas están pasando a un aprovisionamiento basado en Asia debido a los menores costos de compra. Sin embargo, esta práctica a menudo conduce a un mayor inversión en inventario debido a mayores niveles de inventario en tránsito y de seguridad. El uso del costo ponderado promedio del capital proporciona una visión más precisa del impacto del inventario en el costo total de importación. Resulta que la fuente con el menor costo de compra no siempre tiene el menor costo total de importación cuando se utiliza el WACC. `Una vez más, conocer los verdaderos costos de mantener el inventario conduce a una mejor decisión.`
