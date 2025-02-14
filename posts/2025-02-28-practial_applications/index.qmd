@@ -1,0 +1,79 @@
+---
+title: "Aplicaciones prácticas"
+description: "INVENTARIOS Serie - Parte 10"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 02-28-2025
+categories: [Inventarios, Supply Chain, Evaluación de Proyectos] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-02-28-practical_applications/
+image: practical.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+### Aplicaciones prácticas
+
+Para ilustrar la metodología del costo total de inventario en acción, volveremos a utilizar el ejemplo de la empresa con $\$100$ millones en inventario y con márgenes de ventas y ganancia operativa promedio. El siguiente gráfico compara la diferencia entre usar el $25\%$ de costo total de mantener el inventario y usar la cifra del $15\%$.
+
+El $15\%$ es la suma del $10\%$ para gastos no relacionados con el capital más un $5\%$ de costo de capital, aquí compararías con la tasa de préstamos a corto plazo. El $5\%$ es una cifra antes de impuestos y, por lo tanto, no necesita ser ajustada por impuestos. Al usar el más preciso $25\%$, se revela que el costo total en dólares de mantener el inventario es $\$10$ millones mayor que cuando se aplica el $15\%$ más bajo ($\$25$ millones de costo total de mantener el inventario frente a $\$15$ millones). Para poner la diferencia de $\$10$ millones en perspectiva práctica, el cálculo muestra que los $\$25$ millones representan más del $80\%$ de la ganancia operativa absorbida por los costos totales de mantener el inventario. En comparación, cuando se aplica el $15\%$ más bajo, los costos de inventario representan solo el $50\%$ de la ganancia operativa.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gt)
+
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+
+estilo_summary <- function(resumen){
+    resumen |> 
+        summary() |> 
+        as.data.frame() |> 
+        rownames_to_column() |> 
+        #dplyr::select(c(Var2,Freq)) |> 
+        rename(Medida = rowname,
+               Frecuencia = x) |> 
+        mutate(Frecuencia = round(Frecuencia,4))
+}
+
+aplicar_theme_table <- function(gt_table) {
+    gt_table %>%
+        cols_align(align = "center") |> 
+        tab_options(
+            table.border.top.color = "orange",
+            table.font.color = "#1e2c46",
+            table_body.hlines.color = "orange",
+            column_labels.background.color = "#1e2c46"
+        )
+}
+```
+
+```{r}
+data.frame(Concepto = c("Inventario",
+                        "% del Costo Total de Mantener Inventario",
+                        "Costo Total de Mantener Inventario",
+                        "Ventas",
+                        "Margen de Ingresos Operacionales*",
+                        "Ingresos Operacionales",
+                        "Ingresos Operacionales absorbidos por Costo Total de Mantener Inventario"),
+           Con_25 = c("$100m","25%","$25m","$750m","4%","$30m","83%"),
+           Con_15 = c("$100m","15%","$15m","$750m","4%","$30m","50%")) |> 
+    gt() |> 
+    aplicar_theme_table()
+```
+
+\*Excluye costos no capitalizados de mantener el inventario ($\$100m$ inventario x $10\%$ costos no capitalizados)
+
+Comunicar una estimación precisa del porcentaje de la ganancia operativa absorbida por los costos totales de mantener el inventario es una forma efectiva de:
+
+-   Desarrollar una mejor comprensión del costo relativo de mantener el inventario.
+
+-   Motivar una visión empresarial integral del manejo de inventario.
+
+-   Estimular iniciativas para mejorar el manejo de inventario.
+
+Una buena comunicación también crea un mayor sentido de urgencia en toda la organización para un mejor manejo del inventario.
+
+La cifra más precisa del $25\%$ del costo total de inventario también puede conducir a mejores decisiones en la gestión del transporte. Considere la siguiente ilustración basada en la empresa de la muestra. Supongamos que esta empresa está explorando una iniciativa para reducir el inventario en un $20\%$, o $\$20$ millones, utilizando modos de transporte expeditados. Utilizando la cifra de costo total de mantenimiento de inventario del $25\%$, el beneficio bruto anualizado estimado de esta mejora en el transporte es de $\$5$ millones ($\$20m$ × $25\%$). Manteniendo constantes otros factores como los niveles de servicio, esto significa que la empresa podría gastar hasta $\$5$ millones más en costos de transporte y seguir igualando. Por el contrario, utilizando la cifra de costo de inventario del $15\%$, el beneficio bruto anual estimado y el aumento máximo en los costos de transporte es solo de $\$3$ millones ($\$20m$ × $15\%$). Para poner la diferencia de $\$2$ millones en perspectiva, los costos de transporte suelen promediar aproximadamente el $4\%$ de las ventas. Utilizando este promedio, los costos de transporte para la empresa de la muestra son de $\$30$ millones ($\$750m$ de ventas × $4\%$). Por lo tanto, la diferencia de $\$2$ millones representa casi el $7\%$ de los actuales costos de transporte.
+
+`Resumen`: el uso de un porcentaje más preciso para el costo total de mantener el inventario, que incorpora el costo ponderado promedio del capital antes de impuestos, tiene un gran impacto en las decisiones de transporte y generalmente respalda el uso de modos más rápidos. De manera similar, esta cifra más precisa a menudo afecta las decisiones sobre aprovisionamiento y optimización de la red, que implican equilibrar el gasto operativo con los niveles de inventario.

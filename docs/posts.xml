@@ -10,24 +10,42 @@
 <atom:link href="https://cchiquitovalencia.github.io/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Un blog para aprender</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Tue, 04 Mar 2025 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 03 Mar 2025 05:00:00 GMT</lastBuildDate>
 <item>
-  <title></title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-03-04-next/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>Inventarios</category>
-  <category>Supply Chain</category>
-  <category>Evaluación de Proyectos</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-03-04-next/</guid>
-  <pubDate>Tue, 04 Mar 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-03-04-next/inventory.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title></title>
+  <title>Toma mejores decisiones</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="objetivo-mejor-toma-de-decisiones" class="level3">
+<h3 class="anchored" data-anchor-id="objetivo-mejor-toma-de-decisiones">Objetivo: Mejor Toma de Decisiones</h3>
+<p>Resumiendo nuestra discusión, los profesionales de la gestión de la cadena de suministro deben desarrollar mejores estimaciones de los componentes del costo total de mantener el inventario: los costos de mantenimiento no relacionados con el capital y el cargo por el capital. Mejores estimaciones de estos componentes (que casi siempre son más altos que las estimaciones actuales utilizadas) proporcionan perspectivas más precisas sobre el costo total de mantener el inventario. Y <strong>conocer este costo total más preciso puede ser un poderoso catalizador para explorar nuevas soluciones para gestionar el inventario de manera más efectiva.</strong></p>
+<p>En particular, los profesionales de la cadena de suministro deben desarrollar estimaciones más creíbles de los costos de mantenimiento no relacionados con el capital: obsolescencia, almacenamiento, hurtos, daños, seguros, impuestos, y así sucesivamente. Las estimaciones actuales de estos costos a menudo no se pueden rastrear hasta costos específicos de ítems de línea e incorporar en los presupuestos. Por lo tanto, a menudo se excluyen al calcular el valor de las iniciativas de reducción de inventario, tales como inversiones en tecnología para mejorar la previsión y la visibilidad del inventario.</p>
+<p>La exclusión de estos costos subestima la rentabilidad de estas iniciativas y puede resultar en el rechazo de proyectos que deberían ser aceptados. Nuevamente, como punto de partida, las empresas deberían enfocarse en estimar los componentes de costos de mantenimiento no relacionados con el capital de <em>obsolescencia, seguros e impuestos</em>. La información sobre estos costos tiende a estar más disponible a nivel de línea de producto, geográfico o de línea de negocio que otros costos de mantenimiento no relacionados con el capital. La obsolescencia, los seguros y los impuestos también suelen ser costos variables—que varían con el nivel de inversión en inventario.</p>
+<p>Las empresas también deben ser conscientes de usar un costo de capital que reduzca significativamente la carga de capital de inventario. Específicamente, a menudo utilizan una tasa de préstamo o crédito a corto plazo en lugar del más preciso costo ponderado promedio del capital (WACC). <code>El uso del WACC puede llevar a mejores decisiones de gestión de inventarios</code>.</p>
+<p><strong>La gestión del transporte</strong> es solo un ejemplo. El inventario se puede reducir utilizando medios de transporte más rápidos; por ejemplo, pasando de carga completa (full truckload) a carga parcial (less than truckload, LTL), o de LTL a transporte aéreo. Aunque el uso de medios de transporte más rápidos aumenta los costos de transporte, reduce el costo total de mantener el inventario.</p>
+<p>Aplicar el WACC al calcular la carga de capital de inventario justificaría esta iniciativa. La razón: aunque los costos totales de transporte aumentan, el costo total de mantener el inventario y los costos totales de la cadena de suministro disminuyen, lo que mejora el desempeño financiero general.</p>
+<p><strong>El diseño de la red</strong> es otra área donde el uso del costo ponderado promedio del capital en el cálculo de la carga de capital conlleva a mejores decisiones. Una parte del diseño de la red es equilibrar los gastos totales de transporte contra los costos totales de mantener el inventario. Cuando se utiliza un WACC más preciso, los costos totales de mantener el inventario son mayores. Esto justifica incurrir en mayores costos de transporte con el fin de reducir los costos totales de mantener el inventario y, a su vez, los costos totales de la red. Por lo tanto, en muchos casos, una red más consolidada es óptima, incluso aunque los costos totales de transporte sean más altos.</p>
+<p>Finalmente, considere el impacto de conocer el costo total de los inventarios en las <strong>decisiones de aprovisionamiento</strong>. Por ejemplo, muchas empresas están pasando a un aprovisionamiento basado en Asia debido a los menores costos de compra. Sin embargo, esta práctica a menudo conduce a un mayor inversión en inventario debido a mayores niveles de inventario en tránsito y de seguridad. El uso del costo ponderado promedio del capital proporciona una visión más precisa del impacto del inventario en el costo total de importación. Resulta que la fuente con el menor costo de compra no siempre tiene el menor costo total de importación cuando se utiliza el WACC. <code>Una vez más, conocer los verdaderos costos de mantener el inventario conduce a una mejor decisión.</code></p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Toma Mejores Decisiones},
+  date = {2025-03-03},
+  url = {https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Toma Mejores
+Decisiones.”</span> March 3, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/">https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/</a>.
+</div></div></section></div> ]]></description>
   <category>Inventarios</category>
   <category>Supply Chain</category>
   <category>Evaluación de Proyectos</category>
@@ -36,10 +54,546 @@
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-03-03-better_decisions/better.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title></title>
+  <title>Aplicaciones prácticas</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-02-28-practial_applications/</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="aplicaciones-prácticas" class="level3">
+<h3 class="anchored" data-anchor-id="aplicaciones-prácticas">Aplicaciones prácticas</h3>
+<p>Para ilustrar la metodología del costo total de inventario en acción, volveremos a utilizar el ejemplo de la empresa con <img src="https://latex.codecogs.com/png.latex?%5C$100"> millones en inventario y con márgenes de ventas y ganancia operativa promedio. El siguiente gráfico compara la diferencia entre usar el <img src="https://latex.codecogs.com/png.latex?25%5C%25"> de costo total de mantener el inventario y usar la cifra del <img src="https://latex.codecogs.com/png.latex?15%5C%25">.</p>
+<p>El <img src="https://latex.codecogs.com/png.latex?15%5C%25"> es la suma del <img src="https://latex.codecogs.com/png.latex?10%5C%25"> para gastos no relacionados con el capital más un <img src="https://latex.codecogs.com/png.latex?5%5C%25"> de costo de capital, aquí compararías con la tasa de préstamos a corto plazo. El <img src="https://latex.codecogs.com/png.latex?5%5C%25"> es una cifra antes de impuestos y, por lo tanto, no necesita ser ajustada por impuestos. Al usar el más preciso <img src="https://latex.codecogs.com/png.latex?25%5C%25">, se revela que el costo total en dólares de mantener el inventario es <img src="https://latex.codecogs.com/png.latex?%5C$10"> millones mayor que cuando se aplica el <img src="https://latex.codecogs.com/png.latex?15%5C%25"> más bajo (<img src="https://latex.codecogs.com/png.latex?%5C$25"> millones de costo total de mantener el inventario frente a <img src="https://latex.codecogs.com/png.latex?%5C$15"> millones). Para poner la diferencia de <img src="https://latex.codecogs.com/png.latex?%5C$10"> millones en perspectiva práctica, el cálculo muestra que los <img src="https://latex.codecogs.com/png.latex?%5C$25"> millones representan más del <img src="https://latex.codecogs.com/png.latex?80%5C%25"> de la ganancia operativa absorbida por los costos totales de mantener el inventario. En comparación, cuando se aplica el <img src="https://latex.codecogs.com/png.latex?15%5C%25"> más bajo, los costos de inventario representan solo el <img src="https://latex.codecogs.com/png.latex?50%5C%25"> de la ganancia operativa.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="poyetvzpes" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#poyetvzpes table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#poyetvzpes thead, #poyetvzpes tbody, #poyetvzpes tfoot, #poyetvzpes tr, #poyetvzpes td, #poyetvzpes th {
+  border-style: none;
+}
+
+#poyetvzpes p {
+  margin: 0;
+  padding: 0;
+}
+
+#poyetvzpes .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1E2C46;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFA500;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#poyetvzpes .gt_title {
+  color: #1E2C46;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#poyetvzpes .gt_subtitle {
+  color: #1E2C46;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#poyetvzpes .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#poyetvzpes .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #1E2C46;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#poyetvzpes .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#poyetvzpes .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#poyetvzpes .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#poyetvzpes .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#poyetvzpes .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#poyetvzpes .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#poyetvzpes .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#poyetvzpes .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#poyetvzpes .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFA500;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#poyetvzpes .gt_stub {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#poyetvzpes .gt_stub_row_group {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#poyetvzpes .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#poyetvzpes .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#poyetvzpes .gt_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#poyetvzpes .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#poyetvzpes .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_grand_summary_row {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#poyetvzpes .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#poyetvzpes .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_footnotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#poyetvzpes .gt_sourcenotes {
+  color: #1E2C46;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#poyetvzpes .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#poyetvzpes .gt_left {
+  text-align: left;
+}
+
+#poyetvzpes .gt_center {
+  text-align: center;
+}
+
+#poyetvzpes .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#poyetvzpes .gt_font_normal {
+  font-weight: normal;
+}
+
+#poyetvzpes .gt_font_bold {
+  font-weight: bold;
+}
+
+#poyetvzpes .gt_font_italic {
+  font-style: italic;
+}
+
+#poyetvzpes .gt_super {
+  font-size: 65%;
+}
+
+#poyetvzpes .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#poyetvzpes .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#poyetvzpes .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#poyetvzpes .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#poyetvzpes .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#poyetvzpes .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#poyetvzpes .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#poyetvzpes .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#poyetvzpes div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Concepto" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Concepto</th>
+<th id="Con_25" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Con_25</th>
+<th id="Con_15" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Con_15</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Inventario</td>
+<td class="gt_row gt_center" headers="Con_25">$100m</td>
+<td class="gt_row gt_center" headers="Con_15">$100m</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Concepto">% del Costo Total de Mantener Inventario</td>
+<td class="gt_row gt_center" headers="Con_25">25%</td>
+<td class="gt_row gt_center" headers="Con_15">15%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Costo Total de Mantener Inventario</td>
+<td class="gt_row gt_center" headers="Con_25">$25m</td>
+<td class="gt_row gt_center" headers="Con_15">$15m</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Concepto">Ventas</td>
+<td class="gt_row gt_center" headers="Con_25">$750m</td>
+<td class="gt_row gt_center" headers="Con_15">$750m</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Margen de Ingresos Operacionales*</td>
+<td class="gt_row gt_center" headers="Con_25">4%</td>
+<td class="gt_row gt_center" headers="Con_15">4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Concepto">Ingresos Operacionales</td>
+<td class="gt_row gt_center" headers="Con_25">$30m</td>
+<td class="gt_row gt_center" headers="Con_15">$30m</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Concepto">Ingresos Operacionales absorbidos por Costo Total de Mantener Inventario</td>
+<td class="gt_row gt_center" headers="Con_25">83%</td>
+<td class="gt_row gt_center" headers="Con_15">50%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>*Excluye costos no capitalizados de mantener el inventario (<img src="https://latex.codecogs.com/png.latex?%5C$100m"> inventario x <img src="https://latex.codecogs.com/png.latex?10%5C%25"> costos no capitalizados)</p>
+<p>Comunicar una estimación precisa del porcentaje de la ganancia operativa absorbida por los costos totales de mantener el inventario es una forma efectiva de:</p>
+<ul>
+<li><p>Desarrollar una mejor comprensión del costo relativo de mantener el inventario.</p></li>
+<li><p>Motivar una visión empresarial integral del manejo de inventario.</p></li>
+<li><p>Estimular iniciativas para mejorar el manejo de inventario.</p></li>
+</ul>
+<p>Una buena comunicación también crea un mayor sentido de urgencia en toda la organización para un mejor manejo del inventario.</p>
+<p>La cifra más precisa del <img src="https://latex.codecogs.com/png.latex?25%5C%25"> del costo total de inventario también puede conducir a mejores decisiones en la gestión del transporte. Considere la siguiente ilustración basada en la empresa de la muestra. Supongamos que esta empresa está explorando una iniciativa para reducir el inventario en un <img src="https://latex.codecogs.com/png.latex?20%5C%25">, o <img src="https://latex.codecogs.com/png.latex?%5C$20"> millones, utilizando modos de transporte expeditados. Utilizando la cifra de costo total de mantenimiento de inventario del <img src="https://latex.codecogs.com/png.latex?25%5C%25">, el beneficio bruto anualizado estimado de esta mejora en el transporte es de <img src="https://latex.codecogs.com/png.latex?%5C$5"> millones (<img src="https://latex.codecogs.com/png.latex?%5C$20m"> × <img src="https://latex.codecogs.com/png.latex?25%5C%25">). Manteniendo constantes otros factores como los niveles de servicio, esto significa que la empresa podría gastar hasta <img src="https://latex.codecogs.com/png.latex?%5C$5"> millones más en costos de transporte y seguir igualando. Por el contrario, utilizando la cifra de costo de inventario del <img src="https://latex.codecogs.com/png.latex?15%5C%25">, el beneficio bruto anual estimado y el aumento máximo en los costos de transporte es solo de <img src="https://latex.codecogs.com/png.latex?%5C$3"> millones (<img src="https://latex.codecogs.com/png.latex?%5C$20m"> × <img src="https://latex.codecogs.com/png.latex?15%5C%25">). Para poner la diferencia de <img src="https://latex.codecogs.com/png.latex?%5C$2"> millones en perspectiva, los costos de transporte suelen promediar aproximadamente el <img src="https://latex.codecogs.com/png.latex?4%5C%25"> de las ventas. Utilizando este promedio, los costos de transporte para la empresa de la muestra son de <img src="https://latex.codecogs.com/png.latex?%5C$30"> millones (<img src="https://latex.codecogs.com/png.latex?%5C$750m"> de ventas × <img src="https://latex.codecogs.com/png.latex?4%5C%25">). Por lo tanto, la diferencia de <img src="https://latex.codecogs.com/png.latex?%5C$2"> millones representa casi el <img src="https://latex.codecogs.com/png.latex?7%5C%25"> de los actuales costos de transporte.</p>
+<p><code>Resumen</code>: el uso de un porcentaje más preciso para el costo total de mantener el inventario, que incorpora el costo ponderado promedio del capital antes de impuestos, tiene un gran impacto en las decisiones de transporte y generalmente respalda el uso de modos más rápidos. De manera similar, esta cifra más precisa a menudo afecta las decisiones sobre aprovisionamiento y optimización de la red, que implican equilibrar el gasto operativo con los niveles de inventario.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Aplicaciones Prácticas},
+  date = {2025-02-28},
+  url = {https://cchiquitovalencia.github.io/posts/2025-02-28-practical_applications/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Aplicaciones
+Prácticas.”</span> February 28, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-28-practical_applications/">https://cchiquitovalencia.github.io/posts/2025-02-28-practical_applications/</a>.
+</div></div></section></div> ]]></description>
   <category>Inventarios</category>
   <category>Supply Chain</category>
   <category>Evaluación de Proyectos</category>
@@ -20173,17 +20727,6 @@ PLAN.”</span> February 3, 2025. <a href="https://cchiquitovalencia.github.io/p
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/gantt.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title></title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>AWS</category>
-  <category>EC2</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/</guid>
-  <pubDate>Thu, 30 Jan 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-30-access_console_AWS/deploy_shiny.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
   <title>Desplegar Shiny App</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/</link>
@@ -23037,6 +23580,2385 @@ Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.gi
   <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</guid>
   <pubDate>Mon, 27 Jan 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/fleet-vehicle2.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Introducción a los sistemas de mantenimiento</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El mantenimiento se define como la combinación de actividades mediante las cuales un equipo o un sistema se <em>mantiene en</em>, o se <em>restablece a</em>, un estado en el que puede realizar las funciones designadas. Es un factor importante en la calidad de los productos y puede utilizarse como una estrategia para una competencia exitosa. Las inconsistencias en la operación del equipo de producción dan por resultado una variabilidad excesiva en el producto y, en consecuencia, ocasionan una producción defectuosa. Para producir con un alto nivel de calidad, el equipo de producción debe operar dentro de las especificaciones, las cuales pueden alcanzarse mediante acciones oportunas de mantenimiento.</p>
+<p>Un sistema es un conjunto de componentes que trabajan de manera combinada hacia un objetivo común. El mantenimiento puede ser considerado como un sistema en un conjunto de actividades que se realizan en paralelo con los sistemas de producción.</p>
+<p>Los sistemas de producción generalmente se ocupan de convertir entradas o insumos, como materias primas, mano de obra y procesos, en productos que satisfacen las necesidades de los clientes. La principal salida de un sistema de producción son los productos terminados; una salida secundaria es la falla de un equipo. Esta salida secundaria genera una demanda de mantenimiento. El sistema de mantenimiento toma esto como una entrada y le agrega conocimiento experto, mano de obra y repuestos, y produce un equipo en buenas condiciones que ofrece una capacidad de producción.</p>
+<p>La principal meta general de un sistema de producción es elevar al máximo las utilidades a partir de las oportunidades disponibles en el mercado, y la meta secundaria tiene que ver con los aspectos económicos y técnicos del proceso de conversión. Los sistemas de mantenienmiento también contribuyen al logro de estas metas al incrementar las utilidades y la satisfacción del cliente. Éstas se logran reduciendo al mínimo el tiempo muerto de la planta, mejorando la calidad, incrementando la productividad y entregando oportunamente los pedidos, o servicios, a los clientes. Los sistemas de producción han sido optimizados como un sistema integral y son estudiados de manera extensa en comparación con los sistemas de mantenimiento. Es claro que resulta necesario adoptar esta tendencia en el mantenimiento.</p>
+<p>Desde hace mucho tiempo se ha tomado en cuenta el papel de los sistemas de mantenimiento en las empresas manufactureras; sin embargo, es claro que las funciones del mantenimiento también son esenciales en las empresas de servicios como hospitales, bancos, instituciones educativas y tiendas.</p>
+<p>Un sistema de mantenimiento puede verse como un modelo sencillo de <em>entrada-salida</em>. Las entradas de dicho modelo son mano de obra, administración, herramientas, repuestos, equipo, etc., y la salida es equipo funcionando, confiable y bien configurado para lograr la operación planeada de la planta. Esto nos permite optimizar los recursos para aumentar al máximo las salidas de un sistema de mantenimiento.</p>
+</section>
+<section id="actividades-de-planeación-del-mantenimiento" class="level2">
+<h2 class="anchored" data-anchor-id="actividades-de-planeación-del-mantenimiento">Actividades de planeación del mantenimiento</h2>
+<p>Generalmente se incluyen las siguientes:</p>
+<section id="filosofía-del-mantenimiento" class="level3">
+<h3 class="anchored" data-anchor-id="filosofía-del-mantenimiento">Filosofía del mantenimiento</h3>
+<p>La filosofía del mantenimiento de una planta es básicamente la de tener un nivel mínimo de personal de mantenimiento que sea consistente con la <em>optimización de la producción</em> y la <em>disponibilidad de la planta</em> sin que se comprometa la <em>seguridad</em>. Para lograr esta filosofía, las siguientes estrategias pueden desempeñar un papel eficaz si se aplican en la combinación y forma correctas:</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/images/clipboard-2962206774.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Estrategias de mantenimiento.
+</figcaption>
+</figure>
+</div>
+<section id="mantenimiento-correctivo-o-por-fallas" class="level4">
+<h4 class="anchored" data-anchor-id="mantenimiento-correctivo-o-por-fallas">Mantenimiento correctivo o por fallas</h4>
+<p>Este tipo de mantenimiento sólo se realiza cuando el equipo es incapaz de seguir operando. No hay elemento de planeación para este tipo de mantenimiento. Éste es el caso que se presenta cuando el costo adicional de otros tipos de mantenimiento no puede justificarse. Este tipo de estrategia a veces se conoce como estrategia de <em>operación-hasta-que-falle</em>. Se aplica principalmente en los componentes electrónicos.</p>
+</section>
+<section id="mantenimiento-preventivo-con-base-en-el-tiempo-o-en-el-uso" class="level4">
+<h4 class="anchored" data-anchor-id="mantenimiento-preventivo-con-base-en-el-tiempo-o-en-el-uso">Mantenimiento preventivo con base en el tiempo o en el uso</h4>
+<p>El mantenimiento preventivo es cualquier mantenimiento planeado que se lleva a cabo para hacer frente a <em>fallas potenciales</em>. Puede realizarse con base en el uso o las condiciones del equipo. El mantenimiento preventivo con base en el uso o en el tiempo se lleva a cabo de acuerdo con las <strong>horas de funcionamiento</strong> o un <strong>calendario establecido</strong>. Requiere un alto nivel de planeación. Las rutinas específicas que se realizan son conocidas, así como sus frecuencias. En la determinación de la frecuencia generalmente se necesitan conocimientos acerca de la distribución de las fallas o la confiabilidad del equipo. Aquí lo resalto porque habrá un post sobre cómo optimizar el plan de mantenimiento teniendo en cuenta estas variables.</p>
+</section>
+<section id="mantenimiento-preventivo-con-base-en-las-condiciones" class="level4">
+<h4 class="anchored" data-anchor-id="mantenimiento-preventivo-con-base-en-las-condiciones">Mantenimiento preventivo con base en las condiciones</h4>
+<p>Este mantenimiento preventivo se lleva a cabo con base en las condiciones conocidas del equipo. La condición del equipo se determina <em>vigilando</em> los parámetros clave del equipo cuyos valores se ven afectados por la condición de éste. A esta estrategia también se le conoce como mantenimiento predictivo.</p>
+</section>
+<section id="mantenimiento-de-oportunidad" class="level4">
+<h4 class="anchored" data-anchor-id="mantenimiento-de-oportunidad">Mantenimiento de oportunidad</h4>
+<p>Este tipo de mantenimiento se lleva a cabo cuando surge la oportunidad. Tales oporturnidades pueden presentarse durante los periodos de paros generales programados de un sistema en particular, y pueden utilizarse para efectuar tareas conocidas de mantenimiento.</p>
+</section>
+<section id="detección-de-fallas" class="level4">
+<h4 class="anchored" data-anchor-id="detección-de-fallas">Detección de fallas</h4>
+<p>La detección de fallas es un acto o inspección que se lleva a cabo para evaluar el nivel de presencia inicial de fallas. Un ejemplo de detección de fallas es el de la verificación de la llanta de repuesto de un automóvil antes de emprender un viaje largo.</p>
+</section>
+<section id="modificación-del-diseño" class="level4">
+<h4 class="anchored" data-anchor-id="modificación-del-diseño">Modificación del diseño</h4>
+<p>La modificación del diseño se lleva a cabo para hacer que un equipo alcance una condición que sea aceptable en ese momento. Esta estrategia implica mejoras y, ocasionalmente, expansión de fabricación y capacidad. La modificación del diseño por lo general requiere una coordinación con la función de ingeniería y otros departamentos dentro de la organización.</p>
+</section>
+<section id="reparación-general" class="level4">
+<h4 class="anchored" data-anchor-id="reparación-general">Reparación general</h4>
+<p>La reparación general es un examen completo y el restablecimiento de un equipo o sus componentes principales a una condición aceptable. Ésta es generalmente una tarea de gran envergadura.</p>
+</section>
+<section id="reemplazo" class="level4">
+<h4 class="anchored" data-anchor-id="reemplazo">Reemplazo</h4>
+<p>Esta estrategia implica reemplazar el equipo en lugar de darle mantenimiento. Puede ser un reemplazo planeado o un reemplazo ante una falla.</p>
+<p>Cada una de estas estrategias de mantenimiento tiene una función en la operación de la planta. Es la <em>mezcla óptima</em> de estas estrategias la que da por resultado la filosofía de mantenimiento más eficaz. El tamaño de la planta y su nivel de operación planeado, junto con la estrategia de mantenimiento aplicable, pueden ayudar a estimar la carga de mantenimiento o las salidas deseadas de mantenimiento. La Figura 1 resume las estrategias.</p>
+</section>
+</section>
+<section id="pronóstico-de-la-carga-de-mantenimiento" class="level3">
+<h3 class="anchored" data-anchor-id="pronóstico-de-la-carga-de-mantenimiento">Pronóstico de la carga de mantenimiento</h3>
+<p>Este pronóstico es el proceso mediante el cual se predice la carga de mantenimiento. La carga de mantenimiento en una platnta dada varía aleatoriamente y, entre otros factores, puede ser una función de la edad del equipo, el nivel de su uso, la calidad del mantenimiento, factores climáticos y las destrezas de los trabajadores de mantenimiento. El pronóstico de la carga de mantenimiento es esencial para alcanzar un nivel deseado de eficacia y uso de los recursos, y sin éste, muchas de las funciones de mantenimiento no pueden realizarse bien.</p>
+</section>
+<section id="planeación-de-la-capacidad-de-mantenimiento" class="level3">
+<h3 class="anchored" data-anchor-id="planeación-de-la-capacidad-de-mantenimiento">Planeación de la capacidad de mantenimiento</h3>
+<p>La planeación de la capacidad de mantenimiento determina los recursos necesarios para satisfacer la demanda de trabajos de mantenimiento. Estos recursos incluyen: la mano de obra, materiales, repuestos, equipo y herramientas. Entre los aspectos fundamentales de la capacidad de mantenimiento se incluyen la cantidad de trabajadores de mantenimiento y sus habilidades, las herramientas requeridas para el mantenimiento, etc.</p>
+<p>Debido a que la carga de mantenimiento es una variable aleatoria, no se puede determinar el número exacto de los diversos tipos de técnicos. Por lo tanto, sin <em>pronósticos razonablemente exactos</em> de demanda futura de trabajos de mantenimiento, no sería posible realizar una planeación adecuada de la capacidad a largo plazo.</p>
+<p>Para utilizar mejor sus recursos de mano de obra, las organizaciones tienden a emplear una menor cantidad de técnicos de la que han anticipado, lo cual probablemente dará por resultado una acumulación de trabajos de mantenimiento pendientes. Éstos pueden completarse haciendo que los trabajadores existentes laboren tiempo extra o buscando ayuda exterior de contratistas. Los trabajos pendientes también pueden desahogarse cuando la carga de mantenimiento es menor que la capacidad. Ésta es realmente la principal razón de <strong>mantener una reserva de trabajos pendientes</strong>. La estimación a largo plazo es una de las áreas críticas de la planeación de la capacidad de mantenimiento, pero que aún no ha sido bien desarrollada.</p>
+</section>
+<section id="organización-del-mantenimiento" class="level3">
+<h3 class="anchored" data-anchor-id="organización-del-mantenimiento">Organización del mantenimiento</h3>
+<p>Dependiendo de la carga de mantenimiento, el tamaño de la planta, las destrezas de los trabajadores, etc., el mantenimiento se puede organizar por departamentos, por área o en forma centralizada. Cada tipo de organización tiene sus ventajas y desventajas. En las organizaciones grandes, la descentralización de la función de mantenimiento puede producir un timpo de respuesta más rápido y lograr que los trabajadores se familiaricen más con los problemas de una sección particular de la planta. Sin embargo, la creación de un número de pequeñas unidades tiende a reducir la flexibilidad del sistema de mantenimiento como un todo.</p>
+<p>La gama de habilidades disponibles se reduce y el uso de la mano de obra es generalmente menor que en una unidad de mantenimiento centralizada. En algunos casos, puede implantarse una solución de compromiso, denominada sistema de cascada. Este sistema permite que las unidades de mantenimiento del área de producción se enlacen con la unidad de mantenimiento central.</p>
+</section>
+<section id="programación-del-mantenimiento" class="level3">
+<h3 class="anchored" data-anchor-id="programación-del-mantenimiento">Programación del mantenimiento</h3>
+<p>La programación del mantenimiento es el proceso de asignación de recursos y personal para los trabajos que tienen que realizarse en ciertos momentos. Es necesario asegurar que los trabajadores, las piezas y los materiales requeridos estén disponibles antes de poder programar una tarea de mantenimiento. El equipo crítico de una planta se refiere al equipo cuya falla detendrá el proceso de producción o pondrá en riesgo vidas humanas y la seguridad. El trabajo de mantenimiento para estos equipos se maneja bajo prioridades y es atendido antes de emprender cualquier otro trabajo. La ocurrencia de tales trabajos no puede predecirse con certeza, de modo que los programas para el mantenimiento planeado en estos casos tienen que ser revisados.</p>
+<p>En la eficacia de un sistema de mantenimiento influye mucho el programa de mantenimiento que se haya desarrollado y su capacidad de adaptarse a los cambios. Un alto nivel de eficacia en el programa de mantenimiento es señal de un alto nivel de eficacia en el propio mantenimiento.</p>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Introducción a Los Sistemas de Mantenimiento},
+  date = {2025-01-27},
+  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Introducción a Los Sistemas de
+Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/">https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/</a>.
+</div></div></section></div> ]]></description>
+  <category>Mantenimiento</category>
+  <category>Preventivo</category>
+  <category>Fallas</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/</guid>
+  <pubDate>Mon, 27 Jan 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/gear_vehicle.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Shopify scraping con R</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Aquí tenemos otro trabajo de Web Scraping:</p>
+<section id="descripción-del-trabajo" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-del-trabajo">Descripción del trabajo:</h3>
+<p><img src="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/images/clipboard-3009796380.png" class="img-fluid"></p>
+<p>Esta vez tenemos un poco más de complejidad. A medida que vamos desarrollando el código vamos a ir descubriendo ciertos problemas a considerar.</p>
+<p>Miremos la página:</p>
+<p><img src="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/images/clipboard-3866221958.png" class="img-fluid"></p>
+</section>
+<section id="estrategia" class="level3">
+<h3 class="anchored" data-anchor-id="estrategia">Estrategia:</h3>
+<p>Vamos a:</p>
+<ol type="1">
+<li><p>Identificar la cantidad de páginas que contiene la web.</p>
+<p><img src="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/images/clipboard-3708393142.png" class="img-fluid"></p></li>
+<li><p>Para cada página vamos a almacenar las URL de los productos.</p></li>
+<li><p>Entraremos a cada URL para identificar la cantidad de variantes que tiene el producto. Hay 3 categorias: condición, color y tamaño.</p>
+<p><img src="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/images/clipboard-1139309452.png" class="img-fluid"></p></li>
+<li><p>Elegimos cada uno de los botones y extraemos la información solicitada.</p></li>
+<li><p>Tomaremos el tiempo que tarda cada consulta para estimar un requerido de horas.</p></li>
+</ol>
+</section>
+<section id="código" class="level3">
+<h3 class="anchored" data-anchor-id="código">Código:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cargamos librería</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(selenider)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()    masks stats::filter()
+✖ tibble::has_name() masks selenider::has_name()
+✖ dplyr::lag()       masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(RSelenium)</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Definimos la página para extraer los datos</span></span>
+<span id="cb3-4">url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://www.cartlow.com/uae/en/q"</span></span>
+<span id="cb3-5"></span>
+<span id="cb3-6">withr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">deferred_clear</span>()</span>
+<span id="cb3-7"></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># En nuestra sesión permitiremos 30 segundos</span></span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># session &lt;- selenider_session(</span></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         "selenium",</span></span>
+<span id="cb3-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         browser = "firefox",</span></span>
+<span id="cb3-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         timeout = 30,</span></span>
+<span id="cb3-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         .env = rlang::caller_env(),</span></span>
+<span id="cb3-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         view = FALSE,</span></span>
+<span id="cb3-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         quiet = TRUE</span></span>
+<span id="cb3-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># )</span></span></code></pre></div>
+</div>
+<p>Definimos las funciones que nos ayudarán para el scraping:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">extraer_botones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(boton){</span>
+<span id="cb4-2">        </span>
+<span id="cb4-3">        desc_botones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> boton <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-4">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> .x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-5">                                   purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> .x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>class)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-6">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-7">        </span>
+<span id="cb4-8">        desc_botones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"active"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, desc_botones)</span>
+<span id="cb4-9">        </span>
+<span id="cb4-10">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">iter_botones =</span> desc_botones))</span>
+<span id="cb4-11">        </span>
+<span id="cb4-12">}</span>
+<span id="cb4-13"></span>
+<span id="cb4-14">extrae_imagenes <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(producto){</span>
+<span id="cb4-15">        </span>
+<span id="cb4-16">        mostrando <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".cz-thumblist-holder.sm-scrollbar"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-17">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"a"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-18">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.list</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-19">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_attrs</span>())</span>
+<span id="cb4-20">        </span>
+<span id="cb4-21">        elegir_activos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> mostrando <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-22">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> .x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>class) </span>
+<span id="cb4-23">        </span>
+<span id="cb4-24">        escondidos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> elegir_activos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-25">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> stringr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_detect</span>(.x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hidden"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-26">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-27">        </span>
+<span id="cb4-28">        show_block <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> elegir_activos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-29">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> stringr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_detect</span>(.x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"show_block"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-30">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-31">        </span>
+<span id="cb4-32">        real_mostrar <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> escondidos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> show_block</span>
+<span id="cb4-33">        </span>
+<span id="cb4-34">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Si la suma es cero implica que no hay otras variantes</span></span>
+<span id="cb4-35">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Las imagenes todas son de esa variante</span></span>
+<span id="cb4-36">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(escondidos) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) {</span>
+<span id="cb4-37">                </span>
+<span id="cb4-38">                filtrando <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(escondidos)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-39">                        purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(.x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>())</span>
+<span id="cb4-40">                </span>
+<span id="cb4-41">        } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> {</span>
+<span id="cb4-42">                </span>
+<span id="cb4-43">                filtrando <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> real_mostrar</span>
+<span id="cb4-44">                </span>
+<span id="cb4-45">        }</span>
+<span id="cb4-46">        </span>
+<span id="cb4-47">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#filtrando &lt;- elegir_activos |&gt; </span></span>
+<span id="cb4-48">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#       purrr::map(~ stringr::str_detect(.x, "show_block"))</span></span>
+<span id="cb4-49">        </span>
+<span id="cb4-50">        mostrando[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">which</span>(filtrando <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-51">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> .x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data-fullsizeimgsrc</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-52">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-53">        </span>
+<span id="cb4-54">}</span>
+<span id="cb4-55"></span>
+<span id="cb4-56">extraer_info_variante <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(producto){</span>
+<span id="cb4-57">        </span>
+<span id="cb4-58">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#- Title                xxx</span></span>
+<span id="cb4-59">        titulo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".cart-info.text-left"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-60">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_element</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"h1"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-61">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>()</span>
+<span id="cb4-62">        </span>
+<span id="cb4-63">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Variants</span></span>
+<span id="cb4-64">        variante <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ss</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".mr-md-3.mr-sm-1"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-65">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-66">                               <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>())</span>
+<span id="cb4-67">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Images</span></span>
+<span id="cb4-68">        imagenes_url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">extrae_imagenes</span>() </span>
+<span id="cb4-69">        </span>
+<span id="cb4-70">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Price</span></span>
+<span id="cb4-71">        precio_final <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".cart-info.text-left"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-72">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_element</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#var_price"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-73">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>()</span>
+<span id="cb4-74">        </span>
+<span id="cb4-75">        precio_anterior <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".cart-info.text-left"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-76">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_element</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#var_market_price"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-77">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>()</span>
+<span id="cb4-78">        </span>
+<span id="cb4-79">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Encuentra la descripcion</span></span>
+<span id="cb4-80">        descripcion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".des-pro-sec"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-81">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"li"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-82">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">with</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>(x)))</span>
+<span id="cb4-83">        </span>
+<span id="cb4-84">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Encuentra la categoria</span></span>
+<span id="cb4-85">        categoria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".container.npdp-design"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-86">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_element</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".breadcrumb-custom"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-87">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"a"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-88">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"href"</span>))</span>
+<span id="cb4-89">        </span>
+<span id="cb4-90">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">titulo =</span> titulo,</span>
+<span id="cb4-91">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">imagenes_url =</span> imagenes_url,</span>
+<span id="cb4-92">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">variante =</span> variante,</span>
+<span id="cb4-93">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">precio_final =</span> precio_final,</span>
+<span id="cb4-94">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">precio_anterior =</span> precio_anterior,</span>
+<span id="cb4-95">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">descripcion =</span> descripcion,</span>
+<span id="cb4-96">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">categoria =</span> categoria))</span>
+<span id="cb4-97">}</span>
+<span id="cb4-98"></span>
+<span id="cb4-99"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Consolida todas las URL de la pagina mostrada</span></span>
+<span id="cb4-100">leer_direcciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(){</span>
+<span id="cb4-101">        </span>
+<span id="cb4-102">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".products-grid"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-103">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".productImage"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-104">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-105">                               <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_element</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"a"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-106">                               <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"href"</span>))</span>
+<span id="cb4-107">        </span>
+<span id="cb4-108">}</span>
+<span id="cb4-109"></span>
+<span id="cb4-110">pasar_pagina <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(){</span>
+<span id="cb4-111">        </span>
+<span id="cb4-112">        paginacion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".pagination"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-113">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"li"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-114">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.list</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-115">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_attrs</span>()) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-116">                purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> .x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>class) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-117">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-118">        </span>
+<span id="cb4-119">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"."</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">..$"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" "</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"."</span>, paginacion[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(paginacion)])))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-120">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_click</span>()</span>
+<span id="cb4-121">        </span>
+<span id="cb4-122">}</span>
+<span id="cb4-123"></span>
+<span id="cb4-124">convertir_string <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(button){</span>
+<span id="cb4-125">        </span>
+<span id="cb4-126">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"[.]$"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">..$"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" "</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"."</span>, button)))</span>
+<span id="cb4-127">        </span>
+<span id="cb4-128">}</span>
+<span id="cb4-129"></span>
+<span id="cb4-130">mi_funcion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(listado_botones_new){</span>
+<span id="cb4-131">        </span>
+<span id="cb4-132">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Aquí: "</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(listado_botones_new<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>iter_botones), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" a leer</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))</span>
+<span id="cb4-133">        </span>
+<span id="cb4-134">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (btn <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(listado_botones_new<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>iter_botones)) {</span>
+<span id="cb4-135">                </span>
+<span id="cb4-136">                skip_next_loop <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span></span>
+<span id="cb4-137">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"___Iniciando lectura del boton: "</span>, btn, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))</span>
+<span id="cb4-138">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tryCatch</span>(</span>
+<span id="cb4-139">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expr =</span> {</span>
+<span id="cb4-140">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ss(paste0(".", convertir_string(listado_botones$iter_botones[btn]))) |&gt; </span></span>
+<span id="cb4-141">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         as.list() |&gt; </span></span>
+<span id="cb4-142">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#         lapply(\(x) x |&gt; elem_click())</span></span>
+<span id="cb4-143">                                </span>
+<span id="cb4-144">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ss</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"button"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#elem_filter(is_enabled) |&gt;  str()</span></span>
+<span id="cb4-145">                                        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_filter</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">has_exact_text</span>(listado_botones_new<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>iter_botones[btn])) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-146">                                        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-147">                                                       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_click</span>())</span>
+<span id="cb4-148">                                </span>
+<span id="cb4-149">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.sleep</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb4-150">                                </span>
+<span id="cb4-151">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#cat(paste0("", "\n"))</span></span>
+<span id="cb4-152">                                guardar_info <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">extraer_info_variante</span>()</span>
+<span id="cb4-153">                                </span>
+<span id="cb4-154">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"___Terminamos lectura de variantes"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))</span>
+<span id="cb4-155">                                info_producto[[btn]] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> guardar_info</span>
+<span id="cb4-156">                        },</span>
+<span id="cb4-157">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">error =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(e) {</span>
+<span id="cb4-158">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Manejar el error aquí</span></span>
+<span id="cb4-159">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Error en la iteración"</span>, btn, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">": "</span>, e<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>message))</span>
+<span id="cb4-160">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Continuar con el bucle for</span></span>
+<span id="cb4-161">                                skip_next_loop <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb4-162">                        }</span>
+<span id="cb4-163">                )</span>
+<span id="cb4-164">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (skip_next_loop) {</span>
+<span id="cb4-165">                        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">next</span></span>
+<span id="cb4-166">                }</span>
+<span id="cb4-167">        }</span>
+<span id="cb4-168">        </span>
+<span id="cb4-169">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(info_producto)</span>
+<span id="cb4-170">}</span>
+<span id="cb4-171"></span>
+<span id="cb4-172">otra_funcion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(consolidar_direcciones) {</span>
+<span id="cb4-173">        ejecutar <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb4-174">        timings <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb4-175">        </span>
+<span id="cb4-176">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (product <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(consolidar_direcciones)) {</span>
+<span id="cb4-177">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tryCatch</span>(</span>
+<span id="cb4-178">                        {</span>
+<span id="cb4-179">                                tictoc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tic</span>(product)</span>
+<span id="cb4-180">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Iniciamos scraping del producto: "</span>, product, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-181">                                </span>
+<span id="cb4-182">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">open_url</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://www.cartlow.com/"</span>, consolidar_direcciones[[product]]))</span>
+<span id="cb4-183">                                </span>
+<span id="cb4-184">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.sleep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb4-185">                                </span>
+<span id="cb4-186">                                texto_botones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".cart-info.text-left"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-187">                                        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".prd-condition.mb-3"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-188">                                        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.list</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-189">                                        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".btn"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-190">                                                       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>()))</span>
+<span id="cb4-191">                                </span>
+<span id="cb4-192">                                listado_botones_new <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">iter_botones =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>(texto_botones))</span>
+<span id="cb4-193">                                </span>
+<span id="cb4-194">                                info_producto <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"list"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(listado_botones_new<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>iter_botones))</span>
+<span id="cb4-195">                                guardar_info <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb4-196">                                </span>
+<span id="cb4-197">                                ejecutar[[product]] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mi_funcion</span>(listado_botones_new)</span>
+<span id="cb4-198">                                </span>
+<span id="cb4-199">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Terminamos scraping del producto: "</span>, product, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-200">                                tictoc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">toc</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">log =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">quiet =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb4-201">                                </span>
+<span id="cb4-202">                        },</span>
+<span id="cb4-203">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">error =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(e) {</span>
+<span id="cb4-204">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Error occurred while processing product"</span>, product, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-205">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># You can log the error, send an email, or do something else</span></span>
+<span id="cb4-206">                                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># For example, you can log the error to a file:</span></span>
+<span id="cb4-207">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sink</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"error.log"</span>)</span>
+<span id="cb4-208">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Error: "</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str</span>(e), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-209">                                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sink</span>()</span>
+<span id="cb4-210">                        }</span>
+<span id="cb4-211">                )</span>
+<span id="cb4-212">        }</span>
+<span id="cb4-213">        </span>
+<span id="cb4-214">        log.txt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tictoc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tic.log</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb4-215">        log.lst <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tictoc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tic.log</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb4-216">        </span>
+<span id="cb4-217">        tictoc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tic.clearlog</span>()</span>
+<span id="cb4-218">        </span>
+<span id="cb4-219">        timings <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(log.lst, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>toc <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tic))</span>
+<span id="cb4-220">        </span>
+<span id="cb4-221">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ejecutar =</span> ejecutar, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tiempos =</span> timings))</span>
+<span id="cb4-222">}</span>
+<span id="cb4-223"></span>
+<span id="cb4-224">calcula_cantidad_variante <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(bd){</span>
+<span id="cb4-225">        </span>
+<span id="cb4-226">        bd<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ejecutar <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-227">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-228">                               purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>(.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>variante)))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-229">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-230">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unlist</span>()</span>
+<span id="cb4-231">        </span>
+<span id="cb4-232">}</span>
+<span id="cb4-233"></span>
+<span id="cb4-234">organizar_tiempos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(tabla, bd){</span>
+<span id="cb4-235">        </span>
+<span id="cb4-236">        entregar <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tabla <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-237">                dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cantidad =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calcula_cantidad_variante</span>(bd)[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(tabla[,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])]) </span>
+<span id="cb4-238">        </span>
+<span id="cb4-239">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(entregar) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tiempos"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cantidad"</span>)</span>
+<span id="cb4-240">        </span>
+<span id="cb4-241">        entregar</span>
+<span id="cb4-242">}</span></code></pre></div>
+</details>
+</div>
+<p>Declaradas las funciones que vamos a usar, empecemos a ejecutar:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Abrir la página</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">open_url</span>(url)</span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.sleep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb5-5"></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Identificar cantidad de paginas</span></span>
+<span id="cb5-7">paginas <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".pagination"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb5-8">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">find_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"li"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb5-9">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(\(x) x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb5-10">                       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">elem_text</span>())</span>
+<span id="cb5-11"></span>
+<span id="cb5-12">paginas <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(paginas[[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(paginas)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]])</span>
+<span id="cb5-13"></span>
+<span id="cb5-14"></span>
+<span id="cb5-15">consolidar_direcciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb5-16"></span>
+<span id="cb5-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Obtener URL de cada producto</span></span>
+<span id="cb5-18"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (pagina <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>) {</span>
+<span id="cb5-19">        </span>
+<span id="cb5-20">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Estamos en la página: "</span>, pagina, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))</span>
+<span id="cb5-21">        </span>
+<span id="cb5-22">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Leer las URL de las imagenes</span></span>
+<span id="cb5-23">        direcciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">leer_direcciones</span>()</span>
+<span id="cb5-24">        </span>
+<span id="cb5-25">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Agregar las URL</span></span>
+<span id="cb5-26">        consolidar_direcciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">append</span>(consolidar_direcciones,</span>
+<span id="cb5-27">                                         direcciones)</span>
+<span id="cb5-28">        </span>
+<span id="cb5-29">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pasar a la siguiente página</span></span>
+<span id="cb5-30">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pasar_pagina</span>()</span>
+<span id="cb5-31">        </span>
+<span id="cb5-32">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cat</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"...pasando a la siguiente página"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>))</span>
+<span id="cb5-33">        </span>
+<span id="cb5-34">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.sleep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb5-35">        </span>
+<span id="cb5-36">}</span></code></pre></div>
+</div>
+<p>Por ahora solo vamos a explorar el tiempo que tarda la lectura de datos en las primeras 3 páginas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">bd_info <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb6-2">bd_info <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">otra_funcion</span>(consolidar_direcciones)</span></code></pre></div>
+</div>
+<p>Aquí deberás hacer un salto de fe y creerme que la siguiente información no la inventé, sino que son los resultados del código ejecutado de manera local. Guardé los datos en 3 archivos diferentes adjuntos. Habrás notado que los dos anteriores chunks estaban programados para no ejecutarse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">bd_info <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readRDS</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">file =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./DBcartlowNOJS.RDS"</span>)</span>
+<span id="cb7-2">bd_info1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readRDS</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">file =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./DBcartlow1120.RDS"</span>)</span>
+<span id="cb7-3">bd_info2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readRDS</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">file =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./DBcartlow2150.RDS"</span>)</span>
+<span id="cb7-4">    </span>
+<span id="cb7-5">tbl_tiempos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(bd_info, bd_info1, bd_info2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-6">        purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">organizar_tiempos</span>(.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tiempos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(),</span>
+<span id="cb7-7">                                       .x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-8">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_rows</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-9">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> tiempos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> cantidad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-10">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(cantidad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span></code></pre></div>
+</div>
+<p>Revisamos gráficamente la distribución de tiempos de extracción por la cantidad de variantes que contenga el producto:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">tbl_tiempos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb8-2">        ggplot2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(ggplot2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(cantidad), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(tiempos<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span>)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-3">        ggplot2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_boxplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-4">        hrbrthemes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_ipsum</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-5">        ggplot2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-6">        ggplot2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cantidad de variantes"</span>,</span>
+<span id="cb8-7">                      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tiempo de búsqueda (min)"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/index_files/figure-html/graficar_1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Calculamos una variable para estimar el total:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">dist_variantes <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tbl_tiempos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-2">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(cantidad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-3">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cuenta =</span> dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(),</span>
+<span id="cb9-4">                         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(media), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-5">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prop =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> cuenta <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(cuenta),<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span>
+<span id="cb9-6"></span>
+<span id="cb9-7">dist_variantes <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-8">    gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div id="anezbcfbte" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#anezbcfbte table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#anezbcfbte thead, #anezbcfbte tbody, #anezbcfbte tfoot, #anezbcfbte tr, #anezbcfbte td, #anezbcfbte th {
+  border-style: none;
+}
+
+#anezbcfbte p {
+  margin: 0;
+  padding: 0;
+}
+
+#anezbcfbte .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#anezbcfbte .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#anezbcfbte .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#anezbcfbte .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#anezbcfbte .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#anezbcfbte .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#anezbcfbte .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#anezbcfbte .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#anezbcfbte .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#anezbcfbte .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#anezbcfbte .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#anezbcfbte .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#anezbcfbte .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#anezbcfbte .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#anezbcfbte .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#anezbcfbte .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#anezbcfbte .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#anezbcfbte .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#anezbcfbte .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#anezbcfbte .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#anezbcfbte .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#anezbcfbte .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#anezbcfbte .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#anezbcfbte .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#anezbcfbte .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#anezbcfbte .gt_left {
+  text-align: left;
+}
+
+#anezbcfbte .gt_center {
+  text-align: center;
+}
+
+#anezbcfbte .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#anezbcfbte .gt_font_normal {
+  font-weight: normal;
+}
+
+#anezbcfbte .gt_font_bold {
+  font-weight: bold;
+}
+
+#anezbcfbte .gt_font_italic {
+  font-style: italic;
+}
+
+#anezbcfbte .gt_super {
+  font-size: 65%;
+}
+
+#anezbcfbte .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#anezbcfbte .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#anezbcfbte .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#anezbcfbte .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#anezbcfbte .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#anezbcfbte .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#anezbcfbte .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#anezbcfbte .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#anezbcfbte div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="cantidad" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cantidad</th>
+<th id="cuenta" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cuenta</th>
+<th id="media" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">media</th>
+<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">prop</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="cantidad">1</td>
+<td class="gt_row gt_right" headers="cuenta">23</td>
+<td class="gt_row gt_right" headers="media">97.16</td>
+<td class="gt_row gt_right" headers="prop">47.92</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="cantidad">2</td>
+<td class="gt_row gt_right" headers="cuenta">7</td>
+<td class="gt_row gt_right" headers="media">46.38</td>
+<td class="gt_row gt_right" headers="prop">14.58</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="cantidad">3</td>
+<td class="gt_row gt_right" headers="cuenta">7</td>
+<td class="gt_row gt_right" headers="media">55.80</td>
+<td class="gt_row gt_right" headers="prop">14.58</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="cantidad">4</td>
+<td class="gt_row gt_right" headers="cuenta">5</td>
+<td class="gt_row gt_right" headers="media">50.33</td>
+<td class="gt_row gt_right" headers="prop">10.42</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="cantidad">5</td>
+<td class="gt_row gt_right" headers="cuenta">1</td>
+<td class="gt_row gt_right" headers="media">62.30</td>
+<td class="gt_row gt_right" headers="prop">2.08</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="cantidad">6</td>
+<td class="gt_row gt_right" headers="cuenta">2</td>
+<td class="gt_row gt_right" headers="media">36.38</td>
+<td class="gt_row gt_right" headers="prop">4.17</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="cantidad">8</td>
+<td class="gt_row gt_right" headers="cuenta">2</td>
+<td class="gt_row gt_right" headers="media">109.35</td>
+<td class="gt_row gt_right" headers="prop">4.17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="cantidad">11</td>
+<td class="gt_row gt_right" headers="cuenta">1</td>
+<td class="gt_row gt_right" headers="media">212.98</td>
+<td class="gt_row gt_right" headers="prop">2.08</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Luego de revisar la cantidad de productos por página (30) y la cantidad de páginas promedio (920) podemos hacer una estimación de la cantidad de horas que podríamos tardar haciendo el ejercicio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">datos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(dist_variantes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>cantidad,</span>
+<span id="cb10-2">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">920</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>,</span>
+<span id="cb10-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb10-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> dist_variantes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>prop)</span>
+<span id="cb10-5"></span>
+<span id="cb10-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(datos) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-7">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-8">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cbind</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> dist_variantes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>media) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-9">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total =</span> Freq <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> media <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(datos)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-10">        dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(total)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3600</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     total
+1 1453.796</code></pre>
+</div>
+</div>
+</section>
+<section id="consideraciones" class="level3">
+<h3 class="anchored" data-anchor-id="consideraciones">Consideraciones:</h3>
+<ul>
+<li><p>Leer cada página de resultados (aproximadamente entre 915 y 925) toma unos 5 segundos. Por defecto, se muestran 30 productos en cada vista.</p></li>
+<li><p>Identificar el número de opciones por producto (varía entre 1 y 11 según los resultados obtenidos, aunque imagino que es posible encontrar más) toma unos 20 segundos.</p></li>
+<li><p>Identificar los datos de variantes para cada producto (depende de la conexión a Internet y el procesador, estoy trabajando localmente) toma unos 110 segundos.</p></li>
+<li><p>Dependiendo de lo que estés tratando de lograr con el scraping web, el tiempo de búsqueda puede aumentar significativamente, lo que está influenciado por la cantidad de opciones que tiene cada producto. Si tienes 3 opciones para “Condición”, 5 para “Color” y 3 para “Talla”, seguramente sabes que no son 11 iteraciones para realizar.</p></li>
+<li><p>Con los datos que obtuve, se podría estimar un total de 920 páginas * 30 productos por página = 1438 horas. Hay un 47% de probabilidad de que los productos tengan solo 1 variante, un 15% para 2 y un 3%.</p></li>
+<li><p>Es probablemente infructífero hacerlo con solo un ordenador. Debes encontrar una forma de hacerlo en paralelo.</p></li>
+<li><p>Debes encontrar una forma de garantizar que no se repita la información en la base de datos que uses.</p></li>
+<li><p>Ten en cuenta que tendrás que desarrollar una idea para manejar la información cuando los productos cambian en la página.</p></li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2024,
+  author = {Chiquito Valencia, Cristian},
+  title = {Shopify Scraping Con {R}},
+  date = {2024-12-19},
+  url = {https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-chiquito_valencia2024" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2024. <span>“Shopify Scraping Con
+R.”</span> December 19, 2024. <a href="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/">https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Web Scraping</category>
+  <category>Shopify</category>
+  <category>selenider</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/</guid>
+  <pubDate>Thu, 19 Dec 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2024-12-19-cartlow_scraping/cartlow_image.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
