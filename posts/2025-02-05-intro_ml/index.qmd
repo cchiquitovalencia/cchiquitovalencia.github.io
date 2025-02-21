@@ -11,7 +11,7 @@ citation:
   url: https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/
 image: concepts_ML.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
-
+code-fold: true    
 ---
 
 ## Introducción
@@ -257,7 +257,7 @@ La álgebra lineal es la rama de matemáticas que se ocupa de las transformacion
 
 Las ecuaciones lineales son más fáciles de describir matemáticamente y pueden combinarse con transformaciones de modelos no lineales. Hay dos propiedades de una ecuación para ser denominada lineal - **homogeneidad** y **superposición**. El conocimiento de ecuaciones lineales puede ser conveniente para modelar sistemas lineales. Un ejemplo de ecuación lineal es $p_1x_1 + p_2x_2 + ... + p_nx_n + q = 0$, donde $x_1, x_2 ..., x_n$ son las variables, $p_1, p_2 ..., p_n$ son los coeficientes y $q$ es un constante.
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=TRUE}
 #| fig-cap: "Fig. 1.4. Ejemplos de dos líneas rectas con ecuaciones lineales"
 #| label: fig-eq
 
@@ -315,7 +315,7 @@ Poniendo el valor de $x$ en la ecuación [$(1.2)$](#eq-1.2), obtenemos $y = 3.12
 
 Un tensor es un término general para vectores y matrices. Es la estructura de datos utilizada en modelos de ML. Un tensor puede tener cualquier dimensión. Un escalar es un tensor con cero dimensiones, un vector es un tensor con una dimensión y una matriz tiene dos dimensiones. Cualquier tensor con más de dos dimensiones se llama tensor `n-dimensional`. Vectores y matrices se discuten a continuación.
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=TRUE}
 #| fig-cap: "Fig. 1.5. Ejemplo de un vector"
 #| label: fig-vec
 
@@ -389,11 +389,11 @@ $$\text{Cuadrada 2x2}\begin{bmatrix}5&2\\-6&1\end{bmatrix};\\
 
  
 
-+----------+------------------------------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Escalar  | Vector                             | Matriz                                 | Tensor                                                                                                                                                         |
-+:========:+:==================================:+:======================================:+:==============================================================================================================================================================:+
-| $1$      | $\begin{bmatrix}1\\2\end{bmatrix}$ | $\begin{bmatrix}1&2\\3&4\end{bmatrix}$ | $\begin{bmatrix}\begin{bmatrix}1&2\end{bmatrix}&\begin{bmatrix}3&4\end{bmatrix}\\\begin{bmatrix}5&6\end{bmatrix}&\begin{bmatrix}7&8\end{bmatrix}\end{bmatrix}$ |
-+----------+------------------------------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------+------------------------------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Escalar | Vector                             | Matriz                                 | Tensor                                                                                                                                                         |
++:=======:+:==================================:+:======================================:+:==============================================================================================================================================================:+
+| $1$     | $\begin{bmatrix}1\\2\end{bmatrix}$ | $\begin{bmatrix}1&2\\3&4\end{bmatrix}$ | $\begin{bmatrix}\begin{bmatrix}1&2\end{bmatrix}&\begin{bmatrix}3&4\end{bmatrix}\\\begin{bmatrix}5&6\end{bmatrix}&\begin{bmatrix}7&8\end{bmatrix}\end{bmatrix}$ |
++---------+------------------------------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 : Tabla 1.4. Ejemplos de escalar, vector, matriz y tensor. {#tbl-ejemplos}
 
@@ -409,7 +409,7 @@ $$\text{Cuadrada 2x2}\begin{bmatrix}5&2\\-6&1\end{bmatrix};\\
 
  
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.7. Representación gráfica de la media, mediana y moda"
 #| label: fig-dist
 
@@ -512,7 +512,7 @@ Donde $s$ simboliza la desviación estándar de la muestra, $i$ es una variable 
 
 Un valor bajo de la desviación estándar indica que los puntos de datos se encuentran razonablemente cerca de la media del conjunto de datos, como se muestra en la Fig. 1.8a. Por otro lado, un valor alto de la desviación estándar indica que los puntos de datos se encuentran lejos de la media del conjunto de datos, cubriendo un rango amplio, como se muestra en la Fig. 1.8b.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.8. Desviación estándas de los datos"
 #| label: fig-desvest
 
@@ -565,7 +565,7 @@ En una correlación positiva, la dirección del cambio es la misma para ambas va
 
 La correlación entre dos variables es una correlación simple. Pero si el número de variables es de tres o más, es una correlación parcial o múltiple. En una correlación parcial, la correlación entre dos variables de interés se determina mientras se mantiene constante la otra variable. Por ejemplo, la correlación entre la cantidad de comida ingerida y la presión arterial para un grupo de edad específico se puede considerar como una correlación parcial. Cuando se determina la correlación entre tres o más variables al mismo tiempo, se llama correlación múltiple. Por ejemplo, la relación entre la cantidad de comida comida, la altura, el peso y la presión arterial se puede considerar como un caso de correlación múltiple.
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=TRUE}
 #| fig-cap: "Fig. 1.9. Visualización de correlación cero, positiva y negativa a diferentes niveles"
 #| label: fig-correlaciones
 
@@ -792,7 +792,7 @@ Los algoritmos de ML tienen una alta sensibilidad a la distribución y el rango 
 
 Considera el conjunto de datos $(x, y)$. Aquí, $x$ es la tasa de consumo de agua por día y $y$ es la tasa de consumo de electricidad por día. En la [Figura 1.11](#fig-outliers), podemos ver que estos datos se distribuyen en 2 grupos diferentes, pero uno de los puntos de datos no puede agruparse con ninguno de estos grupos. Este punto de datos actúa como una anomalía en este caso.
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=TRUE}
 #| fig-cap: "Fig. 1.11. Representación de un valor atípico. Los puntos negros se encuentran dentro de límites específicos, pero un punto azul está más allá de esos círculos de datos. El punto azul es un valor atípico."
 #| label: fig-outliers
 
@@ -837,7 +837,7 @@ Es importante destacar que ruido y anomalías son dos cosas diferentes. Mientras
 
 La [Figura 1.12](#fig-anomalia) visualiza la diferencia entre anomalía y ruido utilizando una señal.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.12. Diferencia entre anomalía y ruido."
 #| label: fig-anomalia
 
@@ -898,7 +898,7 @@ Un histograma se asemeja a un gráfico de columnas y representa la distribución
 
 La Figura 1.13 ilustra tres tipos de histogramas, con una distribución desviada a la izquierda, una distribución normal y una distribución desviada a la derecha.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.13. Representación de varias distribuciones usando histogramas."
 #| label: fig-histogramas
 
@@ -1000,7 +1000,7 @@ En la teoría de la probabilidad, todos los posibles resultados numéricos de cu
 
 Los valores numéricos posibles de una variable aleatoria continua se pueden calcular utilizando la función de densidad de probabilidad (PDF). La representación gráfica de esta distribución es continua. Por ejemplo, en la [Figura 1.14](#fig-funcionFDP), cuando un modelo busca la probabilidad de la altura de las personas en el rango de 160-170 cm, podría utilizar una PDF para indicar la probabilidad total de que el rango de la variable aleatoria continua ocurra. Aquí, f (x) es la PDF de la variable aleatoria x.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.14. Ejemplo de función de densidad de probabilidad."
 #| label: fig-funcionFDP
 
@@ -1039,7 +1039,7 @@ ggplot(densities, aes(x = x, y = y, group = group)) +
 
 Cuando se implementa una función para encontrar los valores numéricos posibles de una variable aleatoria discreta, la función se conoce como función de masa de probabilidad (PMF). Las variables aleatorias discretas tienen un número finito de valores. Por lo tanto, no obtenemos una curva continua cuando se representa gráficamente la PMF. Por ejemplo, si consideramos el lanzamiento de un dado de seis caras, tendremos un número finito de resultados, como se muestra en la [Figura 1.15](#fig-funcionFMP).
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.15. Ejemplo de función de masa de probabilidad."
 #| label: fig-funcionFMP
 
@@ -1075,7 +1075,7 @@ Donde $P(x)$ denota la densidad de probabilidad de la distribución normal, $α$
 
 Una distribución de probabilidad sobre el ensayo de Bernoulli es la distribución de Bernoulli. El ensayo de Bernoulli es un experimento o evento que solo tiene dos resultados. Por ejemplo, lanzar una moneda se puede considerar como un ensayo de Bernoulli, ya que solo puede tener dos resultados - cara o sello. Normalmente, los resultados se observan en términos de éxito o fracaso. En este caso, podemos decir que obtener una cara será un éxito. Por otro lado, no obtener una cara o obtener un sello sería un fracaso. La distribución de Bernoulli se ha visualizado en la [Fig. 1.17](#fig-bernoulliDistr), que plotea la probabilidad de dos ensayos.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.16. Distribución normal."
 #| label: fig-normalDistr
 
@@ -1098,7 +1098,7 @@ ggplot(normal_data, aes(x = x, y = y)) +
   scale_x_continuous(breaks = c(seq(-3, 3, by = 1)))
 ```
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.17. Distribución de Bernoulli"
 #| label: fig-bernoulliDistr
 
@@ -1118,7 +1118,7 @@ ggplot(moneda, aes(x = side, y = probability)) +
 
 ```
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.18. Demostración gráfica del teorema del límite central."
 #| label: fig-centralTeorema
 
@@ -1176,7 +1176,7 @@ $$ {#eq-1.14}
 
 Se utiliza ampliamente la derivada en ML, especialmente en problemas de optimización, como el descenso de gradientes. Por ejemplo, en el descenso de gradientes, se utilizan derivadas para encontrar el camino más empinado para maximizar o minimizar una función objetivo (por ejemplo, la precisión o función de error de un modelo).
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.19. Ilustración concepto de pendiente."
 #| label: fig-pendiente
 
@@ -1204,7 +1204,7 @@ Si una función depende de dos o más variables, entonces la derivada parcial de
 
 Para una función no lineal, el pico más alto o el valor máximo se refiere a los máximos, y el pico más bajo o el valor mínimo se refiere a los mínimos. En otras palabras, el punto en el que la derivada de una función es cero se define como los máximos o los mínimos. Estos son los puntos en los que el valor de la función se mantiene constante, es decir, la tasa de cambio es cero. Este concepto de máximos y mínimos es necesario para minimizar la función de coste (diferencia entre el valor verdadero y el valor de salida) de cualquier modelo de ML. Un mínimo local es el valor de una función que es menor que los puntos vecinos, pero no necesariamente menor que todos los puntos en el espacio de solución. Un mínimo global es el valor más pequeño de la función que existe en ese espacio de solución. El caso es el mismo para máximos globales y locales. Un máximo local es el valor de una función que es mayor que los puntos vecinos, pero no necesariamente mayor que todos los puntos en el espacio de solución. Un máximo global es el valor más grande de la función que existe en ese espacio de solución. La [figura 1.20](#fig-derivadas) muestra máximos y mínimos globales y locales en un espacio de solución.
 
-```{r, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=TRUE, message=FALSE}
 #| fig-cap: "Fig. 1.20. Representación de máximos y mínimos."
 #| label: fig-derivadas
 
@@ -1255,21 +1255,21 @@ $$ {#eq-1.16}
 
 aquí, la derivada más alta es $\frac{d^4y}{dx^4}$. El orden de la derivada más alta es 4, por lo que esta es una ecuación diferencial de cuarto orden. El poder de la derivada más alta es 1, y por lo tanto, esta es una ecuación diferencial de primer grado. Algunos ejemplos adicionales se muestran en la Tabla 1.8
 
-+--------------------------------------------+------------+------------+
-| Ecuación                                   | Orden      | Grado      |
-+:==========================================:+:==========:+:==========:+
-| $$                                         | 3          | 1          |
-|     \frac{d^3y}{dx^3}+6x\frac{dy}{dx}=e^y  |            |            |
-|                               $$           |            |            |
-+--------------------------------------------+------------+------------+
-| $$                                         | 2          | 3          |
-|     \frac{dy}{dx}+(\frac{d^2y}{dx^2})^3=7x |            |            |
-|                               $$           |            |            |
-+--------------------------------------------+------------+------------+
-| $$                                         | 2          | 1          |
-|     \frac{d^2y}{dx^2}+(\frac{dy}{dx})^3=7x |            |            |
-|                               $$           |            |            |
-+--------------------------------------------+------------+------------+
++--------------------------------------------+-------------+-------------+
+| Ecuación                                   | Orden       | Grado       |
++:==========================================:+:===========:+:===========:+
+| $$                                         | 3           | 1           |
+|     \frac{d^3y}{dx^3}+6x\frac{dy}{dx}=e^y  |             |             |
+|                               $$           |             |             |
++--------------------------------------------+-------------+-------------+
+| $$                                         | 2           | 3           |
+|     \frac{dy}{dx}+(\frac{d^2y}{dx^2})^3=7x |             |             |
+|                               $$           |             |             |
++--------------------------------------------+-------------+-------------+
+| $$                                         | 2           | 1           |
+|     \frac{d^2y}{dx^2}+(\frac{dy}{dx})^3=7x |             |             |
+|                               $$           |             |             |
++--------------------------------------------+-------------+-------------+
 
 : Tabla 1.8. Ecuaciones diferenciales con su grado y orden. {#tbl-ecuacionesDiff}
 
