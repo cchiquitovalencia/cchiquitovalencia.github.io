@@ -9,7 +9,7 @@ date: 03-06-2025
 categories: [EDA, Santiago de Cali] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-03-06-procesos_judiciales_cali/
-image: better.jpeg
+image: judicial.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 code-fold: true
 ---
@@ -488,7 +488,7 @@ Es el proceso de estudiar las relaciones entre **más de dos variables**; esenci
 
 -   MANOVA.
 
-#### Validación de la información mediante pruebas estadísticas 
+#### Validación de la información mediante pruebas estadísticas
 
 En cualquier EDA, nuestra labor es haber recopilado y anotado algunos patrones interesantes para su posterior validación. Ha llegado el momento de comprobar si lo que hemos observado anteriormente son realmente patrones válidos o sólo parecen interesantes debido al azar. La forma más eficaz y directa de abordar esta validación es realizar una serie de pruebas estadísticas y medir la `importancia estadística` del patrón. Tenemos un montón de opciones en el conjunto de pruebas disponibles para elegir. Las opciones varían en función del tipo de variable independiente y dependiente:
 
@@ -498,7 +498,7 @@ En cualquier EDA, nuestra labor es haber recopilado y anotado algunos patrones i
 
 Con este dataset, qué preguntas se te ocurren para realizar un análisis multivarible?
 
-#### Recopilar información para perfeccionar la solución al problema 
+#### Recopilar información para perfeccionar la solución al problema
 
 Ya hemos recorrido todo el espectro de un EDA. En las distintas secciones hemos estudiado los datos con mayor o menor profundidad. Ahora que tenemos respuestas válidas para el problema de exploración de datos, podemos volver a tocar el problema inicial definido.
 
