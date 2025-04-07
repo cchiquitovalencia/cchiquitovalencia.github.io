@@ -1,6 +1,8 @@
 {
   "listing": "/posts.html",
   "items": [
+    "/posts/2025-04-07-predictions_on_stocks/index.html",
+    "/posts/2025-03-06-procesos_judiciales_cali/index.html",
     "/posts/2025-03-03-better_decisions/index.html",
     "/posts/2025-02-28-practial_applications/index.html",
     "/posts/2025-02-27-total_cost_inventory/index.html",
@@ -21,8 +23,8 @@
     "/posts/2025-01-27-maintenance_management/index.html",
     "/posts/2025-01-27-introduction_maintenance/index.html",
     "/posts/2024-12-19-cartlow_scraping/index.html",
-    "/posts/2024-11-26-web_scraping_with_R/index.html",
     "/posts/2024-11-26-organizar_a_tu_familia/index.html",
+    "/posts/2024-11-26-web_scraping_with_R/index.html",
     "/posts/2024-11-20-ejemplo_usarGithub/index.html",
     "/posts/2024-11-18-intro_git/index.html",
     "/posts/2024-11-18-intro_github/index.html",
@@ -30,9 +32,9 @@
     "/posts/2023-12-03-variable_neighborhood_search/index.html",
     "/posts/2023-11-19-guided_local_search/index.html",
     "/posts/2023-11-18-iterated_local_search/index.html",
-    "/posts/2023-11-13-random_search_algorithm/index.html",
-    "/posts/2023-11-13-stochastic_hill_climbing/index.html",
     "/posts/2023-11-13-adaptative_random_search/index.html",
+    "/posts/2023-11-13-stochastic_hill_climbing/index.html",
+    "/posts/2023-11-13-random_search_algorithm/index.html",
     "/posts/2023-11-12-crear_un_post/index.html"
   ]
 }

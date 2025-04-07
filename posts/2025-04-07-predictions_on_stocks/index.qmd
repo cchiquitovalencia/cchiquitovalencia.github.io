@@ -1,0 +1,262 @@
+---
+title: "Modelando stocks financieros"
+description: "TRADING Serie - Parte 1"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 04-07-2025
+categories: [Machine Learning, Trading, Regresión Logística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/
+image: better.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+
+knitr::opts_chunk$set(
+  # Aquí van las opciones que deseas establecer
+  # Por ejemplo:
+  echo = TRUE,        # Muestra el código en el output
+  #results = "asis",    # Controla cómo se muestran los resultados
+  fig.width = 8,      # Ancho de las figuras generadas
+  fig.height = 6,     # Alto de las figuras generadas
+  warning = FALSE,     # Oculta las advertencias
+  message = FALSE,     # Oculta los mensajes
+  error = FALSE        # Oculta los errores,
+)
+
+```
+
+Los modelos de **machine learning** hacen predicciones que caen en cuatro resultados posibles:
+
+![Matriz de confusión](confusionMatrix.png){#fig-1 fig-align="center"}
+
+-   Verdadero positivo (**True Positive**): El modelo predice correctamente la clase positiva.
+
+-   Falso positivo (**False Positive**): El modelo predice incorrectamente la clase positiva cuando el resultado real es negativo, también conocido como error de tipo I.
+
+-   Verdadero negativo (**True Negative**): El modelo predice correctamente la clase negativa.
+
+-   Falso negativo (**False Negative)**: El modelo predice incorrectamente la clase negativa cuando el resultado real es positivo, también conocido como error de tipo II.
+
+Estos resultados forman la base para evaluar el rendimiento de un modelo.
+
+La presencia de falsos positivos y falsos negativos resalta dónde las predicciones del modelo fallan, o, en palabras más sencillas, dónde se confunden los valores. Por eso, la tabla 2x2 utilizada para organizar estos resultados ha ganado el impresionante título de `matriz de confusión`.
+
+Lo que realmente es notable es que, a pesar de contener solo cuatro números, una matriz de confusión puede generar **al menos 27 métricas** distintas que miden el poder predictivo. Cada métrica tiene un propósito único, dependiendo del contexto en el que se aplique. Dado el gran número de métricas, no puedo incluirlas todas en un solo post, así que a lo largo de esta seria las veremos. En cada post, exploraré un grupo de métricas relacionadas, explicando qué significan, demostrando cómo calcularlas en R y proporcionando ejemplos del mundo real de dónde y por qué son importantes.
+
+Ahora, sumérjamonos y creemos una matriz de confusión a partir de las predicciones del modelo.
+
+Para construir una matriz de confusión para un modelo de \*machine learning\*, sigue estos pasos:
+
+1.  Divide tu conjunto de datos en dos partes, aproximadamente un `80%` para entrenamiento y un `20%` para prueba.
+
+2.  Usa solo los datos de entrenamiento para `enseñar` al modelo.
+
+3.  Usa el modelo entrenado para `predecir` las probabilidades del resultado positivo para los datos de prueba.
+
+4.  Luego, convierte las probabilidades en categorías, es decir, si la probabilidad es `mayor a 0.5`, clasifícala como "sí", y si es `0.5 o menor,` clasifícala como "no".
+
+5.  Finalmente, compara los valores reales en los datos de prueba con los predichos utilizando una sencilla `tabla 2x2 llamada matriz de confusión`.
+
+Aquí vamos a usar datos de stocks financieros, vamos a construir un modelo de predicción que nos indique la dirección del mercado. La dirección del mercado es muy importante para los inversores o traders. Predecir la dirección del mercado es una tarea bastante desafiante, ya que los datos del mercado incluyen mucho ruido. El mercado se mueve hacia arriba o hacia abajo, y la naturaleza del movimiento del mercado es binario. Un modelo de regresión logística nos ayuda a ajustar un modelo usando comportamiento binario y predecir la dirección del mercado. La regresión logística es uno de los modelos probabilísticos que asigna una probabilidad a cada evento.
+
+Lo primero es conseguir la información de algún índice bursátil, digamos **DJI (Dow Jones Industrial)**, que refleja el comportamiento del precio de la acción de las treinta compañías industriales más importantes y representativas de Estados Unidos. Para esto usamos la librería quantmod, y extraemos el precio de cierre:
+
+```{r}
+library("quantmod")
+getSymbols("^DJI",src="yahoo")
+dji<- DJI[,"DJI.Close"]
+```
+
+Vamos a agreagar al modelo más variables: el promedio de los 10 días anteriores, el promedio de 20 días anteriores y sus desviaciones estándar, el `RSI`, el `MACD` y las `Bollinger Bands`. Esas variables harán parte de las variables independientes del modelo, la dirección será nuestra variable dependiente, la que queremos predecir.
+
+```{r}
+avg10<- rollapply(dji,10,mean)
+avg20<- rollapply(dji,20,mean)
+std10<- rollapply(dji,10,sd)
+std20<- rollapply(dji,20,sd)
+rsi5<- RSI(dji,5,"SMA")
+rsi14<- RSI(dji,14,"SMA")
+macd12269<- MACD(dji,12,26,9,"SMA")
+macd7205<- MACD(dji,7,20,5,"SMA")
+bbands<- BBands(dji,20,"SMA",2)
+```
+
+Ahora verificamos si hubo cambio en la dirección, y armamos el conjunto de datos completo. Haz una pausa en el código, fíjate que nuestra decisión depende de la evaluación respecto del valor 20 días atrás:
+
+```{r}
+Direction<- NULL
+Direction[dji> Lag(dji,20)] <- 1
+Direction[dji< Lag(dji,20)] <- 0
+
+dji<-cbind(dji,
+           avg10,
+           avg20,
+           std10,
+           std20,
+           rsi5,
+           rsi14,
+           macd12269,
+           macd7205,
+           bbands,
+           Direction)
+
+dji$Direction <- ifelse(is.na(dji$Direction), 0, dji$Direction)
+```
+
+Ahora, para implementar `regresión logística`, debemos dividir los datos en dos partes. La primera parte son los datos en muestra y la segunda parte son los datos fuera de muestra.
+
+Los datos en muestra se utilizan para el proceso de construcción del modelo y los datos fuera de muestra se utilizan para fines de evaluación. Este proceso también ayuda a controlar la varianza y el sesgo en el modelo. Las siguientes cuatro líneas corresponden a las fechas de inicio y fin de los datos en muestra y los datos fuera de muestra, respectivamente.
+
+```{r}
+fechas <- as.data.frame(dji) |> 
+  row.names()
+
+issd<- first(fechas[1:(length(fechas) * 0.8)])
+ised<- last(fechas[1:(length(fechas) * 0.8)])
+ossd<- as.Date(ised) + 1
+osed<- last(fechas)
+```
+
+Los siguientes dos comandos tienen como objetivo obtener el número de fila para las fechas, es decir, la variable `isrow` extrae los números de fila para el rango de fechas en muestra y `osrow` extrae los números de fila para el rango de fechas fuera de muestra.
+
+```{r}
+isrow<- which(index(dji) >= issd & index(dji) <= ised)
+osrow<- which(index(dji) >= ossd & index(dji) <= osed)
+```
+
+Las variables `isdji` y `osdji` son conjuntos de datos en muestra y fuera de muestra, respectivamente.
+
+```{r}
+isdji<- dji[isrow,]
+osdji<- dji[osrow,]
+```
+
+Si miras los datos en muestra, es decir, `isdji`, te darás cuenta de que la escala de cada columna es diferente: algunos columnas están en una escala de 100, otros están en una escala de 10,000 y algunos otros están en una escala de 1. La diferencia en la escala puede causar problemas en tus resultados, ya que se asignan pesos más altos a variables escaladas más altas. Por lo tanto, antes de seguir adelante, debes considerar estandarizar el conjunto de datos. Voy a utilizar la siguiente fórmula:
+
+$$
+\text{Datos estandarizados}=\frac{X - Media(X)}{\text{Desviación Estándar}(X)}
+$$
+
+```{r}
+isme <- apply(isdji, 2, function(x) mean(x, na.rm = TRUE))
+isstd <- apply(isdji, 2, function(x) sd(x, na.rm = TRUE))
+```
+
+Se genera una matriz identidad de dimensión igual a los datos en muestra utilizando el siguiente comando, que se va a utilizar para la normalización.
+
+```{r}
+isidn<- matrix(1,dim(isdji)[1],dim(isdji)[2])
+norm_isdji<-  (isdji - t(isme*t(isidn))) / t(isstd*t(isidn))
+```
+
+La línea anterior también estandariza la columna de `Dirección`, es decir, la columna última. No queremos que la dirección se estandarice, por lo que reemplazo la columna última nuevamente con la variable dirección para el rango de datos en muestra.
+
+```{r}
+dm<- dim(isdji)
+norm_isdji[,dm[2]] <- Direction[isrow]
+```
+
+Ahora hemos creado todos los datos necesarios para construir el modelo. Debe construir un modelo de regresión logística y esto nos ayudará a predecir la dirección del mercado basado en los datos en muestra.
+
+En primer lugar, en este paso, creé una fórmula que tiene la dirección como variable dependiente y todas las demás columnas como variables independientes. Luego, utilicé un modelo lineal generalizado, es decir, `glm()`, para ajustar un modelo que tiene fórmula, familia y conjunto de datos:
+
+```{r}
+formula<- paste("Direction ~ .",sep="")
+
+model<- glm(formula,family="binomial",norm_isdji)
+```
+
+Se puede ver un resumen del modelo utilizando el siguiente comando:
+
+```{r}
+summary(model)
+```
+
+Usamos la función `predict()` para ajustar valores en el mismo conjunto de datos para estimar el mejor valor ajustado.
+
+```{r}
+pred<- predict(model,norm_isdji)
+```
+
+Una vez que hayas ajustado los valores, debes intentar convertirlos a probabilidades utilizando el siguiente comando. Esto convertirá la salida en forma probabilística y la salida será en el rango $[0,1]$.
+
+```{r}
+prob<- 1 / (1+exp(-(pred)))
+```
+
+La primera línea del código muestra que dividimos la figura en dos filas y una columna, donde la primera figura es para la predicción del modelo y la segunda figura es para la probabilidad.
+
+```{r}
+par(mfrow=c(2,1))
+plot(pred,type="l")
+plot(prob,type="l")
+```
+
+Como las probabilidades están en el rango $(0,1)$, así también lo está nuestro vector prob. Ahora, para clasificarlos en una de los dos clases, consideré la dirección hacia arriba $(1)$ cuando `prob` es mayor que $0.5$ y la dirección hacia abajo $(0)$ cuando `prob` es menor que $0.5$. Esta asignación se puede hacer utilizando los siguientes comandos:
+
+```{r}
+pred_direction<- NULL
+pred_direction[prob> 0.5] <- 1
+pred_direction[prob<= 0.5] <- 0
+```
+
+Una vez que hemos determinado la dirección predicha, debemos verificar la precisión del modelo: cuánto ha predicho la dirección hacia arriba como hacia arriba y la dirección hacia abajo como hacia abajo. Es posible que haya algunos escenarios en los que predijo lo contrario de lo que es, como predijo hacia abajo cuando en realidad es hacia arriba y viceversa. Puedemos utilizar el paquete `caret` para calcular `confusionMatrix()`, que devuelve una matriz como salida. Todos los elementos diagonales son predichos correctamente y los elementos fuera de la diagonal son errores o predichos incorrectamente. Debe tener como objetivo reducir los elementos fuera de la diagonal en una matriz de confusión.
+
+```{r}
+library(caret)
+matrix<- confusionMatrix(factor(pred_direction),
+                         factor(norm_isdji$Direction),
+                         mode = "everything")
+matrix
+```
+
+Ten cuidado, sin embargo, porque aunque una matriz de confusión solo tiene cuatro números, es fácil confundirse. Esto es lo que debes recordar: las filas deben representar los valores predichos por tu modelo o datos de prueba. La fila superior es para predicciones positivas, y la fila inferior es para predicciones negativas. Las columnas deben representar los valores reales o verdaderos, también llamados el "estándar de oro". La columna izquierda es para resultados positivos, mientras que la columna derecha es para resultados negativos.
+
+La función `epiR::epi.tests()` tiene dos características útiles: te recuerda colocar los resultados reales o los valores reales en las columnas y proporciona intervalos de confianza al $95\%$, algo que muchas funciones comunes de **machine learning** como la matriz de confusión del paquete `caret::confusionMatrix()` no incluyen. Dicho esto, la función `confusionMatrix` también tiene ventajas. Por ejemplo, incluye métricas como la tasa de detección (`Detection Rate`), que es un excelente punto de partida para analizar el rendimiento del modelo porque es simple e intuitiva.
+
+La tabla precedente muestra que hemos logrado una predicción correcta del `r scales::percent(matrix$overall[1])`, ya que `r matrix$table[1]` + `r matrix$table[4]` = `r matrix$table[1]+matrix$table[4]` predicciones son correctas de un total de `r sum(matrix$table)` (suma de todos los cuatro valores). En general, se considera una buena predicción cualquier valor superior al $80\%$ en los datos de muestra; sin embargo, el $80\%$ no es un valor fijo y debe determinarse en función del conjunto de datos y la industria.
+
+Ahora que has implementado el modelo de regresión logística, que ha predicho correctamente el `r scales::percent(matrix$overall[1])`, debes probar su capacidad de generalización. Debe probarse este modelo utilizando datos de muestra y verificar su precisión.
+
+El primer paso es estandarizar los datos de muestra utilizando la fórmula de arriba. En este caso, la media y la desviación estándar deben ser las mismas que las utilizadas para la normalización de los datos de muestra.
+
+```{r}
+osidn<- matrix(1,dim(osdji)[1],dim(osdji)[2])
+norm_osdji<-  (osdji - t(isme*t(osidn))) / t(isstd*t(osidn))
+norm_osdji[,dm[2]] <- Direction[osrow]
+```
+
+A continuación, utilizaremos la función `predict()` en los datos de muestra y utilizaremos este valor para calcular la probabilidad.
+
+Una vez que se hayan determinado las probabilidades para los datos de muestra, debes clasificarlos en clases "**Arriba**" o "**Abajo**" utilizando los siguientes comandos. La función `confusionMatrix()` aquí generará una matriz para los datos de muestra.
+
+```{r}
+ospred<- predict(model,norm_osdji)
+osprob<- 1 / (1+exp(-(ospred)))
+ospred_direction<- NULL
+ospred_direction[osprob> 0.5] <- 1
+ospred_direction[osprob<= 0.5] <- 0
+osmatrix<- confusionMatrix(factor(ospred_direction),
+                           factor(norm_osdji$Direction))
+osmatrix
+```
+
+Esto muestra un `r scales::percent(osmatrix$overall[1])` de precisión en los datos de muestra. La calidad de la precisión es más allá del alcance de este post, por lo que no cubriré si la precisión en los datos de muestra es buena o mala y qué técnicas se pueden utilizar para mejorar este rendimiento.
+
+Un modelo de trading realista también tiene en cuenta los costos de trading y la pérdida de mercado, lo que disminuye significativamente las probabilidades de ganar. La próxima tarea es diseñar una estrategia de trading utilizando las direcciones predichas. Exploraré cómo implementar una estrategia de trading automatizada utilizando señales predichas en otro post.
+
+Por ahora, es importante que conozcas que la tasa de detección nos dice la proporción de positivos reales que el modelo identificó correctamente. En nuestro ejemplo, la tasa de detección es del `r matrix$byClass[9]`, pero ¿es esto bueno o malo? Depende de la situación. En escenarios de alto riesgo, como la detección de enfermedades o la prevención de fraudes, un `r scales::percent(matrix$byClass[9])` probablemente sea demasiado bajo, ya que se pierden muchos verdaderos positivos, lo que puede tener consecuencias graves.
+
+En problemas desafiantes, como aquellos con conjuntos de datos desequilibrados o tareas complejas, un `r scales::percent(matrix$byClass[9])` podría representar realmente un progreso sólido. Por ejemplo, la tasa de detección es especialmente útil en fabricación para monitorear las tasas de defectos (piensa en Six Sigma y las partes por millón). Ayuda a identificar productos defectuosos en fábricas modernas operadas por robots, donde incluso mejoras pequeñas pueden marcar una gran diferencia. Sin embargo, la tasa de detección tiene una limitación importante: solo se enfoca en los verdaderos positivos e ignora completamente los falsos positivos. Esto significa que no nos da una visión completa de cómo está funcionando el modelo. Para obtener una comprensión más completa, necesitamos mirar la siguiente métrica importante en la matriz de confusión: la prevalencia de detección (`Detection Prevalence`).
+
+La prevalencia de detección, también conocida como prevalencia aparente, es el porcentaje de casos positivos que el modelo predice. En nuestro ejemplo del finanzas, representa la proporción de veces que el modelo predice que el precio de la acción bajará. Así es como la calculamos: sumamos todos los positivos predichos, que son los valores en la fila superior de la matriz de confusión, y los dividimos entre el número total de casos. Esto significa que nuestro modelo predice que el `r matrix$byClass[10]` del precio de la acción bajará. ¿Por qué se llama prevalencia aparente? El término refleja el hecho de que estas son predicciones modeladas que pueden no alinearse con la realidad. Para entender la realidad, necesitamos calcular la prevalencia verdadera, que exploraremos a continuación.
+
+La prevalencia verdadera muestra el porcentaje real de casos positivos, incluyendo aquellos que el modelo se perdió. En el ejemplo de stocks, es la proporción real de subidas de la acción, incluso aquellos a los que el modelo predijo incorrectamente que no subían. Para calcular la prevalencia verdadera, nos enfocamos en la columna izquierda de la matriz de confusión, sumamos los verdaderos positivos y los falsos negativos, y los dividimos entre el tamaño de la población.
+
+Es tan simple como eso. La prevalencia verdadera es del `r scales::percent(matrix$byClass[8], accuracy = 0.01)`, lo que es mayor que la prevalencia aparente predicha por el modelo, que es del `r scales::percent(matrix$byClass[10], accuracy = 0.01)`. Esta es una brecha enorme, especialmente en casos sensibles, los que involucran vidas humanas. Esto nos lleva naturalmente a la sensibilidad, una métrica fundamental para entender cómo bien identifica un modelo los verdaderos positivos.
+
+La sensibilidad es solo el comienzo. Hay siete métricas esenciales de rendimiento que forman la base de la evaluación de cualquier modelo de machine learning. En el próximo post, pasaré por cada una de ellas paso a paso.
