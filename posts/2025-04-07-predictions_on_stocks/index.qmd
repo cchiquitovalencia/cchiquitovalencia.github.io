@@ -9,7 +9,7 @@ date: 04-07-2025
 categories: [Machine Learning, Trading, Regresión Logística] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/
-image: better.jpeg
+image: stocks1.jpeg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
