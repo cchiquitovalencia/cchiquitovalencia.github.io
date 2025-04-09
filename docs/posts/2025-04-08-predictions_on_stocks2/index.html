@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2025-04-08">
+<meta name="description" content="TRADING Serie - Parte 2">
+
+<title>Entendiendo la matriz de confusión – Cristian Chiquito Valencia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Entendiendo la matriz de confusión – Cristian Chiquito Valencia">
+<meta property="og:description" content="TRADING Serie - Parte 2">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/stocks1.jpeg">
+<meta property="og:site_name" content="Cristian Chiquito Valencia">
+<meta name="twitter:title" content="Entendiendo la matriz de confusión – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="TRADING Serie - Parte 2">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/stocks1.jpeg">
+<meta name="twitter:creator" content="@cchiquitov">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Acerca de mi</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Aquí mi Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">Entendiendo la matriz de confusión</h1>
+                  <div>
+        <div class="description">
+          TRADING Serie - Parte 2
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Trading</div>
+                <div class="quarto-category">Regresión Logística</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page">
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 8, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+
+<p>La matriz de confusión tiene las claves para entender cualquier modelo de machine learning, una mina de oro con 25 métricas, pero hay 7 de ellas que son especialmente importantes: <strong>recall</strong> (sensibilidad), <strong>specificity</strong> (especificidad), el <strong>índice J de Youden</strong>, <strong>precision</strong> (precisión), <strong>NPV</strong> (Valor Negativo Predicho), <strong>accuracy</strong> (exactitud) y <strong>balanced accuracy</strong> (exactitud equilibrada). En este post, exploramos qué hace que estos siete sean esenciales, cómo funcionan y por qué son la columna vertebral del aprendizaje automático.</p>
+<p>Usaremos los datos de este <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/" title="Modelando stocks financieros">post</a>. Lo que he hecho es crear un paquete de R para que puedas instalarlo con el siguiente comando:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"cchiquitovalencia/myfinance"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si obtienes algo parecido a esto, estás listo para continuar:</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="670" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://github.com/cchiquitovalencia/myfinance/tree/master"><img src="images/myfinance_devtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="670"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Detalle de instalación del paquete myfinance
+</figcaption>
+</figure>
+</div>
+<p>A grandes rasgos lo que hace este paquete es replicar el flujo de trabajo visto en la primera parte de la serie, para que usar los mismos datos en la evaluación del modelo. Si te sientes un poco aventurer@ puedes crear un branch para modificar la función <code>main_analysis()</code> y aplicar el flujo a otros datos, no tiene que ser el <strong>DJI</strong>, puedes usar el que desees.</p>
+<p>Y con el siguiente código ya tendras el resultado del modelo de regresión logística.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myfinance)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular los resultados tanto de train como de test</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>calculate_results <span class="ot">&lt;-</span> <span class="cf">function</span>(model, data) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Realizar predicción</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, data)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convertir predicciones en probabilidades</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  probabilities <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>predictions))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Determinar la dirección basada en el umbral de 0.5</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  direction <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(probabilities <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear la matriz de confusión</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  confusion <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(<span class="fu">factor</span>(direction), <span class="fu">factor</span>(data<span class="sc">$</span>Direction), <span class="at">mode =</span> <span class="st">"everything"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Devolver los resultados</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_direction =</span> direction,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">confusion_matrix =</span> confusion,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">predictions =</span> predictions</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el análisis principal</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">main_analysis</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Iniciando el análisis principal..."
+[1] "Cargando datos..."
+[1] "Datos cargados exitosamente. Número de filas: 4594"
+[1] "Creando variables predictoras..."
+[1] "Variables predictoras creadas exitosamente."
+[1] "Creando tabla de datos..."
+[1] "Tabla de datos creada exitosamente."
+[1] "Dividiendo datos en train y test..."
+[1] "Datos divididos exitosamente. Train: 3675 Test: 919"
+[1] "Normalizando datos..."
+[1] "Normalizados"
+[1] "Datos normalizados exitosamente."
+[1] "Construyendo y entrenando el modelo..."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Modelo construido y entrenado exitosamente."
+[1] "Haciendo predicciones para train..."
+[1] "Predicciones para train completadas."
+[1] "Evaluando modelo en train..."
+[1] "Evaluación en train:"
+[1] "Haciendo predicciones para test..."
+[1] "Predicciones para test completadas."
+[1] "Evaluando modelo en test..."
+[1] "Evaluación en test:"
+[1] "Análisis completado exitosamente."
+[1] "Proceso finalizado."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular resultados para train</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>train_results <span class="ot">&lt;-</span> <span class="fu">calculate_results</span>(modelo<span class="sc">$</span>modelo, modelo<span class="sc">$</span>normalized<span class="sc">$</span>train)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>train_confusion <span class="ot">&lt;-</span> train_results<span class="sc">$</span>confusion_matrix</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular resultados para test</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>test_results <span class="ot">&lt;-</span> <span class="fu">calculate_results</span>(modelo<span class="sc">$</span>modelo, modelo<span class="sc">$</span>normalized<span class="sc">$</span>test)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>test_confusion <span class="ot">&lt;-</span> test_results<span class="sc">$</span>confusion_matrix</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Revisamos resultados de los datos de entrenamiento del modelo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_confusion</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 1152  108
+         1  134 2248
+                                         
+               Accuracy : 0.9336         
+                 95% CI : (0.925, 0.9414)
+    No Information Rate : 0.6469         
+    P-Value [Acc &gt; NIR] : &lt;2e-16         
+                                         
+                  Kappa : 0.8539         
+                                         
+ Mcnemar's Test P-Value : 0.108          
+                                         
+            Sensitivity : 0.8958         
+            Specificity : 0.9542         
+         Pos Pred Value : 0.9143         
+         Neg Pred Value : 0.9437         
+              Precision : 0.9143         
+                 Recall : 0.8958         
+                     F1 : 0.9049         
+             Prevalence : 0.3531         
+         Detection Rate : 0.3163         
+   Detection Prevalence : 0.3460         
+      Balanced Accuracy : 0.9250         
+                                         
+       'Positive' Class : 0              
+                                         </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>test_confusion</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 369  37
+         1  26 487
+                                          
+               Accuracy : 0.9314          
+                 95% CI : (0.9131, 0.9469)
+    No Information Rate : 0.5702          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8606          
+                                          
+ Mcnemar's Test P-Value : 0.2077          
+                                          
+            Sensitivity : 0.9342          
+            Specificity : 0.9294          
+         Pos Pred Value : 0.9089          
+         Neg Pred Value : 0.9493          
+              Precision : 0.9089          
+                 Recall : 0.9342          
+                     F1 : 0.9213          
+             Prevalence : 0.4298          
+         Detection Rate : 0.4015          
+   Detection Prevalence : 0.4418          
+      Balanced Accuracy : 0.9318          
+                                          
+       'Positive' Class : 0               
+                                          </code></pre>
+</div>
+</div>
+<p>Un problema que debemos resolver desde un principio es que estas métricas tienen múltiples nombres dependiendo del campo en el que te encuentres. Por ejemplo, la sensibilidad se llama <strong>recall</strong> en aprendizaje automático, <strong>tasa de positivos verdaderos</strong> en medicina y <strong>probabilidad de detección</strong> en ingeniería. Es la misma cosa, pero los nombres cambian dependiendo de con quién estés hablando, y eso puede ser confuso.</p>
+<p>Para calcular la sensibilidad, solo necesitamos la columna izquierda de la matriz de confusión. Dividimos los verdaderos positivos entre todos los casos positivos reales. En otras palabras, la sensibilidad mide el porcentaje de verdaderos positivos que el modelo identifica correctamente. Por eso, el segundo nombre para la sensibilidad es <strong>tasa de positivos verdaderos</strong>.</p>
+<p><span class="math display">\[
+Sensibilidad=TPR=\frac{TP}{TP+FN}
+\]</span></p>
+<p>En nuestro ejemplo del DJI, se trata del porcentaje de subidas de la acción que nuestro modelo detectó, lo que explica la tercera definición: <strong>probabilidad de detección</strong>. La sensibilidad oscila entre 0 y 1, o entre 0% y 100%, donde 1 indica una sensibilidad perfecta (sin falsos negativos) y 0 significa que no se puede detectar ningún caso positivo.</p>
+<p>En nuestro ejemplo, la sensibilidad es alta 89.58% porque detectamos a 1152 subidas de precio, y una alta sensibilidad es lo que usualmente queremos. Especialmente en medicina, la sensibilidad es crucial para pruebas de detección como la detección de cáncer o enfermedades infecciosas como COVID-19. Si una prueba tiene baja sensibilidad, significa que muchos pacientes con cáncer son mal diagnosticados como sanos, lo que lleva a retrasos peligrosos en el tratamiento. Una prueba con alta sensibilidad asegura que la mayoría de los pacientes con la condición son identificados, incluso si genera algunos falsos positivos, que pueden ser seguidos con pruebas más específicas.</p>
+<p>En aprendizaje automático, la sensibilidad es esencial para la detección de fraude o la detección de anomalías, donde los casos positivos, como las transacciones fraudulentas con tarjetas de crédito, son <em>raros pero críticos</em>. Un modelo con alta sensibilidad asegura que la mayoría de las actividades fraudulentas son detectadas, incluso si genera algunas falsas alarmas.</p>
+<p>Sí, podemos maximizar la sensibilidad aumentando el costo de los falsos negativos con el paquete <strong><code>cutpointr</code></strong> y la función <strong><code>cutpoint()</code></strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> modelo<span class="sc">$</span>normalized<span class="sc">$</span>test <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pred_probs =</span> test_results<span class="sc">$</span>predictions,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred_classes =</span> <span class="fu">factor</span>(test_results<span class="sc">$</span>predicted_direction))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cutpointr, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="ot">&lt;-</span> <span class="fu">cutpointr</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d2,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pred_probs,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> Direction,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> minimize_metric,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric =</span> misclassification_cost,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fp =</span> <span class="dv">1</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fn =</span> <span class="dv">5</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="sc">|&gt;</span> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       [,1]             
+direction              "&gt;="             
+optimal_cutpoint       -1.049363        
+method                 "minimize_metric"
+misclassification_cost 110              
+acc                    0.9368879        
+sensitivity            0.9751908        
+specificity            0.8860759        
+AUC                    0.9839067        
+pos_class              1                
+neg_class              0                
+prevalence             0.570185         
+outcome                "Direction"      
+predictor              "pred_probs"     
+data                   tbl_df,2         
+roc_curve              roc_cutpointr,10 
+boot                   NA               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_roc</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por ejemplo, si establecemos el costo de los falsos negativos en cinco veces el costo de los falsos positivos, podemos aumentar la sensibilidad de un 89.58% a un asombroso 97.52%.</p>
+<p>La sensibilidad nos ayuda a detectar tantos positivos verdaderos como sea posible, lo cual es crucial para escenarios como la detección del cáncer, pero aquí está el problema: aumentar demasiado la sensibilidad a menudo aumenta los falsos positivos, lo que puede ser peligroso en otros casos, como en la conducción autónoma, donde un coche autónomo podría confundir una sombra con un peatón, activando una frenada de emergencia innecesaria y un riesgo de accidente. En situaciones donde minimizar los falsos positivos y maximizar los verdaderos negativos es lo que más importa, una alta <strong>especificidad</strong> es clave. Así que hablemos de la especificidad.</p>
+<p>Desafortunadamente, la especificidad también tiene muchos nombres. En medicina, se le llama <strong>tasa de negativos verdaderos</strong>; en aprendizaje automático, a veces se la conoce como <strong>selectividad</strong>; en ingeniería, algunos la llaman <strong>probabilidad de predicción correcta</strong>, un término que personalmente encuentro particularmente intuitivo. Para calcular la especificidad, solo necesitamos la columna derecha de la matriz de confusión. Dividimos los verdaderos negativos entre todos los casos negativos reales.</p>
+<p><span class="math display">\[
+Especificidad=TNR=\frac{TN}{TN+FP}
+\]</span></p>
+<p>En palabras sencillas, la especificidad mide el porcentaje de negativos reales que el modelo identifica correctamente como negativos. Por eso, otro nombre para la especificidad es la <strong>tasa de negativos verdaderos</strong>. En nuestro ejemplo, la especificidad nos dice <strong>cuántos no sobrevivientes</strong> el modelo clasificó correctamente como tales. La especificidad oscila entre 0 y 1, o entre 0% y 100%, donde 1 indica un modelo perfecto, sin falsos positivos, y 0 significa que no puede descartar los casos negativos en absoluto.</p>
+<p>En nuestro ejemplo, la especificidad es sólida, con un 95.42%, porque solo etiquetamos incorrectamente a 108 bajadas como subidas, <strong>mientras que la sensibilidad se centra en los positivos, la especificidad se centra en evitar las falsas alarmas, lo cual es crucial en ciertos escenarios de alto riesgo</strong>. Por ejemplo, en medicina, una prueba con baja especificidad podría etiquetar falsamente a personas sanas como tener cáncer, lo que lleva a ansiedad innecesaria, biopsias, quimioterapia o incluso cirugía. Además, una baja especificidad en una prueba de una enfermedad rara puede abrumar a los sistemas de salud con falsas alarmas. Por eso, a veces necesitamos maximizar la especificidad y mantener los falsos positivos tan bajos como sea posible.</p>
+<p>Sí, podemos hacerlo aumentando el costo de los falsos positivos usando el paquete <strong>cutpointr</strong> en R. Podemos desplazar el umbral de decisión para minimizar los falsos positivos y priorizar los verdaderos negativos, incluso si eso significa perder algunos verdaderos positivos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="ot">&lt;-</span> <span class="fu">cutpointr</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d2,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pred_probs,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> Direction,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> minimize_metric,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric =</span> misclassification_cost,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fp =</span> <span class="dv">5</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fn =</span> <span class="dv">1</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class is 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class has higher x values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Multiple optimal cutpoints found, applying break_ties.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       [,1]             
+direction              "&gt;="             
+optimal_cutpoint       1.727427         
+method                 "minimize_metric"
+misclassification_cost 125              
+acc                    0.9075082        
+sensitivity            0.8568702        
+specificity            0.9746835        
+AUC                    0.9839067        
+pos_class              1                
+neg_class              0                
+prevalence             0.570185         
+outcome                "Direction"      
+predictor              "pred_probs"     
+data                   tbl_df,2         
+roc_curve              roc_cutpointr,10 
+boot                   NA               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_roc</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por ejemplo, si establecemos el costo de los falsos positivos en cinco veces el costo de los falsos negativos, podemos hacer que la especificidad pase de un impresionante 95.42% a un increíble 97.47%.</p>
+<p>Como puedes ver, los científicos de datos enfrentan un desafío complejo: aumentar la sensibilidad para detectar todos los positivos posible corre el riesgo de aumentar las falsas alarmas, mientras que aumentar la especificidad para proteger las transacciones legítimas podría significar perder algunas actividades fraudulentas. Es aquí donde entra en juego el <strong>índice J de Youden</strong>. El índice J de Youden ayuda a encontrar un punto óptimo entre sensibilidad y especificidad, maximizando la efectividad general del modelo. Así que hablemos de eso.</p>
+<p><strong>El índice J de Youden es increíblemente útil cuando tanto los falsos positivos como los falsos negativos tienen consecuencias significativas</strong>. Es por eso que el índice J de Youden maximiza los verdaderos positivos y minimiza los falsos positivos. Un dato curioso: el índice J de Youden también se conoce como <strong>información basada en corredores de apuestas</strong> porque mide cuánto más informado está una prueba o modelo en comparación con el azar. El término proviene del mundo de las apuestas, donde los corredores de apuestas dependen de la información para predecir los resultados mejor que el azar.</p>
+<p>Para calcular el índice J de Youden, combinamos sensibilidad y especificidad. Dado que la suma simple de sensibilidad y especificidad oscila entre 1 y 2, lo que no es fácil de interpretar, el menos uno en la fórmula de J normaliza la escala para que oscile entre 0 y 1, lo que es fácil de interpretar.</p>
+<p><span class="math display">\[
+J=Sensibilidad+Especificidad-1
+\]</span></p>
+<p>Específicamente, J igual a 0 indica que la prueba no funciona mejor que el azar y, por lo tanto, no tiene información útil. J igual a 1 indica que la prueba distingue perfectamente entre positivos y negativos. En resumen, el índice J de Youden o <strong>información</strong> nos dice qué tan bien una prueba o modelo mejora la toma de decisiones en comparación con el azar.</p>
+<p>En R, hay dos formas fáciles de calcular el índice J de Youden: una es usando la función <strong>youden</strong> del paquete <strong>cutpointr</strong>,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>indexJ <span class="ot">&lt;-</span> <span class="fu">youden</span>(<span class="at">tp =</span> train_confusion<span class="sc">$</span>table[<span class="dv">1</span>],</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">tn =</span> train_confusion<span class="sc">$</span>table[<span class="dv">4</span>],</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">fp =</span> train_confusion<span class="sc">$</span>table[<span class="dv">3</span>],</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">fn =</span> train_confusion<span class="sc">$</span>table[<span class="dv">2</span>])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>indexJ</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        youden
+[1,] 0.8499605</code></pre>
+</div>
+</div>
+<p>y la otra es usando el resumen de la función <strong>epi.tests</strong> del paquete <strong>epiR</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(epiR<span class="sc">::</span><span class="fu">epi.tests</span>(train_confusion<span class="sc">$</span>table)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">tab_style</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      gt<span class="sc">::</span><span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"orange"</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      gt<span class="sc">::</span><span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> gt<span class="sc">::</span><span class="fu">cells_body</span>(</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> statistic,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> statistic <span class="sc">&gt;=</span> <span class="st">"youden"</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="krdkxevwfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#krdkxevwfh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#krdkxevwfh thead, #krdkxevwfh tbody, #krdkxevwfh tfoot, #krdkxevwfh tr, #krdkxevwfh td, #krdkxevwfh th {
+  border-style: none;
+}
+
+#krdkxevwfh p {
+  margin: 0;
+  padding: 0;
+}
+
+#krdkxevwfh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#krdkxevwfh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#krdkxevwfh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#krdkxevwfh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#krdkxevwfh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#krdkxevwfh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#krdkxevwfh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#krdkxevwfh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#krdkxevwfh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#krdkxevwfh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#krdkxevwfh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#krdkxevwfh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#krdkxevwfh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#krdkxevwfh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#krdkxevwfh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#krdkxevwfh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#krdkxevwfh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_left {
+  text-align: left;
+}
+
+#krdkxevwfh .gt_center {
+  text-align: center;
+}
+
+#krdkxevwfh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#krdkxevwfh .gt_font_normal {
+  font-weight: normal;
+}
+
+#krdkxevwfh .gt_font_bold {
+  font-weight: bold;
+}
+
+#krdkxevwfh .gt_font_italic {
+  font-style: italic;
+}
+
+#krdkxevwfh .gt_super {
+  font-size: 65%;
+}
+
+#krdkxevwfh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#krdkxevwfh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#krdkxevwfh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#krdkxevwfh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#krdkxevwfh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#krdkxevwfh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#krdkxevwfh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#krdkxevwfh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#krdkxevwfh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="est" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">est</th>
+<th id="lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">lower</th>
+<th id="upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">upper</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">ap</td>
+<td class="gt_row gt_right" headers="est">0.34596376</td>
+<td class="gt_row gt_right" headers="lower">0.33050644</td>
+<td class="gt_row gt_right" headers="upper">0.36166868</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">tp</td>
+<td class="gt_row gt_right" headers="est">0.35310269</td>
+<td class="gt_row gt_right" headers="lower">0.33756651</td>
+<td class="gt_row gt_right" headers="upper">0.36887498</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">se</td>
+<td class="gt_row gt_right" headers="est">0.89580093</td>
+<td class="gt_row gt_right" headers="lower">0.87779966</td>
+<td class="gt_row gt_right" headers="upper">0.91196838</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">sp</td>
+<td class="gt_row gt_right" headers="est">0.95415959</td>
+<td class="gt_row gt_right" headers="lower">0.94492020</td>
+<td class="gt_row gt_right" headers="upper">0.96224718</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">diag.ac</td>
+<td class="gt_row gt_right" headers="est">0.93355299</td>
+<td class="gt_row gt_right" headers="lower">0.92497323</td>
+<td class="gt_row gt_right" headers="upper">0.94142858</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">diag.or</td>
+<td class="gt_row gt_right" headers="est">178.94527363</td>
+<td class="gt_row gt_right" headers="lower">137.53368835</td>
+<td class="gt_row gt_right" headers="upper">232.82594497</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">nndx</td>
+<td class="gt_row gt_right" headers="est">1.17652523</td>
+<td class="gt_row gt_right" headers="lower">1.14388264</td>
+<td class="gt_row gt_right" headers="upper">1.21548056</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic" style="background-color: #FFA500; font-weight: bold">youden</td>
+<td class="gt_row gt_right" headers="est">0.84996053</td>
+<td class="gt_row gt_right" headers="lower">0.82271986</td>
+<td class="gt_row gt_right" headers="upper">0.87421556</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">pv.pos</td>
+<td class="gt_row gt_right" headers="est">0.91428571</td>
+<td class="gt_row gt_right" headers="lower">0.89744763</td>
+<td class="gt_row gt_right" headers="upper">0.92915893</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">pv.neg</td>
+<td class="gt_row gt_right" headers="est">0.94374475</td>
+<td class="gt_row gt_right" headers="lower">0.93372253</td>
+<td class="gt_row gt_right" headers="upper">0.95265725</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">lr.pos</td>
+<td class="gt_row gt_right" headers="est">19.54173147</td>
+<td class="gt_row gt_right" headers="lower">16.23853945</td>
+<td class="gt_row gt_right" headers="upper">23.51684830</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">lr.neg</td>
+<td class="gt_row gt_right" headers="est">0.10920507</td>
+<td class="gt_row gt_right" headers="lower">0.09301233</td>
+<td class="gt_row gt_right" headers="upper">0.12821685</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.rout</td>
+<td class="gt_row gt_right" headers="est">0.65403624</td>
+<td class="gt_row gt_right" headers="lower">0.63833132</td>
+<td class="gt_row gt_right" headers="upper">0.66949356</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.rin</td>
+<td class="gt_row gt_right" headers="est">0.34596376</td>
+<td class="gt_row gt_right" headers="lower">0.33050644</td>
+<td class="gt_row gt_right" headers="upper">0.36166868</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.tpdn</td>
+<td class="gt_row gt_right" headers="est">0.04584041</td>
+<td class="gt_row gt_right" headers="lower">0.03775282</td>
+<td class="gt_row gt_right" headers="upper">0.05507980</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.tndp</td>
+<td class="gt_row gt_right" headers="est">0.10419907</td>
+<td class="gt_row gt_right" headers="lower">0.08803162</td>
+<td class="gt_row gt_right" headers="upper">0.12220034</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.dntp</td>
+<td class="gt_row gt_right" headers="est">0.08571429</td>
+<td class="gt_row gt_right" headers="lower">0.07084107</td>
+<td class="gt_row gt_right" headers="upper">0.10255237</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.dptn</td>
+<td class="gt_row gt_right" headers="est">0.05625525</td>
+<td class="gt_row gt_right" headers="lower">0.04734275</td>
+<td class="gt_row gt_right" headers="upper">0.06627747</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Un <span class="math inline">\(J\)</span> de 85.00% es fuerte. Nos dice que el modelo funciona mejor que el azar, pero podría ser perfeccionado para equilibrar mejor la sensibilidad y la especificidad. Si te preguntas cómo maximizar el índice J de Youden, la respuesta es usando la misma función <strong>cutpointr</strong> que usamos para maximizar la sensibilidad y la especificidad.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>improve_j <span class="ot">&lt;-</span> <span class="fu">cutpointr</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d2,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pred_probs,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> Direction,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> maximize_metric,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric =</span> youden,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">boot_runs =</span> <span class="dv">1000</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class is 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class has higher x values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running bootstrap...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>improve_j <span class="sc">|&gt;</span> <span class="fu">t</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 [,1]             
+direction        "&gt;="             
+optimal_cutpoint -0.2763423       
+method           "maximize_metric"
+youden           0.8724853        
+acc              0.9368879        
+sensitivity      0.9408397        
+specificity      0.9316456        
+AUC              0.9839067        
+pos_class        1                
+neg_class        0                
+prevalence       0.570185         
+outcome          "Direction"      
+predictor        "pred_probs"     
+data             tbl_df,2         
+roc_curve        roc_cutpointr,10 
+boot             tbl_df,23        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>improve_j <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_metric</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Lo que quiero mostrarte es que, aumentando ligeramente la sensibilidad del 89.58% al 94.08% y disminuyendo ligeramente la especificidad del 95.42% al 93.16%, podríamos aumentar el índice J de Youden del 85.00% al 87.25%. ¡Genial!, lo que hace que nuestro modelo sea más preciso.</p>
+<p>Y hablando de precisión, debemos discutirla a continuación, porque la precisión es una de las métricas más importantes y ampliamente utilizadas derivadas de la matriz de confusión. La precisión, también conocida como <strong>valor predictivo positivo</strong>, mide qué tan precisas son las predicciones positivas. Es el porcentaje de resultados positivos que son correctos, lo que muestra qué tan probable es que un resultado positivo sea verdadero.</p>
+<p>Durante los primeros días de la pandemia de COVID-19, la sensibilidad fue clave para detectar a tantas personas infectadas como posible, pero más tarde, cuando la propagación se desaceleró y las pruebas se multiplicaron, la precisión se convirtió en el foco de atención.</p>
+<p>Para calcular la precisión, nos centramos en la primera fila de la <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/#fig-1">matriz de confusión</a>, los positivos predichos. Es la proporción de verdaderos positivos entre todos los casos positivos predichos. La precisión oscila entre 0 y 1, o entre 0% y 100%. Un puntaje de 1 significa que todas las predicciones positivas fueron correctas, sin falsos positivos, mientras que 0 significa que todas fueron incorrectas.</p>
+<p><span class="math display">\[
+Precisión=PPV=\frac{TP}{TP+FP}
+\]</span></p>
+<p>En nuestro ejemplo, una precisión del 91.43% nos dice que el 91.43% de las acciones que el modelo etiquetó como subidas realmente subieron. Eso es sólido, ya que solo 108 de los 1260 movimientos hacia arriba predichos fueron mal clasificados.</p>
+<p>Pero, ¿por qué la precisión es tan importante? Piensa en los filtros de correo no deseado. Una alta precisión asegura que cuando un correo aterriza en tu bandeja de spam, es casi seguro que es basura. Por otro lado, si tienes una baja precisión, te encontrarás revolviendo spam para encontrar ese correo urgente de tu jefe. Es un infierno, ¿no? La precisión también se puede calcular usando sensibilidad, especificidad y prevalencia, aunque idealmente, es un poco pesado y difícil de recordar.</p>
+<p><span class="math display">\[
+PPV=\frac{Sensibilidad*Prevalencia}{Sensitividad*Prevalencia+(1-Especificidad)*(1-Prevalencia)}
+\]</span></p>
+<p>Lo que es fácil de recordar es que cuando hay un valor predictivo positivo, también debe haber un valor predictivo negativo. De hecho, el valor predictivo negativo nos dice cuántos resultados de prueba negativos son precisos.</p>
+<p>Para calcular el <strong>valor predictivo negativo (VPV)</strong>, solo necesitamos la fila inferior de la matriz de confusión, los negativos predichos. Dividimos el número de verdaderos negativos entre el total de predicciones negativas. El valor predictivo negativo es crucial porque construye confianza en los resultados negativos.</p>
+<p><span class="math display">\[
+NPV=\frac{TN}{TN+FN}
+\]</span></p>
+<p>Por ejemplo, en la detección del cáncer, si tu prueba da negativo y el VPV es del 99%, hay un 99% de probabilidad de que realmente no tengas cáncer. Eso es muy tranquilizador. Solo hay un 1% de posibilidad de que haya un error. Pero si el VPV es del 94.37%, como en nuestro ejemplo, significa que el 94.37% de las veces un resultado negativo es correcto, pero que hay un 5.63% de probabilidad de que el resultado negativo sea incorrecto y que realmente tengas cáncer. Eso probablemente no te tranquilizaría mucho, ya que es un riesgo bastante grande. Por eso, el VPV es realmente importante porque afecta directamente cuánto puedes confiar en un resultado negativo.</p>
+<p>El valor predictivo positivo nos dice cuántas de nuestras predicciones positivas son realmente correctas, mientras que el valor predictivo negativo mide cuántas de nuestras predicciones negativas son precisas. Ambas son útiles, pero se centran solo en un lado de los resultados de las predicciones, ya sean positivos o negativos. Pero, <strong>¿qué pasa si necesitamos evaluar la corrección general de todas las predicciones, tanto positivas como negativas?</strong></p>
+<p>Ahí es donde entra en juego la <strong>exactitud</strong>. La exactitud nos da una visión general del rendimiento midiendo la proporción de todas las predicciones correctas, independientemente de la clase. De hecho, ¿qué métricas usas y cuáles son las principales en tu opinión? Realmente quiero saber tus pensamientos. La fórmula para la exactitud es sencilla: suma los verdaderos positivos y los verdaderos negativos, y divide entre el número total de casos.</p>
+<p><span class="math display">\[
+Exactitud=\frac{TP+TN}{total}
+\]</span></p>
+<p>Eso es todo, bastante sencillo, ¿verdad? Mientras que una mayor exactitud es generalmente lo que queremos, la exactitud <strong>puede ser engañosa al lidiar con clases ligeramente desequilibradas,</strong> donde un resultado sobrepasa ligeramente al otro. Es por eso que tenemos una métrica más robusta como la <strong>exactitud equilibrada</strong>.</p>
+<p><span class="math display">\[
+\text{Exactitud equilibrada}=\frac{Sensibilidad+Especificidad}{2}
+\]</span></p>
+<p>La exactitud equilibrada ofrece una solución promediando la sensibilidad y la especificidad, asegurando que ambas clases reciban una consideración igual. En nuestro ejemplo, una exactitud equilibrada del 92.50% está solo 0.86% por debajo de la exactitud general del 93.36%, lo que sugiere que las clases están relativamente equilibradas, pero eso no es siempre el caso. Por eso, no confío en la exactitud si no veo una matriz de confusión o una exactitud equilibrada comparada con la exactitud. Podemos calcular fácilmente la exactitud equilibrada usando la función de <code>confusionMatrix()</code> del paquete <strong><code>caret</code></strong>.</p>
+<p>Mientras que la exactitud equilibrada es útil para conjuntos de datos ligeramente desequilibrados, a veces la exactitud equilibrada puede ser casi la mitad de la exactitud, lo que indica que nuestro conjunto de datos está muy sesgado y no balanceado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>casos <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>prop_positivos <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>cant_positivos <span class="ot">&lt;-</span> casos <span class="sc">*</span> prop_positivos</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>cant_negativos <span class="ot">&lt;-</span> casos <span class="sc">-</span> cant_positivos</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>actual <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, cant_positivos), <span class="fu">rep</span>(<span class="dv">0</span>, cant_negativos))</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>predicciones <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, casos)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>ejemplo <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(<span class="fu">factor</span>(predicciones), <span class="fu">factor</span>(actual))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in confusionMatrix.default(factor(predicciones), factor(actual)):
+Levels are not in the same order for reference and data. Refactoring data to
+match.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ejemplo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 9500  500
+         1    0    0
+                                          
+               Accuracy : 0.95            
+                 95% CI : (0.9455, 0.9542)
+    No Information Rate : 0.95            
+    P-Value [Acc &gt; NIR] : 0.5119          
+                                          
+                  Kappa : 0               
+                                          
+ Mcnemar's Test P-Value : &lt;2e-16          
+                                          
+            Sensitivity : 1.00            
+            Specificity : 0.00            
+         Pos Pred Value : 0.95            
+         Neg Pred Value :  NaN            
+             Prevalence : 0.95            
+         Detection Rate : 0.95            
+   Detection Prevalence : 1.00            
+      Balanced Accuracy : 0.50            
+                                          
+       'Positive' Class : 0               
+                                          </code></pre>
+</div>
+</div>
+<p>Por ejemplo, consideremos un conjunto de datos con 10^{4} casos, donde solo el 5% son positivos. En este caso, un modelo puede lograr una asombrosa exactitud del 95.00% simplemente prediciendo negativo todas las veces, pero falla al detectar cualquier positivo, lo que resulta en un 100% de predicciones positivas incorrectas, lo cual es <strong>inaceptable</strong>. Sin ver la matriz de confusión, no somos conscientes de este desastre.</p>
+<p>Sin embargo, la exactitud equilibrada de 50.00% revela esta debilidad al dar una puntuación mucho más baja, indicando que algo está seriamente mal. <strong>Centrarse solo en la exactitud puede ocultar muchos errores</strong>, lo que lleva a malas decisiones. A veces, <strong>saber cuán impreciso es nuestro modelo puede ser muy útil porque revela dónde y cuántas veces nuestro modelo está equivocado</strong>.</p>
+<p>Métricas como la <strong>tasa de malclasificación</strong> y la <strong>tasa de descubrimiento falso</strong> son increíblemente prácticas y merecen su propio espacio de expliación. Por lo tanto, si quieres que tu modelo sea sólido y confiable, o si necesitas explicar por qué algunos resultados del modelo no deben confiarse, debes ver otros de mis posts.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Entendiendo La Matriz de Confusión},
+  date = {2025-04-08},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/},
+  langid = {en}
+}
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2025. <span>“Entendiendo La Matriz de
+Confusión.”</span> April 8, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/">https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cchiquitovalencia\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2025, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -10,7 +10,1389 @@
 <atom:link href="https://cchiquitovalencia.github.io/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Un blog para aprender</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 07 Apr 2025 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 08 Apr 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Entendiendo la matriz de confusión</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>La matriz de confusión tiene las claves para entender cualquier modelo de machine learning, una mina de oro con 25 métricas, pero hay 7 de ellas que son especialmente importantes: <strong>recall</strong> (sensibilidad), <strong>specificity</strong> (especificidad), el <strong>índice J de Youden</strong>, <strong>precision</strong> (precisión), <strong>NPV</strong> (Valor Negativo Predicho), <strong>accuracy</strong> (exactitud) y <strong>balanced accuracy</strong> (exactitud equilibrada). En este post, exploramos qué hace que estos siete sean esenciales, cómo funcionan y por qué son la columna vertebral del aprendizaje automático.</p>
+<p>Usaremos los datos de este <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/" title="Modelando stocks financieros">post</a>. Lo que he hecho es crear un paquete de R para que puedas instalarlo con el siguiente comando:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">devtools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cchiquitovalencia/myfinance"</span>)</span></code></pre></div>
+</div>
+<p>Si obtienes algo parecido a esto, estás listo para continuar:</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="670" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://github.com/cchiquitovalencia/myfinance/tree/master"><img src="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/images/myfinance_devtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="670"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Detalle de instalación del paquete myfinance
+</figcaption>
+</figure>
+</div>
+<p>A grandes rasgos lo que hace este paquete es replicar el flujo de trabajo visto en la primera parte de la serie, para que usar los mismos datos en la evaluación del modelo. Si te sientes un poco aventurer@ puedes crear un branch para modificar la función <code>main_analysis()</code> y aplicar el flujo a otros datos, no tiene que ser el <strong>DJI</strong>, puedes usar el que desees.</p>
+<p>Y con el siguiente código ya tendras el resultado del modelo de regresión logística.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(myfinance)</span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(caret)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función para calcular los resultados tanto de train como de test</span></span>
+<span id="cb2-5">calculate_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(model, data) {</span>
+<span id="cb2-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Realizar predicción</span></span>
+<span id="cb2-7">  predictions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">predict</span>(model, data)</span>
+<span id="cb2-8">  </span>
+<span id="cb2-9">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Convertir predicciones en probabilidades</span></span>
+<span id="cb2-10">  probabilities <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>predictions))</span>
+<span id="cb2-11">  </span>
+<span id="cb2-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Determinar la dirección basada en el umbral de 0.5</span></span>
+<span id="cb2-13">  direction <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(probabilities <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-14">  </span>
+<span id="cb2-15">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear la matriz de confusión</span></span>
+<span id="cb2-16">  confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">confusionMatrix</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(direction), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Direction), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mode =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"everything"</span>)</span>
+<span id="cb2-17">  </span>
+<span id="cb2-18">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Devolver los resultados</span></span>
+<span id="cb2-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb2-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predicted_direction =</span> direction,</span>
+<span id="cb2-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">confusion_matrix =</span> confusion,</span>
+<span id="cb2-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predictions =</span> predictions</span>
+<span id="cb2-23">  )</span>
+<span id="cb2-24">}</span>
+<span id="cb2-25"></span>
+<span id="cb2-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ejecutar el análisis principal</span></span>
+<span id="cb2-27">modelo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">main_analysis</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Iniciando el análisis principal..."
+[1] "Cargando datos..."
+[1] "Datos cargados exitosamente. Número de filas: 4594"
+[1] "Creando variables predictoras..."
+[1] "Variables predictoras creadas exitosamente."
+[1] "Creando tabla de datos..."
+[1] "Tabla de datos creada exitosamente."
+[1] "Dividiendo datos en train y test..."
+[1] "Datos divididos exitosamente. Train: 3675 Test: 919"
+[1] "Normalizando datos..."
+[1] "Normalizados"
+[1] "Datos normalizados exitosamente."
+[1] "Construyendo y entrenando el modelo..."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Modelo construido y entrenado exitosamente."
+[1] "Haciendo predicciones para train..."
+[1] "Predicciones para train completadas."
+[1] "Evaluando modelo en train..."
+[1] "Evaluación en train:"
+[1] "Haciendo predicciones para test..."
+[1] "Predicciones para test completadas."
+[1] "Evaluando modelo en test..."
+[1] "Evaluación en test:"
+[1] "Análisis completado exitosamente."
+[1] "Proceso finalizado."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular resultados para train</span></span>
+<span id="cb5-2">train_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calculate_results</span>(modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>modelo, modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>train)</span>
+<span id="cb5-3">train_confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> train_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>confusion_matrix</span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular resultados para test</span></span>
+<span id="cb5-6">test_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calculate_results</span>(modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>modelo, modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>test)</span>
+<span id="cb5-7">test_confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>confusion_matrix</span></code></pre></div>
+</div>
+<p>Revisamos resultados de los datos de entrenamiento del modelo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">train_confusion</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 1152  108
+         1  134 2248
+                                         
+               Accuracy : 0.9336         
+                 95% CI : (0.925, 0.9414)
+    No Information Rate : 0.6469         
+    P-Value [Acc &gt; NIR] : &lt;2e-16         
+                                         
+                  Kappa : 0.8539         
+                                         
+ Mcnemar's Test P-Value : 0.108          
+                                         
+            Sensitivity : 0.8958         
+            Specificity : 0.9542         
+         Pos Pred Value : 0.9143         
+         Neg Pred Value : 0.9437         
+              Precision : 0.9143         
+                 Recall : 0.8958         
+                     F1 : 0.9049         
+             Prevalence : 0.3531         
+         Detection Rate : 0.3163         
+   Detection Prevalence : 0.3460         
+      Balanced Accuracy : 0.9250         
+                                         
+       'Positive' Class : 0              
+                                         </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">test_confusion</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 369  37
+         1  26 487
+                                          
+               Accuracy : 0.9314          
+                 95% CI : (0.9131, 0.9469)
+    No Information Rate : 0.5702          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8606          
+                                          
+ Mcnemar's Test P-Value : 0.2077          
+                                          
+            Sensitivity : 0.9342          
+            Specificity : 0.9294          
+         Pos Pred Value : 0.9089          
+         Neg Pred Value : 0.9493          
+              Precision : 0.9089          
+                 Recall : 0.9342          
+                     F1 : 0.9213          
+             Prevalence : 0.4298          
+         Detection Rate : 0.4015          
+   Detection Prevalence : 0.4418          
+      Balanced Accuracy : 0.9318          
+                                          
+       'Positive' Class : 0               
+                                          </code></pre>
+</div>
+</div>
+<p>Un problema que debemos resolver desde un principio es que estas métricas tienen múltiples nombres dependiendo del campo en el que te encuentres. Por ejemplo, la sensibilidad se llama <strong>recall</strong> en aprendizaje automático, <strong>tasa de positivos verdaderos</strong> en medicina y <strong>probabilidad de detección</strong> en ingeniería. Es la misma cosa, pero los nombres cambian dependiendo de con quién estés hablando, y eso puede ser confuso.</p>
+<p>Para calcular la sensibilidad, solo necesitamos la columna izquierda de la matriz de confusión. Dividimos los verdaderos positivos entre todos los casos positivos reales. En otras palabras, la sensibilidad mide el porcentaje de verdaderos positivos que el modelo identifica correctamente. Por eso, el segundo nombre para la sensibilidad es <strong>tasa de positivos verdaderos</strong>.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ASensibilidad=TPR=%5Cfrac%7BTP%7D%7BTP+FN%7D%0A"></p>
+<p>En nuestro ejemplo del DJI, se trata del porcentaje de subidas de la acción que nuestro modelo detectó, lo que explica la tercera definición: <strong>probabilidad de detección</strong>. La sensibilidad oscila entre 0 y 1, o entre 0% y 100%, donde 1 indica una sensibilidad perfecta (sin falsos negativos) y 0 significa que no se puede detectar ningún caso positivo.</p>
+<p>En nuestro ejemplo, la sensibilidad es alta 89.58% porque detectamos a 1152 subidas de precio, y una alta sensibilidad es lo que usualmente queremos. Especialmente en medicina, la sensibilidad es crucial para pruebas de detección como la detección de cáncer o enfermedades infecciosas como COVID-19. Si una prueba tiene baja sensibilidad, significa que muchos pacientes con cáncer son mal diagnosticados como sanos, lo que lleva a retrasos peligrosos en el tratamiento. Una prueba con alta sensibilidad asegura que la mayoría de los pacientes con la condición son identificados, incluso si genera algunos falsos positivos, que pueden ser seguidos con pruebas más específicas.</p>
+<p>En aprendizaje automático, la sensibilidad es esencial para la detección de fraude o la detección de anomalías, donde los casos positivos, como las transacciones fraudulentas con tarjetas de crédito, son <em>raros pero críticos</em>. Un modelo con alta sensibilidad asegura que la mayoría de las actividades fraudulentas son detectadas, incluso si genera algunas falsas alarmas.</p>
+<p>Sí, podemos maximizar la sensibilidad aumentando el costo de los falsos negativos con el paquete <strong><code>cutpointr</code></strong> y la función <strong><code>cutpoint()</code></strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb10-2">d2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>test <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pred_probs =</span> test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>predictions,</span>
+<span id="cb10-5">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pred_classes =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>predicted_direction))</span>
+<span id="cb10-6">    </span>
+<span id="cb10-7"></span>
+<span id="cb10-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(cutpointr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">verbose =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb10-9">sensitive_case <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cutpointr</span>(</span>
+<span id="cb10-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d2,</span>
+<span id="cb10-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> pred_probs,</span>
+<span id="cb10-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">class =</span> Direction,</span>
+<span id="cb10-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> minimize_metric,</span>
+<span id="cb10-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">metric =</span> misclassification_cost,</span>
+<span id="cb10-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fp =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb10-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fn =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span></span>
+<span id="cb10-17">)</span>
+<span id="cb10-18"></span>
+<span id="cb10-19">sensitive_case <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       [,1]             
+direction              "&gt;="             
+optimal_cutpoint       -1.049363        
+method                 "minimize_metric"
+misclassification_cost 110              
+acc                    0.9368879        
+sensitivity            0.9751908        
+specificity            0.8860759        
+AUC                    0.9839067        
+pos_class              1                
+neg_class              0                
+prevalence             0.570185         
+outcome                "Direction"      
+predictor              "pred_probs"     
+data                   tbl_df,2         
+roc_curve              roc_cutpointr,10 
+boot                   NA               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">sensitive_case <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb12-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_roc</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por ejemplo, si establecemos el costo de los falsos negativos en cinco veces el costo de los falsos positivos, podemos aumentar la sensibilidad de un 89.58% a un asombroso 97.52%.</p>
+<p>La sensibilidad nos ayuda a detectar tantos positivos verdaderos como sea posible, lo cual es crucial para escenarios como la detección del cáncer, pero aquí está el problema: aumentar demasiado la sensibilidad a menudo aumenta los falsos positivos, lo que puede ser peligroso en otros casos, como en la conducción autónoma, donde un coche autónomo podría confundir una sombra con un peatón, activando una frenada de emergencia innecesaria y un riesgo de accidente. En situaciones donde minimizar los falsos positivos y maximizar los verdaderos negativos es lo que más importa, una alta <strong>especificidad</strong> es clave. Así que hablemos de la especificidad.</p>
+<p>Desafortunadamente, la especificidad también tiene muchos nombres. En medicina, se le llama <strong>tasa de negativos verdaderos</strong>; en aprendizaje automático, a veces se la conoce como <strong>selectividad</strong>; en ingeniería, algunos la llaman <strong>probabilidad de predicción correcta</strong>, un término que personalmente encuentro particularmente intuitivo. Para calcular la especificidad, solo necesitamos la columna derecha de la matriz de confusión. Dividimos los verdaderos negativos entre todos los casos negativos reales.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AEspecificidad=TNR=%5Cfrac%7BTN%7D%7BTN+FP%7D%0A"></p>
+<p>En palabras sencillas, la especificidad mide el porcentaje de negativos reales que el modelo identifica correctamente como negativos. Por eso, otro nombre para la especificidad es la <strong>tasa de negativos verdaderos</strong>. En nuestro ejemplo, la especificidad nos dice <strong>cuántos no sobrevivientes</strong> el modelo clasificó correctamente como tales. La especificidad oscila entre 0 y 1, o entre 0% y 100%, donde 1 indica un modelo perfecto, sin falsos positivos, y 0 significa que no puede descartar los casos negativos en absoluto.</p>
+<p>En nuestro ejemplo, la especificidad es sólida, con un 95.42%, porque solo etiquetamos incorrectamente a 108 bajadas como subidas, <strong>mientras que la sensibilidad se centra en los positivos, la especificidad se centra en evitar las falsas alarmas, lo cual es crucial en ciertos escenarios de alto riesgo</strong>. Por ejemplo, en medicina, una prueba con baja especificidad podría etiquetar falsamente a personas sanas como tener cáncer, lo que lleva a ansiedad innecesaria, biopsias, quimioterapia o incluso cirugía. Además, una baja especificidad en una prueba de una enfermedad rara puede abrumar a los sistemas de salud con falsas alarmas. Por eso, a veces necesitamos maximizar la especificidad y mantener los falsos positivos tan bajos como sea posible.</p>
+<p>Sí, podemos hacerlo aumentando el costo de los falsos positivos usando el paquete <strong>cutpointr</strong> en R. Podemos desplazar el umbral de decisión para minimizar los falsos positivos y priorizar los verdaderos negativos, incluso si eso significa perder algunos verdaderos positivos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">sensitive_case <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cutpointr</span>(</span>
+<span id="cb13-2">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d2,</span>
+<span id="cb13-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> pred_probs,</span>
+<span id="cb13-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">class =</span> Direction,</span>
+<span id="cb13-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> minimize_metric,</span>
+<span id="cb13-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">metric =</span> misclassification_cost,</span>
+<span id="cb13-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fp =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb13-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fn =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb13-9">)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class is 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class has higher x values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Multiple optimal cutpoints found, applying break_ties.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">sensitive_case <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb17-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       [,1]             
+direction              "&gt;="             
+optimal_cutpoint       1.727427         
+method                 "minimize_metric"
+misclassification_cost 125              
+acc                    0.9075082        
+sensitivity            0.8568702        
+specificity            0.9746835        
+AUC                    0.9839067        
+pos_class              1                
+neg_class              0                
+prevalence             0.570185         
+outcome                "Direction"      
+predictor              "pred_probs"     
+data                   tbl_df,2         
+roc_curve              roc_cutpointr,10 
+boot                   NA               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">sensitive_case <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb19-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_roc</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por ejemplo, si establecemos el costo de los falsos positivos en cinco veces el costo de los falsos negativos, podemos hacer que la especificidad pase de un impresionante 95.42% a un increíble 97.47%.</p>
+<p>Como puedes ver, los científicos de datos enfrentan un desafío complejo: aumentar la sensibilidad para detectar todos los positivos posible corre el riesgo de aumentar las falsas alarmas, mientras que aumentar la especificidad para proteger las transacciones legítimas podría significar perder algunas actividades fraudulentas. Es aquí donde entra en juego el <strong>índice J de Youden</strong>. El índice J de Youden ayuda a encontrar un punto óptimo entre sensibilidad y especificidad, maximizando la efectividad general del modelo. Así que hablemos de eso.</p>
+<p><strong>El índice J de Youden es increíblemente útil cuando tanto los falsos positivos como los falsos negativos tienen consecuencias significativas</strong>. Es por eso que el índice J de Youden maximiza los verdaderos positivos y minimiza los falsos positivos. Un dato curioso: el índice J de Youden también se conoce como <strong>información basada en corredores de apuestas</strong> porque mide cuánto más informado está una prueba o modelo en comparación con el azar. El término proviene del mundo de las apuestas, donde los corredores de apuestas dependen de la información para predecir los resultados mejor que el azar.</p>
+<p>Para calcular el índice J de Youden, combinamos sensibilidad y especificidad. Dado que la suma simple de sensibilidad y especificidad oscila entre 1 y 2, lo que no es fácil de interpretar, el menos uno en la fórmula de J normaliza la escala para que oscile entre 0 y 1, lo que es fácil de interpretar.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AJ=Sensibilidad+Especificidad-1%0A"></p>
+<p>Específicamente, J igual a 0 indica que la prueba no funciona mejor que el azar y, por lo tanto, no tiene información útil. J igual a 1 indica que la prueba distingue perfectamente entre positivos y negativos. En resumen, el índice J de Youden o <strong>información</strong> nos dice qué tan bien una prueba o modelo mejora la toma de decisiones en comparación con el azar.</p>
+<p>En R, hay dos formas fáciles de calcular el índice J de Youden: una es usando la función <strong>youden</strong> del paquete <strong>cutpointr</strong>,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">indexJ <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">youden</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tp =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb20-2">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tn =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>],</span>
+<span id="cb20-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fp =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>],</span>
+<span id="cb20-4">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fn =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>])</span>
+<span id="cb20-5"></span>
+<span id="cb20-6">indexJ</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        youden
+[1,] 0.8499605</code></pre>
+</div>
+</div>
+<p>y la otra es usando el resumen de la función <strong>epi.tests</strong> del paquete <strong>epiR</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(epiR<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">epi.tests</span>(train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb22-2">    gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb22-3">    gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb22-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb22-5">      gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_fill</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"orange"</span>),</span>
+<span id="cb22-6">      gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>)</span>
+<span id="cb22-7">      ),</span>
+<span id="cb22-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_body</span>(</span>
+<span id="cb22-9">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> statistic,</span>
+<span id="cb22-10">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rows =</span> statistic <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"youden"</span></span>
+<span id="cb22-11">    )</span>
+<span id="cb22-12">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="krdkxevwfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#krdkxevwfh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#krdkxevwfh thead, #krdkxevwfh tbody, #krdkxevwfh tfoot, #krdkxevwfh tr, #krdkxevwfh td, #krdkxevwfh th {
+  border-style: none;
+}
+
+#krdkxevwfh p {
+  margin: 0;
+  padding: 0;
+}
+
+#krdkxevwfh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#krdkxevwfh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#krdkxevwfh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#krdkxevwfh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#krdkxevwfh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#krdkxevwfh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#krdkxevwfh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#krdkxevwfh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#krdkxevwfh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#krdkxevwfh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#krdkxevwfh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#krdkxevwfh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#krdkxevwfh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#krdkxevwfh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#krdkxevwfh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#krdkxevwfh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#krdkxevwfh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#krdkxevwfh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krdkxevwfh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krdkxevwfh .gt_left {
+  text-align: left;
+}
+
+#krdkxevwfh .gt_center {
+  text-align: center;
+}
+
+#krdkxevwfh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#krdkxevwfh .gt_font_normal {
+  font-weight: normal;
+}
+
+#krdkxevwfh .gt_font_bold {
+  font-weight: bold;
+}
+
+#krdkxevwfh .gt_font_italic {
+  font-style: italic;
+}
+
+#krdkxevwfh .gt_super {
+  font-size: 65%;
+}
+
+#krdkxevwfh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#krdkxevwfh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#krdkxevwfh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#krdkxevwfh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#krdkxevwfh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#krdkxevwfh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#krdkxevwfh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#krdkxevwfh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#krdkxevwfh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="est" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">est</th>
+<th id="lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">lower</th>
+<th id="upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">upper</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">ap</td>
+<td class="gt_row gt_right" headers="est">0.34596376</td>
+<td class="gt_row gt_right" headers="lower">0.33050644</td>
+<td class="gt_row gt_right" headers="upper">0.36166868</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">tp</td>
+<td class="gt_row gt_right" headers="est">0.35310269</td>
+<td class="gt_row gt_right" headers="lower">0.33756651</td>
+<td class="gt_row gt_right" headers="upper">0.36887498</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">se</td>
+<td class="gt_row gt_right" headers="est">0.89580093</td>
+<td class="gt_row gt_right" headers="lower">0.87779966</td>
+<td class="gt_row gt_right" headers="upper">0.91196838</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">sp</td>
+<td class="gt_row gt_right" headers="est">0.95415959</td>
+<td class="gt_row gt_right" headers="lower">0.94492020</td>
+<td class="gt_row gt_right" headers="upper">0.96224718</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">diag.ac</td>
+<td class="gt_row gt_right" headers="est">0.93355299</td>
+<td class="gt_row gt_right" headers="lower">0.92497323</td>
+<td class="gt_row gt_right" headers="upper">0.94142858</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">diag.or</td>
+<td class="gt_row gt_right" headers="est">178.94527363</td>
+<td class="gt_row gt_right" headers="lower">137.53368835</td>
+<td class="gt_row gt_right" headers="upper">232.82594497</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">nndx</td>
+<td class="gt_row gt_right" headers="est">1.17652523</td>
+<td class="gt_row gt_right" headers="lower">1.14388264</td>
+<td class="gt_row gt_right" headers="upper">1.21548056</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic" style="background-color: #FFA500; font-weight: bold">youden</td>
+<td class="gt_row gt_right" headers="est">0.84996053</td>
+<td class="gt_row gt_right" headers="lower">0.82271986</td>
+<td class="gt_row gt_right" headers="upper">0.87421556</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">pv.pos</td>
+<td class="gt_row gt_right" headers="est">0.91428571</td>
+<td class="gt_row gt_right" headers="lower">0.89744763</td>
+<td class="gt_row gt_right" headers="upper">0.92915893</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">pv.neg</td>
+<td class="gt_row gt_right" headers="est">0.94374475</td>
+<td class="gt_row gt_right" headers="lower">0.93372253</td>
+<td class="gt_row gt_right" headers="upper">0.95265725</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">lr.pos</td>
+<td class="gt_row gt_right" headers="est">19.54173147</td>
+<td class="gt_row gt_right" headers="lower">16.23853945</td>
+<td class="gt_row gt_right" headers="upper">23.51684830</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">lr.neg</td>
+<td class="gt_row gt_right" headers="est">0.10920507</td>
+<td class="gt_row gt_right" headers="lower">0.09301233</td>
+<td class="gt_row gt_right" headers="upper">0.12821685</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.rout</td>
+<td class="gt_row gt_right" headers="est">0.65403624</td>
+<td class="gt_row gt_right" headers="lower">0.63833132</td>
+<td class="gt_row gt_right" headers="upper">0.66949356</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.rin</td>
+<td class="gt_row gt_right" headers="est">0.34596376</td>
+<td class="gt_row gt_right" headers="lower">0.33050644</td>
+<td class="gt_row gt_right" headers="upper">0.36166868</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.tpdn</td>
+<td class="gt_row gt_right" headers="est">0.04584041</td>
+<td class="gt_row gt_right" headers="lower">0.03775282</td>
+<td class="gt_row gt_right" headers="upper">0.05507980</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.tndp</td>
+<td class="gt_row gt_right" headers="est">0.10419907</td>
+<td class="gt_row gt_right" headers="lower">0.08803162</td>
+<td class="gt_row gt_right" headers="upper">0.12220034</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="statistic">p.dntp</td>
+<td class="gt_row gt_right" headers="est">0.08571429</td>
+<td class="gt_row gt_right" headers="lower">0.07084107</td>
+<td class="gt_row gt_right" headers="upper">0.10255237</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="statistic">p.dptn</td>
+<td class="gt_row gt_right" headers="est">0.05625525</td>
+<td class="gt_row gt_right" headers="lower">0.04734275</td>
+<td class="gt_row gt_right" headers="upper">0.06627747</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Un <img src="https://latex.codecogs.com/png.latex?J"> de 85.00% es fuerte. Nos dice que el modelo funciona mejor que el azar, pero podría ser perfeccionado para equilibrar mejor la sensibilidad y la especificidad. Si te preguntas cómo maximizar el índice J de Youden, la respuesta es usando la misma función <strong>cutpointr</strong> que usamos para maximizar la sensibilidad y la especificidad.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">improve_j <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cutpointr</span>(</span>
+<span id="cb23-2">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d2,</span>
+<span id="cb23-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> pred_probs,</span>
+<span id="cb23-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">class =</span> Direction,</span>
+<span id="cb23-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> maximize_metric,</span>
+<span id="cb23-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">metric =</span> youden,</span>
+<span id="cb23-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">boot_runs =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span></span>
+<span id="cb23-8">)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class is 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Assuming the positive class has higher x values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running bootstrap...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1">improve_j <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 [,1]             
+direction        "&gt;="             
+optimal_cutpoint -0.2763423       
+method           "maximize_metric"
+youden           0.8724853        
+acc              0.9368879        
+sensitivity      0.9408397        
+specificity      0.9316456        
+AUC              0.9839067        
+pos_class        1                
+neg_class        0                
+prevalence       0.570185         
+outcome          "Direction"      
+predictor        "pred_probs"     
+data             tbl_df,2         
+roc_curve        roc_cutpointr,10 
+boot             tbl_df,23        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1">improve_j <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb29-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_metric</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Lo que quiero mostrarte es que, aumentando ligeramente la sensibilidad del 89.58% al 94.08% y disminuyendo ligeramente la especificidad del 95.42% al 93.16%, podríamos aumentar el índice J de Youden del 85.00% al 87.25%. ¡Genial!, lo que hace que nuestro modelo sea más preciso.</p>
+<p>Y hablando de precisión, debemos discutirla a continuación, porque la precisión es una de las métricas más importantes y ampliamente utilizadas derivadas de la matriz de confusión. La precisión, también conocida como <strong>valor predictivo positivo</strong>, mide qué tan precisas son las predicciones positivas. Es el porcentaje de resultados positivos que son correctos, lo que muestra qué tan probable es que un resultado positivo sea verdadero.</p>
+<p>Durante los primeros días de la pandemia de COVID-19, la sensibilidad fue clave para detectar a tantas personas infectadas como posible, pero más tarde, cuando la propagación se desaceleró y las pruebas se multiplicaron, la precisión se convirtió en el foco de atención.</p>
+<p>Para calcular la precisión, nos centramos en la primera fila de la <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/#fig-1">matriz de confusión</a>, los positivos predichos. Es la proporción de verdaderos positivos entre todos los casos positivos predichos. La precisión oscila entre 0 y 1, o entre 0% y 100%. Un puntaje de 1 significa que todas las predicciones positivas fueron correctas, sin falsos positivos, mientras que 0 significa que todas fueron incorrectas.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0APrecisi%C3%B3n=PPV=%5Cfrac%7BTP%7D%7BTP+FP%7D%0A"></p>
+<p>En nuestro ejemplo, una precisión del 91.43% nos dice que el 91.43% de las acciones que el modelo etiquetó como subidas realmente subieron. Eso es sólido, ya que solo 108 de los 1260 movimientos hacia arriba predichos fueron mal clasificados.</p>
+<p>Pero, ¿por qué la precisión es tan importante? Piensa en los filtros de correo no deseado. Una alta precisión asegura que cuando un correo aterriza en tu bandeja de spam, es casi seguro que es basura. Por otro lado, si tienes una baja precisión, te encontrarás revolviendo spam para encontrar ese correo urgente de tu jefe. Es un infierno, ¿no? La precisión también se puede calcular usando sensibilidad, especificidad y prevalencia, aunque idealmente, es un poco pesado y difícil de recordar.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0APPV=%5Cfrac%7BSensibilidad*Prevalencia%7D%7BSensitividad*Prevalencia+(1-Especificidad)*(1-Prevalencia)%7D%0A"></p>
+<p>Lo que es fácil de recordar es que cuando hay un valor predictivo positivo, también debe haber un valor predictivo negativo. De hecho, el valor predictivo negativo nos dice cuántos resultados de prueba negativos son precisos.</p>
+<p>Para calcular el <strong>valor predictivo negativo (VPV)</strong>, solo necesitamos la fila inferior de la matriz de confusión, los negativos predichos. Dividimos el número de verdaderos negativos entre el total de predicciones negativas. El valor predictivo negativo es crucial porque construye confianza en los resultados negativos.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ANPV=%5Cfrac%7BTN%7D%7BTN+FN%7D%0A"></p>
+<p>Por ejemplo, en la detección del cáncer, si tu prueba da negativo y el VPV es del 99%, hay un 99% de probabilidad de que realmente no tengas cáncer. Eso es muy tranquilizador. Solo hay un 1% de posibilidad de que haya un error. Pero si el VPV es del 94.37%, como en nuestro ejemplo, significa que el 94.37% de las veces un resultado negativo es correcto, pero que hay un 5.63% de probabilidad de que el resultado negativo sea incorrecto y que realmente tengas cáncer. Eso probablemente no te tranquilizaría mucho, ya que es un riesgo bastante grande. Por eso, el VPV es realmente importante porque afecta directamente cuánto puedes confiar en un resultado negativo.</p>
+<p>El valor predictivo positivo nos dice cuántas de nuestras predicciones positivas son realmente correctas, mientras que el valor predictivo negativo mide cuántas de nuestras predicciones negativas son precisas. Ambas son útiles, pero se centran solo en un lado de los resultados de las predicciones, ya sean positivos o negativos. Pero, <strong>¿qué pasa si necesitamos evaluar la corrección general de todas las predicciones, tanto positivas como negativas?</strong></p>
+<p>Ahí es donde entra en juego la <strong>exactitud</strong>. La exactitud nos da una visión general del rendimiento midiendo la proporción de todas las predicciones correctas, independientemente de la clase. De hecho, ¿qué métricas usas y cuáles son las principales en tu opinión? Realmente quiero saber tus pensamientos. La fórmula para la exactitud es sencilla: suma los verdaderos positivos y los verdaderos negativos, y divide entre el número total de casos.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AExactitud=%5Cfrac%7BTP+TN%7D%7Btotal%7D%0A"></p>
+<p>Eso es todo, bastante sencillo, ¿verdad? Mientras que una mayor exactitud es generalmente lo que queremos, la exactitud <strong>puede ser engañosa al lidiar con clases ligeramente desequilibradas,</strong> donde un resultado sobrepasa ligeramente al otro. Es por eso que tenemos una métrica más robusta como la <strong>exactitud equilibrada</strong>.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BExactitud%20equilibrada%7D=%5Cfrac%7BSensibilidad+Especificidad%7D%7B2%7D%0A"></p>
+<p>La exactitud equilibrada ofrece una solución promediando la sensibilidad y la especificidad, asegurando que ambas clases reciban una consideración igual. En nuestro ejemplo, una exactitud equilibrada del 92.50% está solo 0.86% por debajo de la exactitud general del 93.36%, lo que sugiere que las clases están relativamente equilibradas, pero eso no es siempre el caso. Por eso, no confío en la exactitud si no veo una matriz de confusión o una exactitud equilibrada comparada con la exactitud. Podemos calcular fácilmente la exactitud equilibrada usando la función de <code>confusionMatrix()</code> del paquete <strong><code>caret</code></strong>.</p>
+<p>Mientras que la exactitud equilibrada es útil para conjuntos de datos ligeramente desequilibrados, a veces la exactitud equilibrada puede ser casi la mitad de la exactitud, lo que indica que nuestro conjunto de datos está muy sesgado y no balanceado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1">casos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span></span>
+<span id="cb30-2">prop_positivos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span></span>
+<span id="cb30-3">cant_positivos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> casos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> prop_positivos</span>
+<span id="cb30-4">cant_negativos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> casos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> cant_positivos</span>
+<span id="cb30-5"></span>
+<span id="cb30-6">actual <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, cant_positivos), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, cant_negativos))</span>
+<span id="cb30-7">predicciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, casos)</span>
+<span id="cb30-8"></span>
+<span id="cb30-9">ejemplo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">confusionMatrix</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(predicciones), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(actual))</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in confusionMatrix.default(factor(predicciones), factor(actual)):
+Levels are not in the same order for reference and data. Refactoring data to
+match.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1">ejemplo</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 9500  500
+         1    0    0
+                                          
+               Accuracy : 0.95            
+                 95% CI : (0.9455, 0.9542)
+    No Information Rate : 0.95            
+    P-Value [Acc &gt; NIR] : 0.5119          
+                                          
+                  Kappa : 0               
+                                          
+ Mcnemar's Test P-Value : &lt;2e-16          
+                                          
+            Sensitivity : 1.00            
+            Specificity : 0.00            
+         Pos Pred Value : 0.95            
+         Neg Pred Value :  NaN            
+             Prevalence : 0.95            
+         Detection Rate : 0.95            
+   Detection Prevalence : 1.00            
+      Balanced Accuracy : 0.50            
+                                          
+       'Positive' Class : 0               
+                                          </code></pre>
+</div>
+</div>
+<p>Por ejemplo, consideremos un conjunto de datos con 10^{4} casos, donde solo el 5% son positivos. En este caso, un modelo puede lograr una asombrosa exactitud del 95.00% simplemente prediciendo negativo todas las veces, pero falla al detectar cualquier positivo, lo que resulta en un 100% de predicciones positivas incorrectas, lo cual es <strong>inaceptable</strong>. Sin ver la matriz de confusión, no somos conscientes de este desastre.</p>
+<p>Sin embargo, la exactitud equilibrada de 50.00% revela esta debilidad al dar una puntuación mucho más baja, indicando que algo está seriamente mal. <strong>Centrarse solo en la exactitud puede ocultar muchos errores</strong>, lo que lleva a malas decisiones. A veces, <strong>saber cuán impreciso es nuestro modelo puede ser muy útil porque revela dónde y cuántas veces nuestro modelo está equivocado</strong>.</p>
+<p>Métricas como la <strong>tasa de malclasificación</strong> y la <strong>tasa de descubrimiento falso</strong> son increíblemente prácticas y merecen su propio espacio de expliación. Por lo tanto, si quieres que tu modelo sea sólido y confiable, o si necesitas explicar por qué algunos resultados del modelo no deben confiarse, debes ver otros de mis posts.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Entendiendo La Matriz de Confusión},
+  date = {2025-04-08},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Entendiendo La Matriz de
+Confusión.”</span> April 8, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/">https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/</a>.
+</div></div></section></div> ]]></description>
+  <category>Machine Learning</category>
+  <category>Trading</category>
+  <category>Regresión Logística</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/</guid>
+  <pubDate>Tue, 08 Apr 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/stocks1.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Modelando stocks financieros</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
@@ -32043,154 +33425,6 @@ AWS.”</span> January 28, 2025. <a href="https://cchiquitovalencia.github.io/po
   <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/</guid>
   <pubDate>Tue, 28 Jan 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-start_EC2_instance/EC2_instance.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Gestión de sistemas de mantenimiento</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Usar un software de <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-introduction_maintenance/">mantenimiento</a> para la gestión de flotas es, sin lugar a dudas, una de las mejores <em>decisiones estratégicas</em> que se pueden asumir en coherencia con la gerencia.</p>
-<p>Cualquier software de gestión de mantenimiento debe ser una herramienta valiosa para las empresas que buscan optimizar sus operaciones de mantenimiento. Uno de los beneficios más importantes es la mejora en la planeación y programación. Debes ser capaz de planificar y programar los mantenimientos con anticipación, evitando retrasos y reduciendo los tiempos de inactividad de los vehículos. Esto es especialmente importante en industrias como la logística y el transporte, donde la disponibilidad de los vehículos es crucial para el éxito de la empresa. Además, la planeación y programación efectiva también puede ayudar a reducir costos y mejorar la eficiencia de los procesos.</p>
-<p>Otro beneficio importante es la mejora en la toma de decisiones. El software de gestión de mantenimiento debe proporcionar información detallada sobre los activos y los procesos para que los gerentes puedan tomar decisiones informadas sobre cómo manejar sus activos. Esto puede incluir decisiones sobre cuando reemplazar un componente, cómo asignar recursos y cómo optimizar los procesos. Con esta información, los gerentes pueden identificar oportunidades para reducir costos y mejorar la eficiencia, lo que puede tener un impacto significativo en el éxito de la empresa.</p>
-<p>La reducción de costos es otro beneficio importante del software de gestión de mantenimiento. Al monitorear el progreso de los mantenimientos y los costos asociados, las empresas pueden identificar oportunidades para reducir gastos y optimizar sus procesos de mantenimiento. Esto puede incluir la identificación de componentes que no son esenciales para el funcionamiento del vehículo, la optimización de los procesos de mantenimiento y la reducción de los costos de repuestos. Además, la reducción de costos también puede ayudar a mejorar la eficiencia y la productividad de los empleados, lo que puede tener un impacto positivo en la cultura de la empresa.</p>
-<section id="proyecto-optimización-de-mantenimiento" class="level2">
-<h2 class="anchored" data-anchor-id="proyecto-optimización-de-mantenimiento">Proyecto optimización de mantenimiento</h2>
-<p>Crearemos un modelo que proyecte el <strong>calendario de mantenimiento óptimo</strong> para una flota de <img src="https://latex.codecogs.com/png.latex?m"> unidades y <img src="https://latex.codecogs.com/png.latex?H"> periodos de tiempo. El mantenimiento se refiere a <strong>cuándo</strong> debe ocurrir y <strong>cuántas</strong> horas de funcionamiento se planean para cada unidad en cada período de tiempo. Las unidades <img src="https://latex.codecogs.com/png.latex?i"> y los periodos de tiempo <img src="https://latex.codecogs.com/png.latex?t"> se representan mediante conjuntos.</p>
-<p><img src="https://latex.codecogs.com/png.latex?i%20%E2%88%88%20%5C%7B1,2,...,m%5C%7D"></p>
-<p>y</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0At%20%E2%88%88%20%5C%7B1,2,...,H%5C%7D%0A"></p>
-<p>En primer lugar, se utilizan dos variables para definir un calendario. Una variable binaria que almacena el mantenimiento planeado.</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D=%5Ccases%7B1,%20%5Ctext%7Bsi%20se%20realiza%20mantenimiento%20de%20la%20unidad%20i%20en%20el%20tiempo%20t%7D%5C%5C0,%20%5Ctext%7Bde%20lo%20contrario%7D%7D%0A"></p>
-<p>Y una variable <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D%20%E2%89%A5%200"> que representa el número de horas de funcionamiento para la unidad <img src="https://latex.codecogs.com/png.latex?i"> en el período de tiempo <img src="https://latex.codecogs.com/png.latex?t">.</p>
-<p>Para encontrar un calendario de mantenimiento óptimo para una flota, se escribe un <strong>MILP</strong> (Programación Lineal Entera Mixta) donde el objetivo es minimizar el número de ocasiones de mantenimiento planeadas, es decir, minimizar la suma de <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> sobre cada unidad <img src="https://latex.codecogs.com/png.latex?i"> y período de tiempo <img src="https://latex.codecogs.com/png.latex?t">. Para el programa principal, las restricciones incluidas son una demanda de tiempo de funcionamiento para la flota completa de <img src="https://latex.codecogs.com/png.latex?D"> horas y requisitos de mantenimiento después de al menos <img src="https://latex.codecogs.com/png.latex?U_i"> tiempo periodos o <img src="https://latex.codecogs.com/png.latex?T_i"> horas de funcionamiento desde el último mantenimiento, lo que sea lo primero. Esto se puede escribir como:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Amin%20%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dy_%7Bi,t%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bsujeto%20a%20%7D%20%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dx_%7Bi,t%7D%5Cge%20D,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=%5Ctau%7D%5E%7B%5Ctau+U_i%7Dy_%7Bi,t%7D%20%5Cge%201,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7B1,2,...,H-U_i%5C%7D,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D%5Cle%20T_i+T_i%20%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,t%7D%20+%20x%5E%7Bmax%7Dy_%7Bi,t%7D%20%5Cle%20x%5E%7Bmax%7D,%20%5Cquad%20%E2%88%80i,%20t,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,t%7D%20%5Cge%200,%20%5Cquad%20%E2%88%80i,%20t,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D%20%E2%88%88%20%5C%7B0,1%5C%7D,%20%5Cquad%20%E2%88%80i,t,%0A"></p>
-<p>Donde Eq.2 garantiza que se cumple la demanda de horas de funcionamiento y Eq.3 y Eq.4 manejan las restricciones de mantenimiento. La restricción Eq.5 garantiza que no se planean operaciones para una unidad que está en mantenimiento, es decir, fuerza la deducción:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,t%7D=1%20%E2%9F%B6%20x_%7Bi,t%7D=0,%20%5Cquad%20%E2%88%80i,%20t.%0A"></p>
-<p>El parámetro <img src="https://latex.codecogs.com/png.latex?x%5E%7Bmax%7D"> es el límite superior de <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D">, que se establece en <img src="https://latex.codecogs.com/png.latex?744"> horas, ya que ese es el máximo número de horas que un mes puede tener.</p>
-</section>
-<section id="restricción-de-programación-de-mantenimiento-según-calendario" class="level2">
-<h2 class="anchored" data-anchor-id="restricción-de-programación-de-mantenimiento-según-calendario">Restricción de programación de mantenimiento según calendario</h2>
-<p>La Eq.3 controla que el mantenimiento se realice al menos después de <img src="https://latex.codecogs.com/png.latex?U_i"> periodos de tiempo desde el último mantenimiento. Esta restricción establece que para la suma de <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> dentro de todos los periodos de tamaño <img src="https://latex.codecogs.com/png.latex?U_i%20+%201">, al menos uno de los periodos tiene que tener un evento de mantenimiento planeado con <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D%20=%201">, según el requisito de mantenimiento basado en calendario. Para visualizar las restricciones, se muestra un ejemplo para una unidad <img src="https://latex.codecogs.com/png.latex?j"> con <img src="https://latex.codecogs.com/png.latex?U_j%20=%203"> y <img src="https://latex.codecogs.com/png.latex?H%20=%208">.</p>
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-2458725265.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: Ejemplo de restricción de programación de mantenimiento según calendario.
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="restricción-de-programación-de-mantenimiento-según-uso" class="level2">
-<h2 class="anchored" data-anchor-id="restricción-de-programación-de-mantenimiento-según-uso">Restricción de programación de mantenimiento según uso</h2>
-<p>La restricción Eq.4 se compone de la suma del tiempo de funcionamiento, operación o funcionamiento,</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"> y la suma de eventos de mantenimiento</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D%0A"></p>
-<p>sobre todos los periodos de tiempo continuos de diferentes tamaños. Para cada evento de mantenimiento en el período, se agregan <img src="https://latex.codecogs.com/png.latex?T_i"> unidades de tiempo dentro del área aceptable de tiempo de funcionamiento. Por lo tanto, la restricción se escribe como: <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D%5Cle%20T_i+T_i%20%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dy_%7Bi,t%7D,%20%5Cquad%20%E2%88%80i,%20t,%20u%20%E2%88%88%20%5C%7B0,1,...,H-t%5C%7D,%0A"></p>
-<p>Los periodos desde <img src="https://latex.codecogs.com/png.latex?t"> hasta <img src="https://latex.codecogs.com/png.latex?t%20+%20u"> se visualizan en la Figura 2 para una unidad y <img src="https://latex.codecogs.com/png.latex?H%20=%206">.</p>
-<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/images/clipboard-3845605873.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2: Ejemplo de restricción de programación de mantenimiento según operación.
-</figcaption>
-</figure>
-</div>
-<p>Las ecuaciones de la restricción Eq.4 escritas son:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20%5Cle%20T_i+T_iy_%7Bi,1%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+%20x_%7Bi,2%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+%20T_iy_%7Bi,2%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+x_%7Bi,2%7D%20+x_%7Bi,3%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+T_iy_%7Bi,2%7D+T_iy_%7Bi,3%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,1%7D%20+x_%7Bi,2%7D%20+...+x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,1%7D%20+T_iy_%7Bi,2%7D+...+T_iy_%7Bi,H%7D%0A"></p>
-<hr>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20%5Cle%20T_i+T_iy_%7Bi,2%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+%20x_%7Bi,3%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+%20T_iy_%7Bi,3%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+x_%7Bi,3%7D%20+x_%7Bi,4%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+T_iy_%7Bi,3%7D+T_iy_%7Bi,4%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,2%7D%20+x_%7Bi,3%7D%20+...+x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,2%7D%20+T_iy_%7Bi,3%7D+...+T_iy_%7Bi,H%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%E2%A0%87%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H-1%7D%20%5Cle%20T_i+T_iy_%7Bi,H-1%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H-1%7D%20+%20x_%7Bi,H%7D%5Cle%20T_i+T_iy_%7Bi,H-1%7D%20+%20T_iy_%7Bi,H%7D%0A"></p>
-<hr>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bi,H%7D%20%5Cle%20T_i+T_iy_%7Bi,H%7D%0A"></p>
-<p>para cada unidad <img src="https://latex.codecogs.com/png.latex?i">.</p>
-</section>
-<section id="ejemplo" class="level2">
-<h2 class="anchored" data-anchor-id="ejemplo">Ejemplo</h2>
-<p>Un pequeño ejemplo del modelo descrito, con valores de parámetros de entrada listados en la Tabla No.1, se resuelve:</p>
-<table class="caption-top table">
-<caption>Tabla No.1. Valores de entrada para un pequeño ejemplo.</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Parámetro</th>
-<th style="text-align: center;">Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?m"></td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?H"></td>
-<td style="text-align: center;">8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?D"></td>
-<td style="text-align: center;">480</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?U_i"></td>
-<td style="text-align: center;">c(3, 3)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?T_i"></td>
-<td style="text-align: center;">c(90, 90)</td>
-</tr>
-</tbody>
-</table>
-<p>El número total de horas de operación para la solución es:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dx_%7Bi,t%7D%5E%7B*%7D=D,%0A"></p>
-<p>las horas máximas de funcionamiento y los periodos de tiempo entre mantenimientos son iguales a <img src="https://latex.codecogs.com/png.latex?T_i"> y <img src="https://latex.codecogs.com/png.latex?U_i"> ,respectivamente, y el número de eventos de mantenimiento es:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Btot%7D%5E%7B*%7D=%5Csum_%7Bi=1%7D%5E%7Bm%7D%5Csum_%7Bt=1%7D%5E%7BH%7Dy_%7Bi,t%7D%5E%7B*%7D=4%0A"></p>
-<p>Es claro que el problema planteado aquí es en extremo básico, y seguramente no se ajusta a cualquiera que sea tu necesidad. Pero, en mi defensa, mi intención es mostrar que no es imposible crear un servicio en la nube para lograr optimizar los recursos que se encuentran bajo tu control y administración.</p>
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
-  author = {Chiquito Valencia, Cristian},
-  title = {Gestión de Sistemas de Mantenimiento},
-  date = {2025-01-27},
-  url = {https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2025. <span>“Gestión de Sistemas de
-Mantenimiento.”</span> January 27, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/">https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</a>.
-</div></div></section></div> ]]></description>
-  <category>Mantenimiento</category>
-  <category>Software</category>
-  <category>Programación Lineal Entera Mixta</category>
-  <category>MILP</category>
-  <category>Optimización</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/</guid>
-  <pubDate>Mon, 27 Jan 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/fleet-vehicle2.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
