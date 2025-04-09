@@ -138,11 +138,11 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Entendiendo la matriz de confusión – Cristian Chiquito Valencia">
 <meta property="og:description" content="TRADING Serie - Parte 2">
-<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/stocks1.jpeg">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/confusion.jpeg">
 <meta property="og:site_name" content="Cristian Chiquito Valencia">
 <meta name="twitter:title" content="Entendiendo la matriz de confusión – Cristian Chiquito Valencia">
 <meta name="twitter:description" content="TRADING Serie - Parte 2">
-<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/stocks1.jpeg">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/confusion.jpeg">
 <meta name="twitter:creator" content="@cchiquitov">
 <meta name="twitter:card" content="summary">
 </head>
@@ -244,7 +244,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"cchiquitovalencia/myfinance"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si obtienes algo parecido a esto, estás listo para continuar:</p>
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="670" data-fig-align="center">
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="670">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="https://github.com/cchiquitovalencia/myfinance/tree/master"><img src="images/myfinance_devtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="670"></a>
@@ -545,23 +545,23 @@ J=Sensibilidad+Especificidad-1
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="krdkxevwfh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#krdkxevwfh table {
+<div id="abilrixbgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#abilrixbgp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#krdkxevwfh thead, #krdkxevwfh tbody, #krdkxevwfh tfoot, #krdkxevwfh tr, #krdkxevwfh td, #krdkxevwfh th {
+#abilrixbgp thead, #abilrixbgp tbody, #abilrixbgp tfoot, #abilrixbgp tr, #abilrixbgp td, #abilrixbgp th {
   border-style: none;
 }
 
-#krdkxevwfh p {
+#abilrixbgp p {
   margin: 0;
   padding: 0;
 }
 
-#krdkxevwfh .gt_table {
+#abilrixbgp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -587,12 +587,12 @@ J=Sensibilidad+Especificidad-1
   border-left-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_caption {
+#abilrixbgp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#krdkxevwfh .gt_title {
+#abilrixbgp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -604,7 +604,7 @@ J=Sensibilidad+Especificidad-1
   border-bottom-width: 0;
 }
 
-#krdkxevwfh .gt_subtitle {
+#abilrixbgp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -616,7 +616,7 @@ J=Sensibilidad+Especificidad-1
   border-top-width: 0;
 }
 
-#krdkxevwfh .gt_heading {
+#abilrixbgp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -628,13 +628,13 @@ J=Sensibilidad+Especificidad-1
   border-right-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_bottom_border {
+#abilrixbgp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_col_headings {
+#abilrixbgp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -649,7 +649,7 @@ J=Sensibilidad+Especificidad-1
   border-right-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_col_heading {
+#abilrixbgp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -669,7 +669,7 @@ J=Sensibilidad+Especificidad-1
   overflow-x: hidden;
 }
 
-#krdkxevwfh .gt_column_spanner_outer {
+#abilrixbgp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -681,15 +681,15 @@ J=Sensibilidad+Especificidad-1
   padding-right: 4px;
 }
 
-#krdkxevwfh .gt_column_spanner_outer:first-child {
+#abilrixbgp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#krdkxevwfh .gt_column_spanner_outer:last-child {
+#abilrixbgp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#krdkxevwfh .gt_column_spanner {
+#abilrixbgp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -701,11 +701,11 @@ J=Sensibilidad+Especificidad-1
   width: 100%;
 }
 
-#krdkxevwfh .gt_spanner_row {
+#abilrixbgp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#krdkxevwfh .gt_group_heading {
+#abilrixbgp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -731,7 +731,7 @@ J=Sensibilidad+Especificidad-1
   text-align: left;
 }
 
-#krdkxevwfh .gt_empty_group_heading {
+#abilrixbgp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -746,15 +746,15 @@ J=Sensibilidad+Especificidad-1
   vertical-align: middle;
 }
 
-#krdkxevwfh .gt_from_md > :first-child {
+#abilrixbgp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#krdkxevwfh .gt_from_md > :last-child {
+#abilrixbgp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#krdkxevwfh .gt_row {
+#abilrixbgp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -773,7 +773,7 @@ J=Sensibilidad+Especificidad-1
   overflow-x: hidden;
 }
 
-#krdkxevwfh .gt_stub {
+#abilrixbgp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -786,7 +786,7 @@ J=Sensibilidad+Especificidad-1
   padding-right: 5px;
 }
 
-#krdkxevwfh .gt_stub_row_group {
+#abilrixbgp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -800,15 +800,15 @@ J=Sensibilidad+Especificidad-1
   vertical-align: top;
 }
 
-#krdkxevwfh .gt_row_group_first td {
+#abilrixbgp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#krdkxevwfh .gt_row_group_first th {
+#abilrixbgp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#krdkxevwfh .gt_summary_row {
+#abilrixbgp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -818,16 +818,16 @@ J=Sensibilidad+Especificidad-1
   padding-right: 5px;
 }
 
-#krdkxevwfh .gt_first_summary_row {
+#abilrixbgp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_first_summary_row.thick {
+#abilrixbgp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#krdkxevwfh .gt_last_summary_row {
+#abilrixbgp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -837,7 +837,7 @@ J=Sensibilidad+Especificidad-1
   border-bottom-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_grand_summary_row {
+#abilrixbgp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -847,7 +847,7 @@ J=Sensibilidad+Especificidad-1
   padding-right: 5px;
 }
 
-#krdkxevwfh .gt_first_grand_summary_row {
+#abilrixbgp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -857,7 +857,7 @@ J=Sensibilidad+Especificidad-1
   border-top-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_last_grand_summary_row_top {
+#abilrixbgp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -867,11 +867,11 @@ J=Sensibilidad+Especificidad-1
   border-bottom-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_striped {
+#abilrixbgp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#krdkxevwfh .gt_table_body {
+#abilrixbgp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -880,7 +880,7 @@ J=Sensibilidad+Especificidad-1
   border-bottom-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_footnotes {
+#abilrixbgp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -894,7 +894,7 @@ J=Sensibilidad+Especificidad-1
   border-right-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_footnote {
+#abilrixbgp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -903,7 +903,7 @@ J=Sensibilidad+Especificidad-1
   padding-right: 5px;
 }
 
-#krdkxevwfh .gt_sourcenotes {
+#abilrixbgp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -917,7 +917,7 @@ J=Sensibilidad+Especificidad-1
   border-right-color: #D3D3D3;
 }
 
-#krdkxevwfh .gt_sourcenote {
+#abilrixbgp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -925,72 +925,72 @@ J=Sensibilidad+Especificidad-1
   padding-right: 5px;
 }
 
-#krdkxevwfh .gt_left {
+#abilrixbgp .gt_left {
   text-align: left;
 }
 
-#krdkxevwfh .gt_center {
+#abilrixbgp .gt_center {
   text-align: center;
 }
 
-#krdkxevwfh .gt_right {
+#abilrixbgp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#krdkxevwfh .gt_font_normal {
+#abilrixbgp .gt_font_normal {
   font-weight: normal;
 }
 
-#krdkxevwfh .gt_font_bold {
+#abilrixbgp .gt_font_bold {
   font-weight: bold;
 }
 
-#krdkxevwfh .gt_font_italic {
+#abilrixbgp .gt_font_italic {
   font-style: italic;
 }
 
-#krdkxevwfh .gt_super {
+#abilrixbgp .gt_super {
   font-size: 65%;
 }
 
-#krdkxevwfh .gt_footnote_marks {
+#abilrixbgp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#krdkxevwfh .gt_asterisk {
+#abilrixbgp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#krdkxevwfh .gt_indent_1 {
+#abilrixbgp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#krdkxevwfh .gt_indent_2 {
+#abilrixbgp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#krdkxevwfh .gt_indent_3 {
+#abilrixbgp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#krdkxevwfh .gt_indent_4 {
+#abilrixbgp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#krdkxevwfh .gt_indent_5 {
+#abilrixbgp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#krdkxevwfh .katex-display {
+#abilrixbgp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#krdkxevwfh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#abilrixbgp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
