@@ -1,0 +1,60 @@
+---
+title: "Habilidades para Análisis de Datos"
+description: "Determinar qué necesitas"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 05-16-2025
+categories: [Análisis de datos, Pensamiento crítico, Estrategia, Diseño] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-05-16-habilidades_analista/
+image: habilidades.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Si eres un analista de datos o aspiras a serlo, hay tres habilidades críticas que necesitas por encima de las demás. El análisis de datos está en auge. Entre el crecimiento explosivo de los datos que hemos visto, el avance de la tecnología, la introducción de la inteligencia artificial, ser un analista de datos te coloca en el centro de todos estos cambios.
+
+Por lo tanto, puede ser un poco confuso e incluso abrumador determinar qué habilidades debes enfocarte en desarrollar para tener éxito.
+
+Afortunadamente, hay tres habilidades que necesitas por encima de las demás para ser exitoso. Estas son tus habilidades como `estratega de datos`, tus `habilidades técnicas` y tus `habilidades de diseño de datos`.
+
+Analicemos cada una de ellas. El primer rasgo crítico de cualquier analista de datos exitoso es el de estratega de datos. Aquí eres el puente entre el mundo de los datos y el mundo empresarial.
+
+## Estratega de datos
+
+¿Qué significa ser un estratega de datos exitoso? Bueno, significa que tienes habilidades de pensamiento crítico. Significa que puedes descomponer problemas complejos en partes más manejables mediante el análisis. Significa que puedes extraer inferencias de esos análisis. Significa que puedes explicar por qué estás viendo algo o por qué llegas a las conclusiones que tienes. Y, muy importante, significa que tienes capacidad de reflexión. Adoptas un enfoque muy pensado y considerado hacia el trabajo que estás realizando, con gran atención al detalle.
+
+Puedes encontrar errores. Puedes identificar y cuestionar sesgos de esa manera también. Por lo tanto, tener esta capacidad de pensamiento crítico es una de las cosas más importantes que posee un estratega de datos.
+
+Un segundo conjunto importante de habilidades para un estratega de datos exitoso es la capacidad de resolver problemas. Ahora, como solucionador de problemas, tienes una gran habilidad para reconocerlos. Eres capaz de encontrar problemas y reconocer que existen.
+
+A partir de ahí, eres capaz de generar soluciones, soluciones factibles que podrían resolver ese problema y luego tener alguna capacidad para evaluarlas. Para examinar esas soluciones y evaluarlas en función de algunas dimensiones que son importantes para la organización, ya sea el tiempo para implementarlas, el impacto esperado o algo más. Y, finalmente, tienes la capacidad de implementarlas.
+
+No eres solo una persona de ideas. Puedes tomar esa idea y llevarla a la práctica. Llevarla desde el concepto hasta la ejecución y hacerlo con éxito.
+
+Una tercera característica de un fuerte estratega de datos es el conocimiento de la industria. El conocimiento de la industria significa que has experimentado cosas en esta industria. Entiendes cómo funciona. Entiendes la jerga. Sabes dónde están los datos y cómo acceder a ellos. Eso puede ser para sectores industriales muy específicos, como el automotriz o el minorista, o para roles funcionales más generales, como marketing o recursos humanos.
+
+Una vez que has ganado experiencia en esas áreas, simplemente puedes navegar por ellas con mayor eficiencia, lo que significa que, actuando como estratega de datos, puedes hacerlo con gran efectividad.
+
+## Habilidades técnicas
+
+La segunda habilidad crítica de un analista de datos exitoso es el conjunto de habilidades técnicas. Aquí eres el dueño de los datos. Puedes recopilar datos. Puedes gestionar esos datos. Realmente no hay límite en la cantidad de datos que puedes ingresar al proyecto cuando eres un técnico exitoso.
+
+Un especialista técnico competente tiene la capacidad de utilizar una variedad de herramientas que van desde muy sencillas y directas, como las hojas de cálculo, Google Sheets, Excel, hasta herramientas más complejas y sofisticadas como SQL, R, Python, y dependiendo de la situación de los datos que rodea al analista, tecnologías muy específicas como AWS o Google Cloud. En última instancia, tener habilidades técnicas te permite ingresar más y más datos a tu proyecto. Y cuantos más datos tengas, más profundas serán tus perspectivas.
+
+## Habilidad de diseño de datos
+
+La tercera habilidad esencial para un analista de datos exitoso es la habilidad de diseño de datos. Aquí eres un comunicador con datos. Eres capaz de contar historias a personas que pueden no tener la comprensión técnica que tú tienes, que ciertamente no han pasado el tiempo que tú has dedicado a los datos, y que pueden ni siquiera tener el contexto de la situación comercial. Pero, independientemente de quiénes sean, eres capaz de elaborar historias de datos de una manera que les conecte y que ellas entiendan.
+
+¿Qué se necesita para poder hacer eso? Bueno, requiere mucha creatividad, pero también requiere combinar esa capacidad creativa con el uso de diferentes herramientas. Esas herramientas podrían ser, si hablamos de tableros, algo muy específico como Looker Studio. Las herramientas también podrían ser herramientas más sofisticadas como R y Python para realizar visualizaciones más complejas con datos más complejos. Pero lo que a menudo se pasa por alto en el conjunto de habilidades del analista de datos es la capacidad de usar software de presentación.
+
+Y si vas a ser un diseñador de datos exitoso, debes entender cómo construir presentaciones atractivas y claras. Eso implica usar herramientas como Google Slides, PowerPoint, Keynote, e incluso algo como Canva, que se está volviendo mucho más aceptable en el mundo empresarial hoy en día. Y la razón por la que esas herramientas son tan importantes para ti como diseñador de datos es porque hoy y por el futuro previsible, tus partes interesadas aún esperan que elabores una presentación y que les muestres tus hallazgos.
+
+Así que, para ser un diseñador exitoso y un comunicador exitoso de las historias de datos que has trabajado tan duro para construir, vas a tener que entender cómo usar una herramienta de presentación. La combinación de estas tres habilidades principales te hace un analista de datos muy exitoso.
+
+Y es lo que me gusta llamar la mentalidad de arte y ciencia. Cuando estas tres habilidades están en armonía, estás perfectamente posicionado para crear historias de datos memorables e impactantes que resuelvan los problemas de tus partes interesadas. Pero hay algo que es sumamente importante entender: estas habilidades están interconectadas. Se construyen unas sobre otras.
+
+Tus habilidades como estratega de datos solo brillarán si puedes recopilar suficientes datos para tener perspectivas profundas y significativas. Y solo comunicarás esas perspectivas profundas y significativas si tienes la capacidad de diseñarlas de una manera efectiva. De hecho, la debilidad en algún área limitará tus habilidades en las tres.
+
+Así que, como estratega de datos, si quieres ser exitoso, es importante enfocarte en estas tres habilidades, pero desarrollarlas todas en equilibrio.
