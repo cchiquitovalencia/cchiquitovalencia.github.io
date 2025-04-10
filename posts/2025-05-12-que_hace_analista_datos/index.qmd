@@ -1,0 +1,62 @@
+---
+title: "¿Analista de datos?"
+description: "¿Alguna vez te has preguntado qué hace un analista de datos?"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 05-12-2025
+categories: [Análisis de datos, Pensamiento crítico, Storytelling] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-05-12-que_hace_analista_datos/
+image: analista_datos.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+A nivel general, los analistas trabajan con datos, buscan patrones y tratan de encontrar historias que les ayuden a resolver problemas. Pero cuando observamos las funciones diarias de los analistas y tratamos de hacernos una idea de lo que hacen, bueno, realmente hay cuatro cosas. Esas cuatro cosas son la `planificación`, la `recolección`, el `análisis` y el `storytelling`, todas girando en torno a los datos.
+
+Hagamos un análisis más profundo de cada una de estas partes ahora y tengamos una muy buena comprensión de lo que hace un analista de datos en cada paso.
+
+## Planificación
+
+El objetivo aquí es identificar realmente los datos adecuados que necesitas para resolver tu problema. Si estás haciendo esto correctamente, el analista debe estar guiado por un documento de planificación muy bien diseñado y organizado que le permita recopilar todas sus ideas, mantener las preguntas clave que busca responder en un solo lugar, identificar los datos que quiere, así como las fuentes de datos que utilizará para recopilar esos datos.
+
+Esas cosas siempre se verifican contra las partes interesadas, y así una de las grandes cosas que el analista está haciendo en esta fase es conectarse con sus partes interesadas, lanzarles ideas, simplemente ganar información de fondo y conocimiento. Un buen plan establecerá muy claramente la situación que te rodea, el problema que estás enfrentando, las preguntas clave que necesitas identificar, las hipótesis que tienes, así como los datos que quieres y dónde los vas a encontrar. Mucha de esa información simplemente vendrá de conectarte con las partes interesadas y obtener sus perspectivas, pero también estás confiando mucho en tu propia experiencia personal, así como en la experiencia colectiva de tu equipo.
+
+Y por esa razón, las herramientas que estás usando aquí son bastante analógicas. Es tu cerebro y tu experiencia. Es el cerebro colectivo de tu equipo y su experiencia, así como tu capacidad estratégica y tu pensamiento, así como los documentos de planificación que estás usando para mantener todo conciso y en la dirección correcta.
+
+## Recolección
+
+La siguiente cosa que el analista hace es recolectar los datos que han identificado en su plan. Esta fase puede llevar mucho tiempo y puede ser muy ardua. Lo que el analista está haciendo aquí es recolectar, limpiar y transformar datos con el propósito de prepararlos para el análisis.
+
+Cuando se trata de recolectar datos, esto podría ser a través de encuestas. Podría ser a través de API, de fuentes de datos externas. Podría ser extracción de datos web, lo cual realmente no deberíamos hacer muy a menudo, y podría ser entrada manual, lo cual es absolutamente brutal, pero a veces es la única cosa que podemos hacer para obtener los datos en el formato que necesitamos para analizarlos.
+
+Cuando se trata de limpiar datos, realmente estás hablando de eliminar duplicados, llenar los valores perdidos, corregir cualquier error. Estás tratando de eliminar cualquier error en los datos que te van a perseguir más adelante. Ahora, esto puede ser realmente, realmente tedioso. Es super valioso y super importante, pero requiere mucha atención al detalle y no mucho pensamiento creativo, solo mucha energía. Una vez que tengas tu conjunto de datos limpio, ahora estás tratando de almacenar esos datos en algún lugar. Esto va a involucrar extraer los datos, transformarlos, cargarlos. Esto podría hacerse en un proceso ETL automatizado. A veces hay cierta normalización o estandarización que necesitas hacer. Realmente, nuevamente, estás tratando de preparar esos datos para el análisis.
+
+## Análisis
+
+Las herramientas que vamos a usar aquí, si estos datos son manejables o en la medida que es manejable, vamos a usar hojas de cálculo tanto como podamos porque son tan fáciles de usar, pero si nuestros datos se vuelven más sofisticados, o complicados, o más grandes, Excel tiene un límite de un poco más de un millón de filas, nos estamos moviendo hacia R o Python o SQL para ayudarnos a manejar esos datos, particularmente en la parte de limpieza porque eso puede ser mucho de trabajo. Dependiendo de dónde se encuentren nuestros datos o dónde nuestros datos necesiten ir, podría requerir que entendamos algunas herramientas de computación en la nube como Google Cloud o AWS. 
+
+Ahora, con los datos recolectados, limpios y almacenados, estás listo para empezar a divertirte un poco analizando esos datos y buscando patrones.
+
+Cuando se trata de análisis exploratorio de datos, siempre vamos a comenzar con estadísticas descriptivas. Estas son solo las estadísticas sencillas que aprendiste en la escuela secundaria. Moda, mediana, el mínimo y máximo de tus datos. Vamos a buscar la varianza para ver cuánta variabilidad hay en los datos. No estamos leyendo muy profundamente en estas estadísticas. Solo nos están ayudando a entender los datos. De hecho, si leemos demasiado en algo que es una medida muy superficial como la mediana, el promedio en un conjunto de datos, podríamos meternos en problemas. En lugar de eso, solo estamos buscando patrones, cosas que vamos a profundizar un poco más. Y después de que hemos hecho el análisis descriptivo, ahora empezamos a visualizar los datos.
+
+La visualización, incluso a través de algunas técnicas sencillas como histogramas y gráficos de pie y otras cosas que hemos estado usando durante literalmente cientos de años, pueden ayudarnos a desbloquear patrones en los datos que simplemente no podemos ver cuando los datos están en una tabla. Si encontramos algunas cosas realmente interesantes, aquí es donde podríamos profundizar un poco con algunas técnicas estadísticas para explorar esos datos aún más a fondo. Desarrollaremos algunas hipótesis y luego querremos probar esas mediante técnicas como buscar correlación o realizar análisis de regresión.
+
+Dependiendo de las preguntas que busquemos responder, y particularmente si esas preguntas son cosas sobre comportamientos futuros de los datos, vamos a construir algunos modelos. Vamos a hacer eso mediante regresión lineal, usando técnicas como árboles de decisión o análisis de clustering, lo que necesitemos para responder las preguntas que busquemos responder. Las herramientas aquí, nos apoyamos mucho en las hojas de cálculo, derechamente porque son tan fáciles de usar y tan accesibles y son bastante potentes. Pero cuando necesitamos ir un poco más profundo y buscar patrones más grandes y más amplios en los datos, aquí es donde las herramientas de visualización como Tableau o Power BI se vuelven tan importantes para nosotros. Y dependiendo del tamaño de los datos, la complejidad de los datos, podríamos incluso usar R o Python para visualizar esos datos de alguna manera.
+
+Cuando se trata de análisis estadísticos, aquí es donde usamos R o Python para realizar esas técnicas estadísticas realmente profundas en los datos. Es importante tomarse un momento y solo reflexionar sobre cuánto esta parte de lo que hace un analista de datos, la parte de análisis, está siendo afectada por la IA y el Aprendizaje Automático. Hay muchas herramientas diseñadas para ayudar a los analistas ahora a mover más datos, moverlos más rápido y más eficientemente usando IA o Aprendizaje Automático. IA y Aprendizaje Automático también están permitiendo que los analistas encuentren más patrones porque trabajan con más datos, más datos de los que usábamos antes de la IA.
+
+También puede hacer que algunas de las herramientas más sofisticadas que usan los analistas sean más accesibles. Les digo a todos los analistas con los que trabajo que se apoyen en la IA, que la entiendan, que conozcan su poder, que también entiendan sus limitaciones. Sé que muchos analistas están ahí afuera, recelosos de la IA y se preguntan si va a reemplazar al analista de datos o se va a quedar con su trabajo. El consejo que me gusta dar es que si eres un analista de datos, la IA no se va a quedar con tu trabajo, pero los analistas que saben más de IA que tú sí podrían.
+
+## Storytelling
+
+La cuarta cosa que los analistas de datos hacen es storytelling con datos. Aquí estás tratando de comunicar los resultados de todo tu arduo trabajo a tus partes interesadas. Eso podría ser a través de varios métodos. Podría ser a través de informes, solo actualizaciones sobre los análisis regulares que estás realizando, digamos el rendimiento de una campaña, o tal vez solo una actualización sobre el progreso contra tu proyecto. Podría ser cuadros de mando, herramientas visuales escaladas que están democratizando los datos en toda la organización y poniendo los datos en manos de las personas que los necesitan en tiempo real.
+
+Pero creo que la parte más importante del storytelling con datos son las historias que los analistas están contando. Esto es cuando estamos en una presentación y entregas tu historia de datos tipo con tu parte interesada. Estás creando presentaciones sofisticadas, claras, muy pulidas que comunican la historia de datos que estás tratando de contar de una manera que tu audiencia la entienda completamente e instantáneamente. No es fácil de hacer y lleva mucha práctica.
+
+Las herramientas que vamos a usar para el storytelling con datos son realmente la culminación de todas las herramientas que hemos usado hasta este punto. Usaremos hojas de cálculo para ayudarnos a manejar los datos que vamos a convertir en nuestras visualizaciones. Usaremos R y Python para realizar análisis más profundos y análisis más pesados para algunos de los informes que podríamos hacer, seguramente. Cuando se trata de crear cuadros de mando, aquí es donde podríamos usar Tableau o Power BI o Qlik o Google Looker Studio, que es una gran herramienta también.
+
+Una de las herramientas más importantes que los analistas pueden dominar para convertirse en mejores narradores de datos es simplemente un software de presentación como Google Hojas, como Keynote de Apple, como PowerPoint. Estas son las herramientas que todavía usamos para comunicarnos entre nosotros en los negocios. Cuando se nos pide que nos presentemos frente a nuestras partes interesadas, nuestros clientes, nuestra junta, y comunicarles una historia, esperan que nos presentemos con una presentación. Así que aunque seamos analistas de datos, si queremos comunicar historias de datos, necesitamos entender cómo usar una herramienta de presentación de manera efectiva.
+
+Así que esas son las cuatro cosas que hace un analista de datos, desde la planificación para identificar los datos que realmente necesitan, hasta recolectarlos reuniendo, limpiando, transformando y almacenando esos datos, analizarlos buscando patrones a través de various técnicas, y finalmente contar esas historias de manera efectiva. Los analistas de datos que pueden hacer estas cuatro cosas son analistas exitosos. Esa visión general debe darte una respuesta a qué hacen los analistas de datos.
