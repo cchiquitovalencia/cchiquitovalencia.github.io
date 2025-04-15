@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cristian Chiquito Valencia">
+<meta name="dcterms.date" content="2025-04-11">
+<meta name="description" content="TRADING Serie - Parte 3">
+
+<title>La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos? – Cristian Chiquito Valencia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo_2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos? – Cristian Chiquito Valencia">
+<meta property="og:description" content="TRADING Serie - Parte 3">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/ilusion.jpeg">
+<meta property="og:site_name" content="Cristian Chiquito Valencia">
+<meta name="twitter:title" content="La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos? – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="TRADING Serie - Parte 3">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/ilusion.jpeg">
+<meta name="twitter:creator" content="@cchiquitov">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Cristian Chiquito Valencia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Acerca de mi</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Aquí mi Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos?</h1>
+                  <div>
+        <div class="description">
+          TRADING Serie - Parte 3
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Trading</div>
+                <div class="quarto-category">Regresión Logística</div>
+                <div class="quarto-category">Accuracy</div>
+                <div class="quarto-category">Métricas de error</div>
+                <div class="quarto-category">Matriz de confusión</div>
+                <div class="quarto-category">Estadística</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://cchiquitovalencia.github.io/">Cristian Chiquito Valencia</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Independent @ CHV
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 11, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#tasa-de-error-o-malclasificación" id="toc-tasa-de-error-o-malclasificación" class="nav-link active" data-scroll-target="#tasa-de-error-o-malclasificación">Tasa de Error o Malclasificación</a></li>
+  <li><a href="#tasa-de-falsos-positivos" id="toc-tasa-de-falsos-positivos" class="nav-link" data-scroll-target="#tasa-de-falsos-positivos">Tasa de falsos positivos</a></li>
+  <li><a href="#tasa-de-falsos-negativos" id="toc-tasa-de-falsos-negativos" class="nav-link" data-scroll-target="#tasa-de-falsos-negativos">Tasa de falsos negativos</a></li>
+  <li><a href="#tasa-descubrimiento-falso" id="toc-tasa-descubrimiento-falso" class="nav-link" data-scroll-target="#tasa-descubrimiento-falso">Tasa descubrimiento falso</a></li>
+  <li><a href="#tasa-de-omisión-falsa" id="toc-tasa-de-omisión-falsa" class="nav-link" data-scroll-target="#tasa-de-omisión-falsa">Tasa de omisión falsa</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<p>Hablemos de <strong>precisión</strong> durante un momento. Un modelo con alta precisión parece una victoria, ¿verdad? Pero aquí está el problema: la precisión puede ser engañosa. Trata cada predicción como igualmente importante, y a menudo oculta errores cuando los conjuntos de datos están <strong>desequilibrados</strong>.</p>
+<div class="cell" data-warnings="false">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>casos <span class="ot">&lt;-</span> <span class="dv">7560</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>prop_positivos <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cant_positivos <span class="ot">&lt;-</span> <span class="fu">floor</span>(casos <span class="sc">*</span> prop_positivos)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cant_negativos <span class="ot">&lt;-</span> casos <span class="sc">-</span> cant_positivos</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>actual <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, cant_positivos), <span class="fu">rep</span>(<span class="dv">0</span>, cant_negativos))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>predicciones <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, casos)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ejemplo <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(<span class="fu">factor</span>(predicciones), <span class="fu">factor</span>(actual))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in confusionMatrix.default(factor(predicciones), factor(actual)):
+Levels are not in the same order for reference and data. Refactoring data to
+match.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ejemplo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 7334  226
+         1    0    0
+                                         
+               Accuracy : 0.9701         
+                 95% CI : (0.966, 0.9738)
+    No Information Rate : 0.9701         
+    P-Value [Acc &gt; NIR] : 0.5177         
+                                         
+                  Kappa : 0              
+                                         
+ Mcnemar's Test P-Value : &lt;2e-16         
+                                         
+            Sensitivity : 1.0000         
+            Specificity : 0.0000         
+         Pos Pred Value : 0.9701         
+         Neg Pred Value :    NaN         
+             Prevalence : 0.9701         
+         Detection Rate : 0.9701         
+   Detection Prevalence : 1.0000         
+      Balanced Accuracy : 0.5000         
+                                         
+       'Positive' Class : 0              
+                                         </code></pre>
+</div>
+</div>
+<p>Imagina que estás diagnosticando una enfermedad donde solo el 3% de los casos son positivos. Un modelo podría obtener una precisión del 97.01% simplemente diciendo “no hay enfermedad” todo el tiempo.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="imagen.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="195">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Si el modelo predice “no hay enfermedad” cada vez.
+</figcaption>
+</figure>
+</div>
+<p>Seguro, <strong>técnicamente</strong> está en lo correcto la mayoría de las veces, <strong>pero falla por completo</strong> al punto de encontrar esos <strong>casos positivos críticos que realmente importan</strong> (los <strong>226</strong> casos).</p>
+<p>Ahí es donde entran las métricas de error. Métricas como la</p>
+<ul>
+<li><p><a href="#tasa-de-error-o-malclasificación">Tasa de Error o Malclasificación</a> (<strong>Misclassification Rate</strong>)</p></li>
+<li><p><a href="#tasa-de-falsos-positivos">Tasa de falsos positivos</a> (<strong>FPR</strong>)</p></li>
+<li><p><a href="#tasa-de-falsos-negativos">Tasa de falsos negativos</a> (<strong>FNR</strong>)</p></li>
+<li><p><a href="#tasa-descubrimiento-falso">Tasa descubrimiento falso</a> (<strong>FDR</strong>)</p></li>
+<li><p><a href="#tasa-de-omisión-falsa">Tasa de omisión falsa</a> (<strong>FOR</strong>)</p></li>
+</ul>
+<p>llegan más a fondo. Muestran exactamente dónde lucha el modelo, ayudándonos a entender cómo maneja tanto las clases fáciles como las difíciles.</p>
+<p>Así que la precisión no siempre es útil. <strong>La clave real para construir mejores modelos y tomar decisiones más inteligentes radica en aceptar los errores</strong>. Ahí es donde ocurre la magia.</p>
+<p>Cada modelo de clasificación tiene un objetivo: cometer la menor cantidad de errores posibles. Ahí es donde entra la tasa de error, también llamada tasa de malclasificación.</p>
+<section id="tasa-de-error-o-malclasificación" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-de-error-o-malclasificación">Tasa de Error o Malclasificación</h2>
+<p>En términos sencillos, la tasa de error es la proporción de predicciones incorrectas. Para calcularla, sumamos los falsos positivos y los falsos negativos, y luego dividimos entre el número total de casos.</p>
+<p><span id="eq-tasa_error"><span class="math display">\[
+\text{Tasa de Error}=\frac{FP+FN}{total}
+\tag{1}\]</span></span></p>
+<p>Piensa en los coches autónomos: la tasa de error muestra cuántas veces el coche toma una mala decisión, una métrica que podría significar la vida o la muerte.</p>
+<p>Aquí tienes un truco útil: la tasa de error es simplemente lo contrario de la precisión. Resta la precisión de uno y ya tienes la tasa de error.</p>
+<p><span class="math display">\[
+\text{Tasa de Error}=1-Precisión
+\]</span></p>
+<p>Hasta 2025, no hay una función integrada para la tasa de malclasificación, al menos que yo sepa. Si encuentras una, compártelo. Hasta entonces, aquí tienes cómo puedes crear tu propia función.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tasa_error <span class="ot">&lt;-</span> <span class="cf">function</span>(TP, TN, FP, FN){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (FP <span class="sc">+</span> FN) <span class="sc">/</span> (TP <span class="sc">+</span> TN <span class="sc">+</span> FP <span class="sc">+</span> FN)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Estos datos NO son los mismos del ejemplo anterior</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tasa_error</span>(<span class="at">TP =</span> <span class="dv">46</span>, <span class="at">TN =</span> <span class="dv">115</span>, <span class="at">FP =</span> <span class="dv">8</span>, <span class="at">FN =</span> <span class="dv">39</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2259615</code></pre>
+</div>
+</div>
+<p>Las métricas restantes también se pueden calcular restando métricas conocidas de uno.</p>
+</section>
+<section id="tasa-de-falsos-positivos" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-de-falsos-positivos">Tasa de falsos positivos</h2>
+<p>La <strong>tasa de falsos positivos</strong> se puede calcular restando la especificidad de uno.</p>
+<p><span id="eq-tasa_falsos_positivos"><span class="math display">\[
+FPR=1-Especificidad=\frac{FP}{TN+FP}
+\tag{2}\]</span></span></p>
+<p>La tasa de falsos positivos es el porcentaje de verdaderos negativos clasificados incorrectamente como positivos. En términos sencillos, es cuántas veces se etiqueta incorrectamente a personas sanas como enfermas.</p>
+<p>Para calcular la tasa de falsos positivos a mano, solo necesitas la columna derecha de la matriz de confusión. Y para hacerlo aún más rápido, puedes usar la función de <code>epi.tests()</code> del paquete <code>epiR</code>, incluso con intervalos de confianza del 95% como bonificación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myfinance)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">main_analysis</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Iniciando el análisis principal..."
+[1] "Cargando datos..."
+[1] "Datos cargados exitosamente. Número de filas: 4594"
+[1] "Creando variables predictoras..."
+[1] "Variables predictoras creadas exitosamente."
+[1] "Creando tabla de datos..."
+[1] "Tabla de datos creada exitosamente."
+[1] "Dividiendo datos en train y test..."
+[1] "Datos divididos exitosamente. Train: 3675 Test: 919"
+[1] "Normalizando datos..."
+[1] "Normalizados"
+[1] "Datos normalizados exitosamente."
+[1] "Construyendo y entrenando el modelo..."</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Modelo construido y entrenado exitosamente."
+[1] "Haciendo predicciones para train..."
+[1] "Predicciones para train completadas."
+[1] "Evaluando modelo en train..."
+[1] "Evaluación en train:"
+[1] "Haciendo predicciones para test..."
+[1] "Predicciones para test completadas."
+[1] "Evaluando modelo en test..."
+[1] "Evaluación en test:"
+[1] "Análisis completado exitosamente."
+[1] "Proceso finalizado."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>calculate_results <span class="ot">&lt;-</span> <span class="cf">function</span>(model, data) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Realizar predicción</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, data)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convertir predicciones en probabilidades</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  probabilities <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>predictions))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Determinar la dirección basada en el umbral de 0.5</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  direction <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(probabilities <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear la matriz de confusión</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  confusion <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(<span class="fu">factor</span>(direction), <span class="fu">factor</span>(data<span class="sc">$</span>Direction), <span class="at">mode =</span> <span class="st">"everything"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Devolver los resultados</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_direction =</span> direction,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">confusion_matrix =</span> confusion,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">predictions =</span> predictions</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>train_results <span class="ot">&lt;-</span> <span class="fu">calculate_results</span>(modelo<span class="sc">$</span>modelo, modelo<span class="sc">$</span>normalized<span class="sc">$</span>train)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>train_confusion <span class="ot">&lt;-</span> train_results<span class="sc">$</span>confusion_matrix</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>epiR<span class="sc">::</span><span class="fu">epi.tests</span>(train_confusion<span class="sc">$</span>table)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Outcome +    Outcome -      Total
+Test +         1152          108       1260
+Test -          134         2248       2382
+Total          1286         2356       3642
+
+Point estimates and 95% CIs:
+--------------------------------------------------------------
+Apparent prevalence *                  0.35 (0.33, 0.36)
+True prevalence *                      0.35 (0.34, 0.37)
+Sensitivity *                          0.90 (0.88, 0.91)
+Specificity *                          0.95 (0.94, 0.96)
+Positive predictive value *            0.91 (0.90, 0.93)
+Negative predictive value *            0.94 (0.93, 0.95)
+Positive likelihood ratio              19.54 (16.24, 23.52)
+Negative likelihood ratio              0.11 (0.09, 0.13)
+False T+ proportion for true D- *      0.05 (0.04, 0.06)
+False T- proportion for true D+ *      0.10 (0.09, 0.12)
+False T+ proportion for T+ *           0.09 (0.07, 0.10)
+False T- proportion for T- *           0.06 (0.05, 0.07)
+Correctly classified proportion *      0.93 (0.92, 0.94)
+--------------------------------------------------------------
+* Exact CIs</code></pre>
+</div>
+</div>
+<p>Para nuestro ejemplo:</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/epitest.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: FPR
+</figcaption>
+</figure>
+</div>
+<p>Pero aquí está el problema: la tasa de falsos positivos tiene muchos nombres en diferentes campos. Por ejemplo, en aprendizaje automático se le llama “<strong>falso positivo</strong>”; en estadísticas, <strong>Error Tipo 1</strong> o <strong>probabilidad de falsa alarma</strong>; en biometría, <strong>tasa de coincidencia falsa</strong>; en autenticación, <strong>tasa de</strong> <strong>aceptación falsa</strong>; en medicina y epidemiología, <strong>fracción de falsos positivos</strong>; en astronomía y astrofísica, <strong>tasa de detección espuria</strong>; e ingeniería, <strong>nivel de ruido</strong>. ¿Confuso, verdad? Pero no te preocupes, no importa cómo lo llames, la idea es la misma: <strong>¿Cuántas veces cometemos errores al decir “sí” cuando la respuesta es realmente “no”?</strong></p>
+<p>Pero, ¿por qué importa la tasa de falsos positivos? Porque las falsas alarmas <strong>pueden ser costosas o incluso peligrosas</strong>. Aquí hay algunos ejemplos del mundo real:</p>
+<ul>
+<li><p>Las falsas alarmas de incendio en Australia significan que los bomberos pueden correr a lugares donde no hay incendios, perdiendo tiempo y recursos, y posiblemente retrasando las respuestas a emergencias reales.</p></li>
+<li><p>En atención médica, una alta tasa de falsos positivos lleva a tratamientos innecesarios, como recetar medicamentos a pacientes sanos, lo que puede dañarlos y malgastar recursos médicos.</p></li>
+</ul>
+<p>Si hay una tasa de falsos positivos, también debe haber una tasa de falsos negativos, ¿verdad? Correcto. Vamos a sumergirnos en eso.</p>
+</section>
+<section id="tasa-de-falsos-negativos" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-de-falsos-negativos">Tasa de falsos negativos</h2>
+<p>La tasa de falsos negativos es lo contrario de la tasa de falsos positivos. Mientras que la tasa de falsos positivos nos dice cuántas veces decimos “sí” cuando la respuesta es “no”, la tasa de falsos negativos nos dice cuántas veces decimos “no” cuando la respuesta es realmente “sí”. En términos sencillos, la <strong>tasa de falsos negativos</strong> mide el porcentaje de positivos reales clasificados incorrectamente como negativos, o cuántas veces se identifica incorrectamente a personas enfermas como sanas.</p>
+<p>Al igual que con la tasa de falsos positivos, la tasa de falsos negativos tiene muchos nombres confusos en diferentes campos. En medicina y epidemiología, se le llama “<strong>tasa de omisión”</strong> o”<strong>fracción de falsos negativos</strong>”; en estadísticas, <strong>Error Tipo 2</strong> o <strong>probabilidad de omisión</strong>; en aprendizaje automático, <strong>1-Sensibilidad</strong> o <strong>1-Recall</strong>. Y hay más nombres, lo cual es molesto. Pero todos se reducen a una sola idea: <strong>¿Cuántas veces fallamos al detectar algo que realmente está allí?</strong></p>
+<p>Para calcular la tasa de falsos negativos, nos enfocamos en la columna izquierda de la matriz de confusión. Otra forma es restar 1-Sensibilidad o dividir el número de falsos negativos entre la suma de falsos negativos y verdaderos positivos.</p>
+<p><span id="eq-tasa_falsos_negativos"><span class="math display">\[
+FNR=1-Sensibilidad=\frac{FN}{FN+TP}
+\tag{3}\]</span></span></p>
+<p>Al igual que con la tasa de falsos positivos, podemos calcular la tasa de falsos negativos y sus intervalos de confianza del 95% usando la función de <code>epi.tests()</code>.</p>
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/FNR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: FNR
+</figcaption>
+</figure>
+</div>
+<p>Aquí está la parte alarmante: la tasa de falsos negativos, o <strong>Error Tipo 2</strong>, <strong>a menudo es mucho peor</strong> que la tasa de falsos positivos o Error Tipo 1. Déjame explicarte:</p>
+<p>Imagina que te diagnostican cáncer, pero después de tres pruebas más, el diagnóstico es desestimado. Celebras, ¡estás absolutamente sano! Ese es un Error Tipo 1, aterrador pero no fatal.</p>
+<p>Ahora imagina esto: tu primera prueba da negativo, así que celebras, pero más tarde empiezas a sentirte mal. Tres nuevas pruebas confirman que tienes cáncer. Además, debido a esa falsa negativo inicial, el cáncer ha progresado de forma irreversible. Ese es un <strong>Error Tipo 2, más aterrador y literalmente fatal</strong>. Por eso necesitamos descubrir cualquier falsa negativo lo antes posible.</p>
+</section>
+<section id="tasa-descubrimiento-falso" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-descubrimiento-falso">Tasa descubrimiento falso</h2>
+<p>Y hablando de descubrimientos falsos, la siguiente métrica crucial que todo científico de datos debe conocer es la tasa de descubrimiento falso. En pocas palabras, la <strong>tasa de descubrimiento falso</strong> es el porcentaje de predicciones positivas que son realmente falsos positivos entre todas las predicciones positivas. En términos médicos, es el porcentaje de individuos sanos identificados incorrectamente como enfermos.</p>
+<p>Para calcular la tasa de descubrimiento falso, nos enfocamos en la fila superior de la matriz de confusión, ya que las predicciones están en las filas. Puedes computarla restando la precisión de uno o dividiendo el número de falsos positivos entre la suma de falsos positivos y verdaderos positivos.</p>
+<p><span id="eq-tasa_descubriemiento_falso"><span class="math display">\[
+FDR=1-Precisión=\frac{FP}{TP+FP}
+\tag{4}\]</span></span></p>
+<p>En nuestro ejemplo, una tasa de descubrimiento falso del 9% significa que el 9% de todas las predicciones positivas fueron incorrectas. No está mal, pero aún hay espacio para mejorar. Nuestra confiable función <code>epi.tests()</code> también puede proporcionar la tasa de descubrimiento falso con intervalos de confianza exactos del 95%.</p>
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/FDR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: FDR
+</figcaption>
+</figure>
+</div>
+<p>La tasa de descubrimiento falso juega un papel significativo en técnicas de pruebas múltiples, como correcciones de <strong>Bonferroni</strong> o <strong>valores de ajuste de Tukey</strong> ajustan los <span class="math inline">\(p-values\)</span> cuando se realizan múltiples pruebas para controlar los errores.</p>
+<p>Aquí está algo interesante: la tasa de descubrimiento falso mide la tasa a la que las predicciones positivas son realmente falsas. Así que la tasa de descubrimiento falso es simplemente lo contrario de cuando las predicciones positivas son correctas. Y puesto que la métrica donde las predicciones positivas son correctas se llama <code>valor predictivo positivo</code> (<strong>PPV</strong>), la FDR también se puede describir como lo contrario del valor predictivo positivo.</p>
+<p><span class="math display">\[
+FDR=1-PPV
+\]</span></p>
+<p>Mientras que el valor predictivo positivo nos dice cuán a menudo una predicción positiva es correcta, la tasa de descubrimiento falso nos dice cuán a menudo es incorrecta. Y si existe un opuesto del valor predictivo positivo, podrías suponer que también existe un opuesto del valor predictivo negativo, ¿verdad? A eso se le llama la tasa de omisión falsa, y nos sumergiremos en ella a continuación, la última pieza del rompecabezas para entender cómo maneja tu modelo los errores.</p>
+</section>
+<section id="tasa-de-omisión-falsa" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-de-omisión-falsa">Tasa de omisión falsa</h2>
+<p>La <strong>tasa de omisión falsa</strong> mide la proporción de predicciones negativas que son incorrectas, lo que indica cuán confiables son esas predicciones. Por ejemplo, en pruebas médicas, la tasa de omisión falsa nos dice el porcentaje de personas enfermas clasificadas incorrectamente como sanas. En pocas palabras, la tasa de omisión falsa responde la pregunta: <strong>Cuando tu modelo predice algo negativo, ¿cuántas veces está realmente equivocado?</strong></p>
+<p>Para calcular la tasa de omisión falsa, nos enfocamos en la fila inferior de la matriz de confusión, donde están las predicciones negativas. Puedes computarla restando el valor predictivo negativo de uno o dividiendo el número de falsos negativos entre la suma de falsos negativos y verdaderos negativos.</p>
+<p><span id="eq-tasa_omisión_falsa"><span class="math display">\[
+FOR=1-NPV=\frac{FN}{TN+FN}
+\tag{5}\]</span></span></p>
+<p>En nuestro ejemplo, el 25% de todas las predicciones negativas fueron incorrectas. Eso es un gran problema, especialmente en situaciones donde perder un caso positivo pueda tener consecuencias graves. La tasa de omisión falsa también se puede calcular usando la función <code>epi.tests()</code>.</p>
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/FOR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: FOR
+</figcaption>
+</figure>
+</div>
+<p>Ahora que hemos cubierto todas las métricas clave de error, es probable que te preguntes: <code>¿Hay una manera de combinar estas ideas en una sola medida de lo bueno que es realmente una prueba o un modelo?</code> Y la respuesta es sí. Se llama <code>razones de verosimilitud</code>: la razón de verosimilitud positiva y la razón de verosimilitud negativa. Juntas, te dan una imagen completa del poder diagnóstico de tu modelo y <strong>son especialmente útiles para conjuntos de datos desequilibrados, donde métricas tradicionales como precisión o recall pueden fallar</strong>. De hecho, estas métricas son tan esenciales que le he dedicado otro post. Confía en mí, no quieres perdértelo.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {La Ilusión de La Precisión: {¿Cómo} Detectar Los Errores
+    Ocultos En Tus Datos?},
+  date = {2025-04-11},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/},
+  langid = {en}
+}
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Chiquito Valencia, Cristian. 2025. <span>“La Ilusión de La Precisión:
+¿Cómo Detectar Los Errores Ocultos En Tus Datos?”</span> April 11, 2025.
+<a href="https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/">https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cchiquitovalencia\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright 2025, Cristian Chiquito Valencia
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/cchiquitovalencia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cchiquitovalencia/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:cchiquito.valencia@gmail.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cchiquitov">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

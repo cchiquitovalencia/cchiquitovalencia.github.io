@@ -1,0 +1,203 @@
+---
+title: "La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos?"
+description: "TRADING Serie - Parte 3"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 04-11-2025
+categories: [Machine Learning, Trading, Regresión Logística, Accuracy, Métricas de error, Matriz de confusión, Estadística] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/
+image: ilusion.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Hablemos de **precisión** durante un momento. Un modelo con alta precisión parece una victoria, ¿verdad? Pero aquí está el problema: la precisión puede ser engañosa. Trata cada predicción como igualmente importante, y a menudo oculta errores cuando los conjuntos de datos están **desequilibrados**.
+
+```{r, message=FALSE, warnings=FALSE}
+library(caret)
+casos <- 7560
+prop_positivos <- 0.03
+cant_positivos <- floor(casos * prop_positivos)
+cant_negativos <- casos - cant_positivos
+
+actual <- c(rep(1, cant_positivos), rep(0, cant_negativos))
+predicciones <- rep(0, casos)
+
+ejemplo <- confusionMatrix(factor(predicciones), factor(actual))
+
+ejemplo
+```
+
+Imagina que estás diagnosticando una enfermedad donde solo el `r scales::percent(prop_positivos)` de los casos son positivos. Un modelo podría obtener una precisión del `r scales::percent(ejemplo$overall[1], accuracy = 0.01)` simplemente diciendo "no hay enfermedad" todo el tiempo.
+
+![Si el modelo predice "no hay enfermedad" cada vez.](imagen.png){#fig-1 fig-align="center" width="195"}
+
+Seguro, **técnicamente** está en lo correcto la mayoría de las veces, **pero falla por completo** al punto de encontrar esos **casos positivos críticos que realmente importan** (los **`r ejemplo$table[3]`** casos).
+
+Ahí es donde entran las métricas de error. Métricas como la
+
+-   [Tasa de Error o Malclasificación] (**Misclassification Rate**)
+
+-   [Tasa de falsos positivos] (**FPR**)
+
+-   [Tasa de falsos negativos] (**FNR**)
+
+-   [Tasa descubrimiento falso] (**FDR**)
+
+-   [Tasa de omisión falsa] (**FOR**)
+
+llegan más a fondo. Muestran exactamente dónde lucha el modelo, ayudándonos a entender cómo maneja tanto las clases fáciles como las difíciles.
+
+Así que la precisión no siempre es útil. **La clave real para construir mejores modelos y tomar decisiones más inteligentes radica en aceptar los errores**. Ahí es donde ocurre la magia.
+
+Cada modelo de clasificación tiene un objetivo: cometer la menor cantidad de errores posibles. Ahí es donde entra la tasa de error, también llamada tasa de malclasificación.
+
+## Tasa de Error o Malclasificación
+
+En términos sencillos, la tasa de error es la proporción de predicciones incorrectas. Para calcularla, sumamos los falsos positivos y los falsos negativos, y luego dividimos entre el número total de casos.
+
+$$
+\text{Tasa de Error}=\frac{FP+FN}{total}
+$$ {#eq-tasa_error}
+
+Piensa en los coches autónomos: la tasa de error muestra cuántas veces el coche toma una mala decisión, una métrica que podría significar la vida o la muerte.
+
+Aquí tienes un truco útil: la tasa de error es simplemente lo contrario de la precisión. Resta la precisión de uno y ya tienes la tasa de error.
+
+$$
+\text{Tasa de Error}=1-Precisión
+$$
+
+Hasta 2025, no hay una función integrada para la tasa de malclasificación, al menos que yo sepa. Si encuentras una, compártelo. Hasta entonces, aquí tienes cómo puedes crear tu propia función.
+
+```{r}
+tasa_error <- function(TP, TN, FP, FN){
+    (FP + FN) / (TP + TN + FP + FN)
+}
+
+# Estos datos NO son los mismos del ejemplo anterior
+tasa_error(TP = 46, TN = 115, FP = 8, FN = 39)
+```
+
+Las métricas restantes también se pueden calcular restando métricas conocidas de uno.
+
+## Tasa de falsos positivos
+
+La **tasa de falsos positivos** se puede calcular restando la especificidad de uno.
+
+$$
+FPR=1-Especificidad=\frac{FP}{TN+FP}
+$$ {#eq-tasa_falsos_positivos}
+
+La tasa de falsos positivos es el porcentaje de verdaderos negativos clasificados incorrectamente como positivos. En términos sencillos, es cuántas veces se etiqueta incorrectamente a personas sanas como enfermas.
+
+Para calcular la tasa de falsos positivos a mano, solo necesitas la columna derecha de la matriz de confusión. Y para hacerlo aún más rápido, puedes usar la función de `epi.tests()` del paquete `epiR`, incluso con intervalos de confianza del 95% como bonificación.
+
+```{r}
+library(myfinance)
+modelo <- main_analysis()
+
+calculate_results <- function(model, data) {
+  # Realizar predicción
+  predictions <- predict(model, data)
+  
+  # Convertir predicciones en probabilidades
+  probabilities <- 1 / (1 + exp(-predictions))
+  
+  # Determinar la dirección basada en el umbral de 0.5
+  direction <- ifelse(probabilities > 0.5, 1, 0)
+  
+  # Crear la matriz de confusión
+  confusion <- confusionMatrix(factor(direction), factor(data$Direction), mode = "everything")
+  
+  # Devolver los resultados
+  list(
+    predicted_direction = direction,
+    confusion_matrix = confusion,
+    predictions = predictions
+  )
+}
+
+train_results <- calculate_results(modelo$modelo, modelo$normalized$train)
+train_confusion <- train_results$confusion_matrix
+
+epiR::epi.tests(train_confusion$table)
+```
+
+Para nuestro ejemplo:
+
+![FPR](images/epitest.png){#fig-2 fig-align="center" width="451"}
+
+Pero aquí está el problema: la tasa de falsos positivos tiene muchos nombres en diferentes campos. Por ejemplo, en aprendizaje automático se le llama "**falso positivo**"; en estadísticas, **Error Tipo 1** o **probabilidad de falsa alarma**; en biometría, **tasa de coincidencia falsa**; en autenticación, **tasa de** **aceptación falsa**; en medicina y epidemiología, **fracción de falsos positivos**; en astronomía y astrofísica, **tasa de detección espuria**; e ingeniería, **nivel de ruido**. ¿Confuso, verdad? Pero no te preocupes, no importa cómo lo llames, la idea es la misma: **¿Cuántas veces cometemos errores al decir "sí" cuando la respuesta es realmente "no"?**
+
+Pero, ¿por qué importa la tasa de falsos positivos? Porque las falsas alarmas **pueden ser costosas o incluso peligrosas**. Aquí hay algunos ejemplos del mundo real:
+
+-   Las falsas alarmas de incendio en Australia significan que los bomberos pueden correr a lugares donde no hay incendios, perdiendo tiempo y recursos, y posiblemente retrasando las respuestas a emergencias reales.
+
+-   En atención médica, una alta tasa de falsos positivos lleva a tratamientos innecesarios, como recetar medicamentos a pacientes sanos, lo que puede dañarlos y malgastar recursos médicos.
+
+Si hay una tasa de falsos positivos, también debe haber una tasa de falsos negativos, ¿verdad? Correcto. Vamos a sumergirnos en eso.
+
+## Tasa de falsos negativos
+
+La tasa de falsos negativos es lo contrario de la tasa de falsos positivos. Mientras que la tasa de falsos positivos nos dice cuántas veces decimos "sí" cuando la respuesta es "no", la tasa de falsos negativos nos dice cuántas veces decimos "no" cuando la respuesta es realmente "sí". En términos sencillos, la **tasa de falsos negativos** mide el porcentaje de positivos reales clasificados incorrectamente como negativos, o cuántas veces se identifica incorrectamente a personas enfermas como sanas.
+
+Al igual que con la tasa de falsos positivos, la tasa de falsos negativos tiene muchos nombres confusos en diferentes campos. En medicina y epidemiología, se le llama "**tasa de omisión"** o "**fracción de falsos negativos**"; en estadísticas, **Error Tipo 2** o **probabilidad de omisión**; en aprendizaje automático, **1-Sensibilidad** o **1-Recall**. Y hay más nombres, lo cual es molesto. Pero todos se reducen a una sola idea: **¿Cuántas veces fallamos al detectar algo que realmente está allí?**
+
+Para calcular la tasa de falsos negativos, nos enfocamos en la columna izquierda de la matriz de confusión. Otra forma es restar 1-Sensibilidad o dividir el número de falsos negativos entre la suma de falsos negativos y verdaderos positivos.
+
+$$
+FNR=1-Sensibilidad=\frac{FN}{FN+TP}
+$$ {#eq-tasa_falsos_negativos}
+
+Al igual que con la tasa de falsos positivos, podemos calcular la tasa de falsos negativos y sus intervalos de confianza del 95% usando la función de `epi.tests()`.
+
+![FNR](images/FNR.png){#fig-3 fig-align="center" width="451"}
+
+Aquí está la parte alarmante: la tasa de falsos negativos, o **Error Tipo 2**, **a menudo es mucho peor** que la tasa de falsos positivos o Error Tipo 1. Déjame explicarte:
+
+Imagina que te diagnostican cáncer, pero después de tres pruebas más, el diagnóstico es desestimado. Celebras, ¡estás absolutamente sano! Ese es un Error Tipo 1, aterrador pero no fatal.
+
+Ahora imagina esto: tu primera prueba da negativo, así que celebras, pero más tarde empiezas a sentirte mal. Tres nuevas pruebas confirman que tienes cáncer. Además, debido a esa falsa negativo inicial, el cáncer ha progresado de forma irreversible. Ese es un **Error Tipo 2, más aterrador y literalmente fatal**. Por eso necesitamos descubrir cualquier falsa negativo lo antes posible.
+
+## Tasa descubrimiento falso
+
+Y hablando de descubrimientos falsos, la siguiente métrica crucial que todo científico de datos debe conocer es la tasa de descubrimiento falso. En pocas palabras, la **tasa de descubrimiento falso** es el porcentaje de predicciones positivas que son realmente falsos positivos entre todas las predicciones positivas. En términos médicos, es el porcentaje de individuos sanos identificados incorrectamente como enfermos.
+
+Para calcular la tasa de descubrimiento falso, nos enfocamos en la fila superior de la matriz de confusión, ya que las predicciones están en las filas. Puedes computarla restando la precisión de uno o dividiendo el número de falsos positivos entre la suma de falsos positivos y verdaderos positivos.
+
+$$
+FDR=1-Precisión=\frac{FP}{TP+FP}
+$$ {#eq-tasa_descubriemiento_falso}
+
+En nuestro ejemplo, una tasa de descubrimiento falso del 9% significa que el 9% de todas las predicciones positivas fueron incorrectas. No está mal, pero aún hay espacio para mejorar. Nuestra confiable función `epi.tests()` también puede proporcionar la tasa de descubrimiento falso con intervalos de confianza exactos del 95%.
+
+![FDR](images/FDR.png){#fig-4 fig-align="center" width="451"}
+
+La tasa de descubrimiento falso juega un papel significativo en técnicas de pruebas múltiples, como correcciones de **Bonferroni** o **valores de ajuste de Tukey** ajustan los $p-values$ cuando se realizan múltiples pruebas para controlar los errores.
+
+Aquí está algo interesante: la tasa de descubrimiento falso mide la tasa a la que las predicciones positivas son realmente falsas. Así que la tasa de descubrimiento falso es simplemente lo contrario de cuando las predicciones positivas son correctas. Y puesto que la métrica donde las predicciones positivas son correctas se llama `valor predictivo positivo` (**PPV**), la FDR también se puede describir como lo contrario del valor predictivo positivo.
+
+$$
+FDR=1-PPV
+$$
+
+Mientras que el valor predictivo positivo nos dice cuán a menudo una predicción positiva es correcta, la tasa de descubrimiento falso nos dice cuán a menudo es incorrecta. Y si existe un opuesto del valor predictivo positivo, podrías suponer que también existe un opuesto del valor predictivo negativo, ¿verdad? A eso se le llama la tasa de omisión falsa, y nos sumergiremos en ella a continuación, la última pieza del rompecabezas para entender cómo maneja tu modelo los errores.
+
+## Tasa de omisión falsa
+
+La **tasa de omisión falsa** mide la proporción de predicciones negativas que son incorrectas, lo que indica cuán confiables son esas predicciones. Por ejemplo, en pruebas médicas, la tasa de omisión falsa nos dice el porcentaje de personas enfermas clasificadas incorrectamente como sanas. En pocas palabras, la tasa de omisión falsa responde la pregunta: **Cuando tu modelo predice algo negativo, ¿cuántas veces está realmente equivocado?**
+
+Para calcular la tasa de omisión falsa, nos enfocamos en la fila inferior de la matriz de confusión, donde están las predicciones negativas. Puedes computarla restando el valor predictivo negativo de uno o dividiendo el número de falsos negativos entre la suma de falsos negativos y verdaderos negativos.
+
+$$
+FOR=1-NPV=\frac{FN}{TN+FN}
+$$ {#eq-tasa_omisión_falsa}
+
+En nuestro ejemplo, el 25% de todas las predicciones negativas fueron incorrectas. Eso es un gran problema, especialmente en situaciones donde perder un caso positivo pueda tener consecuencias graves. La tasa de omisión falsa también se puede calcular usando la función `epi.tests()`.
+
+![FOR](images/FOR.png){#fig-5 fig-align="center" width="451"}
+
+Ahora que hemos cubierto todas las métricas clave de error, es probable que te preguntes: `¿Hay una manera de combinar estas ideas en una sola medida de lo bueno que es realmente una prueba o un modelo?` Y la respuesta es sí. Se llama `razones de verosimilitud`: la razón de verosimilitud positiva y la razón de verosimilitud negativa. Juntas, te dan una imagen completa del poder diagnóstico de tu modelo y **son especialmente útiles para conjuntos de datos desequilibrados, donde métricas tradicionales como precisión o recall pueden fallar**. De hecho, estas métricas son tan esenciales que le he dedicado otro post. Confía en mí, no quieres perdértelo.
