@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cristian Chiquito Valencia">
-<meta name="dcterms.date" content="2025-04-19">
-<meta name="description" content="TRADING Serie - Parte 4">
+<meta name="dcterms.date" content="2025-04-22">
+<meta name="description" content="TRADING Serie - Parte 5">
 
-<title>Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML – Cristian Chiquito Valencia</title>
+<title>Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML – Cristian Chiquito Valencia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -136,13 +136,13 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML – Cristian Chiquito Valencia">
-<meta property="og:description" content="TRADING Serie - Parte 4">
-<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/balance.jpeg">
+<meta property="og:title" content="Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML – Cristian Chiquito Valencia">
+<meta property="og:description" content="TRADING Serie - Parte 5">
+<meta property="og:image" content="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/balance.jpeg">
 <meta property="og:site_name" content="Cristian Chiquito Valencia">
-<meta name="twitter:title" content="Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML – Cristian Chiquito Valencia">
-<meta name="twitter:description" content="TRADING Serie - Parte 4">
-<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/balance.jpeg">
+<meta name="twitter:title" content="Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML – Cristian Chiquito Valencia">
+<meta name="twitter:description" content="TRADING Serie - Parte 5">
+<meta name="twitter:image" content="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/balance.jpeg">
 <meta name="twitter:creator" content="@cchiquitov">
 <meta name="twitter:card" content="summary">
 </head>
@@ -183,10 +183,10 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML</h1>
+      <h1 class="title">Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML</h1>
                   <div>
         <div class="description">
-          TRADING Serie - Parte 4
+          TRADING Serie - Parte 5
         </div>
       </div>
                           <div class="quarto-categories">
@@ -221,7 +221,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 19, 2025</p>
+        <p class="date">April 22, 2025</p>
       </div>
     </div>
     
@@ -237,9 +237,7 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#razón-de-verosimilitud-positiva" id="toc-razón-de-verosimilitud-positiva" class="nav-link active" data-scroll-target="#razón-de-verosimilitud-positiva">Razón de verosimilitud positiva</a></li>
-  <li><a href="#razón-de-verosimilitud-negativa" id="toc-razón-de-verosimilitud-negativa" class="nav-link" data-scroll-target="#razón-de-verosimilitud-negativa">Razón de verosimilitud negativa</a></li>
-  <li><a href="#razón-de-verosimilitud-diagnóstica" id="toc-razón-de-verosimilitud-diagnóstica" class="nav-link" data-scroll-target="#razón-de-verosimilitud-diagnóstica">Razón de verosimilitud diagnóstica</a></li>
+  <li><a href="#f1-score" id="toc-f1-score" class="nav-link active" data-scroll-target="#f1-score">F1 score</a></li>
   </ul>
 </nav>
     </div>
@@ -250,116 +248,139 @@ window.Quarto = {
 
 
 
-<p>La razón de verosimilitud positiva puede salvar vidas. Imagina esto: una mañana me despierto con un dolor agudo en el pecho, como si me hubieran golpeado con un tren. El pánico se apodera de mí. ¿Es un ataque al corazón? Llamo a una ambulancia. Mientras espero, los paramédicos llegan rápidamente y me realizan una prueba de sangre rápida llamada <strong>troponina</strong> para verificar daño en el músculo cardíaco. La razón de verosimilitud positiva de esta prueba es alta, lo que significa que un resultado positivo sugiere con mucha fuerza que estoy sufriendo un ataque al corazón. Esto permite a los médicos actuar rápidamente y con confianza, lo que podría salvar mi vida.</p>
-<section id="razón-de-verosimilitud-positiva" class="level2">
-<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-positiva">Razón de verosimilitud positiva</h2>
-<p>Así que la razón de verosimilitud positiva responde una pregunta crítica: <strong>¿Cuánto debes confiar en un resultado positivo de la prueba?</strong> En concreto, la razón de verosimilitud positiva nos dice cuántas veces es más probable que un resultado positivo ocurra en una persona enferma en comparación con una persona sana. Es por eso que se llama “positiva”: se centra en los resultados positivos.</p>
-<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="posLR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: Positive Likelihood Ratio
-</figcaption>
-</figure>
-</div>
-<p>La forma más sencilla de calcular la razón de verosimilitud positiva es dividiendo la tasa de verdaderos positivos (llamada <strong>sensibilidad</strong>) entre la tasa de falsos positivos (que es <strong>1 - especificidad</strong>).</p>
-<p><span class="math display">\[
-LR+=\frac{TPR}{FPR}=\frac{Sensibilidad}{1-Especificidad}=\frac{\frac{TP}{TP+FN}}{1-\frac{TN}{TN+FP}}
-\]</span></p>
-<p>Esto es lo que significa:</p>
+<p>La mayoría de las personas confían en la precisión, la exactitud y la cobertura para medir el éxito de los modelos de aprendizaje automático. Sin embargo, <strong>estas métricas resultan miserablemente inadecuadas en escenarios de alta relevancia</strong>, como las predicciones de tornados o la detección de fraudes. Si dominas estas cuatro métricas avanzadas:</p>
 <ul>
-<li>La tasa de verdaderos positivos, o sensibilidad, te dice cuántas veces la prueba identifica correctamente a las personas que tienen la enfermedad.</li>
-<li>La tasa de falsos positivos, que es <strong>1 - especificidad</strong>, muestra cuántas veces la prueba dice incorrectamente que las personas sanas están enfermas.</li>
+<li><p>Índice crítico de éxito (CSI)</p></li>
+<li><p>Puntuación equitativa de amenazas (ETS)</p></li>
+<li><p>Coeficiente de correlación de Matthews (MCC)</p></li>
+<li><p>F1 score</p></li>
 </ul>
-<p>Si quieres profundizar más, incluso podrías calcularlo usando una <strong>matriz de confusión</strong>, pero honestamente, no es necesario porque herramientas como las funciones <code>epi.tests()</code> del paquete <strong>epiR</strong> ya hacen los cálculos por ti.</p>
-<p>Pero, ¿por qué importa la razón de verosimilitud positiva? Combina la sensibilidad y la especificidad en un solo número que funciona en diferentes situaciones, a diferencia de los valores predictivos, que cambian dependiendo de la prevalencia de la enfermedad. La razón de verosimilitud positiva permanece consistente e independiente de la prevalencia, lo que la convierte en una herramienta universal para evaluar pruebas diagnósticas o incluso para comparar modelos de aprendizaje automático. Con una regla sencilla: <strong>cuanto mayor sea la razón de verosimilitud positiva, mejor es el modelo</strong>, ya que es una proporción.</p>
-<p>Si está por debajo de uno, el modelo es peor que un adivinanza al azar: evítalo. Si es igual a uno, no ofrece información útil: ignóralo. Cuando está entre 1 y 5, la prueba es algo útil pero no definitiva, así que úsala con cautela. Si está entre 5 y 10, es moderadamente fuerte, y finalmente, si supera los 10, la prueba es muy fuerte, lo que significa que un resultado positivo es altamente confiable.</p>
-<p>Por ejemplo, al predecir la subida o bajada de las acciones, una razón de verosimilitud positiva de 19.54 significa que una predicción de subida es <strong>19.54</strong> veces más probable para alguno que realmente subió que para uno que no lo hizo.</p>
-<p>Pero, ¿qué hay de ese dolor en el pecho que parecía gritar “ataque al corazón”? Bueno, después de llamar a la ambulancia y calmarme lo suficiente como para pensar con claridad, me di cuenta de algo: mi propósito de Año Nuevo de ponarme en forma me llevó a entrenar demasiado los músculos del pecho el día anterior.</p>
-</section>
-<section id="razón-de-verosimilitud-negativa" class="level2">
-<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-negativa">Razón de verosimilitud negativa</h2>
-<p>Mientras la razón de verosimilitud positiva es fantástica para interpretar resultados positivos, ¿qué sucede cuando la prueba es negativa? En ese caso, necesitamos la <strong>razón de verosimilitud negativa</strong>, que se centra en los resultados negativos y es, en muchos aspectos, lo opuesto a la razón de verosimilitud positiva.</p>
-<p>La razón de verosimilitud negativa responde otra pregunta crítica: <strong>¿Cuánto puedes confiar en un resultado negativo?</strong> En palabras sencillas, nos dice cuántas veces es más probable que un resultado negativo ocurra en una persona sana en comparación con una persona enferma. Es por eso que se llama “negativa”: se centra en los resultados negativos.</p>
-<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="negLR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2: Negative Likelihood Ratio
-</figcaption>
-</figure>
-</div>
-<p>En aprendizaje automático, la razón de verosimilitud negativa funciona de manera similar: nos dice <strong>qué tan bien un modelo predice negativos cuando realmente son negativos en comparación con cuando son positivos</strong>. La matemática detrás de la razón de verosimilitud negativa es sencilla: en lugar de usar la sensibilidad en el numerador, usamos <strong>1 - sensibilidad</strong> (también conocida como la tasa de falsos negativos), que nos dice cuántas veces la prueba no detecta correctamente a las personas enfermas. En el denominador, en lugar de <strong>1 - especificidad</strong>, usamos la especificidad o la tasa de verdaderos negativos, que nos dice cuántas veces la prueba identifica correctamente a las personas sanas.</p>
-<p><span class="math display">\[
-LR-=\frac{1-Sensibilidad}{Especificidad}=\frac{FNR}{TNR}=\frac{1-\frac{TP}{TP+FN}}{\frac{TN}{TN+FP}}
-\]</span></p>
-<p>En términos más sencillos, la razón de verosimilitud negativa compara la probabilidad de un resultado negativo en personas enfermas con la probabilidad de un resultado negativo en personas sanas. La razón de verosimilitud negativa es especialmente útil para descartar condiciones. Su interpretación es sencilla: <strong>cuanto más baja sea la razón de verosimilitud negativa, mejor</strong>. Por ejemplo, si está por debajo de 0.1, la prueba es excelente para descartar la condición; si está entre 0.1 y 0.5, es decente pero no perfecta; si está entre 0.5 y 1, tiene un valor limitado; y si supera 1, la prueba es poco confiable.</p>
-<p>Volviendo a nuestro ejemplo de las acciones, si la razón de verosimilitud negativa es 0.11, al invertirla nos da 9.09, lo que significa que predecir una que no subió es 9 veces más probable para una que realmente no subió en comparación con una que sí lo hizo.</p>
-<p><strong>En resumen, una buena prueba diagnóstica o un buen modelo de aprendizaje automático debe destacar en dos áreas clave: confirmar positivos, lo que se indica con una razón de verosimilitud positiva mayor a 1, y descartar negativos, lo que se refleja con una razón de verosimilitud negativa menor a 1. Si ambas razones son malas, lo que significa que la razón de verosimilitud positiva está por debajo de 1 y la razón de verosimilitud negativa está por encima de 1, la prueba o el modelo es esencialmente inútil. Así que esta pequeña parte de los resultados de la matriz de confusión ofrece una forma rápida, poderosa e increíblemente práctica de evaluar la calidad del modelo, y personalmente creo que está muy subestimada.</strong></p>
-</section>
-<section id="razón-de-verosimilitud-diagnóstica" class="level2">
-<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-diagnóstica">Razón de verosimilitud diagnóstica</h2>
-<p>Ahora, mientras que la razón de verosimilitud positiva y la razón de verosimilitud negativa son excelentes para evaluar cómo se desempeña una prueba o un modelo en la confirmación de positivos o en el descarte de negativos, sus resultados son muy direccionales, ya sea hacia positivos o hacia negativos. Pero a veces queremos una sola métrica que resuma el rendimiento general de una prueba o un modelo sin dividirlo en direcciones positivas y negativas, y es ahí donde entra en juego la <strong>razón de verosimilitud diagnóstica</strong>.</p>
-<p>Usa la razón de verosimilitud diagnóstica cuando necesites un solo número que represente el poder diagnóstico general de una prueba o un modelo. Úsala también cuando estés comparando múltiples pruebas o modelos y quieras una forma rápida de clasificarlos. Finalmente, usa la razón de verosimilitud diagnóstica si no te importa distinguir entre la razón de verosimilitud positiva y la negativa, sino que quieres una visión holística de qué tan bien discrimina la prueba entre personas enfermas y sanas, similar a la precisión, pero siendo completamente independiente de la prevalencia.</p>
-<p>Una razón de verosimilitud diagnóstica alta significa que la prueba es excelente para distinguir entre personas enfermas y sanas. Podemos obtener la razón de verosimilitud diagnóstica del resumen de las pruebas</p>
+<p>te destacarás como un experto en aprendizaje automático.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(epiR<span class="sc">::</span><span class="fu">epi.tests</span>(train_confusion<span class="sc">$</span>table)) <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">tab_style</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      gt<span class="sc">::</span><span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"orange"</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      gt<span class="sc">::</span><span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> gt<span class="sc">::</span><span class="fu">cells_body</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> statistic,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> statistic <span class="sc">&gt;=</span> <span class="st">"youden"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(myfinance)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular los resultados tanto de train como de test</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>calculate_results <span class="ot">&lt;-</span> <span class="cf">function</span>(model, data) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Realizar predicción</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, data)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convertir predicciones en probabilidades</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  probabilities <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>predictions))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Determinar la dirección basada en el umbral de 0.5</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  direction <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(probabilities <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear la matriz de confusión</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  confusion <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(<span class="fu">factor</span>(direction), <span class="fu">factor</span>(data<span class="sc">$</span>Direction), <span class="at">mode =</span> <span class="st">"everything"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Devolver los resultados</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_direction =</span> direction,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">confusion_matrix =</span> confusion,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">predictions =</span> predictions</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el análisis principal</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">main_analysis</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Iniciando el análisis principal..."
+[1] "Cargando datos..."
+[1] "Datos cargados exitosamente. Número de filas: 4594"
+[1] "Creando variables predictoras..."
+[1] "Variables predictoras creadas exitosamente."
+[1] "Creando tabla de datos..."
+[1] "Tabla de datos creada exitosamente."
+[1] "Dividiendo datos en train y test..."
+[1] "Datos divididos exitosamente. Train: 3675 Test: 919"
+[1] "Normalizando datos..."
+[1] "Normalizados"
+[1] "Datos normalizados exitosamente."
+[1] "Construyendo y entrenando el modelo..."</code></pre>
 </div>
-<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="DOR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="357">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Modelo construido y entrenado exitosamente."
+[1] "Haciendo predicciones para train..."
+[1] "Predicciones para train completadas."
+[1] "Evaluando modelo en train..."
+[1] "Evaluación en train:"
+[1] "Haciendo predicciones para test..."
+[1] "Predicciones para test completadas."
+[1] "Evaluando modelo en test..."
+[1] "Evaluación en test:"
+[1] "Análisis completado exitosamente."
+[1] "Proceso finalizado."</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3: Razón de verosimilitud diagnóstica.
-</figcaption>
-</figure>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular resultados para train</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>train_results <span class="ot">&lt;-</span> <span class="fu">calculate_results</span>(modelo<span class="sc">$</span>modelo, modelo<span class="sc">$</span>normalized<span class="sc">$</span>train)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>train_confusion <span class="ot">&lt;-</span> train_results<span class="sc">$</span>confusion_matrix</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular resultados para test</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>test_results <span class="ot">&lt;-</span> <span class="fu">calculate_results</span>(modelo<span class="sc">$</span>modelo, modelo<span class="sc">$</span>normalized<span class="sc">$</span>test)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>test_confusion <span class="ot">&lt;-</span> test_results<span class="sc">$</span>confusion_matrix</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> modelo<span class="sc">$</span>normalized<span class="sc">$</span>test <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pred_probs =</span> test_results<span class="sc">$</span>predictions,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred_classes =</span> <span class="fu">factor</span>(test_results<span class="sc">$</span>predicted_direction))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cutpointr, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>sensitive_case <span class="ot">&lt;-</span> <span class="fu">cutpointr</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d2,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pred_probs,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> Direction,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> minimize_metric,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric =</span> misclassification_cost,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fp =</span> <span class="dv">1</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_fn =</span> <span class="dv">5</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>o calcularla fácilmente de varias maneras. La más sencilla es dividiendo la razón de verosimilitud positiva entre la razón de verosimilitud negativa.</p>
+<section id="f1-score" class="level2">
+<h2 class="anchored" data-anchor-id="f1-score">F1 score</h2>
+<p>Empezaremos con un resumen de las cuatro, comenzando con F1 score, una métrica que equilibra perfectamente la precisión y la cobertura, lo que la hace mejor que ambas por separado.</p>
+<p>El <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/">modelo utilizado</a> es una regresión logística con predictores como promedio y desviación estándar de los últimos 10 y 20 días, RSI de 5 y 14 días, MACD y otros. Por supuesto, esto podría reemplazarse por cualquier modelo de clasificación. Una vez entrenado, el modelo predice las probabilidades de alza para los datos de prueba, clasificando a las acciones como sube o no sube en función de un umbral de probabilidad del 50%. Finalmente, se genera una matriz de confusión para evaluar el rendimiento del modelo, proporcionando métricas detalladas como exactitud, precisión, cobertura y, por supuesto, F1 score.</p>
+<p>La F1 score, al igual que la exactitud, es una sola métrica para medir el rendimiento de los modelos. Sin embargo, <strong>es mucho más efectiva para conjuntos de datos desequilibrados</strong>, y aquí está la razón: en escenarios como la detección de fraudes o el diagnóstico de enfermedades raras, donde una clase domina, la exactitud puede ser engañosa. Un modelo que prediga solo la clase mayoritaria puede parecer que funciona bien, incluso si ignora completamente la clase minoritaria. El F1 score aborda esto equilibrando la precisión y la cobertura, lo que la hace ideal para comparar modelos o ajustar hiperparámetros en conjuntos de datos desequilibrados.</p>
+<p>La F1 score se calcula como la media armónica de la precisión y la cobertura.</p>
 <p><span class="math display">\[
-DOR=\frac{LR+}{LR-}
+F_1=2*\frac{Precisión*Cobertura}{Precisión+Cobertura}
 \]</span></p>
+<p>La precisión, o valor predictivo positivo, es la proporción de observaciones positivas correctamente predichas respecto al total de predicciones positivas.</p>
 <p><span class="math display">\[
-DOR=\frac{\frac{TP}{FN}}{\frac{FP}{TN}}=\frac{TP*TN}{FP*FN}
+Precisión=PPV=\frac{TP}{TP+FP}
 \]</span></p>
-<p>Alternativamente, puedes calcular la razón de verosimilitud diagnóstica directamente desde la matriz de confusión o usando sensibilidad y especificidad.</p>
+<p>Mientras que la cobertura, o sensibilidad, o tasa de positivos verdaderos, mide la proporción de observaciones positivas correctamente predichas en relación con todos los positivos reales en el conjunto de datos.</p>
 <p><span class="math display">\[
-DOR=\frac{Sensibilidad*Especificidad}{(1-Sensibilidad)*(1-Especificidad)}
+Sensibilidad=TRP=\frac{TP}{TP+FN}
 \]</span></p>
-<p>Al igual que una razón de probabilidades regular, <strong>la razón de verosimilitud diagnóstica oscila entre 0 e infinito</strong>. Una razón de verosimilitud diagnóstica por debajo de 1 indica una mala prueba, mientras que una razón por encima de 1 es buena, y cuanto mayor sea el número, mejor se desempeña el modelo. Una razón de verosimilitud diagnóstica de 19.54, como la nuestra, muestra que nuestro modelo es muy informativo.</p>
-<p>Mientras la razón de verosimilitud diagnóstica es robusta ante pequeños desequilibrios en tus datos, por ejemplo, si hay más personas sanas que enfermas, <strong>puede volverse inestable en dos situaciones</strong>: primera, tamaños de muestra pequeños, donde no hay suficientes verdaderos positivos o verdaderos negativos, lo que puede distorsionar las proporciones; y segunda, desequilibrios extremos, donde un grupo es mucho mayor que el otro, como 99% de sanos versus 1% de enfermos. En estos casos, la razón de verosimilitud diagnóstica podría no contar toda la historia.</p>
-<p>En escenarios de la vida real, donde el desequilibrio es bastante común, querrás usar métricas que manejen mejor estos desafíos, como la <strong>F1 score</strong>, el <strong>índice de éxito crítico (CSI)</strong> y el <strong>coeficiente de correlación de Matthew (MCC)</strong>, que te ayudarán a evaluar modelos incluso en conjuntos de datos muy desequilibrados. Así que, para aprender todo sobre ellos, solo tienes que ver este <a href="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/">post</a>.</p>
+<p>Nuestro modelo muestra una exactitud aparentemente decente del 93.36%, pero el F1 score del 90.49% indica que se necesita un ajuste de rendimiento. Esto podría significar mejorar la precisión, la cobertura o ambas, dependiendo de los objetivos específicos de tu caso de uso. En nuestro ejemplo, la prioridad debería ser mejorar la cobertura, que es solo del 89.58% mientras que la precisión ya es fuerte, con un 91.43%.</p>
+<p>Si bien la capacidad del F1 score para equilibrar la precisión y la cobertura la hace una métrica fundamental en el aprendizaje automático, este equilibrio conlleva un costo: puede no enfatizar lo suficiente la clase positiva en casos de eventos extremadamente raros, como huracanes. Por lo tanto, si el enfoque en los positivos y la ignorancia de los negativos es crítico para el éxito de tu modelo, necesitas explorar el índice crítico de éxito, una métrica específicamente diseñada para estos escenarios extremadamente raros pero de alta relevancia.</p>
+<p>El índice crítico de éxito, también conocido como puntuación de amenazas, es una herramienta vital para predecir eventos raros, como tornados y inundaciones. Aquí, nuevamente, un modelo podría lograr una alta exactitud prediciendo principalmente que no ocurre un evento, pero esto haría que se perdieran la mayoría de los desastres, lo que es irónicamente desastroso. El secreto del índice crítico de éxito es que ignora completamente los verdaderos negativos, es decir, los momentos en los que no ocurre un evento, y se centra solo en esos raros pero importantes eventos que sí ocurren. Para calcular el CSI, utilizamos tres partes de la matriz de confusión: positivos verdaderos, falsos positivos y falsos negativos. Específicamente, dividimos las predicciones correctas de eventos entre la suma de predicciones correctas de eventos, alarmas falsas y eventos perdidos.</p>
+<p>Por ejemplo, imagina que tenemos un modelo meteorológico que predice tornados durante un período de tiempo. Si el modelo predijo correctamente 30 tornados, dio cinco falsas alarmas y se perdió dos tornados reales, entonces el CSI sería 0.81 o 81%. Esto significa que el modelo predijo correctamente el 81% de los tornados que realmente ocurrieron. Nuestro modelo tiene un CSI miserable del 49%, lo que significa que si tuviéramos que predecir eventos raros, nos perderíamos la mitad de ellos. Pero, ¿cómo se interpreta el CSI? El CSI oscila entre 0 y 1, donde 1 indica predicciones perfectas y 0 significa que el modelo no hizo ninguna predicción correcta. Un CSI de 0.8 o superior indica un gran rendimiento; un CSI de 0.2 o inferior indica un rendimiento horrible, y todo lo que está entre 0.2 y 0.8 se considera aceptable, dependiendo del tipo de evento que se esté prediciendo.</p>
+<p>Aquí está la clave: la utilidad del CSI es altamente dependiente del contexto. Por ejemplo, un CSI de 0.6 a 0.8 o superior podría esperarse para predicciones de lluvias intensas generalizadas, donde las predicciones suelen ser más fáciles. Por el contrario, un CSI de 0.3 a 0.5 podría ser razonable para advertencias de tornados, porque es tan difícil predecir eventos raros y locales como los tornados. Dado que el CSI ignora los verdaderos negativos, se centra en la clase positiva y penaliza tanto los falsos positivos como los falsos negativos, funciona mucho mejor para conjuntos de datos extremadamente desequilibrados que la puntuación F1. Sin embargo, el CSI tiene un problema con eventos muy raros: incluso la casualidad puede llevar a algunas predicciones correctas, verdaderos positivos, lo que hace que la puntuación de CSI sea mayor de lo necesario. Esto hace que sea difícil comparar puntuaciones de CSI entre diferentes eventos, como huracanes versus inundaciones. La solución es la puntuación equitativa de amenazas, que elimina el efecto de la casualidad en la puntuación.</p>
+<p>Lo que hace que la ETS se destaque es su capacidad para comparar el rendimiento de los modelos en eventos con diferentes frecuencias, algo especialmente útil en la predicción del clima. Para calcular la ETS, primero determinamos las predicciones correctas debido a la casualidad, y luego calculamos la ETS de la misma manera que el CSI, pero restando las predicciones correctas por casualidad tanto del numerador como del denominador. Este ajuste penaliza a los modelos que tienen éxito por casualidad, lo que hace que la ETS sea más precisa y justa para comparar diferentes eventos raros. Por ejemplo, si predecimos tornados durante un año con 30 verdaderos positivos, cinco falsos positivos y dos falsos negativos durante 365 días, primero calculamos las predicciones correctas por casualidad, y luego la ETS en este caso sería ligeramente inferior al CSI, reflejando su corrección por predicciones correctas por casualidad.</p>
+<p>Para simplificar los cálculos futuros, podemos crear una función personalizada en R para computar CSI, ETS y su diferencia al mismo tiempo. Mientras que el CSI y la ETS son valiosos para situaciones específicas, como eventos raros, a veces necesitamos una medida más equilibrada del rendimiento del modelo que considere las cuatro partes de la matriz de confusión, incluyendo los verdaderos negativos. ¿Hay una métrica que haga esto mientras仍ase considerada más fiable que la exactitud, especialmente para conjuntos de datos desequilibrados? La respuesta es sí: el coeficiente de correlación de Matthews.</p>
+<p>Lo que distingue al MCC de matrices como el CSI y la ETS, que ignoran los verdaderos negativos, es que considera las cuatro partes de la matriz de confusión: verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos. Esto significa que el MCC no pasa por alto ningún aspecto del rendimiento del modelo. La principal ventaja del MCC es que solo produce una puntuación alta si el clasificador se desempeña bien tanto en las instancias positivas como en las negativas. Esto lo hace robusto frente al desequilibrio de clases y proporciona una visión más holística del rendimiento del modelo, ya sea que el conjunto de datos esté equilibrado o sesgado. Así que, si quieres la evaluación más completa de tu modelo, el MCC es el camino a seguir.</p>
+<p>La fórmula para el MCC puede ser un poco engorrosa, así que he escrito una función para facilitarlo. Si te gustaría acceder al código en R o a las transcripciones del vídeo, considera unirte a mi canal. Comparto todo eso exclusivamente con los miembros. Ahora, interpretemos el MCC. Interestantemente, el coeficiente de correlación de Matthews mide la correlación entre las clasificaciones observadas y las predichas. Es por eso que el MCC se interpreta como un coeficiente de correlación, es decir, oscila entre menos uno (correlación negativa perfecta) y más uno (correlación positiva perfecta), con cero significando que no es mejor que una suposición al azar. Por ejemplo, el valor absoluto de 0.53 en nuestro modelo indica una correlación positiva moderada entre las predicciones y los resultados reales.</p>
+<p>Estas cuatro métricas completas desbloquean una visión profunda del rendimiento de tus modelos, algo que las métricas simples como la exactitud no pueden proporcionar. Pero, ¿sabías que la información que falta puede ser tan valiosa como la que existe? Para dominar realmente la matriz de confusión en el aprendizaje automático, necesitas entender métricas como la tasa de información nula, la tasa de error nula, el acuerdo de Cohen y los valores p.&nbsp;Estas métricas son tan importantes que se colocan en la parte superior de la matriz de confusión. Lamentablemente, la mayoría de las personas las pasan por alto, por razones que no entiendo. Así que, si quieres convertirte en el Bruce Lee del aprendizaje automático, asegúrate de ver este vídeo la próxima vez.</p>
 
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
   author = {Chiquito Valencia, Cristian},
-  title = {Razones de Verosimilitud: Métricas Clave Para Evaluar Pruebas
-    Diagnósticas y Modelos de {ML}},
-  date = {2025-04-19},
-  url = {https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/},
+  title = {Más Allá de La Precisión: {Dominando} Métricas Avanzadas Para
+    El Éxito En El {ML}},
+  date = {2025-04-22},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-22-predictions_on_stocks5/},
   langid = {en}
 }
 </code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas" role="listitem">
-Chiquito Valencia, Cristian. 2025. <span>“Razones de Verosimilitud:
-Métricas Clave Para Evaluar Pruebas Diagnósticas y Modelos de
-ML.”</span> April 19, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/">https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/</a>.
+Chiquito Valencia, Cristian. 2025. <span>“Más Allá de La Precisión:
+Dominando Métricas Avanzadas Para El Éxito En El ML.”</span> April 22,
+2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-22-predictions_on_stocks5/">https://cchiquitovalencia.github.io/posts/2025-04-22-predictions_on_stocks5/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
