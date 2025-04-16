@@ -1390,23 +1390,23 @@ font-style: inherit;">"youden"</span></span>
 <span id="cb22-11">    )</span>
 <span id="cb22-12">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="abilrixbgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#abilrixbgp table {
+<div id="uldwmdgoef" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uldwmdgoef table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#abilrixbgp thead, #abilrixbgp tbody, #abilrixbgp tfoot, #abilrixbgp tr, #abilrixbgp td, #abilrixbgp th {
+#uldwmdgoef thead, #uldwmdgoef tbody, #uldwmdgoef tfoot, #uldwmdgoef tr, #uldwmdgoef td, #uldwmdgoef th {
   border-style: none;
 }
 
-#abilrixbgp p {
+#uldwmdgoef p {
   margin: 0;
   padding: 0;
 }
 
-#abilrixbgp .gt_table {
+#uldwmdgoef .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1432,12 +1432,12 @@ font-style: inherit;">"youden"</span></span>
   border-left-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_caption {
+#uldwmdgoef .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#abilrixbgp .gt_title {
+#uldwmdgoef .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1449,7 +1449,7 @@ font-style: inherit;">"youden"</span></span>
   border-bottom-width: 0;
 }
 
-#abilrixbgp .gt_subtitle {
+#uldwmdgoef .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1461,7 +1461,7 @@ font-style: inherit;">"youden"</span></span>
   border-top-width: 0;
 }
 
-#abilrixbgp .gt_heading {
+#uldwmdgoef .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1473,13 +1473,13 @@ font-style: inherit;">"youden"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_bottom_border {
+#uldwmdgoef .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_col_headings {
+#uldwmdgoef .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1494,7 +1494,7 @@ font-style: inherit;">"youden"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_col_heading {
+#uldwmdgoef .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1514,7 +1514,7 @@ font-style: inherit;">"youden"</span></span>
   overflow-x: hidden;
 }
 
-#abilrixbgp .gt_column_spanner_outer {
+#uldwmdgoef .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1526,15 +1526,15 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 4px;
 }
 
-#abilrixbgp .gt_column_spanner_outer:first-child {
+#uldwmdgoef .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#abilrixbgp .gt_column_spanner_outer:last-child {
+#uldwmdgoef .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#abilrixbgp .gt_column_spanner {
+#uldwmdgoef .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1546,11 +1546,11 @@ font-style: inherit;">"youden"</span></span>
   width: 100%;
 }
 
-#abilrixbgp .gt_spanner_row {
+#uldwmdgoef .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#abilrixbgp .gt_group_heading {
+#uldwmdgoef .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1576,7 +1576,7 @@ font-style: inherit;">"youden"</span></span>
   text-align: left;
 }
 
-#abilrixbgp .gt_empty_group_heading {
+#uldwmdgoef .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1591,15 +1591,15 @@ font-style: inherit;">"youden"</span></span>
   vertical-align: middle;
 }
 
-#abilrixbgp .gt_from_md > :first-child {
+#uldwmdgoef .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#abilrixbgp .gt_from_md > :last-child {
+#uldwmdgoef .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#abilrixbgp .gt_row {
+#uldwmdgoef .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1618,7 +1618,7 @@ font-style: inherit;">"youden"</span></span>
   overflow-x: hidden;
 }
 
-#abilrixbgp .gt_stub {
+#uldwmdgoef .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1631,7 +1631,7 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 5px;
 }
 
-#abilrixbgp .gt_stub_row_group {
+#uldwmdgoef .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1645,15 +1645,15 @@ font-style: inherit;">"youden"</span></span>
   vertical-align: top;
 }
 
-#abilrixbgp .gt_row_group_first td {
+#uldwmdgoef .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#abilrixbgp .gt_row_group_first th {
+#uldwmdgoef .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#abilrixbgp .gt_summary_row {
+#uldwmdgoef .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1663,16 +1663,16 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 5px;
 }
 
-#abilrixbgp .gt_first_summary_row {
+#uldwmdgoef .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_first_summary_row.thick {
+#uldwmdgoef .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#abilrixbgp .gt_last_summary_row {
+#uldwmdgoef .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1682,7 +1682,7 @@ font-style: inherit;">"youden"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_grand_summary_row {
+#uldwmdgoef .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1692,7 +1692,7 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 5px;
 }
 
-#abilrixbgp .gt_first_grand_summary_row {
+#uldwmdgoef .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1702,7 +1702,7 @@ font-style: inherit;">"youden"</span></span>
   border-top-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_last_grand_summary_row_top {
+#uldwmdgoef .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1712,11 +1712,11 @@ font-style: inherit;">"youden"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_striped {
+#uldwmdgoef .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#abilrixbgp .gt_table_body {
+#uldwmdgoef .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1725,7 +1725,7 @@ font-style: inherit;">"youden"</span></span>
   border-bottom-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_footnotes {
+#uldwmdgoef .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1739,7 +1739,7 @@ font-style: inherit;">"youden"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_footnote {
+#uldwmdgoef .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1748,7 +1748,7 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 5px;
 }
 
-#abilrixbgp .gt_sourcenotes {
+#uldwmdgoef .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1762,7 +1762,7 @@ font-style: inherit;">"youden"</span></span>
   border-right-color: #D3D3D3;
 }
 
-#abilrixbgp .gt_sourcenote {
+#uldwmdgoef .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1770,72 +1770,72 @@ font-style: inherit;">"youden"</span></span>
   padding-right: 5px;
 }
 
-#abilrixbgp .gt_left {
+#uldwmdgoef .gt_left {
   text-align: left;
 }
 
-#abilrixbgp .gt_center {
+#uldwmdgoef .gt_center {
   text-align: center;
 }
 
-#abilrixbgp .gt_right {
+#uldwmdgoef .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#abilrixbgp .gt_font_normal {
+#uldwmdgoef .gt_font_normal {
   font-weight: normal;
 }
 
-#abilrixbgp .gt_font_bold {
+#uldwmdgoef .gt_font_bold {
   font-weight: bold;
 }
 
-#abilrixbgp .gt_font_italic {
+#uldwmdgoef .gt_font_italic {
   font-style: italic;
 }
 
-#abilrixbgp .gt_super {
+#uldwmdgoef .gt_super {
   font-size: 65%;
 }
 
-#abilrixbgp .gt_footnote_marks {
+#uldwmdgoef .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#abilrixbgp .gt_asterisk {
+#uldwmdgoef .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#abilrixbgp .gt_indent_1 {
+#uldwmdgoef .gt_indent_1 {
   text-indent: 5px;
 }
 
-#abilrixbgp .gt_indent_2 {
+#uldwmdgoef .gt_indent_2 {
   text-indent: 10px;
 }
 
-#abilrixbgp .gt_indent_3 {
+#uldwmdgoef .gt_indent_3 {
   text-indent: 15px;
 }
 
-#abilrixbgp .gt_indent_4 {
+#uldwmdgoef .gt_indent_4 {
   text-indent: 20px;
 }
 
-#abilrixbgp .gt_indent_5 {
+#uldwmdgoef .gt_indent_5 {
   text-indent: 25px;
 }
 
-#abilrixbgp .katex-display {
+#uldwmdgoef .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#abilrixbgp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#uldwmdgoef div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2148,7 +2148,7 @@ Prediction    0    1
 </div>
 <p>Por ejemplo, consideremos un conjunto de datos con 10^{4} casos, donde solo el 5% son positivos. En este caso, un modelo puede lograr una asombrosa exactitud del 95.00% simplemente prediciendo negativo todas las veces, pero falla al detectar cualquier positivo, lo que resulta en un 100% de predicciones positivas incorrectas, lo cual es <strong>inaceptable</strong>. Sin ver la matriz de confusión, no somos conscientes de este desastre.</p>
 <p>Sin embargo, la exactitud equilibrada de 50.00% revela esta debilidad al dar una puntuación mucho más baja, indicando que algo está seriamente mal. <strong>Centrarse solo en la exactitud puede ocultar muchos errores</strong>, lo que lleva a malas decisiones. A veces, <strong>saber cuán impreciso es nuestro modelo puede ser muy útil porque revela dónde y cuántas veces nuestro modelo está equivocado</strong>.</p>
-<p>Métricas como la <strong>tasa de malclasificación</strong> y la <strong>tasa de descubrimiento falso</strong> son increíblemente prácticas y merecen su propio espacio de expliación. Por lo tanto, si quieres que tu modelo sea sólido y confiable, o si necesitas explicar por qué algunos resultados del modelo no deben confiarse, debes ver otros de mis posts.</p>
+<p>Métricas como la <strong>tasa de malclasificación</strong> y la <strong>tasa de descubrimiento falso</strong> son increíblemente prácticas y merecen su propio espacio de expliación. Por lo tanto, si quieres que tu modelo sea sólido y confiable, o si necesitas explicar por qué algunos resultados del modelo no deben confiarse, debes ver el siguiente <a href="https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/">post</a>.</p>
 
 
 
