@@ -781,10 +781,10 @@ Dominando Métricas Avanzadas Para El Éxito En El ML.”</span> April 23,
   <category>Machine Learning</category>
   <category>Trading</category>
   <category>Regresión Logística</category>
-  <category>Accuracy</category>
-  <category>Métricas de error</category>
-  <category>Positive Likelihood Ratio</category>
-  <category>Negative Likelihood Ratio</category>
+  <category>F1 score</category>
+  <category>Critical Success Index</category>
+  <category>Equitable Threat Score</category>
+  <category>Matthews Correlation Coefficient</category>
   <guid>https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/</guid>
   <pubDate>Wed, 23 Apr 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/advanced.jpeg" medium="image" type="image/jpeg"/>

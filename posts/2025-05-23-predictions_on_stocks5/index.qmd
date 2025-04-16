@@ -6,7 +6,7 @@ author:
     url: https://cchiquitovalencia.github.io/
     affiliation: Independent @ CHV
 date: 04-23-2025
-categories: [Machine Learning, Trading, Regresión Logística, Accuracy, Métricas de error, Positive Likelihood Ratio, Negative Likelihood Ratio] # self-defined categories
+categories: [Machine Learning, Trading, Regresión Logística, F1 score, Critical Success Index, Equitable Threat Score, Matthews Correlation Coefficient] # self-defined categories
 citation: 
   url: https://cchiquitovalencia.github.io/posts/2025-04-23-predictions_on_stocks5/
 image: advanced.jpeg
