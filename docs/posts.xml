@@ -136,6 +136,182 @@ May 12, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-05-12-que_
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-05-12-que_hace_analista_datos/analista_datos.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de aprendizaje automático</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>La razón de verosimilitud positiva puede salvar vidas. Imagina esto: una mañana me despierto con un dolor agudo en el pecho, como si me hubieran golpeado con un tren. El pánico se apodera de mí. ¿Es un ataque al corazón? Llamo a una ambulancia. Mientras espero, los paramédicos llegan rápidamente y me realizan una prueba de sangre rápida llamada <strong>troponina</strong> para verificar daño en el músculo cardíaco. La razón de verosimilitud positiva de esta prueba es alta, lo que significa que un resultado positivo sugiere con mucha fuerza que estoy sufriendo un ataque al corazón. Esto permite a los médicos actuar rápidamente y con confianza, lo que podría salvar mi vida.</p>
+<section id="razón-de-verosimilitud-positiva" class="level2">
+<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-positiva">Razón de verosimilitud positiva</h2>
+<p>Así que la razón de verosimilitud positiva responde una pregunta crítica: <strong>¿Cuánto debes confiar en un resultado positivo de la prueba?</strong> En concreto, la razón de verosimilitud positiva nos dice cuántas veces es más probable que un resultado positivo ocurra en una persona enferma en comparación con una persona sana. Es por eso que se llama “positiva”: se centra en los resultados positivos.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/posLR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Positive Likelihood Ratio
+</figcaption>
+</figure>
+</div>
+<p>La forma más sencilla de calcular la razón de verosimilitud positiva es dividiendo la tasa de verdaderos positivos (llamada <strong>sensibilidad</strong>) entre la tasa de falsos positivos (que es <strong>1 - especificidad</strong>).</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ALR+=%5Cfrac%7BTPR%7D%7BFPR%7D=%5Cfrac%7BSensibilidad%7D%7B1-Especificidad%7D=%5Cfrac%7B%5Cfrac%7BTP%7D%7BTP+FN%7D%7D%7B1-%5Cfrac%7BTN%7D%7BTN+FP%7D%7D%0A"></p>
+<p>Esto es lo que significa:</p>
+<ul>
+<li>La tasa de verdaderos positivos, o sensibilidad, te dice cuántas veces la prueba identifica correctamente a las personas que tienen la enfermedad.</li>
+<li>La tasa de falsos positivos, que es <strong>1 - especificidad</strong>, muestra cuántas veces la prueba dice incorrectamente que las personas sanas están enfermas.</li>
+</ul>
+<p>Si quieres profundizar más, incluso podrías calcularlo usando una <strong>matriz de confusión</strong>, pero honestamente, no es necesario porque herramientas como las funciones <code>epi.tests()</code> del paquete <strong>epiR</strong> ya hacen los cálculos por ti.</p>
+<p>Pero, ¿por qué importa la razón de verosimilitud positiva? Combina la sensibilidad y la especificidad en un solo número que funciona en diferentes situaciones, a diferencia de los valores predictivos, que cambian dependiendo de la prevalencia de la enfermedad. La razón de verosimilitud positiva permanece consistente e independiente de la prevalencia, lo que la convierte en una herramienta universal para evaluar pruebas diagnósticas o incluso para comparar modelos de aprendizaje automático. Con una regla sencilla: <strong>cuanto mayor sea la razón de verosimilitud positiva, mejor es el modelo</strong>, ya que es una proporción.</p>
+<p>Si está por debajo de uno, el modelo es peor que un adivinanza al azar: evítalo. Si es igual a uno, no ofrece información útil: ignóralo. Cuando está entre 1 y 5, la prueba es algo útil pero no definitiva, así que úsala con cautela. Si está entre 5 y 10, es moderadamente fuerte, y finalmente, si supera los 10, la prueba es muy fuerte, lo que significa que un resultado positivo es altamente confiable.</p>
+<p>Por ejemplo, al predecir la subida o bajada de las acciones, una razón de verosimilitud positiva de 19.54 significa que una predicción de subida es <strong>19.54</strong> veces más probable para alguno que realmente subió que para uno que no lo hizo.</p>
+<p>Pero, ¿qué hay de ese dolor en el pecho que parecía gritar “ataque al corazón”? Bueno, después de llamar a la ambulancia y calmarme lo suficiente como para pensar con claridad, me di cuenta de algo: mi propósito de Año Nuevo de ponarme en forma me llevó a entrenar demasiado los músculos del pecho el día anterior.</p>
+</section>
+<section id="razón-de-verosimilitud-negativa" class="level2">
+<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-negativa">Razón de verosimilitud negativa</h2>
+<p>Mientras la razón de verosimilitud positiva es fantástica para interpretar resultados positivos, ¿qué sucede cuando la prueba es negativa? En ese caso, necesitamos la <strong>razón de verosimilitud negativa</strong>, que se centra en los resultados negativos y es, en muchos aspectos, lo opuesto a la razón de verosimilitud positiva.</p>
+<p>La razón de verosimilitud negativa responde otra pregunta crítica: <strong>¿Cuánto puedes confiar en un resultado negativo?</strong> En palabras sencillas, nos dice cuántas veces es más probable que un resultado negativo ocurra en una persona sana en comparación con una persona enferma. Es por eso que se llama “negativa”: se centra en los resultados negativos.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/negLR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="451">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Negative Likelihood Ratio
+</figcaption>
+</figure>
+</div>
+<p>En aprendizaje automático, la razón de verosimilitud negativa funciona de manera similar: nos dice <strong>qué tan bien un modelo predice negativos cuando realmente son negativos en comparación con cuando son positivos</strong>. La matemática detrás de la razón de verosimilitud negativa es sencilla: en lugar de usar la sensibilidad en el numerador, usamos <strong>1 - sensibilidad</strong> (también conocida como la tasa de falsos negativos), que nos dice cuántas veces la prueba no detecta correctamente a las personas enfermas. En el denominador, en lugar de <strong>1 - especificidad</strong>, usamos la especificidad o la tasa de verdaderos negativos, que nos dice cuántas veces la prueba identifica correctamente a las personas sanas.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ALR-=%5Cfrac%7B1-Sensibilidad%7D%7BEspecificidad%7D=%5Cfrac%7BFNR%7D%7BTNR%7D=%5Cfrac%7B1-%5Cfrac%7BTP%7D%7BTP+FN%7D%7D%7B%5Cfrac%7BTN%7D%7BTN+FP%7D%7D%0A"></p>
+<p>En términos más sencillos, la razón de verosimilitud negativa compara la probabilidad de un resultado negativo en personas enfermas con la probabilidad de un resultado negativo en personas sanas. La razón de verosimilitud negativa es especialmente útil para descartar condiciones. Su interpretación es sencilla: <strong>cuanto más baja sea la razón de verosimilitud negativa, mejor</strong>. Por ejemplo, si está por debajo de 0.1, la prueba es excelente para descartar la condición; si está entre 0.1 y 0.5, es decente pero no perfecta; si está entre 0.5 y 1, tiene un valor limitado; y si supera 1, la prueba es poco confiable.</p>
+<p>Volviendo a nuestro ejemplo de las acciones, si la razón de verosimilitud negativa es 0.11, al invertirla nos da 9.09, lo que significa que predecir una que no subió es 9 veces más probable para una que realmente no subió en comparación con una que sí lo hizo.</p>
+<p><strong>En resumen, una buena prueba diagnóstica o un buen modelo de aprendizaje automático debe destacar en dos áreas clave: confirmar positivos, lo que se indica con una razón de verosimilitud positiva mayor a 1, y descartar negativos, lo que se refleja con una razón de verosimilitud negativa menor a 1. Si ambas razones son malas, lo que significa que la razón de verosimilitud positiva está por debajo de 1 y la razón de verosimilitud negativa está por encima de 1, la prueba o el modelo es esencialmente inútil. Así que esta pequeña parte de los resultados de la matriz de confusión ofrece una forma rápida, poderosa e increíblemente práctica de evaluar la calidad del modelo, y personalmente creo que está muy subestimada.</strong></p>
+</section>
+<section id="razón-de-verosimilitud-diagnóstica" class="level2">
+<h2 class="anchored" data-anchor-id="razón-de-verosimilitud-diagnóstica">Razón de verosimilitud diagnóstica</h2>
+<p>Ahora, mientras que la razón de verosimilitud positiva y la razón de verosimilitud negativa son excelentes para evaluar cómo se desempeña una prueba o un modelo en la confirmación de positivos o en el descarte de negativos, sus resultados son muy direccionales, ya sea hacia positivos o hacia negativos. Pero a veces queremos una sola métrica que resuma el rendimiento general de una prueba o un modelo sin dividirlo en direcciones positivas y negativas, y es ahí donde entra en juego la <strong>razón de verosimilitud diagnóstica</strong>.</p>
+<p>Usa la razón de verosimilitud diagnóstica cuando necesites un solo número que represente el poder diagnóstico general de una prueba o un modelo. Úsala también cuando estés comparando múltiples pruebas o modelos y quieras una forma rápida de clasificarlos. Finalmente, usa la razón de verosimilitud diagnóstica si no te importa distinguir entre la razón de verosimilitud positiva y la negativa, sino que quieres una visión holística de qué tan bien discrimina la prueba entre personas enfermas y sanas, similar a la precisión, pero siendo completamente independiente de la prevalencia.</p>
+<p>Una razón de verosimilitud diagnóstica alta significa que la prueba es excelente para distinguir entre personas enfermas y sanas. Podemos obtener la razón de verosimilitud diagnóstica del resumen de las pruebas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(epiR<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">epi.tests</span>(train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-2">    gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-3">    gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb1-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb1-5">      gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_fill</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"orange"</span>),</span>
+<span id="cb1-6">      gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>)</span>
+<span id="cb1-7">      ),</span>
+<span id="cb1-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> gt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_body</span>(</span>
+<span id="cb1-9">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> statistic,</span>
+<span id="cb1-10">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rows =</span> statistic <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"youden"</span></span>
+<span id="cb1-11">    )</span>
+<span id="cb1-12">  )</span></code></pre></div>
+</div>
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/DOR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="357">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Razón de verosimilitud diagnóstica.
+</figcaption>
+</figure>
+</div>
+<p>o calcularla fácilmente de varias maneras. La más sencilla es dividiendo la razón de verosimilitud positiva entre la razón de verosimilitud negativa.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ADOR=%5Cfrac%7BLR+%7D%7BLR-%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ADOR=%5Cfrac%7B%5Cfrac%7BTP%7D%7BFN%7D%7D%7B%5Cfrac%7BFP%7D%7BTN%7D%7D=%5Cfrac%7BTP*TN%7D%7BFP*FN%7D%0A"></p>
+<p>Alternativamente, puedes calcular la razón de verosimilitud diagnóstica directamente desde la matriz de confusión o usando sensibilidad y especificidad.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ADOR=%5Cfrac%7BSensibilidad*Especificidad%7D%7B(1-Sensibilidad)*(1-Especificidad)%7D%0A"></p>
+<p>Al igual que una razón de probabilidades regular, <strong>la razón de verosimilitud diagnóstica oscila entre 0 e infinito</strong>. Una razón de verosimilitud diagnóstica por debajo de 1 indica una mala prueba, mientras que una razón por encima de 1 es buena, y cuanto mayor sea el número, mejor se desempeña el modelo. Una razón de verosimilitud diagnóstica de 19.54, como la nuestra, muestra que nuestro modelo es muy informativo.</p>
+<p>Mientras la razón de verosimilitud diagnóstica es robusta ante pequeños desequilibrios en tus datos, por ejemplo, si hay más personas sanas que enfermas, <strong>puede volverse inestable en dos situaciones</strong>: primera, tamaños de muestra pequeños, donde no hay suficientes verdaderos positivos o verdaderos negativos, lo que puede distorsionar las proporciones; y segunda, desequilibrios extremos, donde un grupo es mucho mayor que el otro, como 99% de sanos versus 1% de enfermos. En estos casos, la razón de verosimilitud diagnóstica podría no contar toda la historia.</p>
+<p>En escenarios de la vida real, donde el desequilibrio es bastante común, querrás usar métricas que manejen mejor estos desafíos, como la <strong>F1 score</strong>, el <strong>índice de éxito crítico (CSI)</strong> y el <strong>coeficiente de correlación de Matthew (MCC)</strong>, que te ayudarán a evaluar modelos incluso en conjuntos de datos muy desequilibrados. Así que, para aprender todo sobre ellos, solo tienes que ver este post.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Razones de Verosimilitud: Métricas Clave Para Evaluar Pruebas
+    Diagnósticas y Modelos de Aprendizaje Automático},
+  date = {2025-04-19},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Razones de Verosimilitud:
+Métricas Clave Para Evaluar Pruebas Diagnósticas y Modelos de
+Aprendizaje Automático.”</span> April 19, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/">https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/</a>.
+</div></div></section></div> ]]></description>
+  <category>Machine Learning</category>
+  <category>Trading</category>
+  <category>Regresión Logística</category>
+  <category>Accuracy</category>
+  <category>Métricas de error</category>
+  <category>Positive Likelihood Ratio</category>
+  <category>Negative Likelihood Ratio</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/</guid>
+  <pubDate>Sat, 19 Apr 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/balance.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>La ilusión de la precisión: ¿Cómo detectar los errores ocultos en tus datos?</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-04-11-predictions_on_stocks3/</link>
@@ -583,7 +759,7 @@ Figura&nbsp;5: FOR
 </figcaption>
 </figure>
 </div>
-<p>Ahora que hemos cubierto todas las métricas clave de error, es probable que te preguntes: <code>¿Hay una manera de combinar estas ideas en una sola medida de lo bueno que es realmente una prueba o un modelo?</code> Y la respuesta es sí. Se llama <code>razones de verosimilitud</code>: la razón de verosimilitud positiva y la razón de verosimilitud negativa. Juntas, te dan una imagen completa del poder diagnóstico de tu modelo y <strong>son especialmente útiles para conjuntos de datos desequilibrados, donde métricas tradicionales como precisión o recall pueden fallar</strong>. De hecho, estas métricas son tan esenciales que le he dedicado otro post. Confía en mí, no quieres perdértelo.</p>
+<p>Ahora que hemos cubierto todas las métricas clave de error, es probable que te preguntes: <code>¿Hay una manera de combinar estas ideas en una sola medida de lo bueno que es realmente una prueba o un modelo?</code> Y la respuesta es sí. Se llama <code>razones de verosimilitud</code>: la razón de verosimilitud positiva y la razón de verosimilitud negativa. Juntas, te dan una imagen completa del poder diagnóstico de tu modelo y <strong>son especialmente útiles para conjuntos de datos desequilibrados, donde métricas tradicionales como precisión o recall pueden fallar</strong>. De hecho, estas métricas son tan esenciales que le he dedicado otro <a href="https://cchiquitovalencia.github.io/posts/2025-04-19-predictions_on_stocks4/">post</a>. Confía en mí, no quieres perdértelo.</p>
 
 
 </section>
@@ -31237,88 +31413,6 @@ Mantenimiento.”</span> February 4, 2025. <a href="https://cchiquitovalencia.gi
   <guid>https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/</guid>
   <pubDate>Tue, 04 Feb 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/sample_app.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Indispensable crear el PLAN</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Hace algunos años me encontraba en la oficina de uno de los ejecutores del <a href="https://www.mineducacion.gov.co/1621/w3-printer-235135.html">Programa de Alimentación Escolar</a> (<strong>PAE</strong>) realizando una propuesta para implementar un modelo de distribución. Tal vez fueron 3 o 4 encuentros con dos de los principales responsables el <em>Director de Operaciones</em> y el <em>Jefe de Distribución</em>.</p>
-<p>Ambos tenían muy claro el panorama en cuanto a fechas de entrega, formas de almacenar productos en los vehículos, tipos de vehículos disponibles (propios y tercerizados), topología de las rutas de distribución, fechas de caducidad de los alimentos, y otros.</p>
-<p>Por ese entonces estaba yo incursionando en la <em>optimización</em> porque en uno de mis roles me enfrentaba a la tarea de minimizar el costo de operar cerca de 130.000 kilómetros diarios con 740 vehículos aproximadamente. Entonces mis propuestas se enfocaron en optimizar su red de distribución. Les presenté un modelo que contemplaba principalmente: reducción de kilómetros recorridos (ahorro en combustible), capacidad de almacenamiento por tipo de vehículo, programación de despachos en los diferentes días de la semana.</p>
-<p>Estaba seguro que lograría iniciar el proyecto de consultoría con ellos. Lo que había diseñado para su operación encajaba bastante bien con las herramientas que tenían disponibles y la información estaba clara y al alcance de todos.</p>
-<p>Al final, el Jefe de Distribución convenció al Director de Operaciones que el modelo estaba <strong>muy bueno, pero</strong> que en la realidad existían tantas variables que lo cierto es que no iba a funcionar.</p>
-<p>En esa época fácilmente dejé llevarme por sus argumentos. Eran ciertos. Todo puede pasar en la operación del día a día y lo que está planeado seguramente no se va a cumplir. Hoy puedo decir que fue un <strong>error total: no debí dejarme convencer</strong>. Claro que todo puede pasar, pero sino tienes un plan, sino tienes una guía, la hoja de ruta, lo ideal, el deber ser, pues estás bajo las decisiones en caliente. Sin un plan, no vas a lograr más que esforzarte en vano, no tienes una meta.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-El éxito en los negocios es fácil si haces dos cosas bien: planea tú trabajo y trabaja tú plan.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<p>La planeación y programación maestros (<strong>MPS</strong>), junto con la planeación táctica integrada (<strong>ITP</strong>), es el proceso de gestión de la cadena de suministro (<strong>SCM</strong>) que traduce los planes de demanda y suministro aprobados por la planeación empresarial integrada (<strong>IBP</strong>) en planes de demanda y suministro <em>detallados</em> y <em>ejecutables</em>.</p>
-<p>Aunque la frase anterior es un poco larga, solo es uno de los objetivos del MPS. Probablemente haya muchos más objetivos pero aquí hay una lista de 20 objetivos más allá.</p>
-<p>El proceso de planeación y programación maestros se encuentra justo entre el proceso mensual de planeación empresarial integrado de la dirección (incluyendo el apoyo de la gerencia intermedia) y los procesos de producción, logística y contratación de la supervisión (incluyendo a los influenciadores clave y a aquellos que realizan el trabajo).</p>
-<section id="objetivos-del-mps" class="level2">
-<h2 class="anchored" data-anchor-id="objetivos-del-mps">Objetivos del MPS:</h2>
-<ol type="1">
-<li><p>Desagregar los planes de demanda y suministro agregados en planes y horarios detallados</p></li>
-<li><p>Crear un plan maestro (abastecimiento) válido y realista a nivel de subfamilia de productos por semanas y meses,</p></li>
-<li><p>Crear un horario maestro (abastecimiento) válido y realista a nivel de grupo y/o unidad de almacenamiento por días y semanas,</p></li>
-<li><p>Asegurarse de que la capacidad (incluyendo herramientas) esté disponible cuando comience el proceso de producción (operaciones/mantenimiento),</p></li>
-<li><p>Asegurarse de que el material esté disponible cuando comience el proceso de producción (operaciones/mantenimiento),</p></li>
-<li><p>Alinear los lanzamientos de nuevos productos (también pruebas de producción de nuevos productos) con las necesidades de producción,</p></li>
-<li><p>Asegurarse de que las fechas límite de entrega de material sean iguales a las fechas de necesidad de material,</p></li>
-<li><p>Asegurarse de que la capacidad planeada sea igual a la capacidad requerida,</p></li>
-<li><p>Optimizar la estabilidad del plan maestro (abastecimiento) y el horario maestro (abastecimiento), la creación de órdenes, el reprogramación y el nivelado de carga,</p></li>
-<li><p>Implementar acciones sugeridas por mensajes de acción generados por el sistema,</p></li>
-<li><p>Equilibrar la demanda del cliente con las capacidades de suministro de la empresa,</p></li>
-<li><p>Continuar desafiando y reduciendo los plazos de entrega de los clientes,</p></li>
-<li><p>Proporcionar información disponible para prometer y registrar órdenes al organización de demanda (ventas y servicio al cliente),</p></li>
-<li><p>Probar las capacidades de suministro para satisfacer las necesidades de demanda antes de liberar el plan maestro y/o horario maestro,</p></li>
-<li><p>Asegurarse de que los planes de suministro detallados estén sincronizados, alineados y integrados con los planes de suministro agregados,</p></li>
-<li><p>Identificar, negociar y resolver conflictos en las necesidades de demanda y capacidades de suministro,</p></li>
-<li><p>Crear un plan maestro y/o horario maestro que satisfaga la demanda del cliente utilizando niveles óptimos de inventario y recursos y mejore las posibilidades de la empresa para hacer dinero y obtener beneficios,</p></li>
-<li><p>Crear la hoja de ruta para la planeación detallada de material y capacidad,</p></li>
-<li><p>Asistir a la gestión de demanda en la establecimiento de prioridades cuando la demanda supera las capacidades de suministro de la empresa,</p></li>
-<li><p>Establecer una línea de comunicación efectiva con todas las funciones de la empresa.</p></li>
-</ol>
-<p>Así que la creación de un plan maestro y horario maestro es un proceso fundamental en el mundo de los negocios, ya que permite a las empresas planificar y organizar sus actividades de manera efectiva para satisfacer las necesidades de sus clientes y maximizar sus ganancias. Es importante que las empresas tengan una visión clara de sus objetivos y necesidades para poder crear un plan maestro y horario maestro efectivo, y que identifiquen y resuelvan conflictos en las necesidades de demanda y capacidades de suministro.</p>
-</section>
-<section id="revisa-el-plan" class="level2">
-<h2 class="anchored" data-anchor-id="revisa-el-plan">Revisa el plan</h2>
-<p>Con todo esto en mente, quiero recordarte que <a href="https://cchiquitovalencia.github.io/posts/2025-01-30-deploy_app_server/#fig-10">aquí</a> creamos una aplicación que optimiza un plan de mantenimiento, para nosotros un buen plan que se diseñó considerando las variables importantes que pensamos podrían modelar nuestro problema. Ese es el plan, ahora nuestro deber es integrarlo con las otras áreas para lograr ejecutarlo.</p>
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
-  author = {Chiquito Valencia, Cristian},
-  title = {Indispensable Crear El {PLAN}},
-  date = {2025-02-03},
-  url = {https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2025. <span>“Indispensable Crear El
-PLAN.”</span> February 3, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/">https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/</a>.
-</div></div></section></div> ]]></description>
-  <category>Scheduling</category>
-  <category>Maintenance</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/</guid>
-  <pubDate>Mon, 03 Feb 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-03-master_plan/gantt.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
