@@ -259,4 +259,4 @@ La prevalencia verdadera muestra el porcentaje real de casos positivos, incluyen
 
 Es tan simple como eso. La prevalencia verdadera es del `r scales::percent(matrix$byClass[8], accuracy = 0.01)`, lo que es mayor que la prevalencia aparente predicha por el modelo, que es del `r scales::percent(matrix$byClass[10], accuracy = 0.01)`. Esta es una brecha enorme, especialmente en casos sensibles, los que involucran vidas humanas. Esto nos lleva naturalmente a la sensibilidad, una métrica fundamental para entender cómo bien identifica un modelo los verdaderos positivos.
 
-La sensibilidad es solo el comienzo. Hay siete métricas esenciales de rendimiento que forman la base de la evaluación de cualquier modelo de machine learning. En el próximo post, pasaré por cada una de ellas paso a paso.
+La sensibilidad es solo el comienzo. Hay siete métricas esenciales de rendimiento que forman la base de la evaluación de cualquier modelo de machine learning. En el próximo [post](https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/), pasaré por cada una de ellas paso a paso.

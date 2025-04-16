@@ -365,31 +365,31 @@ glm(formula = formula, family = "binomial", data = norm_isdji)
 
 Coefficients: (3 not defined because of singularities)
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   1.09753    0.11965   9.173  &lt; 2e-16 ***
-DJI.Close    32.69491    5.17170   6.322 2.58e-10 ***
-DJI.Close.1 -34.09386   11.02876  -3.091 0.001992 ** 
-DJI.Close.2   1.53962   10.73311   0.143 0.885938    
-DJI.Close.3   0.07123    0.24846   0.287 0.774344    
-DJI.Close.4  -0.29423    0.31673  -0.929 0.352911    
-rsi           0.04493    0.15774   0.285 0.775776    
-rsi.1        -1.35814    0.23602  -5.754 8.70e-09 ***
-macd          3.28435    0.83366   3.940 8.16e-05 ***
-signal        1.34016    0.35251   3.802 0.000144 ***
-macd.1       -0.67821    0.48475  -1.399 0.161790    
-signal.1      2.05191    0.92635   2.215 0.026756 *  
+(Intercept)   1.10262    0.11960   9.219  &lt; 2e-16 ***
+DJI.Close    32.85949    5.19330   6.327 2.50e-10 ***
+DJI.Close.1 -34.19696   11.07670  -3.087 0.002020 ** 
+DJI.Close.2   1.48406   10.77744   0.138 0.890477    
+DJI.Close.3   0.06915    0.24833   0.278 0.780654    
+DJI.Close.4  -0.29325    0.31664  -0.926 0.354366    
+rsi           0.04495    0.15775   0.285 0.775700    
+rsi.1        -1.35799    0.23593  -5.756 8.62e-09 ***
+macd          3.28536    0.83327   3.943 8.06e-05 ***
+signal        1.33860    0.35234   3.799 0.000145 ***
+macd.1       -0.67900    0.48453  -1.401 0.161105    
+signal.1      2.04865    0.92596   2.212 0.026935 *  
 dn                 NA         NA      NA       NA    
 mavg               NA         NA      NA       NA    
 up                 NA         NA      NA       NA    
-pctB          2.35390    0.25878   9.096  &lt; 2e-16 ***
+pctB          2.35392    0.25880   9.096  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 4729.8  on 3641  degrees of freedom
-Residual deviance: 1218.0  on 3629  degrees of freedom
+    Null deviance: 4734.2  on 3646  degrees of freedom
+Residual deviance: 1218.2  on 3634  degrees of freedom
   (33 observations deleted due to missingness)
-AIC: 1244
+AIC: 1244.2
 
 Number of Fisher Scoring iterations: 8</code></pre>
 </div>
@@ -434,36 +434,36 @@ Number of Fisher Scoring iterations: 8</code></pre>
           Reference
 Prediction    0    1
          0 1152  108
-         1  134 2248
-                                         
-               Accuracy : 0.9336         
-                 95% CI : (0.925, 0.9414)
-    No Information Rate : 0.6469         
-    P-Value [Acc &gt; NIR] : &lt;2e-16         
-                                         
-                  Kappa : 0.8539         
-                                         
- Mcnemar's Test P-Value : 0.108          
-                                         
-            Sensitivity : 0.8958         
-            Specificity : 0.9542         
-         Pos Pred Value : 0.9143         
-         Neg Pred Value : 0.9437         
-              Precision : 0.9143         
-                 Recall : 0.8958         
-                     F1 : 0.9049         
-             Prevalence : 0.3531         
-         Detection Rate : 0.3163         
-   Detection Prevalence : 0.3460         
-      Balanced Accuracy : 0.9250         
-                                         
-       'Positive' Class : 0              
-                                         </code></pre>
+         1  134 2253
+                                          
+               Accuracy : 0.9336          
+                 95% CI : (0.9251, 0.9415)
+    No Information Rate : 0.6474          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.854           
+                                          
+ Mcnemar's Test P-Value : 0.108           
+                                          
+            Sensitivity : 0.8958          
+            Specificity : 0.9543          
+         Pos Pred Value : 0.9143          
+         Neg Pred Value : 0.9439          
+              Precision : 0.9143          
+                 Recall : 0.8958          
+                     F1 : 0.9049          
+             Prevalence : 0.3526          
+         Detection Rate : 0.3159          
+   Detection Prevalence : 0.3455          
+      Balanced Accuracy : 0.9250          
+                                          
+       'Positive' Class : 0               
+                                          </code></pre>
 </div>
 </div>
 <p>Ten cuidado, sin embargo, porque aunque una matriz de confusión solo tiene cuatro números, es fácil confundirse. Esto es lo que debes recordar: las filas deben representar los valores predichos por tu modelo o datos de prueba. La fila superior es para predicciones positivas, y la fila inferior es para predicciones negativas. Las columnas deben representar los valores reales o verdaderos, también llamados el “estándar de oro”. La columna izquierda es para resultados positivos, mientras que la columna derecha es para resultados negativos.</p>
 <p>La función <code>epiR::epi.tests()</code> tiene dos características útiles: te recuerda colocar los resultados reales o los valores reales en las columnas y proporciona intervalos de confianza al <span class="math inline">\(95\%\)</span>, algo que muchas funciones comunes de <strong>machine learning</strong> como la matriz de confusión del paquete <code>caret::confusionMatrix()</code> no incluyen. Dicho esto, la función <code>confusionMatrix</code> también tiene ventajas. Por ejemplo, incluye métricas como la tasa de detección (<code>Detection Rate</code>), que es un excelente punto de partida para analizar el rendimiento del modelo porque es simple e intuitiva.</p>
-<p>La tabla precedente muestra que hemos logrado una predicción correcta del 93%, ya que 1152 + 2248 = 3400 predicciones son correctas de un total de 3642 (suma de todos los cuatro valores). En general, se considera una buena predicción cualquier valor superior al <span class="math inline">\(80\%\)</span> en los datos de muestra; sin embargo, el <span class="math inline">\(80\%\)</span> no es un valor fijo y debe determinarse en función del conjunto de datos y la industria.</p>
+<p>La tabla precedente muestra que hemos logrado una predicción correcta del 93%, ya que 1152 + 2253 = 3405 predicciones son correctas de un total de 3647 (suma de todos los cuatro valores). En general, se considera una buena predicción cualquier valor superior al <span class="math inline">\(80\%\)</span> en los datos de muestra; sin embargo, el <span class="math inline">\(80\%\)</span> no es un valor fijo y debe determinarse en función del conjunto de datos y la industria.</p>
 <p>Ahora que has implementado el modelo de regresión logística, que ha predicho correctamente el 93%, debes probar su capacidad de generalización. Debe probarse este modelo utilizando datos de muestra y verificar su precisión.</p>
 <p>El primer paso es estandarizar los datos de muestra utilizando la fórmula de arriba. En este caso, la media y la desviación estándar deben ser las mismas que las utilizadas para la normalización de los datos de muestra.</p>
 <div class="cell">
@@ -487,39 +487,39 @@ Prediction    0    1
 
           Reference
 Prediction   0   1
-         0 369  37
-         1  26 487
-                                          
-               Accuracy : 0.9314          
-                 95% CI : (0.9131, 0.9469)
-    No Information Rate : 0.5702          
-    P-Value [Acc &gt; NIR] : &lt;2e-16          
-                                          
-                  Kappa : 0.8606          
-                                          
- Mcnemar's Test P-Value : 0.2077          
-                                          
-            Sensitivity : 0.9342          
-            Specificity : 0.9294          
-         Pos Pred Value : 0.9089          
-         Neg Pred Value : 0.9493          
-             Prevalence : 0.4298          
-         Detection Rate : 0.4015          
-   Detection Prevalence : 0.4418          
-      Balanced Accuracy : 0.9318          
-                                          
-       'Positive' Class : 0               
-                                          </code></pre>
+         0 376  37
+         1  26 482
+                                         
+               Accuracy : 0.9316         
+                 95% CI : (0.9133, 0.947)
+    No Information Rate : 0.5635         
+    P-Value [Acc &gt; NIR] : &lt;2e-16         
+                                         
+                  Kappa : 0.8614         
+                                         
+ Mcnemar's Test P-Value : 0.2077         
+                                         
+            Sensitivity : 0.9353         
+            Specificity : 0.9287         
+         Pos Pred Value : 0.9104         
+         Neg Pred Value : 0.9488         
+             Prevalence : 0.4365         
+         Detection Rate : 0.4083         
+   Detection Prevalence : 0.4484         
+      Balanced Accuracy : 0.9320         
+                                         
+       'Positive' Class : 0              
+                                         </code></pre>
 </div>
 </div>
 <p>Esto muestra un 93% de precisión en los datos de muestra. La calidad de la precisión es más allá del alcance de este post, por lo que no cubriré si la precisión en los datos de muestra es buena o mala y qué técnicas se pueden utilizar para mejorar este rendimiento.</p>
 <p>Un modelo de trading realista también tiene en cuenta los costos de trading y la pérdida de mercado, lo que disminuye significativamente las probabilidades de ganar. La próxima tarea es diseñar una estrategia de trading utilizando las direcciones predichas. Exploraré cómo implementar una estrategia de trading automatizada utilizando señales predichas en otro post.</p>
-<p>Por ahora, es importante que conozcas que la tasa de detección nos dice la proporción de positivos reales que el modelo identificó correctamente. En nuestro ejemplo, la tasa de detección es del 0.3163097, pero ¿es esto bueno o malo? Depende de la situación. En escenarios de alto riesgo, como la detección de enfermedades o la prevención de fraudes, un 32% probablemente sea demasiado bajo, ya que se pierden muchos verdaderos positivos, lo que puede tener consecuencias graves.</p>
+<p>Por ahora, es importante que conozcas que la tasa de detección nos dice la proporción de positivos reales que el modelo identificó correctamente. En nuestro ejemplo, la tasa de detección es del 0.3158761, pero ¿es esto bueno o malo? Depende de la situación. En escenarios de alto riesgo, como la detección de enfermedades o la prevención de fraudes, un 32% probablemente sea demasiado bajo, ya que se pierden muchos verdaderos positivos, lo que puede tener consecuencias graves.</p>
 <p>En problemas desafiantes, como aquellos con conjuntos de datos desequilibrados o tareas complejas, un 32% podría representar realmente un progreso sólido. Por ejemplo, la tasa de detección es especialmente útil en fabricación para monitorear las tasas de defectos (piensa en Six Sigma y las partes por millón). Ayuda a identificar productos defectuosos en fábricas modernas operadas por robots, donde incluso mejoras pequeñas pueden marcar una gran diferencia. Sin embargo, la tasa de detección tiene una limitación importante: solo se enfoca en los verdaderos positivos e ignora completamente los falsos positivos. Esto significa que no nos da una visión completa de cómo está funcionando el modelo. Para obtener una comprensión más completa, necesitamos mirar la siguiente métrica importante en la matriz de confusión: la prevalencia de detección (<code>Detection Prevalence</code>).</p>
-<p>La prevalencia de detección, también conocida como prevalencia aparente, es el porcentaje de casos positivos que el modelo predice. En nuestro ejemplo del finanzas, representa la proporción de veces que el modelo predice que el precio de la acción bajará. Así es como la calculamos: sumamos todos los positivos predichos, que son los valores en la fila superior de la matriz de confusión, y los dividimos entre el número total de casos. Esto significa que nuestro modelo predice que el 0.3459638 del precio de la acción bajará. ¿Por qué se llama prevalencia aparente? El término refleja el hecho de que estas son predicciones modeladas que pueden no alinearse con la realidad. Para entender la realidad, necesitamos calcular la prevalencia verdadera, que exploraremos a continuación.</p>
+<p>La prevalencia de detección, también conocida como prevalencia aparente, es el porcentaje de casos positivos que el modelo predice. En nuestro ejemplo del finanzas, representa la proporción de veces que el modelo predice que el precio de la acción bajará. Así es como la calculamos: sumamos todos los positivos predichos, que son los valores en la fila superior de la matriz de confusión, y los dividimos entre el número total de casos. Esto significa que nuestro modelo predice que el 0.3454894 del precio de la acción bajará. ¿Por qué se llama prevalencia aparente? El término refleja el hecho de que estas son predicciones modeladas que pueden no alinearse con la realidad. Para entender la realidad, necesitamos calcular la prevalencia verdadera, que exploraremos a continuación.</p>
 <p>La prevalencia verdadera muestra el porcentaje real de casos positivos, incluyendo aquellos que el modelo se perdió. En el ejemplo de stocks, es la proporción real de subidas de la acción, incluso aquellos a los que el modelo predijo incorrectamente que no subían. Para calcular la prevalencia verdadera, nos enfocamos en la columna izquierda de la matriz de confusión, sumamos los verdaderos positivos y los falsos negativos, y los dividimos entre el tamaño de la población.</p>
-<p>Es tan simple como eso. La prevalencia verdadera es del 35.31%, lo que es mayor que la prevalencia aparente predicha por el modelo, que es del 34.60%. Esta es una brecha enorme, especialmente en casos sensibles, los que involucran vidas humanas. Esto nos lleva naturalmente a la sensibilidad, una métrica fundamental para entender cómo bien identifica un modelo los verdaderos positivos.</p>
-<p>La sensibilidad es solo el comienzo. Hay siete métricas esenciales de rendimiento que forman la base de la evaluación de cualquier modelo de machine learning. En el próximo post, pasaré por cada una de ellas paso a paso.</p>
+<p>Es tan simple como eso. La prevalencia verdadera es del 35.26%, lo que es mayor que la prevalencia aparente predicha por el modelo, que es del 34.55%. Esta es una brecha enorme, especialmente en casos sensibles, los que involucran vidas humanas. Esto nos lleva naturalmente a la sensibilidad, una métrica fundamental para entender cómo bien identifica un modelo los verdaderos positivos.</p>
+<p>La sensibilidad es solo el comienzo. Hay siete métricas esenciales de rendimiento que forman la base de la evaluación de cualquier modelo de machine learning. En el próximo <a href="https://cchiquitovalencia.github.io/posts/2025-04-08-predictions_on_stocks2/">post</a>, pasaré por cada una de ellas paso a paso.</p>
 
 
 
