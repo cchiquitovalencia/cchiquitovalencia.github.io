@@ -1,0 +1,236 @@
+---
+title: "Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML"
+description: "TRADING Serie - Parte 5"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 04-23-2025
+categories: [Machine Learning, Trading, Regresión Logística, Accuracy, Métricas de error, Positive Likelihood Ratio, Negative Likelihood Ratio] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-04-23-predictions_on_stocks5/
+image: balance.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+La mayoría de las personas confían en la precisión, la exactitud y la cobertura para medir el éxito de los modelos de aprendizaje automático. Sin embargo, **estas métricas resultan miserablemente inadecuadas en escenarios de alta relevancia**, como las predicciones de tornados o la detección de fraudes. Si dominas estas cuatro métricas avanzadas:
+
+-   [F1 score]
+
+-   [Índice crítico de éxito](#índice-crítico-de-éxito) (**CSI**)
+
+-   [Puntuación equitativa de amenazas] (**ETS**)
+
+-   [Coeficiente de correlación de Matthews] (MCC)
+
+te destacarás como un experto en aprendizaje automático.
+
+```{r, message=FALSE, warning=FALSE}
+library(myfinance)
+library(caret)
+
+# Función para calcular los resultados tanto de train como de test
+calculate_results <- function(model, data) {
+  # Realizar predicción
+  predictions <- predict(model, data)
+  
+  # Convertir predicciones en probabilidades
+  probabilities <- 1 / (1 + exp(-predictions))
+  
+  # Determinar la dirección basada en el umbral de 0.5
+  direction <- ifelse(probabilities > 0.5, 1, 0)
+  
+  # Crear la matriz de confusión
+  confusion <- confusionMatrix(factor(direction), factor(data$Direction), mode = "everything")
+  
+  # Devolver los resultados
+  list(
+    predicted_direction = direction,
+    confusion_matrix = confusion,
+    predictions = predictions
+  )
+}
+
+# Ejecutar el análisis principal
+modelo <- main_analysis()
+# Calcular resultados para train
+train_results <- calculate_results(modelo$modelo, modelo$normalized$train)
+train_confusion <- train_results$confusion_matrix
+
+# Calcular resultados para test
+test_results <- calculate_results(modelo$modelo, modelo$normalized$test)
+test_confusion <- test_results$confusion_matrix
+
+library(tidyverse)
+d2 <- modelo$normalized$test |> 
+    as.data.frame() |> 
+    mutate(pred_probs = test_results$predictions,
+           pred_classes = factor(test_results$predicted_direction))
+    
+
+library(cutpointr, verbose = FALSE)
+sensitive_case <- cutpointr(
+    data = d2,
+    x = pred_probs,
+    class = Direction,
+    method = minimize_metric,
+    metric = misclassification_cost,
+    cost_fp = 1,
+    cost_fn = 5
+)
+```
+
+## F1 score
+
+Empezaremos con un resumen de las cuatro, comenzando con F1 score, una métrica que equilibra perfectamente la precisión y la cobertura, lo que la hace mejor que ambas por separado.
+
+El [modelo utilizado](https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/) es una regresión logística con predictores como promedio y desviación estándar de los últimos 10 y 20 días, RSI de 5 y 14 días, MACD y otros. Por supuesto, esto podría reemplazarse por cualquier modelo de clasificación. Una vez entrenado, el modelo predice las probabilidades de alza para los datos de prueba, clasificando a las acciones como sube o no sube en función de un umbral de probabilidad del 50%. Finalmente, se genera una matriz de confusión para evaluar el rendimiento del modelo, proporcionando métricas detalladas como exactitud, precisión, cobertura y, por supuesto, F1 score.
+
+La F1 score, al igual que la exactitud, es una sola métrica para medir el rendimiento de los modelos. Sin embargo, **es mucho más efectiva para conjuntos de datos desequilibrados**, y aquí está la razón: en escenarios como la detección de fraudes o el diagnóstico de enfermedades raras, donde una clase domina, la exactitud puede ser engañosa. Un modelo que prediga solo la clase mayoritaria puede parecer que funciona bien, incluso si ignora completamente la clase minoritaria. El F1 score aborda esto equilibrando la precisión y la cobertura, lo que la hace ideal para comparar modelos o ajustar hiperparámetros en conjuntos de datos desequilibrados.
+
+La F1 score se calcula como la media armónica de la precisión y la cobertura.
+
+$$
+F_1=2*\frac{Precisión*Cobertura}{Precisión+Cobertura}
+$$
+
+La precisión, o valor predictivo positivo, es la proporción de observaciones positivas correctamente predichas respecto al total de predicciones positivas.
+
+$$
+Precisión=PPV=\frac{TP}{TP+FP}
+$$
+
+Mientras que la cobertura, o sensibilidad, o tasa de positivos verdaderos, mide la proporción de observaciones positivas correctamente predichas en relación con todos los positivos reales en el conjunto de datos.
+
+$$
+Sensibilidad=TRP=\frac{TP}{TP+FN}
+$$
+
+Nuestro modelo muestra una exactitud decente del `r scales::percent(train_confusion$overall[1], accuracy = 0.01)`, pero el F1 score del `r scales::percent(train_confusion$byClass[7], accuracy = 0.01)` indica que se necesita un ajuste de rendimiento. Esto podría significar mejorar la precisión, la cobertura o ambas, dependiendo de los objetivos específicos de tu caso de uso. En nuestro ejemplo, la prioridad debería ser mejorar la cobertura,
+
+```{r}
+sensitive_case |> 
+    plot_precision_recall()
+```
+
+que es solo del `r scales::percent(train_confusion$byClass[6], accuracy = 0.01)` mientras que la precisión ya es fuerte, con un `r scales::percent(train_confusion$byClass[5], accuracy = 0.01)`.
+
+Si bien la capacidad del F1 score para equilibrar la precisión y la cobertura la hace una métrica fundamental en el aprendizaje automático, este equilibrio conlleva un costo: puede no enfatizar lo suficiente la clase positiva en casos de eventos extremadamente raros, como huracanes. Por lo tanto, si el enfoque en los positivos y la ignorancia de los negativos es crítico para el éxito de tu modelo, necesitas explorar el índice crítico de éxito, una métrica específicamente diseñada para estos escenarios extremadamente raros pero de alta relevancia.
+
+## Índice crítico de éxito {#índice-crítico-de-éxito}
+
+También conocido como puntuación de amenazas, es una herramienta vital para predecir eventos raros, como tornados y inundaciones. Aquí, nuevamente, un modelo podría lograr una alta exactitud prediciendo principalmente que no ocurre un evento, pero esto haría que se perdieran la mayoría de los desastres, lo que es irónicamente desastroso.
+
+El secreto del índice crítico de éxito es que ignora completamente los verdaderos negativos, es decir, los momentos en los que no ocurre un evento, y se centra solo en esos raros pero importantes eventos que sí ocurren.
+
+![CSI](CSI.png){#fig-1 fig-align="center" width="216"}
+
+Para calcular el CSI, utilizamos tres partes de la matriz de confusión: positivos verdaderos, falsos positivos y falsos negativos. Específicamente, dividimos las predicciones correctas de eventos entre la suma de predicciones correctas de eventos, alarmas falsas y eventos perdidos.
+
+$$
+CSI=\frac{TP}{TP+FP+FN}
+$$
+
+Por ejemplo, imagina que tenemos un modelo meteorológico que predice tornados durante un período de tiempo. Si el modelo predijo correctamente 30 tornados, dio cinco falsas alarmas y se perdió dos tornados reales, entonces el CSI sería 0.81 o 81%. Esto significa que el modelo predijo correctamente el 81% de los tornados que realmente ocurrieron.
+
+Nuestro modelo tiene:
+
+```{r}
+csi <- function(TP, FP, FN){
+    TP / (TP + FP + FN)
+}
+
+ix_csi <- csi(TP = train_confusion$table[1],
+    FP = train_confusion$table[3],
+    FN = train_confusion$table[2])
+```
+
+un CSI del `r scales::percent(ix_csi, accuracy = 0.01)`, lo que significa que si tuviéramos que predecir eventos raros, nos perderíamos casi un cuarto de ellos. Pero, ¿cómo se interpreta el CSI? El CSI oscila entre 0 y 1, donde 1 indica predicciones perfectas y 0 significa que el modelo no hizo ninguna predicción correcta. Un CSI de 0.8 o superior indica un gran rendimiento; un CSI de 0.2 o inferior indica un rendimiento horrible, y todo lo que está entre 0.2 y 0.8 se considera aceptable, dependiendo del tipo de evento que se esté prediciendo.
+
+Aquí está la clave: **la utilidad del CSI es altamente dependiente del contexto**. Por ejemplo, un CSI de 0.6 a 0.8 o superior podría esperarse para predicciones de lluvias intensas generalizadas, donde las predicciones suelen ser más fáciles. Por el contrario, un CSI de 0.3 a 0.5 podría ser razonable para advertencias de tornados, porque es tan difícil predecir eventos raros y locales como los tornados.
+
+Dado que el CSI ignora los verdaderos negativos, se centra en la clase positiva y penaliza tanto los falsos positivos como los falsos negativos, funciona mucho mejor para conjuntos de datos extremadamente desequilibrados que F1 score. Sin embargo, el CSI tiene un problema con eventos muy raros: incluso la casualidad puede llevar a algunas predicciones correctas, verdaderos positivos, lo que hace que la puntuación de CSI sea mayor de lo necesario. Esto hace que sea difícil comparar puntuaciones de CSI entre diferentes eventos, como huracanes versus inundaciones. La solución es la puntuación equitativa de amenazas, que elimina el efecto de la casualidad en la puntuación.
+
+## Puntuación equitativa de amenazas
+
+Lo que hace que la ETS se destaque es su capacidad para comparar el rendimiento de los modelos en eventos con diferentes frecuencias, algo especialmente útil en la predicción del clima. Para calcular la ETS, primero determinamos las `predicciones correctas debido a la casualidad` **(Hc)**, y luego calculamos la ETS de la misma manera que el CSI, pero restando las predicciones correctas por casualidad tanto del numerador como del denominador.
+
+$$
+ETS=\frac{TP-Hc}{TP+FP+FN-Hc}
+$$
+
+donde
+
+$$
+Hc=\frac{(TP+FN)*(TP+FP)}{Total}
+$$
+
+Este ajuste penaliza a los modelos que tienen éxito por casualidad, lo que hace que la ETS sea más precisa y justa para comparar diferentes eventos raros. Por ejemplo, si predecimos tornados durante un año con 30 verdaderos positivos, cinco falsos positivos y dos falsos negativos durante 365 días, primero calculamos las predicciones correctas por casualidad, y luego la ETS en este caso sería ligeramente inferior al CSI, reflejando su corrección por predicciones correctas por casualidad.
+
+Para simplificar los cálculos futuros, podemos crear una función personalizada en R para calcular CSI, ETS y su diferencia al mismo tiempo.
+
+```{r}
+csi_ets <- function(TP, FP, FN, Total){
+    # Calcular True Positives expected by chance
+    TP_ebc <- ((TP + FP) * (TP + FN)) / Total
+    
+    # Calcular ETS
+    ETS <- (TP - TP_ebc) / (TP + FP + FN - TP_ebc)
+    
+    # Calcular CSI
+    CSI <- (TP) / (TP + FP + FN)
+    
+    # Obtener los resultados
+    resultados <- list(
+        "CSI (%)" = CSI * 100,
+        "ETS (%)" = ETS * 100,
+        "CSI - ETS (%)" = (CSI - ETS) * 100) |> 
+        as.tibble() |> 
+        mutate_all(~round(., 2))
+    
+    return(resultados)
+}
+
+csi_ets(TP = train_confusion$table[1],
+    FP = train_confusion$table[3],
+    FN = train_confusion$table[2],
+    Total = 365)
+```
+
+Mientras que el CSI y la ETS son valiosos para situaciones específicas, como eventos raros, a veces necesitamos una medida más equilibrada del rendimiento del modelo que considere las cuatro partes de la matriz de confusión, incluyendo los verdaderos negativos. ¿Hay una métrica que haga esto mientras sea considerada más fiable que la exactitud, especialmente para conjuntos de datos desequilibrados? La respuesta es sí: el coeficiente de correlación de Matthews.
+
+## Coeficiente de correlación de Matthews
+
+Lo que distingue al MCC de matrices como el CSI y la ETS, que ignoran los verdaderos negativos, es que considera las cuatro partes de la matriz de confusión: verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos. Esto significa que el MCC no pasa por alto ningún aspecto del rendimiento del modelo.
+
+$$
+MCC=\frac{TP*TN-FP*FN}{\sqrt{(TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)}}
+$$
+
+La principal ventaja del MCC es que solo produce una puntuación alta si el clasificador se desempeña bien tanto en las instancias positivas como en las negativas. Esto lo hace robusto frente al desequilibrio de clases y proporciona una visión más holística del rendimiento del modelo, ya sea que el conjunto de datos esté equilibrado o sesgado. Así que, si quieres la evaluación más completa de tu modelo, el MCC es el camino a seguir.
+
+La fórmula para el MCC puede ser un poco engorrosa,
+
+```{r}
+ix_mcc <- function(TP, TN, FP, FN){
+    # Convertimos a numérico para evitar overflow
+    TP <- as.numeric(TP)
+    TN <- as.numeric(TN)
+    FP <- as.numeric(FP)
+    FN <- as.numeric(FN)
+    
+    numerador <- ((TP * TN) - (FP * FN))
+    denominador <- sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
+    
+    numerador/denominador
+}
+
+coef_mcc <- ix_mcc(TP = train_confusion$table[1],
+                   TN = train_confusion$table[4],
+                   FP = train_confusion$table[3],
+                   FN = train_confusion$table[2])
+```
+
+Ahora, interpretemos el MCC. Interestantemente, el coeficiente de correlación de Matthews mide la correlación entre las clasificaciones observadas y las predichas. Es por eso que el MCC se interpreta como un coeficiente de correlación, es decir, oscila entre $-1$ (correlación negativa perfecta) y $+1$ (correlación positiva perfecta), con cero significando que no es mejor que una suposición al azar. Por ejemplo, el valor absoluto de `r (coef_mcc)` en nuestro modelo indica una correlación positiva fuerte entre las predicciones y los resultados reales.
+
+Estas cuatro métricas completas desbloquean una visión profunda del rendimiento de tus modelos, algo que las métricas simples como la exactitud no pueden proporcionar. Pero, **¿sabías que la información que falta puede ser tan valiosa como la que existe?** Para dominar realmente la matriz de confusión en el aprendizaje automático, necesitas entender métricas como la `tasa de información nula`, la `tasa de error nula`, el acuerdo de `Kappa` y los `valores p`. Estas métricas son tan importantes que se colocan en la parte superior de la matriz de confusión. Lamentablemente, la mayoría de las personas las pasan por alto, por razones que no entiendo. Así que, asegúrate de ver este post.

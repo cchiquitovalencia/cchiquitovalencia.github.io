@@ -136,6 +136,660 @@ May 12, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-05-12-que_
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-05-12-que_hace_analista_datos/analista_datos.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Más allá de la precisión: Dominando métricas avanzadas para el éxito en el ML</title>
+  <dc:creator>Cristian Chiquito Valencia</dc:creator>
+  <link>https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>La mayoría de las personas confían en la precisión, la exactitud y la cobertura para medir el éxito de los modelos de aprendizaje automático. Sin embargo, <strong>estas métricas resultan miserablemente inadecuadas en escenarios de alta relevancia</strong>, como las predicciones de tornados o la detección de fraudes. Si dominas estas cuatro métricas avanzadas:</p>
+<ul>
+<li><p>F1 score</p></li>
+<li><p>Índice crítico de éxito (<strong>CSI</strong>)</p></li>
+<li><p>Puntuación equitativa de amenazas (<strong>ETS</strong>)</p></li>
+<li><p>Coeficiente de correlación de Matthews (MCC)</p></li>
+</ul>
+<p>te destacarás como un experto en aprendizaje automático.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(myfinance)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(caret)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función para calcular los resultados tanto de train como de test</span></span>
+<span id="cb1-5">calculate_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(model, data) {</span>
+<span id="cb1-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Realizar predicción</span></span>
+<span id="cb1-7">  predictions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">predict</span>(model, data)</span>
+<span id="cb1-8">  </span>
+<span id="cb1-9">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Convertir predicciones en probabilidades</span></span>
+<span id="cb1-10">  probabilities <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>predictions))</span>
+<span id="cb1-11">  </span>
+<span id="cb1-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Determinar la dirección basada en el umbral de 0.5</span></span>
+<span id="cb1-13">  direction <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(probabilities <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-14">  </span>
+<span id="cb1-15">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Crear la matriz de confusión</span></span>
+<span id="cb1-16">  confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">confusionMatrix</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(direction), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Direction), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mode =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"everything"</span>)</span>
+<span id="cb1-17">  </span>
+<span id="cb1-18">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Devolver los resultados</span></span>
+<span id="cb1-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb1-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predicted_direction =</span> direction,</span>
+<span id="cb1-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">confusion_matrix =</span> confusion,</span>
+<span id="cb1-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predictions =</span> predictions</span>
+<span id="cb1-23">  )</span>
+<span id="cb1-24">}</span>
+<span id="cb1-25"></span>
+<span id="cb1-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Ejecutar el análisis principal</span></span>
+<span id="cb1-27">modelo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">main_analysis</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Iniciando el análisis principal..."
+[1] "Cargando datos..."
+[1] "Datos cargados exitosamente. Número de filas: 4594"
+[1] "Creando variables predictoras..."
+[1] "Variables predictoras creadas exitosamente."
+[1] "Creando tabla de datos..."
+[1] "Tabla de datos creada exitosamente."
+[1] "Dividiendo datos en train y test..."
+[1] "Datos divididos exitosamente. Train: 3675 Test: 919"
+[1] "Normalizando datos..."
+[1] "Normalizados"
+[1] "Datos normalizados exitosamente."
+[1] "Construyendo y entrenando el modelo..."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Modelo construido y entrenado exitosamente."
+[1] "Haciendo predicciones para train..."
+[1] "Predicciones para train completadas."
+[1] "Evaluando modelo en train..."
+[1] "Evaluación en train:"
+[1] "Haciendo predicciones para test..."
+[1] "Predicciones para test completadas."
+[1] "Evaluando modelo en test..."
+[1] "Evaluación en test:"
+[1] "Análisis completado exitosamente."
+[1] "Proceso finalizado."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular resultados para train</span></span>
+<span id="cb4-2">train_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calculate_results</span>(modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>modelo, modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>train)</span>
+<span id="cb4-3">train_confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> train_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>confusion_matrix</span>
+<span id="cb4-4"></span>
+<span id="cb4-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular resultados para test</span></span>
+<span id="cb4-6">test_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calculate_results</span>(modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>modelo, modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>test)</span>
+<span id="cb4-7">test_confusion <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>confusion_matrix</span>
+<span id="cb4-8"></span>
+<span id="cb4-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb4-10">d2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> modelo<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>normalized<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>test <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-12">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pred_probs =</span> test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>predictions,</span>
+<span id="cb4-13">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pred_classes =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(test_results<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>predicted_direction))</span>
+<span id="cb4-14">    </span>
+<span id="cb4-15"></span>
+<span id="cb4-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(cutpointr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">verbose =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb4-17">sensitive_case <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cutpointr</span>(</span>
+<span id="cb4-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d2,</span>
+<span id="cb4-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> pred_probs,</span>
+<span id="cb4-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">class =</span> Direction,</span>
+<span id="cb4-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> minimize_metric,</span>
+<span id="cb4-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">metric =</span> misclassification_cost,</span>
+<span id="cb4-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fp =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb4-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cost_fn =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span></span>
+<span id="cb4-25">)</span></code></pre></div>
+</div>
+<section id="f1-score" class="level2">
+<h2 class="anchored" data-anchor-id="f1-score">F1 score</h2>
+<p>Empezaremos con un resumen de las cuatro, comenzando con F1 score, una métrica que equilibra perfectamente la precisión y la cobertura, lo que la hace mejor que ambas por separado.</p>
+<p>El <a href="https://cchiquitovalencia.github.io/posts/2025-04-07-predictions_on_stocks/">modelo utilizado</a> es una regresión logística con predictores como promedio y desviación estándar de los últimos 10 y 20 días, RSI de 5 y 14 días, MACD y otros. Por supuesto, esto podría reemplazarse por cualquier modelo de clasificación. Una vez entrenado, el modelo predice las probabilidades de alza para los datos de prueba, clasificando a las acciones como sube o no sube en función de un umbral de probabilidad del 50%. Finalmente, se genera una matriz de confusión para evaluar el rendimiento del modelo, proporcionando métricas detalladas como exactitud, precisión, cobertura y, por supuesto, F1 score.</p>
+<p>La F1 score, al igual que la exactitud, es una sola métrica para medir el rendimiento de los modelos. Sin embargo, <strong>es mucho más efectiva para conjuntos de datos desequilibrados</strong>, y aquí está la razón: en escenarios como la detección de fraudes o el diagnóstico de enfermedades raras, donde una clase domina, la exactitud puede ser engañosa. Un modelo que prediga solo la clase mayoritaria puede parecer que funciona bien, incluso si ignora completamente la clase minoritaria. El F1 score aborda esto equilibrando la precisión y la cobertura, lo que la hace ideal para comparar modelos o ajustar hiperparámetros en conjuntos de datos desequilibrados.</p>
+<p>La F1 score se calcula como la media armónica de la precisión y la cobertura.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AF_1=2*%5Cfrac%7BPrecisi%C3%B3n*Cobertura%7D%7BPrecisi%C3%B3n+Cobertura%7D%0A"></p>
+<p>La precisión, o valor predictivo positivo, es la proporción de observaciones positivas correctamente predichas respecto al total de predicciones positivas.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0APrecisi%C3%B3n=PPV=%5Cfrac%7BTP%7D%7BTP+FP%7D%0A"></p>
+<p>Mientras que la cobertura, o sensibilidad, o tasa de positivos verdaderos, mide la proporción de observaciones positivas correctamente predichas en relación con todos los positivos reales en el conjunto de datos.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ASensibilidad=TRP=%5Cfrac%7BTP%7D%7BTP+FN%7D%0A"></p>
+<p>Nuestro modelo muestra una exactitud decente del 93.36%, pero el F1 score del 90.49% indica que se necesita un ajuste de rendimiento. Esto podría significar mejorar la precisión, la cobertura o ambas, dependiendo de los objetivos específicos de tu caso de uso. En nuestro ejemplo, la prioridad debería ser mejorar la cobertura,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">sensitive_case <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb5-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_precision_recall</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>que es solo del 89.58% mientras que la precisión ya es fuerte, con un 91.43%.</p>
+<p>Si bien la capacidad del F1 score para equilibrar la precisión y la cobertura la hace una métrica fundamental en el aprendizaje automático, este equilibrio conlleva un costo: puede no enfatizar lo suficiente la clase positiva en casos de eventos extremadamente raros, como huracanes. Por lo tanto, si el enfoque en los positivos y la ignorancia de los negativos es crítico para el éxito de tu modelo, necesitas explorar el índice crítico de éxito, una métrica específicamente diseñada para estos escenarios extremadamente raros pero de alta relevancia.</p>
+</section>
+<section id="índice-crítico-de-éxito" class="level2">
+<h2 class="anchored" data-anchor-id="índice-crítico-de-éxito">Índice crítico de éxito</h2>
+<p>También conocido como puntuación de amenazas, es una herramienta vital para predecir eventos raros, como tornados y inundaciones. Aquí, nuevamente, un modelo podría lograr una alta exactitud prediciendo principalmente que no ocurre un evento, pero esto haría que se perdieran la mayoría de los desastres, lo que es irónicamente desastroso.</p>
+<p>El secreto del índice crítico de éxito es que ignora completamente los verdaderos negativos, es decir, los momentos en los que no ocurre un evento, y se centra solo en esos raros pero importantes eventos que sí ocurren.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/CSI.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="216">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: CSI
+</figcaption>
+</figure>
+</div>
+<p>Para calcular el CSI, utilizamos tres partes de la matriz de confusión: positivos verdaderos, falsos positivos y falsos negativos. Específicamente, dividimos las predicciones correctas de eventos entre la suma de predicciones correctas de eventos, alarmas falsas y eventos perdidos.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ACSI=%5Cfrac%7BTP%7D%7BTP+FP+FN%7D%0A"></p>
+<p>Por ejemplo, imagina que tenemos un modelo meteorológico que predice tornados durante un período de tiempo. Si el modelo predijo correctamente 30 tornados, dio cinco falsas alarmas y se perdió dos tornados reales, entonces el CSI sería 0.81 o 81%. Esto significa que el modelo predijo correctamente el 81% de los tornados que realmente ocurrieron.</p>
+<p>Nuestro modelo tiene:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">csi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(TP, FP, FN){</span>
+<span id="cb6-2">    TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN)</span>
+<span id="cb6-3">}</span>
+<span id="cb6-4"></span>
+<span id="cb6-5">ix_csi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">csi</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb6-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>],</span>
+<span id="cb6-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FN =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>])</span></code></pre></div>
+</div>
+<p>un CSI del 82.64%, lo que significa que si tuviéramos que predecir eventos raros, nos perderíamos casi un cuarto de ellos. Pero, ¿cómo se interpreta el CSI? El CSI oscila entre 0 y 1, donde 1 indica predicciones perfectas y 0 significa que el modelo no hizo ninguna predicción correcta. Un CSI de 0.8 o superior indica un gran rendimiento; un CSI de 0.2 o inferior indica un rendimiento horrible, y todo lo que está entre 0.2 y 0.8 se considera aceptable, dependiendo del tipo de evento que se esté prediciendo.</p>
+<p>Aquí está la clave: <strong>la utilidad del CSI es altamente dependiente del contexto</strong>. Por ejemplo, un CSI de 0.6 a 0.8 o superior podría esperarse para predicciones de lluvias intensas generalizadas, donde las predicciones suelen ser más fáciles. Por el contrario, un CSI de 0.3 a 0.5 podría ser razonable para advertencias de tornados, porque es tan difícil predecir eventos raros y locales como los tornados.</p>
+<p>Dado que el CSI ignora los verdaderos negativos, se centra en la clase positiva y penaliza tanto los falsos positivos como los falsos negativos, funciona mucho mejor para conjuntos de datos extremadamente desequilibrados que F1 score. Sin embargo, el CSI tiene un problema con eventos muy raros: incluso la casualidad puede llevar a algunas predicciones correctas, verdaderos positivos, lo que hace que la puntuación de CSI sea mayor de lo necesario. Esto hace que sea difícil comparar puntuaciones de CSI entre diferentes eventos, como huracanes versus inundaciones. La solución es la puntuación equitativa de amenazas, que elimina el efecto de la casualidad en la puntuación.</p>
+</section>
+<section id="puntuación-equitativa-de-amenazas" class="level2">
+<h2 class="anchored" data-anchor-id="puntuación-equitativa-de-amenazas">Puntuación equitativa de amenazas</h2>
+<p>Lo que hace que la ETS se destaque es su capacidad para comparar el rendimiento de los modelos en eventos con diferentes frecuencias, algo especialmente útil en la predicción del clima. Para calcular la ETS, primero determinamos las <code>predicciones correctas debido a la casualidad</code> <strong>(Hc)</strong>, y luego calculamos la ETS de la misma manera que el CSI, pero restando las predicciones correctas por casualidad tanto del numerador como del denominador.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AETS=%5Cfrac%7BTP-Hc%7D%7BTP+FP+FN-Hc%7D%0A"></p>
+<p>donde</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AHc=%5Cfrac%7B(TP+FN)*(TP+FP)%7D%7BTotal%7D%0A"></p>
+<p>Este ajuste penaliza a los modelos que tienen éxito por casualidad, lo que hace que la ETS sea más precisa y justa para comparar diferentes eventos raros. Por ejemplo, si predecimos tornados durante un año con 30 verdaderos positivos, cinco falsos positivos y dos falsos negativos durante 365 días, primero calculamos las predicciones correctas por casualidad, y luego la ETS en este caso sería ligeramente inferior al CSI, reflejando su corrección por predicciones correctas por casualidad.</p>
+<p>Para simplificar los cálculos futuros, podemos crear una función personalizada en R para calcular CSI, ETS y su diferencia al mismo tiempo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">csi_ets <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(TP, FP, FN, Total){</span>
+<span id="cb7-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular True Positives expected by chance</span></span>
+<span id="cb7-3">    TP_ebc <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> ((TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> Total</span>
+<span id="cb7-4">    </span>
+<span id="cb7-5">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular ETS</span></span>
+<span id="cb7-6">    ETS <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> TP_ebc) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> TP_ebc)</span>
+<span id="cb7-7">    </span>
+<span id="cb7-8">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calcular CSI</span></span>
+<span id="cb7-9">    CSI <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (TP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN)</span>
+<span id="cb7-10">    </span>
+<span id="cb7-11">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Obtener los resultados</span></span>
+<span id="cb7-12">    resultados <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb7-13">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CSI (%)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> CSI <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>,</span>
+<span id="cb7-14">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ETS (%)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> ETS <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>,</span>
+<span id="cb7-15">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CSI - ETS (%)"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> (CSI <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> ETS) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-16">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.tibble</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb7-17">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate_all</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(., <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span>
+<span id="cb7-18">    </span>
+<span id="cb7-19">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(resultados)</span>
+<span id="cb7-20">}</span>
+<span id="cb7-21"></span>
+<span id="cb7-22"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">csi_ets</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb7-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>],</span>
+<span id="cb7-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FN =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>],</span>
+<span id="cb7-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Total =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">365</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `as.tibble()` was deprecated in tibble 2.0.0.
+ℹ Please use `as_tibble()` instead.
+ℹ The signature and semantics have changed, see `?as_tibble`.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  `CSI (%)` `ETS (%)` `CSI - ETS (%)`
+      &lt;dbl&gt;     &lt;dbl&gt;           &lt;dbl&gt;
+1      82.6      108.           -25.3</code></pre>
+</div>
+</div>
+<p>Mientras que el CSI y la ETS son valiosos para situaciones específicas, como eventos raros, a veces necesitamos una medida más equilibrada del rendimiento del modelo que considere las cuatro partes de la matriz de confusión, incluyendo los verdaderos negativos. ¿Hay una métrica que haga esto mientras sea considerada más fiable que la exactitud, especialmente para conjuntos de datos desequilibrados? La respuesta es sí: el coeficiente de correlación de Matthews.</p>
+</section>
+<section id="coeficiente-de-correlación-de-matthews" class="level2">
+<h2 class="anchored" data-anchor-id="coeficiente-de-correlación-de-matthews">Coeficiente de correlación de Matthews</h2>
+<p>Lo que distingue al MCC de matrices como el CSI y la ETS, que ignoran los verdaderos negativos, es que considera las cuatro partes de la matriz de confusión: verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos. Esto significa que el MCC no pasa por alto ningún aspecto del rendimiento del modelo.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AMCC=%5Cfrac%7BTP*TN-FP*FN%7D%7B%5Csqrt%7B(TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)%7D%7D%0A"></p>
+<p>La principal ventaja del MCC es que solo produce una puntuación alta si el clasificador se desempeña bien tanto en las instancias positivas como en las negativas. Esto lo hace robusto frente al desequilibrio de clases y proporciona una visión más holística del rendimiento del modelo, ya sea que el conjunto de datos esté equilibrado o sesgado. Así que, si quieres la evaluación más completa de tu modelo, el MCC es el camino a seguir.</p>
+<p>La fórmula para el MCC puede ser un poco engorrosa,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">ix_mcc <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(TP, TN, FP, FN){</span>
+<span id="cb10-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Convertimos a numérico para evitar overflow</span></span>
+<span id="cb10-3">    TP <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(TP)</span>
+<span id="cb10-4">    TN <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(TN)</span>
+<span id="cb10-5">    FP <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(FP)</span>
+<span id="cb10-6">    FN <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(FN)</span>
+<span id="cb10-7">    </span>
+<span id="cb10-8">    numerador <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> ((TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> TN) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> (FP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> FN))</span>
+<span id="cb10-9">    denominador <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>((TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (TP <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (TN <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (TN <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> FN))</span>
+<span id="cb10-10">    </span>
+<span id="cb10-11">    numerador<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>denominador</span>
+<span id="cb10-12">}</span>
+<span id="cb10-13"></span>
+<span id="cb10-14">coef_mcc <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ix_mcc</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb10-15">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TN =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>],</span>
+<span id="cb10-16">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FP =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>],</span>
+<span id="cb10-17">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FN =</span> train_confusion<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>table[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>])</span></code></pre></div>
+</div>
+<p>Ahora, interpretemos el MCC. Interestantemente, el coeficiente de correlación de Matthews mide la correlación entre las clasificaciones observadas y las predichas. Es por eso que el MCC se interpreta como un coeficiente de correlación, es decir, oscila entre <img src="https://latex.codecogs.com/png.latex?-1"> (correlación negativa perfecta) y <img src="https://latex.codecogs.com/png.latex?+1"> (correlación positiva perfecta), con cero significando que no es mejor que una suposición al azar. Por ejemplo, el valor absoluto de 0.853986 en nuestro modelo indica una correlación positiva fuerte entre las predicciones y los resultados reales.</p>
+<p>Estas cuatro métricas completas desbloquean una visión profunda del rendimiento de tus modelos, algo que las métricas simples como la exactitud no pueden proporcionar. Pero, <strong>¿sabías que la información que falta puede ser tan valiosa como la que existe?</strong> Para dominar realmente la matriz de confusión en el aprendizaje automático, necesitas entender métricas como la <code>tasa de información nula</code>, la <code>tasa de error nula</code>, el acuerdo de <code>Kappa</code> y los <code>valores p</code>. Estas métricas son tan importantes que se colocan en la parte superior de la matriz de confusión. Lamentablemente, la mayoría de las personas las pasan por alto, por razones que no entiendo. Así que, asegúrate de ver este post.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
+  author = {Chiquito Valencia, Cristian},
+  title = {Más Allá de La Precisión: {Dominando} Métricas Avanzadas Para
+    El Éxito En El {ML}},
+  date = {2025-04-23},
+  url = {https://cchiquitovalencia.github.io/posts/2025-04-23-predictions_on_stocks5/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
+Chiquito Valencia, Cristian. 2025. <span>“Más Allá de La Precisión:
+Dominando Métricas Avanzadas Para El Éxito En El ML.”</span> April 23,
+2025. <a href="https://cchiquitovalencia.github.io/posts/2025-04-23-predictions_on_stocks5/">https://cchiquitovalencia.github.io/posts/2025-04-23-predictions_on_stocks5/</a>.
+</div></div></section></div> ]]></description>
+  <category>Machine Learning</category>
+  <category>Trading</category>
+  <category>Regresión Logística</category>
+  <category>Accuracy</category>
+  <category>Métricas de error</category>
+  <category>Positive Likelihood Ratio</category>
+  <category>Negative Likelihood Ratio</category>
+  <guid>https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/</guid>
+  <pubDate>Wed, 23 Apr 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://cchiquitovalencia.github.io/posts/2025-05-23-predictions_on_stocks5/balance.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML</title>
   <dc:creator>Cristian Chiquito Valencia</dc:creator>
   <link>https://cchiquitovalencia.github.io/posts/2025-05-19-predictions_on_stocks4/</link>
@@ -31352,67 +32006,6 @@ Learning.”</span> February 5, 2025. <a href="https://cchiquitovalencia.github.
   <guid>https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/</guid>
   <pubDate>Wed, 05 Feb 2025 05:00:00 GMT</pubDate>
   <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-05-intro_ml/concepts_ML.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Una aplicación robusta para Mantenimiento</title>
-  <dc:creator>Cristian Chiquito Valencia</dc:creator>
-  <link>https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Hasta ahora solo <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/#ejemplo">teniamos una app sencilla</a>. Vamos a ponerle un poco más de dificultad.</p>
-<section id="implementación-de-duración-de-mantenimientos" class="level2">
-<h2 class="anchored" data-anchor-id="implementación-de-duración-de-mantenimientos">Implementación de duración de mantenimientos</h2>
-<p>Es posible que algunas tareas o rutinas de mantenimiento tomen más tiempo que un solo periodo de planeación.</p>
-<section id="actualización-de-la-restricción-de-mantenimiento-basada-en-operación" class="level3">
-<h3 class="anchored" data-anchor-id="actualización-de-la-restricción-de-mantenimiento-basada-en-operación">Actualización de la restricción de mantenimiento basada en operación</h3>
-<p>Si un período de mantenimiento es mayor a un mes, la <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/#eq-1.4">Eq.4</a> debe actualizarse para en lugar de agregar <img src="https://latex.codecogs.com/png.latex?T_i"> cuando <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D%20=%201">, solo haga esto cuando finalice todo el período de mantenimiento. La restricción se reescribe como:</p>
-<p><span id="eq-2.1"><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dx_%7Bi,t%7D%20%5Cle%20T_i%20+%20T_i%20%5Csum_%7Bj=t%7D%5E%7Bt+u%7Dz_%7Bi,j%7D,%20%5Cquad%20%E2%88%80i,t,u%20%E2%88%88%20%5C%7Bo,1,...,H-t%5C%7D,%0A%5Ctag%7B1%7D"></span></p>
-<p>donde <img src="https://latex.codecogs.com/png.latex?z_%7Bi,t%7D"> es una variable binaria que implica:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,t%7D%20=%20%5Ccases%7B1,%20%5Cquad%20%5Ctext%7Bsi%20%7Dy_%7Bi,t%7D=1,%5Ctext%7B%20%7D%20y_%7Bi,t+1%7D=0%20%5C%5C0,%20%5Cquad%20%5Ctext%7Bde%20lo%20contrario%7D%7D%0A"></p>
-<p>que es equivalente a:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,t%7D=%20%5Ccases%7B1,%20%5Cquad%20%5Ctext%7Bsi%20t%20es%20el%20%C3%BAltimo%20mes%20en%20un%20periodo%20de%20mantenimiento%20para%20la%20unidad%20i%7D%5C%5C0,%20%5Cquad%20%5Ctext%7Bde%20lo%20contrario%7D%7D%0A"></p>
-<p>Para tener <img src="https://latex.codecogs.com/png.latex?z_%7Bi,t%7D"> así, se deben incluir las siguientes tres restricciones:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,%5Ctau%7D%20-%20y_%7Bi,%5Ctau%7D+y_%7Bi,%5Ctau%20+1%7D%20%5Cge%200,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7B1,2,...,H-1%5C%7D,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,%5Ctau%7D%20+%20y_%7Bi,%5Ctau%20+1%7D%20%5Cle%201,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7B1,2,...,H-1%5C%7D%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,%5Ctau%7D%20-%20y_%7Bi,%5Ctau%7D%20%5Cle%200,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7B1,2,...,H-1%5C%7D%0A"></p>
-<p>La <a href="https://cchiquitovalencia.github.io/posts/2025-01-27-maintenance_management/#eq-1.3">restricción de mantenimiento basada en el calendario</a> no se modifica para restringir la suma de <img src="https://latex.codecogs.com/png.latex?z_%7Bi,t%7D"> en lugar de <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> ya que queremos permitir que un período de mantenimiento haya comenzado pero no haya terminado al final del período de planeación. Sin embargo, esto no supone un problema con la restricción 2.1. ya que <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D%20=%200"> cuando <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D%20=%201"> y la restricción no se hace más estricta para las franjas incluidas con <img src="https://latex.codecogs.com/png.latex?x_%7Bi,t%7D%20=%200">. Por la misma razón, no es un problema que <img src="https://latex.codecogs.com/png.latex?z_%7Bi,t%7D"> no esté definido para <img src="https://latex.codecogs.com/png.latex?t%20=%20H">.</p>
-</section>
-<section id="restricción-de-la-duración-de-los-mantenimientos" class="level3">
-<h3 class="anchored" data-anchor-id="restricción-de-la-duración-de-los-mantenimientos">Restricción de la duración de los mantenimientos</h3>
-<p>Si la duración del mantenimiento para una unidad <img src="https://latex.codecogs.com/png.latex?i"> es superior a un mes y se representa como un parámetro entero <img src="https://latex.codecogs.com/png.latex?M_i%20%3E%201">, se puede escribir una restricción para controlar la duración del mantenimiento como:</p>
-<p><span id="eq-2.2"><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,%5Ctau%20-%20j%7D%20-%20z_%7Bi,%5Ctau%7D%20%5Cge%200,%20%5Cquad%20%E2%88%80i,%20%5Ctau%20%E2%88%88%20%5C%7BM_i,M_i+1,...,H%5C%7D,%20j%20%E2%88%88%20%5C%7B1,2,...,M_i-1%5C%7D%0A%5Ctag%7B2%7D"></span></p>
-<p>que asegura que <img src="https://latex.codecogs.com/png.latex?M_i"> periodos consecutivos tiene <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D=1"> cuando el mantenimiento es planeado. Entonces nos quedan las siguientes deducciones:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bi,%5Ctau%7D=1%20%E2%9F%B6%20y_%7Bi,%5Ctau%20-%20j%7D=1,%0A"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ay_%7Bi,%5Ctau%20-%20j%7D=0%20%E2%9F%B6%20z_%7Bi,%20%5Ctau%7D=0%0A"></p>
-<p>y como esto se hace para todos los <img src="https://latex.codecogs.com/png.latex?%5Ctau"> y <img src="https://latex.codecogs.com/png.latex?j"> definidos, el mantenimiento se extenderá a lo largo de <img src="https://latex.codecogs.com/png.latex?M_i"> meses. Si un período de mantenimiento es de un mes, <img src="https://latex.codecogs.com/png.latex?z_%7Bi,t%7D"> es igual a <img src="https://latex.codecogs.com/png.latex?y_%7Bi,t%7D"> y la restricción 2.2. no es necesaria ni está definida.</p>
-<p>Seguro que con estas versiones de las restricciones que habías conocido, ya se empieza a ajustar el modelo a lo que podrías estar necesitando.</p>
-
-
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Cómo citar</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{chiquito_valencia2025,
-  author = {Chiquito Valencia, Cristian},
-  title = {Una Aplicación Robusta Para {Mantenimiento}},
-  date = {2025-02-04},
-  url = {https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">Por favor, cita este trabajo como:</div><div id="ref-chiquito_valencia2025" class="csl-entry quarto-appendix-citeas">
-Chiquito Valencia, Cristian. 2025. <span>“Una Aplicación Robusta Para
-Mantenimiento.”</span> February 4, 2025. <a href="https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/">https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/</a>.
-</div></div></section></div> ]]></description>
-  <category>Scheduling</category>
-  <category>Mantenimiento</category>
-  <category>MILP</category>
-  <category>Optimización</category>
-  <guid>https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/</guid>
-  <pubDate>Tue, 04 Feb 2025 05:00:00 GMT</pubDate>
-  <media:content url="https://cchiquitovalencia.github.io/posts/2025-02-04-advance_mtto_shiny_app/sample_app.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
