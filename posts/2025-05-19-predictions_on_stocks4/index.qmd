@@ -1,5 +1,5 @@
 ---
-title: "Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de aprendizaje automático"
+title: "Razones de verosimilitud: métricas clave para evaluar pruebas diagnósticas y modelos de ML"
 description: "TRADING Serie - Parte 4"
 author:
   - name: Cristian Chiquito Valencia
