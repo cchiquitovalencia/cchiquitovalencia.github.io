@@ -1,0 +1,76 @@
+---
+title: "La madurez de las tecnologías: Cómo identificar oportunidades y evitar desilusiones"
+description: "Evaluación de tecnologías emergentes"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 06-01-2025
+categories: [Datos, Optimización, Gartner Hype Cycle] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-06-01-ciclo_expectacion/
+image: curva.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+La inteligencia artificial, Internet de las cosas, blockchain... Lo más probable es que estés abrumado por datos y caos de información. Lo que necesitas es claridad y la respuesta a una pregunta crítica: `¿Es real el Hype?` Es una pregunta que, como líder, necesitarás responder. Aquí es donde entra en juego el Ciclo de Sobreexpectación de Gartner.
+
+## El valor definitivo del Ciclo de Sobreexpectación
+
+Proporciona un mapa objetivo que le ayuda a comprender los riesgos y oportunidades reales de una innovación, para que pueda evitar
+
+-   [Adoptar algo demasiado pronto](https://cchiquitovalencia.github.io/posts/2025-05-24-adoptar_pronto/)
+
+-   [Renunciar demasiado pronto](https://cchiquitovalencia.github.io/posts/2025-05-25-renunciar_pronto/)
+
+-   [Adoptar demasiado tarde](https://cchiquitovalencia.github.io/posts/2025-05-26-adoptar_tarde/)
+
+-   [Aferrarse demasiado tiempo](https://cchiquitovalencia.github.io/posts/2025-05-27-aferrarse_mucho/)
+
+Los Ciclos de Sobreexpectación de Gartner trazan el camino que recorre una innovación desde que entra por primera vez en un mercado hasta que una empresa típica probablemente se beneficie de ella. Analiza tecnologías específicas, como el aprendizaje automático, así como tendencias, conceptos, metodologías y disciplinas de gestión.
+
+Algunos de los más populares incluyen los Ciclos de Sobreexpectación de tecnologías emergentes, inteligencia artificial y el lugar de trabajo digital.
+
+## ¿Cómo funciona?
+
+Empezamos tomando una mirada objetiva a las **expectativas** que rodean a una innovación (eje Y). Luego, la relacionamos con el valor probado de esa innovación a lo largo del **tiempo** (eje X). A continuación, de izquierda a derecha, rastrea una innovación a medida que atraviesa cinco fases predecibles.
+
+![Hype Cycle](cycle.png){#fig_1 fig-align="center" width="576"}
+
+### Desencadenante de la innovación
+
+Es cuando un evento, como un avance tecnológico o un lanzamiento de producto, hace que la gente hable. Las startups emergen, las inversiones de capital de riesgo se disparan y las organizaciones que se mueven primero comienzan a lanzar experimentos.
+
+![Innovation Trigger](hypecycle_1.png){#fig_2 alt="Hype Cycle" fig-align="center" width="576"}
+
+### Pico de expectativas infladas
+
+Es cuando la emoción trae más proveedores y personas que utilizan el producto. Hay mucha cobertura mediática, pero todavía hay pruebas limitadas de que la innovación pueda ofrecer lo que necesita.
+
+![Peak of Inflated Expectations](hypecycle_2.png){#fig_3 alt="Hype Cycle" fig-align="center" width="576"}
+
+### Valle de la desilusión
+
+Esto sucede cuando la emoción original se desvanece y los primeros adoptantes informan problemas de rendimiento predecibles y bajos retornos de la inversión.
+
+![Trough of Disillusionment](hypecycle_3.png){#fig_4 alt="Hype Cycle" fig-align="center" width="576"}
+
+### Pendiente de la iluminación
+
+Es cuando los primeros adoptantes ven beneficios iniciales y otros comienzan a comprender cómo adaptar la innovación a sus organizaciones.
+
+![Slope of Enlightenment](hypecycle_4.png){#fig_5 alt="Hype Cycle" fig-align="center" width="576"}
+
+### Meseta de la productividad
+
+En este punto, más usuarios ven beneficios en el mundo real, la innovación se vuelve *mainstream*. A menudo, se necesitan entre tres y cinco años para que una innovación atraviese las cinco fases, pero, por supuesto, la velocidad varía y algunas no se mantienen en el camino. Desaparecen del Ciclo de Sobreexpectación o son reemplazadas por algo mejor.
+
+![Plateau of Productivity](hypecycle_5.png){#fig_6 alt="Hype Cycle" fig-align="center" width="576"}
+
+Nadie puede predecir el futuro, pero los Ciclos de Sobreexpectación se acercan lo más posible a aprovechar la investigación profunda, las encuestas y las conversaciones con proveedores de tecnología.
+
+Finalmente miremos cómo luce el panorama completo:
+
+![Full Hype Cycle](all_cycle.png){#fig_7 fig-align="center"}
+
+Hay Sobreexpectación y hay Realidad. ¿Por cuál vas?

@@ -1,0 +1,67 @@
+---
+title: "La adopción tardía de nuevas tecnologías: un obstáculo para el éxito"
+description: "STRATEGY Serie - Parte 5"
+author:
+  - name: Cristian Chiquito Valencia
+    url: https://cchiquitovalencia.github.io/
+    affiliation: Independent @ CHV
+date: 05-26-2025
+categories: [Datos, Optimización, Gartner Hype Cycle] # self-defined categories
+citation: 
+  url: https://cchiquitovalencia.github.io/posts/2025-05-26-adoptar_tarde/
+image: a_late.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Las empresas que adoptan tecnologías emergentes demasiado tarde pueden perder oportunidades valiosas y sufrir consecuencias negativas a largo plazo.
+
+## Consecuencias de adoptar demasiado tarde
+
+Algunos de los efectos más comunes incluyen:
+
+### Pérdida de ventajas competitivas
+
+Al adoptar tecnologías emergentes demasiado tarde, las empresas pueden perder la oportunidad de obtener una ventaja competitiva y quedar rezagadas respecto a sus competidores. Por ejemplo, una empresa que adopta una plataforma de automatización de procesos demasiado tarde puede perder la oportunidad de reducir costos y mejorar la eficiencia.
+
+### Dificultades para ponerse al día
+
+Las empresas que adoptan tecnologías emergentes demasiado tarde pueden enfrentar dificultades para ponerse al día con sus competidores, lo que puede ser costoso y desafiante. Como ilustración, una empresa que adopta una plataforma de análisis de datos demasiado tarde puede enfrentar dificultades para analizar y procesar grandes cantidades de datos.
+
+### Costos más altos
+
+La adopción tardía de nuevas tecnologías puede ser más costosa que la adopción temprana, ya que las empresas pueden necesitar invertir más en hardware, software y capacitación. Así se puede ver en una empresa que adopta una plataforma de IA demasiado tarde puede necesitar invertir más en hardware y software para asegurarse de que la tecnología funcione de manera efectiva.
+
+### Impacto en la reputación
+
+La adopción tardía de nuevas tecnologías puede dañar la reputación de la empresa, especialmente si se considera que la empresa no es innovadora o no está dispuesta a adoptar tecnologías nuevas. Un caso concreto, una empresa que adopta una plataforma de colaboración demasiado tarde puede ser vista como una empresa que no está dispuesta a invertir en tecnologías nuevas.
+
+## Razones por las que las empresas adoptan demasiado tarde
+
+Las empresas pueden adoptar tecnologías emergentes demasiado tarde por varias razones. Algunas de las razones más comunes incluyen:
+
+### Falta de visión
+
+Las empresas pueden no tener una visión clara de cómo las tecnologías emergentes pueden beneficiar a su negocio. Para ilustrar, una empresa puede no entender cómo una plataforma de automatización de procesos puede mejorar la eficiencia y la productividad.
+
+### Resistencia al cambio
+
+Las empresas pueden enfrentar resistencia al cambio por parte de los empleados o la gerencia, lo que puede ralentizar la adopción de nuevas tecnologías. Entre otros ejemplos, una empresa puede enfrentar resistencia por parte de los empleados que no están dispuestos a aprender nuevas habilidades.
+
+### Limitaciones de recursos
+
+Las empresas pueden no tener los recursos necesarios para adoptar tecnologías emergentes, lo que puede incluir presupuesto, personal o infraestructura. Por mencionar uno, una empresa puede no tener el presupuesto necesario para adoptar una plataforma de IA.
+
+### Falta de experiencia
+
+Las empresas pueden no tener la experiencia necesaria para implementar y utilizar tecnologías emergentes de manera efectiva. Un caso típico, una empresa puede no tener la experiencia necesaria para implementar una plataforma de análisis de datos.
+
+## Estrategias para evitar adoptar demasiado tarde
+
+Para evitar adoptar demasiado tarde nuevas tecnologías, las empresas deben desarrollar una estrategia clara y efectiva. Algunas de las estrategias más importantes incluyen:
+
+1.  Monitoreo de tendencias: Las empresas deben monitorear las tendencias y los desarrollos en la industria para estar al tanto de las tecnologías emergentes. Un ejemplo representativo, una empresa puede monitorear las tendencias en la adopción de tecnologías de IA.
+2.  Investigación y desarrollo: Las empresas deben invertir en investigación y desarrollo para entender cómo las tecnologías emergentes pueden beneficiar a su negocio. Se puede ver en el caso de una empresa que puede invertir en investigación y desarrollo para entender cómo una plataforma de automatización de procesos puede mejorar la eficiencia y la productividad.
+3.  Capacitación y desarrollo de habilidades: Las empresas deben proporcionar capacitación y desarrollo de habilidades para asegurarse de que los empleados tengan las habilidades necesarias para utilizar tecnologías emergentes. Como muestra, una empresa puede proporcionar capacitación en la utilización de una plataforma de colaboración.
+4.  Alianzas estratégicas: Las empresas pueden formar alianzas estratégicas con proveedores de tecnología o consultores para obtener acceso a tecnologías emergentes y experiencia. Por ejemplo, una empresa puede formar una alianza estratégica con un proveedor de tecnología para obtener acceso a una plataforma de análisis de datos.
+
+Es vital que las empresas sean proactivas y no se queden rezagadas respecto a sus competidores. La adopción de nuevas tecnologías puede ser un desafío, pero también puede ser una oportunidad para innovar y crecer.
