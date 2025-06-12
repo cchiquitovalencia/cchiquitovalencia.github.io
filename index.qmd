@@ -16,9 +16,9 @@ about:
         - text: Email
           icon: envelope-at-fill
           href: mailto::cchiquito.valencia@gmail.com
-        - text: X (Twitter)
-          icon: twitter
-          href: https://x.com/cchiquitov
+        - text: Instagram
+          icon: instagram
+          href: https://www.instagram.com/cchiquitovalencia/
 ---
 
 # Crossing the path to Data Science
