@@ -21,9 +21,8 @@ website:
   page-footer:
     background: light
     left: 
-      - text: "Copyright 2025, Cristian Chiquito Valencia"
-      - text: "Política de Privacidad"
-        href: politica_privacidad.html
+      - "Copyright 2025, Cristian Chiquito Valencia"
+      - "[Política de privacidad](politica_privacidad.html)"
     right:
       - icon: linkedin
         href: https://www.linkedin.com/in/cchiquitovalencia/
@@ -31,8 +30,8 @@ website:
         href: https://github.com/cchiquitovalencia/
       - icon: envelope-at-fill
         href: mailto:cchiquito.valencia@gmail.com
-      - icon: twitter
-        href: https://x.com/cchiquitov
+      - icon: instagram
+        href: https://www.instagram.com/cchiquitovalencia/
 
 format:
   html:
