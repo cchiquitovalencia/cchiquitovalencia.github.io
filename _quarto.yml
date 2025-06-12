@@ -22,6 +22,7 @@ website:
     background: light
     left: 
       - "Copyright 2025, Cristian Chiquito Valencia"
+    center:
       - text: "Política de privacidad"
         href: politica_privacidad.html
     right:
