@@ -21,7 +21,7 @@ about:
           href: https://www.instagram.com/cchiquitovalencia/
 ---
 
-# Crossing the path to Data Science
+# On the path to Data Science
 
 #### **Technical Skills**: [R](https://www.r-project.org/), [Quarto](https://quarto.org/), [Amazon Web Services](https://aws.amazon.com/), Vehicle Routing Problem, [Power BI](https://app.powerbi.com/), Excel, Maintenance Scheduling, Data Analysis, Mixed Integer Linear Programming, Machine Learning, [Shopify Web Design](https://www.shopify.com/co).
 
