@@ -1,6 +1,6 @@
 ---
 title: "Cristian Chiquito Valencia"
-image: image.jpg
+image: FotoPerfil.jpg
 toc: false
 about: 
     template: trestles
