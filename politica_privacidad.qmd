@@ -1,0 +1,92 @@
+---
+title: "Política de Privacidad"
+author: "Cristian Chiquito Valencia"
+date: "2025-06-12"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    css: styles.css
+    number-sections: true
+    code-fold: false
+    page-layout: full
+editor: visual
+---
+
+# Política de Privacidad para el Tratamiento de Datos Personales
+
+**Versión:** 1.0  
+**Fecha de entrada en vigencia:** 12 de junio de 2025  
+**Responsable del tratamiento:**  
+**Nombre:** Cristian Chiquito Valencia  
+**Correo de contacto:** cchiquito.valencia@gmail.com
+**Ciudad:** Colombia
+
+---
+
+## 1. Objeto
+
+La presente Política de Privacidad tiene como finalidad establecer los términos y condiciones bajo los cuales el responsable, actuando como persona natural, realizará el tratamiento de los datos personales recolectados a través de formularios alojados en plataformas de Meta (Facebook e Instagram), o Google, en cumplimiento de lo dispuesto por la **Ley 1581 de 2012**, el **Decreto 1377 de 2013** y demás normas concordantes sobre protección de datos personales en Colombia.
+
+## 2. Datos recolectados
+
+A través de los formularios mencionados se recolectarán los siguientes datos personales:
+
+- Nombre completo  
+- Correo electrónico  
+- País de residencia
+
+No se solicitarán ni almacenarán datos sensibles.
+
+## 3. Finalidades del tratamiento
+
+Los datos personales serán tratados exclusivamente para los siguientes fines:
+
+- Establecer contacto con el titular.
+- Enviar contenidos informativos, educativos o promocionales.
+- Clasificación estadística por país de residencia.
+- Cumplimiento de obligaciones legales cuando aplique.
+
+## 4. Tratamiento y almacenamiento
+
+Los datos serán almacenados mediante servicios digitales bajo medidas razonables de seguridad. Podrán ser transferidos a servidores internacionales utilizados por plataformas como Meta, lo cual el titular acepta al diligenciar el formulario.
+
+## 5. Derechos del titular
+
+De conformidad con la ley, el titular podrá:
+
+- Conocer, actualizar, rectificar y suprimir sus datos.
+- Revocar la autorización otorgada.
+- Solicitar prueba de la autorización.
+- Ser informado sobre el uso de su información.
+- Presentar quejas ante la Superintendencia de Industria y Comercio.
+
+## 6. Ejercicio de derechos
+
+El titular podrá ejercer sus derechos mediante solicitud escrita al correo electrónico
+dispuesto en la parte superior.
+
+La solicitud debe contener:
+
+- Nombre completo
+- Descripción clara de la solicitud
+- Copia de documento de identidad
+
+Los tiempos de respuesta están regulados por la ley colombiana (máximo 15 días hábiles para reclamos y 10 días hábiles para consultas).
+
+## 7. Autorización
+
+Al diligenciar voluntariamente el formulario, el titular manifiesta de forma **libre, previa, expresa e informada** su autorización para el tratamiento de sus datos personales conforme a esta política.
+
+## 8. Modificaciones
+
+El responsable se reserva el derecho de modificar esta política en cualquier momento. Los cambios serán publicados oportunamente y notificados por los medios disponibles.
+
+## 9. Vigencia
+
+Los datos serán almacenados mientras subsistan las finalidades para las cuales fueron recolectados, o hasta tanto el titular solicite su eliminación y no exista impedimento legal para hacerlo.
+
+---
+
+> Para cualquier inquietud relacionada con esta Política de Privacidad, puede comunicarse al correo indicado arriba.
