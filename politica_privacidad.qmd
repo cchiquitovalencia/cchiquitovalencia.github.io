@@ -21,7 +21,7 @@ editor: visual
 **Responsable del tratamiento:**  
 **Nombre:** Cristian Chiquito Valencia  
 **Correo de contacto:** cchiquito.valencia@gmail.com
-**Ciudad:** Colombia
+**País:** Colombia
 
 ---
 
