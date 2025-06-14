@@ -80,3 +80,7 @@ He liderado con éxito proyectos de mejora continua, optimización de costos, pr
 -   **Diseño e implementación de Indicador de Confiabilidad para la labor de los Supervisores de Mantenimiento, a través de aplicación en R, como medida de desempeño.**
 
 -   **Desarrollo de herramienta para identificar fallas en estado de flota y priorizar las intervenciones de mantenimiento preventivo y correctivo.**
+
+-   **Ejecución de estudio integral de tiempos y movimientos, análisis de capacidad instalada y evaluación de costos para calcular el costo unitario de cada una de las referencias del portafolio. Desarrollo de herramienta que permitió a la gerencia optimizar la producción, definir referencias a promocionar, transformar o descontinuar, y tomar decisiones fundamentadas en datos reales.**
+
+-   **Desarrollo de herramienta para organizar dinámicamente la información proveniente de formularios de auto-reporte de actividades, asociando procedimientos, subprocesos y procesos en múltiples sedes.**

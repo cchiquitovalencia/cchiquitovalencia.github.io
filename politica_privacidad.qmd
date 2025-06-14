@@ -20,7 +20,7 @@ editor: visual
 **Fecha de entrada en vigencia:** 12 de junio de 2025  
 **Responsable del tratamiento:**  
 **Nombre:** Cristian Chiquito Valencia  
-**Correo de contacto:** cchiquito.valencia@gmail.com
+**Correo de contacto:** cchiquito.valencia@gmail.com  
 **País:** Colombia
 
 ---
@@ -50,7 +50,7 @@ Los datos personales serán tratados exclusivamente para los siguientes fines:
 
 ## 4. Tratamiento y almacenamiento
 
-Los datos serán almacenados mediante servicios digitales bajo medidas razonables de seguridad. Podrán ser transferidos a servidores internacionales utilizados por plataformas como Meta, lo cual el titular acepta al diligenciar el formulario.
+Los datos serán almacenados mediante servicios digitales bajo medidas razonables de seguridad. Podrán ser transferidos a servidores internacionales utilizados por plataformas como Meta, Google, GitHub, AWS, lo cual el titular acepta al diligenciar el formulario.
 
 ## 5. Derechos del titular
 
